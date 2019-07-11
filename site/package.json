@@ -12,15 +12,15 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
-    "gatsby": "^2.11.7",
-    "gatsby-source-sanity": "^5.0.0",
+    "gatsby": "^2.13.13",
+    "gatsby-source-sanity": "^5.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "dotenv": "^8.0.0",
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0",
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^13.0.0",
     "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-node": "^9.0.1",
