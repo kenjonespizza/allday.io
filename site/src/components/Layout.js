@@ -6,7 +6,6 @@ import {GlobalStyle, base} from '../utilities/styles'
 import NavBar from './NavBar'
 
 const initialState = {count: 0}
-export const {GlobalStateProvider, useGlobalState} = createGlobalState(initialState)
 
 const LayoutStyled = styled.div`
   /* background-color: ${props => props.theme.colors.background}; */
