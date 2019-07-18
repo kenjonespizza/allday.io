@@ -1,14 +1,14 @@
 import {darken, lighten} from 'polished'
 
-const black = '#02161E';
-const white = '#FEFEFE';
-const seal = '#00B4BF';
-const watermelly = '#E84A5F';
-const pulp = '#FFDE67';
-const aloe = '#00D98B';
+const black = '#02161E'
+const white = '#FEFEFE'
+const seal = '#00B4BF'
+const watermelly = '#E84A5F'
+const pulp = '#FFDE67'
+const aloe = '#00D98B'
 
-const accentHover = (color, ammount = 0.1, makeDarker=true) => {
-  return (makeDarker === true ? darken(ammount, color) : lighten(ammount, color)) 
+const accentHover = (color, ammount = 0.1, makeDarker = true) => {
+  return (makeDarker === true ? darken(ammount, color) : lighten(ammount, color))
 }
 
 export const base = {
@@ -22,7 +22,7 @@ export const base = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
+    aloe: aloe
   },
   lines: black,
   fonts: {
@@ -62,21 +62,21 @@ const darkYellowTheme = {
   colors: {
     text: white,
     background: black,
-    accent: pulp,
+    accent: pulp
   },
   colors: {
     text: white,
     background: black,
     accent: pulp,
-    accentHover: accentHover(pulp, .1),
+    accentHover: accentHover(pulp, 0.1),
     black: black,
     white: white,
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
+    aloe: aloe
   },
-  lines: white,
+  lines: white
 }
 
 const whiteRedTheme = {
@@ -90,9 +90,9 @@ const whiteRedTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
+    aloe: aloe
   },
-  lines: black,
+  lines: black
 }
 
 export const darkYellow = {...base, ...darkYellowTheme}

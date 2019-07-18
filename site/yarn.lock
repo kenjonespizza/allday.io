@@ -10171,6 +10171,11 @@ react-error-overlay@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
   integrity sha512-XzgvowFrwDo6TWcpJ/WTiarb9UI6lhA4PMzS7n1joK3sHfBBBOQHUc0U4u57D6DWO9vHv6lVSWx2Q/Ymfyv4hw==
 
+react-hooks-global-state@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/react-hooks-global-state/-/react-hooks-global-state-0.14.0.tgz#10351425bbc87d46a0ff69be9878d3fe8938e95e"
+  integrity sha512-lDnjvvXqrs0AxJHPx3BuXNieOwnjIMLD5rpDAImOOXhCXS8PkZjmosStv7ponuj2SGSMYf+LXt8Spt/SEtonpw==
+
 react-hot-loader@^4.12.5:
   version "4.12.6"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.6.tgz#bd7a41501b02576638031482474a72bac453587d"

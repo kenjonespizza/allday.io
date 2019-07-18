@@ -3,12 +3,15 @@ import styled, {keyframes, css} from 'styled-components'
 import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
 
+// import {useGlobalState} from './Layout.js'
 import LogoFile from '../../static/AllDayLogo.svg'
 import {useOpen} from '../utilities/hooks/useOpen'
 import {addNavHeightToWrapper} from '../utilities/helpers'
 import {transition} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {GridLines} from '../elements/GridLines'
+
+const {GlobalStateProvider, useGlobalState} = createGlobalState(initialState)
 
 function colorSwap (props) {
   return keyframes`
@@ -111,6 +114,7 @@ const MenuButton = styled.button`
 const NavBar = () => {
   // const [navIsOpened, toggle] = useState(false);
   const {isOpen, toggle} = useOpen()
+  const [value, update] = useGlobalStaTe('count')
 
   useEffect(() => {
     addNavHeightToWrapper()
