@@ -12,10 +12,20 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.13.13",
+    "gatsby-image": "^2.2.6",
+    "gatsby-plugin-sharp": "^2.2.6",
+    "gatsby-plugin-styled-components": "^3.1.0",
     "gatsby-source-sanity": "^5.0.1",
+    "gatsby-transformer-sharp": "^2.2.3",
+    "i": "^0.3.6",
+    "npm": "^6.10.0",
+    "polished": "^3.4.1",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2",
+    "styled-normalize": "^8.0.6"
   },
   "devDependencies": {
     "dotenv": "^8.0.0",
