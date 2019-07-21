@@ -1,17 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import styled, {keyframes, css} from 'styled-components'
 import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
 
 // import {useGlobalState} from './Layout.js'
 import LogoFile from '../../static/AllDayLogo.svg'
-import {useOpen} from '../utilities/hooks/useOpen'
-import {addNavHeightToWrapper} from '../utilities/helpers'
 import {transition} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
-import {GridLines} from '../elements/GridLines'
-
-const {GlobalStateProvider, useGlobalState} = createGlobalState(initialState)
+import {useGlobalState} from './Layout'
 
 function colorSwap (props) {
   return keyframes`
@@ -97,27 +93,26 @@ const Logo = styled(LogoFile)`
 
 const MenuButton = styled.button`
   right: 48px;
-  top: 28px;
+  top: calc((${props => props.navHeight}px / 2) - 19px);
   z-index: 20;
   position: fixed;
   background: none;
   border: none;
-  color: ${props => props.isopen === 'true' ? props.theme.colors.white : props.theme.colors.black};
+  color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.black};
   padding: 10px;
   cursor: pointer;
 
   &:hover {
-    color: ${props => props.isopen === 'true' ? props.theme.colors.pulp : props.theme.colors.watermelly};
+    color: ${props => props.isOpen ? props.theme.colors.pulp : props.theme.colors.watermelly};
   }
 `
 
 const NavBar = () => {
-  // const [navIsOpened, toggle] = useState(false);
-  const {isOpen, toggle} = useOpen()
-  const [value, update] = useGlobalStaTe('count')
+  const [isOpen, toggleMenu] = useGlobalState('isMenuOpen')
+  const [navHeight] = useGlobalState('navHeight')
 
   useEffect(() => {
-    addNavHeightToWrapper()
+    // addNavHeightToWrapper()
   })
 
   const data = useStaticQuery(graphql`
@@ -145,12 +140,10 @@ const NavBar = () => {
 
   const {logo, navLinks} = data.site.nodes[0]
 
-  // console.log('isOpen:', isOpen)
   return (
     <>
       <Logo src={logo.asset.url} alt={logo.alt} isopen={isOpen ? 'true' : 'false'} />
       <StyledNavBar id='nav-bar'>
-        <GridLines />
 
         <Nav>
           <ul>
@@ -166,8 +159,9 @@ const NavBar = () => {
           </ul>
         </Nav>
       </StyledNavBar>
-      <SlideOutMenu toggle={toggle} isOpen={isOpen} />
-      <MenuButton onClick={toggle} aria-expanded={isOpen} isopen={isOpen ? 'true' : 'false'}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
+      <SlideOutMenu />
+
+      <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen} navHeight={navHeight} >{isOpen ? 'Close' : 'Menu'}</MenuButton>
 
     </>
   )

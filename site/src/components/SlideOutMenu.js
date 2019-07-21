@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { useStaticQuery, grapgql } from 'gatsby'
+import React, {useEffect} from 'react'
+import {useStaticQuery, grapgql} from 'gatsby'
 import styled, {ThemeProvider, keyframes, css} from 'styled-components'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
 import {darkYellow, transition} from '../utilities/styles'
-import { GridLines } from '../elements/GridLines';
+import {GridLines} from '../elements/GridLines'
+import {useGlobalState} from './Layout'
 
 // function backgroundSwap (props) {
 //   return keyframes`
@@ -50,15 +51,15 @@ const StyledSlideOutMenu = styled.div`
   background-size: cover;
   background-position: center;
   background-color: ${props => props.theme.colors.background};
-  display: ${props => props.isOpen ? "flex" : "none"};
+  display: ${props => props.isOpen ? 'flex' : 'none'};
   z-index: 15;
   justify-content: center;
   align-items: center;
   /* animation: ${props => backgroundSwap} 10s linear infinite; */
-  /* ${props => props.isOpen ?
-      css`animation: ${props => backgroundSwap} 60s linear infinite;` :
-      css`animation: none;`
-    } */
+  /* ${props => props.isOpen
+    ? css`animation: ${props => backgroundSwap} 60s linear infinite;`
+    : css`animation: none;`
+} */
 
   nav {
     width: 1200px;
@@ -72,7 +73,7 @@ const StyledSlideOutMenu = styled.div`
       display: flex;
       flex-direction: column;
       &:last-child {
-        /* border-top: ${props => props.theme.colors.white && rgba(props.theme.colors.white, .1)} dotted 1px; */
+        /* border-top: ${props => props.theme.colors.white && rgba(props.theme.colors.white, 0.1)} dotted 1px; */
       }
     }
 
@@ -88,34 +89,25 @@ const StyledSlideOutMenu = styled.div`
       }
     }
   }
-`;
+`
 
-// function escFunction(event) {
-//     if (event.keyCode === 27) {
-//       if (this.state.on) {
-//         this.setState({ on: false })
-//       }
-//     }
-//   }
-
-
-const SlideOutMenu = ({toggle, isOpen}) => {
+const SlideOutMenu = () => {
+  const [isOpen, toggleMenu] = useGlobalState('isMenuOpen')
 
   const escFunction = (event) => {
     if (event.keyCode === 27) {
-     toggle()
+      toggleMenu()
     }
   }
 
-   useEffect(() => {
-      // If the menu is open, add event listener for the escape key to close menu.  Otherwise remove event listener.
-      if (isOpen) {
-        document.addEventListener('keydown', escFunction, false)
-      } else {
-        document.removeEventListener('keydown', escFunction, false)
-      }
-    })
-
+  useEffect(() => {
+    // If the menu is open, add event listener for the escape key to close menu.  Otherwise remove event listener.
+    if (isOpen) {
+      document.addEventListener('keydown', escFunction, false)
+    } else {
+      document.removeEventListener('keydown', escFunction, false)
+    }
+  })
 
   const data = useStaticQuery(graphql`
     query SlideOutNavQuery {
@@ -141,10 +133,8 @@ const SlideOutMenu = ({toggle, isOpen}) => {
     }
   `)
 
-  console.log('data:', data)
+  const {navLinks} = data.site.nodes[0]
 
-  const {logo, navLinks} = data.site.nodes[0]
-console.log('isOpen:', isOpen)
   return (
     <ThemeProvider theme={darkYellow}>
       <StyledSlideOutMenu isOpen={isOpen}>
@@ -152,8 +142,8 @@ console.log('isOpen:', isOpen)
         <nav>
           <ul>
             {navLinks.map(link => {
-              if(link.showInMainNav) {
-                return(
+              if (link.showInMainNav) {
+                return (
                   <li key={link._key}>
                     <Link to={link.pageUrl.current}>{link.pageName}</Link>
                   </li>
@@ -163,8 +153,8 @@ console.log('isOpen:', isOpen)
           </ul>
           <ul>
             {navLinks.map(link => {
-              if(link.showInHiddenNav) {
-                return(
+              if (link.showInHiddenNav) {
+                return (
                   <li key={link._key}>
                     <Link to={link.pageUrl.current}>{link.pageName}</Link>
                   </li>
@@ -174,7 +164,7 @@ console.log('isOpen:', isOpen)
           </ul>
         </nav>
         {/* <button onClick={toggle} aria-expanded={isOpen}>Menu</button> */}
-        
+
       </StyledSlideOutMenu>
     </ThemeProvider>
   )

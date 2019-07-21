@@ -19,6 +19,11 @@ export default {
       type: 'image-alt',
     },
     {
+      name: 'buttonText',
+      title: 'Button Text',
+      type: 'string' 
+    },
+    {
       name: 'videoURL',
       title: 'Video URL',
       type: 'url',

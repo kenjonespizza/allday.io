@@ -12,11 +12,11 @@ const StyledGridWrap = styled.div`
   top: 0;
   left: 0;
   z-index: -1;
-`;
+`
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 0;
   width: 100%;
   max-width: 1200px;
@@ -26,22 +26,21 @@ const StyledGrid = styled.div`
 
   > div {
     height: 100%;
-    border-left: ${props => props.theme.lines && rgba(props.theme.lines, .05)} solid 1px;
+    border-left: ${props => props.theme.lines && rgba(props.theme.lines, 0.05)} solid 1px;
 
     &:last-of-type {
-    border-right: ${props => props.theme.lines && rgba(props.theme.lines, .05)} solid 1px;
+    border-right: ${props => props.theme.lines && rgba(props.theme.lines, 0.05)} solid 1px;
     }
   }
-`;
+`
 
 export const GridLines = () => (
   <StyledGridWrap>
-  <StyledGrid>
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-  </StyledGrid>
+    <StyledGrid>
+      <div />
+      <div />
+      <div />
+      <div />
+    </StyledGrid>
   </StyledGridWrap>
 )
