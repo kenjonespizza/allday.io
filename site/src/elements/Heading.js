@@ -1,9 +1,9 @@
 import styled, {css} from 'styled-components'
 
-// import {base} from '../utilities/styles'
+import {base} from '../utilities/styles'
 
 const H1css = css`
-  font-size: 40px;
+  font-size: 55px;
 `
 const H2css = css`
   font-size: 28px;
@@ -22,13 +22,19 @@ const H6css = css`
 `
 
 export const Heading = styled.span`
-  color: ${props => props.theme.colors.accent};
-  font-size: 40px;
-  /* font-family: ${base.fonts.heading};
-  font-weight: ${base.fontWeights.black};
+  color: ${props => props.theme.colors.black};
+  font-size: 55px;
+  display: block;
+  font-family: ${base.fonts.heading};
+  font-weight: ${base.fontWeights.bold};
   font-weight: ${props => (props.light ? base.fontWeights.light : '')};
   font-weight: ${props => (props.regular ? base.fontWeights.regular : '')};
-  font-weight: ${props => (props.bold ? base.fontWeights.bold : '')}; */
+  font-weight: ${props => (props.black ? base.fontWeights.black : '')};
+  margin: 0;
+
+  span.accent {
+    color: ${props => props.theme.colors.accent};
+  }
 
   ${props =>
     props.H1 &&
@@ -90,4 +96,9 @@ export const H5 = styled(Heading.withComponent('h5'))`
 `
 export const H6 = styled(Heading.withComponent('h6'))`
   ${H6css};
+`
+
+export const SubHeading = styled.span`
+  font-size: 19px;
+  font-weight: ${base.fontWeights.light}
 `

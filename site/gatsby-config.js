@@ -23,7 +23,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /static/ // See below to configure properly
@@ -36,10 +36,22 @@ module.exports = {
         fonts: [
           {
             family: `Poppins`,
-            variants: [`300`,`300i`,`400`,`500`,`500i`,`700`]
-          },
-        ],
-      },
+            variants: [`300`, `300i`, `400`, `500`, `500i`, `600`, `6006i`, `700`]
+          }
+        ]
+      }
     }
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `GatsbyJS`,
+    //     short_name: `GatsbyJS`,
+    //     start_url: `/`,
+    //     background_color: `#f7f0eb`,
+    //     theme_color: `#a2466c`,
+    //     display: `standalone`
+    //   }
+    // }
+    // `gatsby-plugin-offline,`
   ]
 }

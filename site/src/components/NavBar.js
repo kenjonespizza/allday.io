@@ -3,11 +3,11 @@ import styled, {keyframes, css} from 'styled-components'
 import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
 
-// import {useGlobalState} from './Layout.js'
 import LogoFile from '../../static/AllDayLogo.svg'
 import {transition} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
+import {GridLines} from '../elements/GridLines'
 
 function colorSwap (props) {
   return keyframes`
@@ -42,6 +42,7 @@ function colorSwap (props) {
 }
 
 const StyledNavBar = styled.header`
+  background-color: ${props => props.theme.colors.white};
   position: fixed;
   top: 0;
   left: 0;
@@ -51,6 +52,7 @@ const StyledNavBar = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `
 
 const Nav = styled.nav`
@@ -144,7 +146,7 @@ const NavBar = () => {
     <>
       <Logo src={logo.asset.url} alt={logo.alt} isopen={isOpen ? 'true' : 'false'} />
       <StyledNavBar id='nav-bar'>
-
+        <GridLines />
         <Nav>
           <ul>
             {navLinks.map(link => {

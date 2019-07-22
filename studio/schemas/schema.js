@@ -9,6 +9,7 @@ import figure from './objects/figure'
 import imageAlt from './objects/image-alt'
 import pageLink from './objects/page-link'
 import homeHero from './objects/home-hero'
+import button from './objects/button'
 
 // Document types
 import siteSettings from './documents/siteSettings'
@@ -27,6 +28,7 @@ export default createSchema({
     imageAlt,
     pageLink,
     homeHero,
+    button,
     
     /* Your types here! */
     siteSettings,

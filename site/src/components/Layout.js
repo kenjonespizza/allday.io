@@ -5,13 +5,12 @@ import {createGlobalState} from 'react-hooks-global-state'
 import {GlobalStyle, base} from '../utilities/styles'
 import NavBar from './NavBar'
 import {getNavHeight} from '../utilities/helpers'
-import {GridLines} from '../elements/GridLines'
 
 if (typeof window !== `undefined`) {
   // Calculate the height of the NavBar on resize (and on load in the NavBar Component), and then add that height to the to pf the page to account for the NavBar overlap.
 
-  let lastKnowScrollPosition = 0
   let ticking = false
+  // var renderedNavHeight = getNavHeight()
   var renderedNavHeight = 124
   var windowEl = window
 
@@ -43,14 +42,11 @@ const LayoutStyled = styled.div`
 
 const InnerLayout = ({children}) => {
   const [navHeight] = useGlobalState('navHeight')
-  const [window] = useGlobalState('window')
-  console.log('window:', window)
 
   return (
     <>
       <GlobalStyle />
       <LayoutStyled id='rappers-delight' navHeight={navHeight}>
-        <GridLines />
         <NavBar />
         {children}
       </LayoutStyled>

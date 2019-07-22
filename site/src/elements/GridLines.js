@@ -12,6 +12,7 @@ const StyledGridWrap = styled.div`
   top: 0;
   left: 0;
   z-index: -1;
+  overflow: hidden;
 `
 
 const StyledGrid = styled.div`
@@ -34,8 +35,8 @@ const StyledGrid = styled.div`
   }
 `
 
-export const GridLines = () => (
-  <StyledGridWrap>
+export const GridLines = ({backgroundColor}) => (
+  <StyledGridWrap backgroundColor={backgroundColor}>
     <StyledGrid>
       <div />
       <div />

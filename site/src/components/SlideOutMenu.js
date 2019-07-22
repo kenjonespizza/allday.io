@@ -4,7 +4,7 @@ import styled, {ThemeProvider, keyframes, css} from 'styled-components'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
-import {darkYellow, transition} from '../utilities/styles'
+import {darkPulp, transition} from '../utilities/styles'
 import {GridLines} from '../elements/GridLines'
 import {useGlobalState} from './Layout'
 
@@ -136,7 +136,7 @@ const SlideOutMenu = () => {
   const {navLinks} = data.site.nodes[0]
 
   return (
-    <ThemeProvider theme={darkYellow}>
+    <ThemeProvider theme={darkPulp}>
       <StyledSlideOutMenu isOpen={isOpen}>
         <GridLines />
         <nav>

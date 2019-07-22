@@ -4,8 +4,9 @@ import {ThemeProvider} from 'styled-components'
 
 import Layout from '../components/Layout'
 import {Heading, H1, H2, H3, H4, H5, H6, Button, Wrapper} from '../elements'
-import {base, darkYellow, whiteRed} from '../utilities/styles'
+import {base, darkPulp, lightWatermelly} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
+import ServicesBlock from '../components/ServicesBlock'
 
 export default () => {
   return (
@@ -18,6 +19,7 @@ export default () => {
               <>
                 <Wrapper hasGrid theme={base}>
                   <HeroHome />
+                  <ServicesBlock />
                 </Wrapper>
               </>
             )

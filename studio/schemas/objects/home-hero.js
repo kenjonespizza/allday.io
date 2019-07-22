@@ -19,15 +19,20 @@ export default {
       type: 'image-alt',
     },
     {
-      name: 'buttonText',
-      title: 'Button Text',
-      type: 'string' 
-    },
-    {
-      name: 'videoURL',
-      title: 'Video URL',
-      type: 'url',
-      description: 'EX: https://youtu.be/O-FGqfdCkOM' 
-    },
+      name: 'button',
+      title: 'Button',
+      type: 'button'
+    }
+    // {
+    //   name: 'buttonText',
+    //   title: 'Button Text',
+    //   type: 'string' 
+    // },
+    // {
+    //   name: 'videoURL',
+    //   title: 'Video URL',
+    //   type: 'url',
+    //   description: 'EX: https://youtu.be/O-FGqfdCkOM' 
+    // },
   ]
 }

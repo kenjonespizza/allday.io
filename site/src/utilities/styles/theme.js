@@ -16,7 +16,9 @@ export const base = {
     text: black,
     background: white,
     accent: seal,
-    accentHover: accentHover(seal),
+    accentHover: black,
+    accentHoverText: seal,
+    onAccent: white,
     black: black,
     white: white,
     seal: seal,
@@ -26,16 +28,23 @@ export const base = {
   },
   lines: black,
   fonts: {
-    body: 'fantasy, sans-serif',
-    heading: 'fantasy, serif',
+    body: 'Poppins, sans-serif',
+    heading: 'Poppins, sans-serif',
     monospace: 'Menlo, monospace'
   },
-  fontSizes: [
-    12, 14, 16, 20, 24, 32, 48, 64
-  ],
+  fontSizes: {
+    base: '17px',
+    button: '19px',
+    buttonIcon: '16px',
+    h1: '55px',
+    subH1: '19px',
+    h2: '32px'
+  },
   fontWeights: {
     light: 100,
     regular: 400,
+    medium: 500,
+    semibold: 600,
     bold: 700,
     black: 900
   },
@@ -55,20 +64,23 @@ export const base = {
     large: 992,
     medium: 768,
     small: 480
+  },
+  spacing: {
+    base: '40px',
+    sectionL: '150px',
+    sectionM: '300px',
+    sectionS: '150px'
   }
 }
 
-const darkYellowTheme = {
-  colors: {
-    text: white,
-    background: black,
-    accent: pulp
-  },
+const darkPulpTheme = {
   colors: {
     text: white,
     background: black,
     accent: pulp,
-    accentHover: accentHover(pulp, 0.1),
+    accentHover: white,
+    accentHoverText: watermelly,
+    onAccent: black,
     black: black,
     white: white,
     seal: seal,
@@ -79,12 +91,14 @@ const darkYellowTheme = {
   lines: white
 }
 
-const whiteRedTheme = {
+const lightWatermellyTheme = {
   colors: {
     text: black,
     background: white,
     accent: watermelly,
-    accentHover: accentHover(watermelly),
+    accentHover: black,
+    accentHoverText: watermelly,
+    onAccent: white,
     black: black,
     white: white,
     seal: seal,
@@ -95,6 +109,24 @@ const whiteRedTheme = {
   lines: black
 }
 
-export const darkYellow = {...base, ...darkYellowTheme}
+const lightPulpTheme = {
+  colors: {
+    text: black,
+    background: white,
+    accent: pulp,
+    accentHover: black,
+    accentHoverText: pulp,
+    onAccent: black,
+    black: black,
+    white: white,
+    seal: seal,
+    watermelly: watermelly,
+    pulp: pulp,
+    aloe: aloe
+  },
+  lines: black
+}
 
-export const whiteRed = {...base, ...whiteRedTheme}
+export const lightPulp = {...base, ...lightPulpTheme}
+export const darkPulp = {...base, ...darkPulpTheme}
+export const lightWatermelly = {...base, ...lightWatermellyTheme}

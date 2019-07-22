@@ -1,19 +1,19 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
 import {Link} from 'gatsby'
+// import {readableColor} from 'polished'
 
-import {base} from '../utilities/styles'
-import {transition} from '../utilities/styles/transition'
+import {transition, base} from '../utilities/styles'
 
 const ButtonStyles = css`
   background-color: ${props => props.theme.colors.accent};
   border: none;
-  font-size: 25px;
-  font-weight: 800;
-  border-radius: 100px;
+  font-size: ${base.fontSizes.base};
+  font-weight: ${base.fontWeights.semibold};
+  border-radius: 1px;
   text-decoration: none;
-  color: #fff;
-  padding: 20px 50px;
+  color: ${props => props.theme.colors.onAccent};
+  padding: 23px 50px 21px;
   display: inline-block;
   vertical-align: middle;
   margin: 0 0 1rem 0;
@@ -24,6 +24,13 @@ const ButtonStyles = css`
 
   &:hover {
     background-color: ${props => props.theme.colors.accentHover};
+    border-radius: 30px;
+    color: ${props => props.theme.colors.accentHoverText};
+  }
+
+  i {
+    font-size: 16px;
+    margin-left: 10px;
   }
 `
 
@@ -35,14 +42,14 @@ const StyledButtonLink = styled(Link)`
   ${ButtonStyles};
 `
 
-export const Button = ({to, type, children}) => {
+export const Button = ({to, type, icon, children}) => {
   if (type && type === 'button') {
     return (
-      <StyledButton>{children}</StyledButton>
+      <StyledButton>{children} {icon && <i className={icon} />}</StyledButton>
     )
   } else {
     return (
-      <StyledButtonLink to={to}>{children}</StyledButtonLink>
+      <StyledButtonLink to={to}>{children} {icon && <i className={icon} />}</StyledButtonLink>
     )
   }
 }

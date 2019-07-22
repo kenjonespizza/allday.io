@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
-import styled from 'styled-components'
+import styled, {ThemeProvider} from 'styled-components'
+import {readableColor} from 'polished'
 
+import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {useGlobalState} from './Layout'
 import {getNavHeight} from '../utilities/helpers'
-import {centerIt} from '../utilities/styles/helpers'
+import {centerIt, lightPulp, lightWatermelly, base} from '../utilities/styles/'
+import {Button} from '../elements/'
 
 const HeroHomeWrapper = styled.section`
   display: flex;
@@ -32,12 +35,23 @@ const CenteredBox = styled.div`
   width: 75%;
   max-width: 466px;
   background: ${props => props.theme.colors.white};
-  padding: 70px 30px;
+  padding: 70px ${base.spacing.base} ${base.spacing.base};
   font-size: 39px;
   text-align: center;
   line-height: 1.39;
   border-top-right-radius: 100px;
   border-bottom-left-radius: 100px;
+
+  button {
+    margin-top: ${base.spacing.base};
+  }
+`
+
+const PineappleDude = styled(PineappleDudeFile)`
+  position: absolute;
+  bottom: calc(100% - 60px);
+  left: 50%;
+  transform: translate(-50%, 0%);
 `
 
 const HeroHome = () => {
@@ -51,9 +65,15 @@ const HeroHome = () => {
     query HERO_QUERY {
       sanityHomepage {
         hero {
+          button {
+            buttonIcon
+            buttonText
+            slug {
+              current
+            }
+            url
+          }
           mainText
-          videoURL
-          buttonText
           imageRight {
             alt
             asset {
@@ -76,7 +96,7 @@ const HeroHome = () => {
   `)
 
   console.log('data:', data)
-  const {mainText, buttonText, videoURL, imageRight, imageLeft} = data.sanityHomepage.hero
+  const {mainText, button, imageRight, imageLeft} = data.sanityHomepage.hero
 
   return (
     <HeroHomeWrapper id='HeroHomeWrapperEl' navHeight={navHeight}>
@@ -86,12 +106,15 @@ const HeroHome = () => {
       <Side>
         <SideImg fluid={imageRight.asset.fluid} alt={imageRight.alt} />
       </Side>
-      <CenteredBox>
-        {mainText}
-        <button>
-          {buttonText}
-        </button>
-      </CenteredBox>
+      <ThemeProvider theme={lightPulp}>
+        <CenteredBox>
+          <PineappleDude />
+          {mainText}
+          <Button type='button' icon={button.buttonIcon}>
+            {button.buttonText}
+          </Button>
+        </CenteredBox>
+      </ThemeProvider>
     </HeroHomeWrapper>
   )
 }

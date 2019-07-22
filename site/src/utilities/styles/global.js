@@ -1,8 +1,8 @@
 import {createGlobalStyle} from 'styled-components'
 import styledNormalize from 'styled-normalize'
 
-import {base, darkYellow, whiteRed} from './theme'
-import { transition } from './transition';
+import {base, darkPulp, lightWatermelly} from './theme'
+import {transition} from './transition'
 export const GlobalStyle = createGlobalStyle`
 
 
@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 10px;
     color: ${props => props.theme.colors.text};
-    font-family: 'Poppins', sans-serif;
+    font-family: ${base.fonts.body};
   }
 
   *, *:before, *:after {
