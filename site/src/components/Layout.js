@@ -9,13 +9,14 @@ import {getNavHeight} from '../utilities/helpers'
 if (typeof window !== `undefined`) {
   // Calculate the height of the NavBar on resize (and on load in the NavBar Component), and then add that height to the to pf the page to account for the NavBar overlap.
 
+  // let lastKnowScrollPosition = 0
   let ticking = false
   // var renderedNavHeight = getNavHeight()
   var renderedNavHeight = 124
   var windowEl = window
 
   window.addEventListener('resize', function (e) {
-    lastKnowScrollPosition = window.scrollY
+    // lastKnowScrollPosition = window.scrollY
 
     if (!ticking) {
       window.requestAnimationFrame(function () {

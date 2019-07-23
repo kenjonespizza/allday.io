@@ -8,7 +8,7 @@ import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {useGlobalState} from './Layout'
 import {getNavHeight} from '../utilities/helpers'
 import {centerIt, lightPulp, lightWatermelly, base} from '../utilities/styles/'
-import {Button} from '../elements/'
+import {Button, Wrapper} from '../elements/'
 
 const HeroHomeWrapper = styled.section`
   display: flex;
@@ -35,7 +35,7 @@ const CenteredBox = styled.div`
   width: 75%;
   max-width: 466px;
   background: ${props => props.theme.colors.white};
-  padding: 70px ${base.spacing.base} ${base.spacing.base};
+  padding: 70px ${base.spacings.base}px ${base.spacings.base}px;
   font-size: 39px;
   text-align: center;
   line-height: 1.39;
@@ -43,7 +43,7 @@ const CenteredBox = styled.div`
   border-bottom-left-radius: 100px;
 
   button {
-    margin-top: ${base.spacing.base};
+    margin-top: ${base.spacings.base}px;
   }
 `
 
@@ -98,7 +98,7 @@ const HeroHome = () => {
   console.log('data:', data)
   const {mainText, button, imageRight, imageLeft} = data.sanityHomepage.hero
 
-  return (
+  return (<Wrapper noSpace theme={lightPulp}>
     <HeroHomeWrapper id='HeroHomeWrapperEl' navHeight={navHeight}>
       <Side>
         <SideImg fluid={imageLeft.asset.fluid} alt={imageLeft.alt} />
@@ -106,16 +106,16 @@ const HeroHome = () => {
       <Side>
         <SideImg fluid={imageRight.asset.fluid} alt={imageRight.alt} />
       </Side>
-      <ThemeProvider theme={lightPulp}>
-        <CenteredBox>
-          <PineappleDude />
-          {mainText}
-          <Button type='button' icon={button.buttonIcon}>
-            {button.buttonText}
-          </Button>
-        </CenteredBox>
-      </ThemeProvider>
+
+      <CenteredBox>
+        <PineappleDude />
+        {mainText}
+        <Button type='button' icon={button.buttonIcon}>
+          {button.buttonText}
+        </Button>
+      </CenteredBox>
     </HeroHomeWrapper>
+  </Wrapper>
   )
 }
 

@@ -22,7 +22,7 @@ const H6css = css`
 `
 
 export const Heading = styled.span`
-  color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.text};
   font-size: 55px;
   display: block;
   font-family: ${base.fonts.heading};

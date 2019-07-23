@@ -16,6 +16,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${base.fonts.body};
   }
 
+  /* * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } */
+
   *, *:before, *:after {
     box-sizing: inherit;
   }
@@ -24,6 +29,8 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a {
@@ -31,6 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.colors.accent};
     ${transition({})};
   }
+
 
   button {
     ${transition({})};
@@ -50,4 +58,13 @@ export const GlobalStyle = createGlobalStyle`
   .auth0-lock.auth0-lock.auth0-lock-opened .auth0-lock-overlay { background: none; }
   .auth0-lock.auth0-lock .auth0-lock-overlay { background: none; }
   .auth0-lock.auth0-lock.auth0-lock-opened .auth0-lock-widget {box-shadow: 0 0 40px 4px #969696 !important}
+
+  ::-moz-selection {
+    background-color: ${props => props.theme.colors.accent};
+    color: ${props => props.theme.colors.accentHover};
+  }
+  ::selection {
+    background-color: ${props => props.theme.colors.accent};
+    color: ${props => props.theme.colors.accentHover};
+  }
 `

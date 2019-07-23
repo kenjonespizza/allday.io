@@ -24,7 +24,7 @@ const ButtonStyles = css`
 
   &:hover {
     background-color: ${props => props.theme.colors.accentHover};
-    border-radius: 30px;
+    /* border-radius: 30px; */
     color: ${props => props.theme.colors.accentHoverText};
   }
 

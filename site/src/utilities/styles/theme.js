@@ -1,4 +1,4 @@
-import {darken, lighten} from 'polished'
+import {darken, lighten, rgba} from 'polished'
 
 const black = '#02161E'
 const white = '#FEFEFE'
@@ -65,12 +65,33 @@ export const base = {
     medium: 768,
     small: 480
   },
-  spacing: {
-    base: '40px',
-    sectionL: '150px',
-    sectionM: '300px',
-    sectionS: '150px'
+  spacings: {
+    base: 40,
+    sectionS: 50,
+    sectionM: 100,
+    sectionL: 150
+  },
+  shadows: {
+    box: `0px 10px 35px ${rgba('black', 0.1)}`
   }
+}
+
+const lightPulpTheme = {
+  colors: {
+    text: black,
+    background: white,
+    accent: pulp,
+    accentHover: black,
+    accentHoverText: white,
+    onAccent: black,
+    black: black,
+    white: white,
+    seal: seal,
+    watermelly: watermelly,
+    pulp: pulp,
+    aloe: aloe
+  },
+  lines: black
 }
 
 const darkPulpTheme = {
@@ -79,7 +100,7 @@ const darkPulpTheme = {
     background: black,
     accent: pulp,
     accentHover: white,
-    accentHoverText: watermelly,
+    accentHoverText: black,
     onAccent: black,
     black: black,
     white: white,
@@ -97,7 +118,7 @@ const lightWatermellyTheme = {
     background: white,
     accent: watermelly,
     accentHover: black,
-    accentHoverText: watermelly,
+    accentHoverText: white,
     onAccent: white,
     black: black,
     white: white,
@@ -109,14 +130,14 @@ const lightWatermellyTheme = {
   lines: black
 }
 
-const lightPulpTheme = {
+const darkWatermellyTheme = {
   colors: {
-    text: black,
-    background: white,
-    accent: pulp,
-    accentHover: black,
-    accentHoverText: pulp,
-    onAccent: black,
+    text: white,
+    background: black,
+    accent: watermelly,
+    accentHover: white,
+    accentHoverText: watermelly,
+    onAccent: white,
     black: black,
     white: white,
     seal: seal,
@@ -124,9 +145,10 @@ const lightPulpTheme = {
     pulp: pulp,
     aloe: aloe
   },
-  lines: black
+  lines: white
 }
 
 export const lightPulp = {...base, ...lightPulpTheme}
 export const darkPulp = {...base, ...darkPulpTheme}
 export const lightWatermelly = {...base, ...lightWatermellyTheme}
+export const darkWatermelly = {...base, ...darkWatermellyTheme}

@@ -7,6 +7,7 @@ import {Heading, H1, H2, H3, H4, H5, H6, Button, Wrapper} from '../elements'
 import {base, darkPulp, lightWatermelly} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
+import CaseStudiesBlock from '../components/CaseStudiesBlock'
 
 export default () => {
   return (
@@ -17,9 +18,10 @@ export default () => {
           render={data => {
             return (
               <>
-                <Wrapper hasGrid theme={base}>
+                <Wrapper hasGrid theme={base} noSpace>
                   <HeroHome />
                   <ServicesBlock />
+                  <CaseStudiesBlock />
                 </Wrapper>
               </>
             )

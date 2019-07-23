@@ -6,14 +6,16 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // Object Types
 import figure from './objects/figure'
-import imageAlt from './objects/image-alt'
-import pageLink from './objects/page-link'
-import homeHero from './objects/home-hero'
+import imageAlt from './objects/imageAlt'
+import pageLink from './objects/pageLink'
+import homeHero from './objects/homeHero'
 import button from './objects/button'
+import headingBlock from './objects/headingBlock'
 
 // Document types
 import siteSettings from './documents/siteSettings'
 import homepage from './documents/homepage'
+import services from './documents/services'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -29,9 +31,11 @@ export default createSchema({
     pageLink,
     homeHero,
     button,
+    headingBlock,
     
     /* Your types here! */
     siteSettings,
-    homepage
+    homepage,
+    services
   ])
 })

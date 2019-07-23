@@ -19,7 +19,35 @@ export default {
       name: 'hero',
       title: 'Hero',
       type: 'homeHero'
+    },
+    {
+      name: 'servicesHeading',
+      title: 'Services Heading',
+      type: 'headingBlock'
+    },
+    {
+      name: 'services',
+      title: 'Services',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'services'}
+          ]
+        }
+      ],
+      options: {
+        sortable: true
+        // layout: 'tags'
+      }
     }
+    // {
+    //   name: 'services',
+    //   title: 'Services',
+    //   type: 'reference',
+    //   to: [{type: 'services'}]
+    // }
 
   ]
 }
