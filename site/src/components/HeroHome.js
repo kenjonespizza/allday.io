@@ -7,8 +7,8 @@ import {readableColor} from 'polished'
 import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {useGlobalState} from './Layout'
 import {getNavHeight} from '../utilities/helpers'
-import {centerIt, lightPulp, lightWatermelly, base} from '../utilities/styles/'
-import {Button, Wrapper} from '../elements/'
+import {centerIt, lightPulp, lightWatermelly, base, transition} from '../utilities/styles/'
+import {Button, Wrapper, GridLines} from '../elements/'
 
 const HeroHomeWrapper = styled.section`
   display: flex;
@@ -30,8 +30,20 @@ const SideImg = styled(Img)`
   height: 100%;
 `
 
+const PineappleDudeWrap = styled.div`
+  position: absolute;
+  bottom: calc(100% - 60px);
+  left: 50%;
+  transform: translate(-50%, 0%);
+  transform-origin: center center;
+  ${transition({})};
+`
+
 const CenteredBox = styled.div`
   ${centerIt};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 75%;
   max-width: 466px;
   background: ${props => props.theme.colors.white};
@@ -41,81 +53,83 @@ const CenteredBox = styled.div`
   line-height: 1.39;
   border-top-right-radius: 100px;
   border-bottom-left-radius: 100px;
+`
 
-  button {
+const HeroButton = styled(Button)`
     margin-top: ${base.spacings.base}px;
-  }
+
+    &:hover + div {
+      transform: translate(-50%, 0%) rotate(15deg);
+    }
 `
 
-const PineappleDude = styled(PineappleDudeFile)`
-  position: absolute;
-  bottom: calc(100% - 60px);
-  left: 50%;
-  transform: translate(-50%, 0%);
-`
-
-const HeroHome = () => {
+const HeroHome = (props) => {
   const [navHeight, setNavHeight] = useGlobalState('navHeight')
 
   useEffect(() => {
     setNavHeight(getNavHeight())
   })
 
-  const data = useStaticQuery(graphql`
-    query HERO_QUERY {
-      sanityHomepage {
-        hero {
-          button {
-            buttonIcon
-            buttonText
-            slug {
-              current
-            }
-            url
-          }
-          mainText
-          imageRight {
-            alt
-            asset {
-              fluid(maxWidth: 4000) {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
-          imageLeft {
-            alt
-            asset {
-              fluid(maxWidth: 4000) {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query HERO_QUERY {
+  //     sanityHomepage {
+  //       hero {
+  //         button {
+  //           buttonIcon
+  //           buttonText
+  //           slug {
+  //             current
+  //           }
+  //           url
+  //         }
+  //         mainText
+  //         imageRight {
+  //           alt
+  //           asset {
+  //             fluid(maxWidth: 4000) {
+  //               ...GatsbySanityImageFluid
+  //             }
+  //           }
+  //         }
+  //         imageLeft {
+  //           alt
+  //           asset {
+  //             fluid(maxWidth: 4000) {
+  //               ...GatsbySanityImageFluid
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
 
-  console.log('data:', data)
-  const {mainText, button, imageRight, imageLeft} = data.sanityHomepage.hero
+  // const {mainText, button, imageRight, imageLeft} = data.sanityHomepage.hero
+  const {mainText, button, imageRight, imageLeft} = props.data
+  console.log('props.data:', props.data)
 
-  return (<Wrapper noSpace theme={lightPulp}>
-    <HeroHomeWrapper id='HeroHomeWrapperEl' navHeight={navHeight}>
-      <Side>
-        <SideImg fluid={imageLeft.asset.fluid} alt={imageLeft.alt} />
-      </Side>
-      <Side>
-        <SideImg fluid={imageRight.asset.fluid} alt={imageRight.alt} />
-      </Side>
+  return (
+    <Wrapper noSpace theme={lightPulp} hasGrid>
+      <HeroHomeWrapper id='HeroHomeWrapperEl' navHeight={navHeight}>
+        <Side>
+          <SideImg fluid={imageLeft.asset.fluid} alt={imageLeft.alt} />
+        </Side>
+        <Side>
+          <SideImg fluid={imageRight.asset.fluid} alt={imageRight.alt} />
+        </Side>
 
-      <CenteredBox>
-        <PineappleDude />
-        {mainText}
-        <Button type='button' icon={button.buttonIcon}>
-          {button.buttonText}
-        </Button>
-      </CenteredBox>
-    </HeroHomeWrapper>
-  </Wrapper>
+        <CenteredBox>
+          {mainText}
+
+          <HeroButton type='button'>
+            {button.buttonText} {button.buttonIcon && <i className={button.buttonIcon} />}
+          </HeroButton>
+          <PineappleDudeWrap>
+            <PineappleDudeFile />
+          </PineappleDudeWrap>
+        </CenteredBox>
+      </HeroHomeWrapper>
+    </Wrapper>
   )
 }
 

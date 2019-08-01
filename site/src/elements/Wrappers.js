@@ -4,7 +4,7 @@ import styled, {css, ThemeProvider} from 'styled-components'
 import {GridLines} from './'
 import {base, media} from '../utilities/styles'
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.section`
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};
   position: relative;

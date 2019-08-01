@@ -1,10 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import {useStaticQuery, graphql} from 'gatsby'
-import Img from 'gatsby-image'
-import styled, {ThemeProvider} from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
 
 import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base} from '../utilities/styles/'
-import {Button, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
+import {Button, H1, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
 import ServiceBox from './ServiceBox'
 
 const Services = styled.ul`
@@ -14,52 +12,27 @@ const Services = styled.ul`
   padding: 0;
 `
 
-const servicesBlock = () => {
-  const data = useStaticQuery(graphql`
-    query SERVICES_BLOCK_QUERY {
-      services: sanityHomepage {
-        servicesHeading {
-          heading
-          subHeading
-        }
-        services {
-          _id
-          name
-          slug {
-            current
-          }
-          sampleImage {
-            asset {
-              fluid {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+const servicesBlock = ({data}) => {
+  console.log('data:', data)
 
-  // const {_key, name, slug, sampleImage} = data.services.nodes
-  const {services, servicesHeading} = data.services
+  const {services, heading} = data
+  console.log('services:', services)
 
   return (
     <Wrapper hasGrid theme={lightWatermelly} addSpace>
       <HeadingBlock>
         <SubHeading>
-          {servicesHeading.subHeading}
+          {heading.subHeading && heading.subHeading}
         </SubHeading>
         <H1 as='h2'>
-          {servicesHeading.heading}<span className='accent'>.</span>
+          {heading.heading && heading.heading}
         </H1>
       </HeadingBlock>
       <Container>
         <Services>
           {services.map((service, i) => {
-            console.log('service:', service)
-
             return (
-              <ServiceBox iteration={i + 1} key={service._id} {...service} />
+              <ServiceBox key={service._id} iteration={i + 1} {...service} />
             )
           })}
         </Services>

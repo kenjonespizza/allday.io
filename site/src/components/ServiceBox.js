@@ -66,7 +66,7 @@ const ServiceBoxInner = styled(Link)`
 `
 
 const BoxInfo = ({name, slug, iteration, numberIsWhite}) => (
-  <ServiceBoxInner to={`/${slug.current}`}>
+  <ServiceBoxInner to={`/services/${slug.current}`}>
     <Number white={!!numberIsWhite}>{iteration}</Number>
     <Name white={!!numberIsWhite}>
       {name}

@@ -1,7 +1,7 @@
 import {createGlobalStyle} from 'styled-components'
 import styledNormalize from 'styled-normalize'
 
-import {base, darkPulp, lightWatermelly} from './theme'
+import {base, darkPulp, lightWatermelly, colorsList} from './theme'
 import {transition} from './transition'
 export const GlobalStyle = createGlobalStyle`
 
@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 16px;
+    line-height: ${base.lineHeights.body};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -66,5 +67,13 @@ export const GlobalStyle = createGlobalStyle`
   ::selection {
     background-color: ${props => props.theme.colors.accent};
     color: ${props => props.theme.colors.accentHover};
+  }
+
+  {${Object.keys(colorsList).map(function (color) {
+    return '.color-' + color + ' {fill:' + colorsList[color] + ';}'
+  }).join('')}
+
+  svg .pulp {
+    fill: ${base.colors.pulp};
   }
 `

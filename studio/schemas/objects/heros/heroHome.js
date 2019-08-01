@@ -1,6 +1,8 @@
+import React from 'react'
+
 export default {
-  title: 'Home Hero',
-  name: 'homeHero',
+  title: 'Hero: Homepage',
+  name: 'heroHome',
   type: 'object',
   fields: [
     {
@@ -34,5 +36,18 @@ export default {
     //   type: 'url',
     //   description: 'EX: https://youtu.be/O-FGqfdCkOM' 
     // },
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'mainText',
+      media: 'imageLeft.asset.url'
+    },
+    prepare(selection) {
+      const {title, media} = selection
+      return {
+        title: `Hero: ${title}`,
+        media: <img src={media} alt={`${title}`} />
+      }
+    }
+  }
 }

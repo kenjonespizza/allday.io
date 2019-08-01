@@ -6,41 +6,32 @@ import styled, {ThemeProvider} from 'styled-components'
 import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base} from '../utilities/styles/'
 import {Button, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
 
-const TestimonialsBlock = () => {
+const CaseStudiesBlock = () => {
   // const data = useStaticQuery(graphql`
-  //   query SERVICES_BLOCK_QUERY {
-  //     services: sanityHomepage {
-  //       services {
-  //         _id
-  //         name
-  //         slug {
-  //           current
-  //         }
-  //         sampleImage {
-  //           asset {
-  //             fluid {
-  //               ...GatsbySanityImageFluid
-  //             }
-  //           }
-  //         }
+  //   query CASESTUDIES_BLOCK_QUERY {
+  //     caseStudies: sanityHomepage {
+  //       caseStudiesHeading {
+  //         heading
+  //         subHeading
   //       }
   //     }
   //   }
   // `)
 
-  // const {_key, name, slug, sampleImage} = data.services.nodes
-  // const {services} = data.services
+  const {caseStudiesHeading} = data.caseStudies
 
   return (
     <Wrapper hasGrid theme={darkPulp} addSpace>
+      {(caseStudiesHeading.subHeading || caseStudiesHeading.heading) &&
       <HeadingBlock>
         <SubHeading>
-          we do good work
+          {caseStudiesHeading.subHeading && caseStudiesHeading.subHeading}
         </SubHeading>
         <H1 as='h2'>
-          Good Work<span className='accent'>.</span>
+          {caseStudiesHeading.heading && caseStudiesHeading.heading}
         </H1>
       </HeadingBlock>
+      }
 
       <div>
       HI!
@@ -55,4 +46,4 @@ const TestimonialsBlock = () => {
   )
 }
 
-export default TestimonialsBlock
+export default CaseStudiesBlock

@@ -7,6 +7,14 @@ const watermelly = '#E84A5F'
 const pulp = '#FFDE67'
 const aloe = '#00D98B'
 
+export const colorsList = {
+  seal: seal,
+  watermelly: watermelly,
+  pulp: pulp,
+  aloe: aloe,
+  white: white,
+  black: black}
+
 const accentHover = (color, ammount = 0.1, makeDarker = true) => {
   return (makeDarker === true ? darken(ammount, color) : lighten(ammount, color))
 }
@@ -17,7 +25,7 @@ export const base = {
     background: white,
     accent: seal,
     accentHover: black,
-    accentHoverText: seal,
+    accentHoverText: white,
     onAccent: white,
     black: black,
     white: white,

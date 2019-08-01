@@ -34,22 +34,28 @@ const ButtonStyles = css`
   }
 `
 
-const StyledButton = styled.button`
+export const Button = styled.button`
   ${ButtonStyles};
 `
 
-const StyledButtonLink = styled(Link)`
+export const ButtonLink = styled(Link)`
   ${ButtonStyles};
 `
 
-export const Button = ({to, type, icon, children}) => {
-  if (type && type === 'button') {
-    return (
-      <StyledButton>{children} {icon && <i className={icon} />}</StyledButton>
-    )
-  } else {
-    return (
-      <StyledButtonLink to={to}>{children} {icon && <i className={icon} />}</StyledButtonLink>
-    )
-  }
-}
+// const StyledButtonLink = styled(Link)`
+//   ${ButtonStyles};
+// `
+
+// const ButtonMerge = ({to, type, icon, children}) => {
+//   if (type && type === 'button') {
+//     return (
+//       <StyledButton>{children} {icon && <i className={icon} />}</StyledButton>
+//     )
+//   } else {
+//     return (
+//       <StyledButtonLink to={to}>{children} {icon && <i className={icon} />}</StyledButtonLink>
+//     )
+//   }
+// }
+
+// export const Button = styled(ButtonMerge)``

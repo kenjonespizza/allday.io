@@ -16,7 +16,7 @@ const StlyedHeadingBlock = styled.div`
 `
 
 export const HeadingBlock = ({children}) => (
-  <StlyedHeadingBlock>
+  <StlyedHeadingBlock id='HeadingBlock'>
     {children}
   </StlyedHeadingBlock>
 )

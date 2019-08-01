@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {rgba} from 'polished'
 
+const lineOpacity = 0.1
+
 const StyledGridWrap = styled.div`
   background-color: ${props => props.theme.colors.background};
   width: 100%;
@@ -27,10 +29,11 @@ const StyledGrid = styled.div`
 
   > div {
     height: 100%;
-    border-left: ${props => props.theme.lines && rgba(props.theme.lines, 0.05)} solid 1px;
+    border-left: ${props => props.theme.lines && rgba(props.theme.lines, lineOpacity)} solid 1px;
 
     &:last-of-type {
-    border-right: ${props => props.theme.lines && rgba(props.theme.lines, 0.05)} solid 1px;
+    width: calc(100% - 1px);
+    border-right: ${props => props.theme.lines && rgba(props.theme.lines, lineOpacity)} solid 1px;
     }
   }
 `

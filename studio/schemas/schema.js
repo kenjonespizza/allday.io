@@ -8,13 +8,23 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import figure from './objects/figure'
 import imageAlt from './objects/imageAlt'
 import pageLink from './objects/pageLink'
-import homeHero from './objects/homeHero'
+import heros from './objects/heros/heros'
+import heroHome from './objects/heros/heroHome'
 import button from './objects/button'
 import headingBlock from './objects/headingBlock'
+import reviewsBlock from './objects/misc/reviewsBlock'
+import review from './objects/misc/review'
+import banners from './objects/banners/banners'
+import banner1 from './objects/banners/banner1'
+import blocks from './objects/blocks'
+import seo from './objects/seo'
+import pageInfo from './objects/pageInfo'
+import servicesBlock from './objects/misc/servicesBlock'
 
 // Document types
 import siteSettings from './documents/siteSettings'
-import homepage from './documents/homepage'
+import pages from './documents/pages'
+// import homepage from './documents/homepage'
 import services from './documents/services'
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -29,13 +39,23 @@ export default createSchema({
     figure,
     imageAlt,
     pageLink,
-    homeHero,
+    heros,
+    heroHome,
     button,
     headingBlock,
+    reviewsBlock,
+    review,
+    banners,
+    banner1,
+    blocks,
+    seo,
+    pageInfo,
+    servicesBlock,
     
     /* Your types here! */
     siteSettings,
-    homepage,
+    pages,
+    // homepage,
     services
   ])
 })
