@@ -22,7 +22,6 @@ const Services = styled.ul`
 
 const servicesBlock = ({data}) => {
   const {services, heading, button} = data
-  console.log('services:', services)
 
   return (
     <Wrapper hasGrid theme={lightWatermelly} addSpace>

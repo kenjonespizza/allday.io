@@ -106,6 +106,30 @@ export const query = graphql`
             url
           }
         }
+        ... on SanityCaseStudiesBlock {
+          _key
+          _type
+          heading {
+            heading
+            subHeading
+          }
+          button {
+            icon
+            slug {
+              current
+            }
+            text
+            url
+          }
+          caseStudies {
+            _id
+            name
+            slug {
+              current
+            }
+            title
+          }
+        }
       }
     }
   }
@@ -113,9 +137,8 @@ export const query = graphql`
 `
 
 export default props => {
-  console.log('props.data.page:', props.data.page)
   const {blocks, pageInfo} = props.data.page
-  console.log('blocks:', blocks)
+
   return (
     <>
       <Layout>
@@ -137,6 +160,8 @@ export default props => {
                   return <ServicesBlock key={block._key} data={block} />
                 case 'ReviewsBlock':
                   return <ReviewsBlock key={block._key} data={block} />
+                case 'CaseStudiesBlock':
+                  return <CaseStudiesBlock key={block._key} data={block} />
                 default:
                   return null
               }
@@ -149,7 +174,7 @@ export default props => {
           })}
           {/* <HeroHome /> */}
           {/* <ServicesBlock /> */}
-          <CaseStudiesBlock id='123' />
+          {/* <CaseStudiesBlock id='123' /> */}
           {/* <ReviewsBlock /> */}
         </Wrapper>
 

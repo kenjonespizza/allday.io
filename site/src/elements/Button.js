@@ -45,7 +45,6 @@ const ButtonStyled = styled.a`
 `
 
 export const Button = ({slug, icon, text, url}) => {
-  console.log('slug:', slug)
   if (slug) {
     return (
       <LinkButtonStyled to={slug && `/${slug.current}`} >

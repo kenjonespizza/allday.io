@@ -14,6 +14,7 @@ export default {
         {type: 'headingBlock'},
         {type: 'servicesBlock'},
         {type: 'reviewsBlock'},
+        {type: 'caseStudiesBlock'},
       ],
       options: [
         {editModal: "popover"}

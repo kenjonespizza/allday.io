@@ -7,28 +7,28 @@ import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base} from '../uti
 import {Button, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
 
 const CaseStudiesBlock = ({data}) => {
+  console.log('data:', data)
+  const {heading, button, caseStudies} = data
   return (
     <Wrapper hasGrid theme={darkPulp} addSpace>
-      {/* {(caseStudiesHeading.subHeading || caseStudiesHeading.heading) &&
+      {(heading.subHeading || heading.heading) &&
       <HeadingBlock>
         <SubHeading>
-          {caseStudiesHeading.subHeading && caseStudiesHeading.subHeading}
+          {heading.subHeading && heading.subHeading}
         </SubHeading>
         <H1 as='h2'>
-          {caseStudiesHeading.heading && caseStudiesHeading.heading}
+          {heading.heading && heading.heading}
         </H1>
       </HeadingBlock>
       }
 
-      <div>
-      HI!
-      </div>
+      {caseStudies.map(caseStudy => (
+        <div key={caseStudy._id}>{caseStudy.name} - {caseStudy.title}</div>
+      ))}
 
       <ButtonBlock>
-        <Button to={`/services`}>
-          See in more detail.
-        </Button>
-      </ButtonBlock> */}
+        <Button {...button} />
+      </ButtonBlock>
     </Wrapper>
   )
 }

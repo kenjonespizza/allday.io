@@ -14,7 +14,10 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'caseStudies'
+          type: 'reference',
+          to: [
+            {type: 'caseStudies'}
+          ]
         }
       ],
       options: {
