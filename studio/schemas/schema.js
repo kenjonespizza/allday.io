@@ -20,12 +20,14 @@ import blocks from './objects/blocks'
 import seo from './objects/seo'
 import pageInfo from './objects/pageInfo'
 import servicesBlock from './objects/misc/servicesBlock'
+import caseStudiesBlock from './objects/misc/caseStudiesBlock'
 
 // Document types
 import siteSettings from './documents/siteSettings'
 import pages from './documents/pages'
 // import homepage from './documents/homepage'
 import services from './documents/services'
+import caseStudies from './documents/caseStudies'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -51,11 +53,13 @@ export default createSchema({
     seo,
     pageInfo,
     servicesBlock,
+    caseStudiesBlock,
     
     /* Your types here! */
     siteSettings,
     pages,
     // homepage,
-    services
+    services,
+    caseStudies
   ])
 })

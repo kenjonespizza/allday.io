@@ -1,21 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base} from '../utilities/styles/'
+import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, media} from '../utilities/styles/'
 import {Button, H1, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
 import ServiceBox from './ServiceBox'
 
 const Services = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: ${base.spacings.base}px;
   padding: 0;
+
+  ${media.medium`
+    grid-template-columns: 1fr 1fr;
+  `}
+ 
+  ${media.xLarge`
+    grid-template-columns: 1fr 1fr 1fr;
+  `}
 `
 
 const servicesBlock = ({data}) => {
-  console.log('data:', data)
-
-  const {services, heading} = data
+  const {services, heading, button} = data
   console.log('services:', services)
 
   return (
@@ -38,9 +44,7 @@ const servicesBlock = ({data}) => {
         </Services>
       </Container>
       <ButtonBlock>
-        <Button to={`/services`}>
-          See in more detail.
-        </Button>
+        <Button {...button} />
       </ButtonBlock>
     </Wrapper>
   )

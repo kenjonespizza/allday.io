@@ -8,7 +8,7 @@ import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {useGlobalState} from './Layout'
 import {getNavHeight} from '../utilities/helpers'
 import {centerIt, lightPulp, lightWatermelly, base, transition} from '../utilities/styles/'
-import {Button, Wrapper, GridLines} from '../elements/'
+import {Button, ButtonStyles, Wrapper, GridLines} from '../elements/'
 
 const HeroHomeWrapper = styled.section`
   display: flex;
@@ -55,12 +55,15 @@ const CenteredBox = styled.div`
   border-bottom-left-radius: 100px;
 `
 
-const HeroButton = styled(Button)`
-    margin-top: ${base.spacings.base}px;
+const NewButton = styled(Button)``
 
-    &:hover + div {
-      transform: translate(-50%, 0%) rotate(15deg);
-    }
+const HeroButton = styled.a`
+  ${ButtonStyles}
+  margin-top: ${base.spacings.base}px !important;
+
+  &:hover + div {
+    transform: translate(-50%, 0%) rotate(15deg);
+  }
 `
 
 const HeroHome = (props) => {
@@ -121,9 +124,7 @@ const HeroHome = (props) => {
         <CenteredBox>
           {mainText}
 
-          <HeroButton type='button'>
-            {button.buttonText} {button.buttonIcon && <i className={button.buttonIcon} />}
-          </HeroButton>
+          <HeroButton {...button} as={Button} />
           <PineappleDudeWrap>
             <PineappleDudeFile />
           </PineappleDudeWrap>

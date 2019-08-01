@@ -1,6 +1,6 @@
 export default {
-  name: 'servicesBlock',
-  title: 'Services',
+  name: 'caseStudiesBlock',
+  title: 'Case Studies',
   type: 'object',
   fields: [
     {
@@ -9,20 +9,16 @@ export default {
       type: 'headingBlock'
     },
     {
-      name: 'services',
-      title: 'Services',
+      name: 'caseStudies',
+      title: 'Case Studies',
       type: 'array',
       of: [
         {
-          type: 'reference',
-          to: [
-            {type: 'services'}
-          ]
+          type: 'caseStudies'
         }
       ],
       options: {
         sortable: true
-        // layout: 'tags'
       }
     },
     {

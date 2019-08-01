@@ -5,7 +5,7 @@ import {Link} from 'gatsby'
 
 import {transition, base} from '../utilities/styles'
 
-const ButtonStyles = css`
+export const ButtonStyles = css`
   background-color: ${props => props.theme.colors.accent};
   border: none;
   font-size: ${base.fontSizes.base};
@@ -34,13 +34,38 @@ const ButtonStyles = css`
   }
 `
 
-export const Button = styled.button`
+const LinkButtonStyled = styled(Link)`
+  ${ButtonStyles};
+`
+const AButtonStyled = styled.a`
+  ${ButtonStyles};
+`
+const ButtonStyled = styled.a`
   ${ButtonStyles};
 `
 
-export const ButtonLink = styled(Link)`
-  ${ButtonStyles};
-`
+export const Button = ({slug, icon, text, url}) => {
+  console.log('slug:', slug)
+  if (slug) {
+    return (
+      <LinkButtonStyled to={slug && `/${slug.current}`} >
+        {text}  {icon && <i className={icon} />}
+      </LinkButtonStyled>
+    )
+  } else if (url) {
+    return (
+      <AButtonStyled href={url}>
+        {text}  {icon && <i className={icon} />}
+      </AButtonStyled>
+    )
+  } else {
+    return (
+      <ButtonStyled>
+        {text}  {icon && <i className={icon} />}
+      </ButtonStyled>
+    )
+  }
+}
 
 // const StyledButtonLink = styled(Link)`
 //   ${ButtonStyles};

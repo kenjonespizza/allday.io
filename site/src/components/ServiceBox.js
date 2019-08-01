@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image'
 import {Link} from 'gatsby'
 
-import {base, transition} from '../utilities/styles'
+import {base, transition, media} from '../utilities/styles'
 
 const Number = styled.span`
   color: ${props => props.theme.colors.accent};
@@ -17,12 +17,16 @@ const Number = styled.span`
 
 const Name = styled.span`
   padding: 20px 0 0 30px;
-  font-size: 32px;
+  font-size: 22px;
   font-weight: ${base.fontWeights.bold};
   color: ${base.colors.black};
 
   ${({white}) => white && `
     color: ${base.colors.white};
+  `}
+
+  ${media.medium`
+    font-size: 32px;
   `}
 `
 
@@ -34,15 +38,21 @@ const StyledServiceBox = styled.li`
   list-style: none;
 
   &:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
 `
 
 const StyledServiceBoxImg = styled(StyledServiceBox.withComponent(BackgroundImage))`
   color: ${base.colors.white};
   box-shadow: none;
+
+  .filler {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
 `
 
 const ServiceBoxInner = styled(Link)`
@@ -89,6 +99,7 @@ const ServiceBox = ({name, slug, sampleImage, iteration}) => {
           fluid={sampleImage.asset.fluid}
           backgroundColor={`#040e18`}>
           <BoxInfo name={name} iteration={iteration} numberIsWhite slug={slug} />
+          <div className='filler' />
         </StyledServiceBoxImg>
       )}
     </>

@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import styled, {ThemeProvider} from 'styled-components'
 
 import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, mqs} from '../utilities/styles/'
-import {ButtonLink, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
+import {Button, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
 
 const ReviewsContainer = styled(Container)`
   display: flex;
@@ -79,6 +79,7 @@ const Review = styled.blockquote`
 
 const ReviewsBlock = ({data}) => {
   const {reviews, button} = data
+  // console.log('button:', button)
 
   return (
     <Wrapper hasGrid theme={base} addSpace>
@@ -97,9 +98,7 @@ const ReviewsBlock = ({data}) => {
         ))}
 
         <ButtonBlock>
-          <ButtonLink to={`/${button.slug.current}`}>
-            {button.buttonText}
-          </ButtonLink>
+          <Button {...button} />
         </ButtonBlock>
       </ReviewsContainer>
     </Wrapper>

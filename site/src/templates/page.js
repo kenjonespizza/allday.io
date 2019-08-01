@@ -7,7 +7,7 @@ import {Heading, H1, H2, H3, H4, H5, H6, Button, Wrapper, HeadingBlock} from '..
 import {base, darkPulp, lightWatermelly} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
-// import CaseStudiesBlock from '../components/CaseStudiesBlock'
+import CaseStudiesBlock from '../components/CaseStudiesBlock'
 import ReviewsBlock from '../components/ReviewsBlock'
 
 export const query = graphql`
@@ -34,8 +34,8 @@ export const query = graphql`
           _type
           mainText
           button {
-            buttonText
-            buttonIcon
+            text
+            icon
             url
             slug {
               current
@@ -79,6 +79,14 @@ export const query = graphql`
             heading
             subHeading
           }
+          button {
+            text
+            icon
+            url
+            slug {
+              current
+            }
+          }
         }
         ... on SanityReviewsBlock {
           _key
@@ -90,8 +98,8 @@ export const query = graphql`
             _key
           }
           button {
-            buttonIcon
-            buttonText
+            icon
+            text
             slug {
               current
             }
@@ -114,39 +122,35 @@ export default props => {
 
         <Wrapper hasGrid theme={base} noSpace>
 
-          <div className='TEST'>
+          {blocks.blocks && blocks.blocks.map(block => {
+            if (typeof block._type !== 'undefined') {
+              // console.log('block:', block)
+              const name = block._type
+              const Component = name.charAt(0).toUpperCase() + name.slice(1)
 
-            {blocks.blocks && blocks.blocks.map(block => {
-              if (typeof block._type !== 'undefined') {
-                // console.log('block:', block)
-                const name = block._type
-                const Component = name.charAt(0).toUpperCase() + name.slice(1)
-
-                switch (Component) {
-                  case 'HeroHome':
-                    return <HeroHome key={block._key} data={block} />
-                  case 'HeadingBlock':
-                    return <HeadingBlock key={block._key} data={block} />
-                  case 'ServicesBlock':
-                    return <ServicesBlock key={block._key} data={block} />
-                  case 'ReviewsBlock':
-                    return <ReviewsBlock key={block._key} data={block} />
-                  default:
-                    return null
-                }
-                // document.getElementById('root')
+              switch (Component) {
+                case 'HeroHome':
+                  return <HeroHome key={block._key} data={block} />
+                case 'HeadingBlock':
+                  return <HeadingBlock key={block._key} data={block} />
+                case 'ServicesBlock':
+                  return <ServicesBlock key={block._key} data={block} />
+                case 'ReviewsBlock':
+                  return <ReviewsBlock key={block._key} data={block} />
+                default:
+                  return null
+              }
+              // document.getElementById('root')
 
               // return (
               //   <Component />
               // )
-              }
-            })}
-            {/* <HeroHome />
-          <ServicesBlock />
-          <CaseStudiesBlock />
-          <ReviewsBlock /> */}
-
-          </div>
+            }
+          })}
+          {/* <HeroHome /> */}
+          {/* <ServicesBlock /> */}
+          <CaseStudiesBlock id='123' />
+          {/* <ReviewsBlock /> */}
         </Wrapper>
 
       </Layout>
