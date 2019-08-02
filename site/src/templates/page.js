@@ -128,6 +128,7 @@ export const query = graphql`
               current
             }
             title
+            excerpt
           }
         }
       }
