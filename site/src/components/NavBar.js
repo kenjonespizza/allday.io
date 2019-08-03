@@ -8,6 +8,9 @@ import {transition} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
 import {GridLines} from '../elements/GridLines'
+import {
+  mapEdgesToNodes
+} from '../utilities/helpers'
 
 function colorSwap (props) {
   return keyframes`
@@ -119,44 +122,65 @@ const NavBar = () => {
 
   const data = useStaticQuery(graphql`
     query HEADER_QUERY {
-      site: allSanitySiteSettings(limit: 1, filter: {navLinks: {elemMatch: {showInMainNav: {eq: true}}}}) {
-        nodes {
-          logo {
-            alt
-            asset {
-              url
+      site: allSanitySiteSettings(limit: 1) {
+        edges {
+          node {
+            logo {
+              alt
+              asset {
+                url
+              }
             }
           }
-          navLinks {
-            _key
-            pageName
-            pageUrl {
-              current
+        }
+      }
+
+
+      navigation: allSanityPages(filter: {pageInfo: {showInMainNav: {eq: true}}}) {
+        edges {
+          node {
+            _id
+            pageInfo {
+              pageName
+              slug {
+                current
+              }
             }
-            showInMainNav
           }
         }
       }
     }
+
   `)
 
-  const {logo, navLinks} = data.site.nodes[0]
+  // const {logo} = data.site.nodes[0]
+  // console.log('logo:', logo)
+
+  const siteNodes = (data || {}).site
+    ? mapEdgesToNodes(data.site)
+    : []
+
+  // console.log('siteNodes:', siteNodes)
+
+  const navigationNodes = (data || {}).navigation
+    ? mapEdgesToNodes(data.navigation)
+    : []
 
   return (
     <>
-      <Logo src={logo.asset.url} alt={logo.alt} isopen={isOpen ? 'true' : 'false'} />
+      <Link to='/'>
+        <Logo src={siteNodes[0].logo.asset.url} alt={siteNodes[0].logo.alt} isopen={isOpen ? 'true' : 'false'} />
+      </Link>
       <StyledNavBar id='nav-bar'>
         <GridLines />
         <Nav>
           <ul>
-            {navLinks.map(link => {
-              if (link.showInMainNav === true) {
-                return (
-                  <li key={link._key}>
-                    <Link to={link.pageUrl.current}>{link.pageName}</Link>
-                  </li>
-                )
-              }
+            {navigationNodes.map(node => {
+              return (
+                <li key={node._id}>
+                  <Link to={`/${node.pageInfo.slug.current}`}>{node.pageInfo.pageName}</Link>
+                </li>
+              )
             })}
           </ul>
         </Nav>

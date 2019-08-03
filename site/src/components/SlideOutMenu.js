@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useStaticQuery, grapgql} from 'gatsby'
+import {useStaticQuery, graphql} from 'gatsby'
 import styled, {ThemeProvider, keyframes, css} from 'styled-components'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
@@ -7,6 +7,9 @@ import {rgba} from 'polished'
 import {darkPulp, transition} from '../utilities/styles'
 import {GridLines} from '../elements/GridLines'
 import {useGlobalState} from './Layout'
+import {
+  mapEdgesToNodes
+} from '../utilities/helpers'
 
 // function backgroundSwap (props) {
 //   return keyframes`
@@ -111,29 +114,25 @@ const SlideOutMenu = () => {
 
   const data = useStaticQuery(graphql`
     query SlideOutNavQuery {
-      site: allSanitySiteSettings(limit: 1, filter: {navLinks: {elemMatch: {showInMainNav: {eq: true}}}}) {
-        nodes {
-          logo {
-            alt
-            asset {
-              url
+      navigation: allSanityPages(filter: {pageInfo: {showInMainNav: {eq: true}}}) {
+        edges {
+          node {
+            _id
+            pageInfo {
+              pageName
+              slug {
+                current
+              }
             }
-          }
-          navLinks {
-            _key
-            pageName
-            pageUrl {
-              current
-            }
-            showInMainNav
-            showInHiddenNav
           }
         }
       }
     }
   `)
 
-  const {navLinks} = data.site.nodes[0]
+  const navigationNodes = (data || {}).navigation
+    ? mapEdgesToNodes(data.navigation)
+    : []
 
   return (
     <ThemeProvider theme={darkPulp}>
@@ -141,7 +140,7 @@ const SlideOutMenu = () => {
         <GridLines />
         <nav>
           <ul>
-            {navLinks.map(link => {
+            {navigationNodes.map(link => {
               if (link.showInMainNav) {
                 return (
                   <li key={link._key}>
@@ -152,11 +151,11 @@ const SlideOutMenu = () => {
             })}
           </ul>
           <ul>
-            {navLinks.map(link => {
-              if (link.showInHiddenNav) {
+            {navigationNodes.map(node => {
+              if (node.pageInfo.showInHiddenNav) {
                 return (
-                  <li key={link._key}>
-                    <Link to={link.pageUrl.current}>{link.pageName}</Link>
+                  <li key={node._id}>
+                    <Link to={node.pageInfo.pageUrl.current}>{node.pageInfo.pageName}</Link>
                   </li>
                 )
               }
