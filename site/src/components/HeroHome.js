@@ -6,15 +6,13 @@ import {readableColor} from 'polished'
 
 import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {useGlobalState} from './Layout'
-import {getNavHeight} from '../utilities/helpers'
 import {centerIt, lightPulp, lightWatermelly, base, transition} from '../utilities/styles/'
 import {Button, ButtonStyles, Wrapper, GridLines} from '../elements/'
 
 const HeroHomeWrapper = styled.section`
   display: flex;
   justify-content: space-between;
-  /* height: calc(100vh - (${props => props.navHeight}px) * 2); */
-  height: calc(100vh - ${props => props.navHeight}px);
+  height: calc(100vh - 124px);
   position: relative;
 `
 
@@ -67,12 +65,6 @@ const HeroButton = styled.a`
 `
 
 const HeroHome = (props) => {
-  const [navHeight, setNavHeight] = useGlobalState('navHeight')
-
-  useEffect(() => {
-    setNavHeight(getNavHeight())
-  })
-
   // const data = useStaticQuery(graphql`
   //   query HERO_QUERY {
   //     sanityHomepage {
@@ -112,7 +104,7 @@ const HeroHome = (props) => {
 
   return (
     <Wrapper noSpace theme={lightPulp} hasGrid>
-      <HeroHomeWrapper id='HeroHomeWrapperEl' navHeight={navHeight}>
+      <HeroHomeWrapper id='HeroHomeWrapperEl'>
         <Side>
           <SideImg fluid={imageLeft.asset.fluid} alt={imageLeft.alt} />
         </Side>

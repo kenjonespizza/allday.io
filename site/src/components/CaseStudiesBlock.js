@@ -46,20 +46,18 @@ const CaseStudiesBlock = ({data}) => {
         }
 
         <SliderWrapper>
-          { typeof window !== 'undefined' &&
           <Flickity
             className={'carousel'} // default ''
             elementType={'div'} // default 'div'
             options={flickityOptions} // takes flickity options {}
             disableImagesLoaded={false} // default false
             reloadOnUpdate // default false
-            static={false} // default false
+            static // default false
           >
             {caseStudies.map(caseStudy => (
               <CaseStudyBox key={caseStudy._id} {...caseStudy} />
             ))}
           </Flickity>
-          }
         </SliderWrapper>
 
         <ButtonBlock>
@@ -68,7 +66,9 @@ const CaseStudiesBlock = ({data}) => {
       </Wrapper>
     )
   }
-  return null
+  return (
+    <h1>Hi</h1>
+  )
 }
 
 export default CaseStudiesBlock

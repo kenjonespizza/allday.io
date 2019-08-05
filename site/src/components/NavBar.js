@@ -98,7 +98,7 @@ const Logo = styled(LogoFile)`
 
 const MenuButton = styled.button`
   right: 48px;
-  top: calc((${props => props.navHeight}px / 2) - 19px);
+  top: calc((124px / 2) - 19px);
   z-index: 20;
   position: fixed;
   background: none;
@@ -114,11 +114,6 @@ const MenuButton = styled.button`
 
 const NavBar = () => {
   const [isOpen, toggleMenu] = useGlobalState('isMenuOpen')
-  const [navHeight] = useGlobalState('navHeight')
-
-  useEffect(() => {
-    // addNavHeightToWrapper()
-  })
 
   const data = useStaticQuery(graphql`
     query HEADER_QUERY {
@@ -187,7 +182,7 @@ const NavBar = () => {
       </StyledNavBar>
       <SlideOutMenu />
 
-      <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen} navHeight={navHeight} >{isOpen ? 'Close' : 'Menu'}</MenuButton>
+      <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
 
     </>
   )

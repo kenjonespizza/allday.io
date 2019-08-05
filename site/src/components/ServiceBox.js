@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 import BackgroundImage from 'gatsby-background-image'
 import {Link} from 'gatsby'
 
@@ -48,6 +49,10 @@ const StyledServiceBoxImg = styled(StyledServiceBox.withComponent(BackgroundImag
   color: ${base.colors.white};
   box-shadow: none;
 
+  &:before {
+    content: "";
+  }
+
   .filler {
     content: "";
     display: block;
@@ -75,6 +80,12 @@ const ServiceBoxInner = styled(Link)`
   }
 `
 
+const BoxImg = styled(Img)`
+  position: absolute !important;
+  width: 100%;
+  height: 100%;
+`
+
 const BoxInfo = ({name, slug, iteration, numberIsWhite}) => (
   <ServiceBoxInner to={`/services/${slug.current}`}>
     <Number white={!!numberIsWhite}>{iteration}</Number>
@@ -86,22 +97,18 @@ const BoxInfo = ({name, slug, iteration, numberIsWhite}) => (
 
 const ServiceBox = ({name, slug, sampleImage, iteration}) => {
   const isEven = iteration % 2 === 0
+  const hasImg = !!((sampleImage !== null && sampleImage.asset !== null && !isEven))
 
   return (
     <>
-      {(sampleImage === null || sampleImage.asset === null) || isEven ? (
-        <StyledServiceBox>
-          <BoxInfo name={name} iteration={iteration} slug={slug} />
-        </StyledServiceBox>
-      ) : (
-        <StyledServiceBoxImg
-          Tag='li'
-          fluid={sampleImage.asset.fluid}
-          backgroundColor={`#040e18`}>
-          <BoxInfo name={name} iteration={iteration} numberIsWhite slug={slug} />
-          <div className='filler' />
-        </StyledServiceBoxImg>
-      )}
+
+      <StyledServiceBox >
+        {hasImg &&
+          <BoxImg fluid={sampleImage.asset.fluid} alt={name} />
+        }
+
+        <BoxInfo name={name} numberIsWhite={hasImg} iteration={iteration} slug={slug} />
+      </StyledServiceBox>
     </>
 
   )

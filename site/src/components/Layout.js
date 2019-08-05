@@ -4,46 +4,18 @@ import {createGlobalState} from 'react-hooks-global-state'
 
 import {GlobalStyle, base} from '../utilities/styles'
 import NavBar from './NavBar'
-import {getNavHeight, reColorPunctuation} from '../utilities/helpers'
-
-if (typeof window !== `undefined`) {
-  // Calculate the height of the NavBar on resize (and on load in the NavBar Component), and then add that height to the to pf the page to account for the NavBar overlap.
-
-  // let lastKnowScrollPosition = 0
-  let ticking = false
-  // var renderedNavHeight = getNavHeight()
-  var renderedNavHeight = 124
-  var windowEl = window
-
-  window.addEventListener('resize', function (e) {
-    // lastKnowScrollPosition = window.scrollY
-
-    if (!ticking) {
-      window.requestAnimationFrame(function () {
-        renderedNavHeight = getNavHeight()
-        ticking = false
-        windowEl = window
-      })
-
-      ticking = true
-    }
-  })
-}
+import {reColorPunctuation} from '../utilities/helpers'
 
 const initialState = {
-  isMenuOpen: false,
-  navHeight: renderedNavHeight,
-  window: windowEl // This is probably a bad idea, but it feels so right
+  isMenuOpen: false
 }
 export const {GlobalStateProvider, useGlobalState} = createGlobalState(initialState)
 
 const LayoutStyled = styled.div`
-  padding-top: ${props => props.navHeight}px;
+  padding-top: 124px;
 `
 
 const InnerLayout = ({children}) => {
-  const [navHeight] = useGlobalState('navHeight')
-
   useEffect(() => {
     reColorPunctuation()
   })
@@ -51,7 +23,7 @@ const InnerLayout = ({children}) => {
   return (
     <>
       <GlobalStyle />
-      <LayoutStyled id='rappers-delight' navHeight={navHeight}>
+      <LayoutStyled id='rappers-delight'>
         <NavBar />
         {children}
       </LayoutStyled>

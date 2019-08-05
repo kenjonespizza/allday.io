@@ -1,7 +1,8 @@
+// Create Pages from Sanity "Pages"
 exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
-  const results = await graphql(`
+  const pagesResults = await graphql(`
     {
-      allSanityPages(filter: {pageInfo: {slug: {current: {ne: null}}}}) {
+      pages: allSanityPages(filter: {pageInfo: {slug: {current: {ne: null}}}}) {
         edges {
           node {
             pageInfo {
@@ -15,9 +16,9 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
     }
   `)
 
-  if (results.errors) throw results.errors
+  if (pagesResults.errors) throw pagesResults.errors
 
-  const pages = results.data.allSanityPages.edges
+  const pages = pagesResults.data.pages.edges
 
   pages.forEach(edge => {
     const page = edge.node
@@ -33,4 +34,52 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
       }
     })
   })
+
+  const servicesResults = await graphql(`
+    {
+      services: allSanityServices(filter: {slug: {current: {ne: null}}}) {
+        edges {
+          node {
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  if (servicesResults.errors) throw servicesResults.errors
+
+  const services = servicesResults.data.services.edges
+
+  services.forEach(edge => {
+    const page = edge.node
+    const slug = `service/${page.slug.current}`
+
+    reporter.info(`Creating service page: ${slug}`)
+
+    createPage({
+      path: slug,
+      component: require.resolve('./src/templates/service.js'),
+      context: {
+        slug
+      }
+    })
+  })
+}
+
+exports.onCreateWebpackConfig = ({stage, loaders, actions}) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /flickity/,
+            use: loaders.null()
+          }
+        ]
+      }
+    })
+  }
 }
