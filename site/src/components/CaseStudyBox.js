@@ -69,10 +69,10 @@ const CaseStudyWrap = styled.div`
   }
 `
 
-const CaseStudyBox = ({name, title, excerpt}) => (
+const CaseStudyBox = ({pageInfo, title, excerpt}) => (
   <CaseStudyWrap>
     <div className='title'>
-      {name}&nbsp; - &nbsp;
+      {pageInfo.pageName}&nbsp; - &nbsp;
       <span className='project-title'>
         {title}
       </span>

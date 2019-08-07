@@ -7,6 +7,11 @@ const StlyeButtonBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  ${({left}) => left && `
+    align-items: flex-start
+  `}
+
   ${mqs({
     property: 'margin-top',
     valueBase: base.spacings.sectionS + 'px',
@@ -15,8 +20,8 @@ const StlyeButtonBlock = styled.div`
   })};
 `
 
-export const ButtonBlock = ({children}) => (
-  <StlyeButtonBlock>
+export const ButtonBlock = ({children, left}) => (
+  <StlyeButtonBlock left={left}>
     {children}
   </StlyeButtonBlock>
 )

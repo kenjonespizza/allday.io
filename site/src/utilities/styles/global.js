@@ -1,6 +1,6 @@
 import {createGlobalStyle} from 'styled-components'
 import styledNormalize from 'styled-normalize'
-
+import {rgba} from 'polished'
 import {base, darkPulp, lightWatermelly, colorsList} from './theme'
 import {transition} from './transition'
 export const GlobalStyle = createGlobalStyle`
@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-size: 16px;
+    font-size: ${base.fontSizes.base};
     line-height: ${base.lineHeights.body};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -67,6 +67,11 @@ export const GlobalStyle = createGlobalStyle`
   ::selection {
     background-color: ${props => props.theme.colors.accent};
     color: ${props => props.theme.colors.accentHover};
+  }
+
+  p {
+    line-height: 2;
+    font-size: 
   }
 
   {${Object.keys(colorsList).map(function (color) {

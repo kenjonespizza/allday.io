@@ -67,6 +67,42 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
       }
     })
   })
+
+  const caseStudiesResults = await graphql(`
+    {
+      caseStudies: allSanityCaseStudies(filter: {pageInfo: {slug: {current: {ne: null}}}}) {
+        edges {
+          node {
+            pageInfo {
+              slug {
+                current
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  if (caseStudiesResults.errors) throw caseStudiesResults.errors
+
+  const caseStudies = caseStudiesResults.data.caseStudies.edges
+
+  caseStudies.forEach(edge => {
+    const page = edge.node
+    const slug = `sample/${page.pageInfo.slug.current}`
+    const slugName = page.pageInfo.slug.current
+
+    reporter.info(`Creating Case Study page: ${slug}`)
+
+    createPage({
+      path: slug,
+      component: require.resolve('./src/templates/sample.js'),
+      context: {
+        slug: slugName
+      }
+    })
+  })
 }
 
 exports.onCreateWebpackConfig = ({stage, loaders, actions}) => {

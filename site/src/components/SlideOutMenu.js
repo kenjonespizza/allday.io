@@ -4,7 +4,7 @@ import styled, {ThemeProvider, keyframes, css} from 'styled-components'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
-import {darkPulp, transition} from '../utilities/styles'
+import {darkPulp, transition, base} from '../utilities/styles'
 import {GridLines} from '../elements/GridLines'
 import {useGlobalState} from './Layout'
 import {
@@ -65,7 +65,9 @@ const StyledSlideOutMenu = styled.div`
 } */
 
   nav {
-    width: 1200px;
+    /* width: 1200px; */
+    display: flex:
+
     ul, li {
       list-style: none;
       padding: 0;
@@ -75,8 +77,11 @@ const StyledSlideOutMenu = styled.div`
     ul {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      /* margin-right: auto; */
       &:last-child {
-        /* border-top: ${props => props.theme.colors.white && rgba(props.theme.colors.white, 0.1)} dotted 1px; */
+        border-top: ${props => props.theme.colors.white && rgba(props.theme.colors.white, 0.1)} dotted 1px;
       }
     }
 
@@ -85,6 +90,8 @@ const StyledSlideOutMenu = styled.div`
       font-size: 45px;
       padding: 10px 0;
       display: block;
+      font-weight: ${base.fontWeights.bold};
+      text-transform: uppercase;
       ${transition({})};
 
       &:hover {
@@ -113,15 +120,26 @@ const SlideOutMenu = () => {
   })
 
   const data = useStaticQuery(graphql`
-    query SlideOutNavQuery {
-      navigation: allSanityPages(filter: {pageInfo: {showInMainNav: {eq: true}}}) {
+    query SLIDE_OUT_QUERY {
+      navigation: allSanitySiteSettings {
         edges {
           node {
-            _id
-            pageInfo {
-              pageName
-              slug {
-                current
+            navLinks {
+              _id
+              pageInfo {
+                pageName
+                slug {
+                  current
+                }
+              }
+            }
+            hiddenNavLinks {
+              _id
+              pageInfo {
+                pageName
+                slug {
+                  current
+                }
               }
             }
           }
@@ -130,9 +148,7 @@ const SlideOutMenu = () => {
     }
   `)
 
-  const navigationNodes = (data || {}).navigation
-    ? mapEdgesToNodes(data.navigation)
-    : []
+  console.log('data:', data)
 
   return (
     <ThemeProvider theme={darkPulp}>
@@ -140,25 +156,23 @@ const SlideOutMenu = () => {
         <GridLines />
         <nav>
           <ul>
-            {navigationNodes.map(link => {
-              if (link.showInMainNav) {
-                return (
-                  <li key={link._key}>
-                    <Link to={link.pageUrl.current}>{link.pageName}</Link>
-                  </li>
-                )
-              }
+            {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
+              const {pageInfo, _id} = node
+              return (
+                <li key={_id}>
+                  <Link onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current}`}>{pageInfo.pageName}</Link>
+                </li>
+              )
             })}
           </ul>
           <ul>
-            {navigationNodes.map(node => {
-              if (node.pageInfo.showInHiddenNav) {
-                return (
-                  <li key={node._id}>
-                    <Link to={node.pageInfo.pageUrl.current}>{node.pageInfo.pageName}</Link>
-                  </li>
-                )
-              }
+            {data.navigation.edges && data.navigation.edges[0].node.hiddenNavLinks.map(node => {
+              const {pageInfo, _id} = node
+              return (
+                <li key={_id}>
+                  <Link onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current !== '/' ? pageInfo.slug.current : ''}`}>{pageInfo.pageName}</Link>
+                </li>
+              )
             })}
           </ul>
         </nav>

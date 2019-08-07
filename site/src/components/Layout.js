@@ -4,6 +4,7 @@ import {createGlobalState} from 'react-hooks-global-state'
 
 import {GlobalStyle, base} from '../utilities/styles'
 import NavBar from './NavBar'
+import Footer from './Footer'
 import {reColorPunctuation} from '../utilities/helpers'
 
 const initialState = {
@@ -13,6 +14,7 @@ export const {GlobalStateProvider, useGlobalState} = createGlobalState(initialSt
 
 const LayoutStyled = styled.div`
   padding-top: 124px;
+  overflow: hidden;
 `
 
 const InnerLayout = ({children}) => {
@@ -26,6 +28,7 @@ const InnerLayout = ({children}) => {
       <LayoutStyled id='rappers-delight'>
         <NavBar />
         {children}
+        <Footer />
       </LayoutStyled>
     </>
 

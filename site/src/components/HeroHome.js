@@ -35,6 +35,8 @@ const PineappleDudeWrap = styled.div`
   transform: translate(-50%, 0%);
   transform-origin: center center;
   ${transition({})};
+  width: 136px;
+  height: 258px; 
 `
 
 const CenteredBox = styled.div`

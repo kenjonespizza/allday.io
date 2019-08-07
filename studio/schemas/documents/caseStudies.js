@@ -3,23 +3,29 @@ export default {
   title: 'Case Studies',
   type: 'document',
   fields: [
-    /*{
-      name: '',
-      title: '',
-      type: ''
-    },*/
+    // {
+    //   name: 'name',
+    //   title: 'Client Name',
+    //   type: 'string'
+    // },
+    // {
+    //   name: 'slug',
+    //   title: 'Slug',
+    //   type: 'slug',
+    //   options: {
+    //     source: doc => `${doc.name}`
+    //   }
+    // },
+    // {
+    //   name: 'title',
+    //   title: 'Project Title',
+    //   type: 'string'
+    // },
     {
-      name: 'name',
-      title: 'Client Name',
-      type: 'string'
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: doc => `${doc.name}`
-      }
+      name: 'pageInfo',
+      title: 'Page Info',
+      type: 'pageInfo',
+      validation: Rule => Rule.required()
     },
     {
       name: 'title',
@@ -28,8 +34,30 @@ export default {
     },
     {
       name: 'excerpt',
-      title: 'Excerpt',
+      title: 'Short Description',
       type: 'string'
+    },
+    {
+      name: 'blocks',
+      title: 'Blocks',
+      type: 'serviceBlocks',
+      // validation: Rule => Rule.required()
+    },
+    {
+      name: 'seo',
+      title: "SEO",
+      type: 'seo'
+    },
+    {
+      name: 'gallery',
+      title: 'Images',
+      type: 'gallery'
+    },
+    {
+      title: 'Rich text example',
+      name: 'myRichTextExample',
+      type: 'array',
+      of: [{type: 'block'}]
     }
     // {
     //   name: 'sampleImage',

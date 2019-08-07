@@ -24,7 +24,27 @@ export default {
       name: 'navLinks',
       title: 'Nav Links',
       type: 'array',
-      of: [{type: 'pageLink'}]
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'pages'}
+          ]
+        }
+      ],
+    },
+    {
+      name: 'hiddenNavLinks',
+      title: 'Slideout Nav Links',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'pages'}
+          ]
+        }
+      ],
     }
   ]
 }

@@ -13,7 +13,7 @@ export default {
       name: 'blocks',
       title: 'Blocks',
       type: 'blocks',
-      validation: Rule => Rule.required()
+      // validation: Rule => Rule.required()
     },
     {
       name: 'seo',

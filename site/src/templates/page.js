@@ -1,14 +1,14 @@
 import React from 'react'
 import {graphql} from 'gatsby'
-import {ThemeProvider} from 'styled-components'
 
 import Layout from '../components/Layout'
-import {Heading, H1, H2, H3, H4, H5, H6, Button, Wrapper, HeadingBlock} from '../elements'
-import {base, darkPulp, lightWatermelly} from '../utilities/styles'
+import {Wrapper, HeadingBlock} from '../elements'
+import {base} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
 import CaseStudiesBlock from '../components/CaseStudiesBlock'
 import ReviewsBlock from '../components/ReviewsBlock'
+import Banner1 from '../components/Banner1'
 
 export const query = graphql`
   query PagesTemplateQuery($slug: String!) {
@@ -24,6 +24,19 @@ export const query = graphql`
         ... on SanityBanner1 {
           _key
           _type
+          button {
+            slug {
+              current
+            }
+            icon
+            text
+            url
+          }
+          description
+          heading {
+            heading
+            subHeading
+          }
         }
         ... on SanityHeadingBlock {
           _key
@@ -122,13 +135,15 @@ export const query = graphql`
             url
           }
           caseStudies {
-            _id
-            name
-            slug {
-              current
+            pageInfo {
+              slug {
+                current
+              }
+              pageName
             }
             title
             excerpt
+            _id
           }
         }
       }
@@ -146,9 +161,8 @@ export default props => {
 
         <Wrapper hasGrid theme={base} noSpace>
 
-          {blocks.blocks && blocks.blocks.map(block => {
+          {blocks && blocks.blocks.map(block => {
             if (typeof block._type !== 'undefined') {
-              // console.log('block:', block)
               const name = block._type
               const Component = name.charAt(0).toUpperCase() + name.slice(1)
 
@@ -163,31 +177,16 @@ export default props => {
                   return <ReviewsBlock key={block._key} data={block} />
                 case 'CaseStudiesBlock':
                   return <CaseStudiesBlock key={block._key} data={block} />
+                case 'Banner1':
+                  return <Banner1 key={block._key} data={block} />
                 default:
                   return null
               }
-              // document.getElementById('root')
-
-              // return (
-              //   <Component />
-              // )
             }
           })}
-          {/* <HeroHome /> */}
-          {/* <ServicesBlock /> */}
-          {/* <CaseStudiesBlock id='123' /> */}
-          {/* <ReviewsBlock /> */}
         </Wrapper>
 
       </Layout>
     </>
   )
 }
-
-// const detailsQuery = graphql`
-//   query DefaultSEOQuery {
-//     site: sanitySiteSettings(id: {eq: "8dbf3659-1c35-5ffd-acb0-4d87c935c20f"}) {
-//       title
-//     }
-//   }
-// `

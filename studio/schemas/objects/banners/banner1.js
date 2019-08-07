@@ -9,7 +9,7 @@ export default {
       type: 'headingBlock'
     },
     {
-      name: 'descriptions',
+      name: 'description',
       title: 'Description',
       type: 'string'
     },

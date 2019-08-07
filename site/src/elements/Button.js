@@ -44,23 +44,23 @@ const ButtonStyled = styled.a`
   ${ButtonStyles};
 `
 
-export const Button = ({slug, icon, text, url}) => {
+export const Button = ({slug, icon, text, url, children, className}) => {
   if (slug) {
     return (
-      <LinkButtonStyled to={slug && `/${slug.current}`} >
-        {text}  {icon && <i className={icon} />}
+      <LinkButtonStyled className={className} to={slug && `/${slug.current}`} >
+        {children || text}  {icon && <i className={icon} />}
       </LinkButtonStyled>
     )
   } else if (url) {
     return (
-      <AButtonStyled href={url}>
-        {text}  {icon && <i className={icon} />}
+      <AButtonStyled className={className} href={url}>
+        {children || text}  {icon && <i className={icon} />}
       </AButtonStyled>
     )
   } else {
     return (
-      <ButtonStyled>
-        {text}  {icon && <i className={icon} />}
+      <ButtonStyled className={className}>
+        {children || text}  {icon && <i className={icon} />}
       </ButtonStyled>
     )
   }

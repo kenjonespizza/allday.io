@@ -2,15 +2,14 @@ import React, {useEffect} from 'react'
 import styled, {keyframes, css} from 'styled-components'
 import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
+import {rgba} from 'polished'
 
 import LogoFile from '../../static/AllDayLogo.svg'
-import {transition} from '../utilities/styles'
+import {transition, base, bounce, pulse, lightWatermelly} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
-import {GridLines} from '../elements/GridLines'
-import {
-  mapEdgesToNodes
-} from '../utilities/helpers'
+import {GridLines, Wrapper} from '../elements'
+import {mapEdgesToNodes} from '../utilities/helpers'
 
 function colorSwap (props) {
   return keyframes`
@@ -56,6 +55,7 @@ const StyledNavBar = styled.header`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  box-shadow: 0 0px 20px rgba(0,0,0,.2);
 `
 
 const Nav = styled.nav`
@@ -68,10 +68,33 @@ const Nav = styled.nav`
   }
 
   li {
-    margin: 0 10px;
+    margin-left: 50px;
+    position: relative;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
 
     a {
-      color: ${props => props.theme.colors.black};
+      color: ${base.colors.black};
+      font-weight: ${base.fontWeights.medium};
+      
+      &:hover {
+        color: ${props => props.theme.colors.accent}
+      }
+    }
+
+    &.hasNotification:after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background-color: ${props => props.theme.colors.accent};
+      position: absolute;
+      top: -11px;
+      right: -12px;
+      color: ${props => props.theme.colors.accent && rgba(props.theme.colors.accent, 0.5)};
+      animation: ${bounce} 2s ease-in-out infinite alternate, ${pulse} 4s linear infinite;
     }
   }
 `
@@ -98,17 +121,20 @@ const Logo = styled(LogoFile)`
 
 const MenuButton = styled.button`
   right: 48px;
-  top: calc((124px / 2) - 19px);
+  top: calc((124px / 2) - 24px);
   z-index: 20;
   position: fixed;
   background: none;
-  border: none;
+  border: 1px solid ${rgba(base.colors.black, 0.5)};
   color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.black};
-  padding: 10px;
+  padding: 15px;
+  font-weight: ${base.fontWeights.medium};
   cursor: pointer;
 
   &:hover {
-    color: ${props => props.isOpen ? props.theme.colors.pulp : props.theme.colors.watermelly};
+    color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.white};
+    background-color: ${props => props.isOpen ? props.theme.colors.accent : props.theme.colors.accent};
+    border-color: ${props => props.isOpen ? props.theme.colors.accent : props.theme.colors.accent};
   }
 `
 
@@ -131,14 +157,16 @@ const NavBar = () => {
       }
 
 
-      navigation: allSanityPages(filter: {pageInfo: {showInMainNav: {eq: true}}}) {
+      navigation: allSanitySiteSettings {
         edges {
           node {
-            _id
-            pageInfo {
-              pageName
-              slug {
-                current
+            navLinks {
+              _id
+              pageInfo {
+                pageName
+                slug {
+                  current
+                }
               }
             }
           }
@@ -151,29 +179,22 @@ const NavBar = () => {
   // const {logo} = data.site.nodes[0]
   // console.log('logo:', logo)
 
-  const siteNodes = (data || {}).site
-    ? mapEdgesToNodes(data.site)
-    : []
-
   // console.log('siteNodes:', siteNodes)
 
-  const navigationNodes = (data || {}).navigation
-    ? mapEdgesToNodes(data.navigation)
-    : []
-
   return (
-    <>
+    <Wrapper noSpace theme={base}>
       <Link to='/'>
-        <Logo src={siteNodes[0].logo.asset.url} alt={siteNodes[0].logo.alt} isopen={isOpen ? 'true' : 'false'} />
+        <Logo isopen={isOpen ? 'true' : 'false'} />
       </Link>
       <StyledNavBar id='nav-bar'>
         <GridLines />
         <Nav>
           <ul>
-            {navigationNodes.map(node => {
+            {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
+              const {pageInfo, _id} = node
               return (
-                <li key={node._id}>
-                  <Link to={`/${node.pageInfo.slug.current}`}>{node.pageInfo.pageName}</Link>
+                <li key={_id} className={pageInfo.slug.current.includes('sample') ? 'hasNotification' : ''}>
+                  <Link to={`/${pageInfo.slug.current}`}>{pageInfo.pageName}</Link>
                 </li>
               )
             })}
@@ -184,7 +205,7 @@ const NavBar = () => {
 
       <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
 
-    </>
+    </Wrapper>
   )
 }
 

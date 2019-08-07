@@ -10,7 +10,7 @@ import {Button, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Containe
 
 const flickityOptions = {
   initialIndex: 1,
-  autoPlay: 5000,
+  // autoPlay: 5000,
   selectedAttraction: 0.04,
   friction: 0.6,
   pageDots: false,

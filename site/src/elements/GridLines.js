@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {rgba} from 'polished'
 
-const lineOpacity = 0.1
+const lineOpacity = 0.05
 
 const StyledGridWrap = styled.div`
   background-color: ${props => props.theme.colors.background};

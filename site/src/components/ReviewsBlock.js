@@ -3,7 +3,7 @@ import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
 import styled, {ThemeProvider} from 'styled-components'
 
-import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, mqs} from '../utilities/styles/'
+import {base, mqs, media} from '../utilities/styles/'
 import {Button, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
 
 const ReviewsContainer = styled(Container)`
@@ -13,12 +13,16 @@ const ReviewsContainer = styled(Container)`
 
 const Review = styled.blockquote`
   width: 100%;
-  max-width: 50%;
   margin: 0;
   color: ${props => props.theme.colors.text};
   display: flex;
   flex-direction: column;
   margin-bottom: calc(${base.spacings.sectionL}px / 2);
+  justify-content: center;
+
+  ${media.large`
+    width: 50%;
+  `}
 
   &:nth-child(even) {
     align-self: flex-end;
@@ -26,8 +30,6 @@ const Review = styled.blockquote`
   
   &:last-of-type {
     margin-bottom: 0;
-  }
-
   }
 
   p {
@@ -39,6 +41,7 @@ const Review = styled.blockquote`
     valueM: '25px',
     valueL: '30px'
   })};
+    line-height: 1.5;
     display: flex;
     position: relative;
     padding: 40px 0 0 40px;

@@ -6,6 +6,10 @@ const seal = '#00B4BF'
 const watermelly = '#E84A5F'
 const pulp = '#FFDE67'
 const aloe = '#00D98B'
+const gatsby = '#663399'
+const netlify = '#00AD9F'
+const sanity = '#F04A39'
+const github = '#333333'
 
 export const colorsList = {
   seal: seal,
@@ -13,7 +17,11 @@ export const colorsList = {
   pulp: pulp,
   aloe: aloe,
   white: white,
-  black: black}
+  black: black,
+  gatsby: gatsby,
+  netlify: netlify,
+  sanity: sanity,
+  github: github}
 
 const accentHover = (color, ammount = 0.1, makeDarker = true) => {
   return (makeDarker === true ? darken(ammount, color) : lighten(ammount, color))
@@ -42,6 +50,7 @@ export const base = {
   },
   fontSizes: {
     base: '17px',
+    small: '15px',
     button: '19px',
     buttonIcon: '16px',
     h1: '55px',
