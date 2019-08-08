@@ -148,8 +148,6 @@ const SlideOutMenu = () => {
     }
   `)
 
-  console.log('data:', data)
-
   return (
     <ThemeProvider theme={darkPulp}>
       <StyledSlideOutMenu isOpen={isOpen}>

@@ -10,6 +10,9 @@ import CaseStudiesBlock from '../components/CaseStudiesBlock'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
+import TwoPanelText from '../components/TwoPanelText'
+import TextBlock1 from '../components/TextBlock1'
+import Gallery1 from '../components/Gallery1'
 
 export const query = graphql`
   query SAMPLE_PAGE_QUERY($slug: String!) {
@@ -20,11 +23,16 @@ export const query = graphql`
         current
       }
     }
+    color {
+      hex
+    }
     blocks {
       blocks: serviceBlocks {
         heading
         _type
+        _key
         subHeading
+
         text {
           list
           style
@@ -36,14 +44,21 @@ export const query = graphql`
 `
 
 export default props => {
-  console.log('props:', props)
-  const {blocks, pageInfo} = props.data.page
+  const {blocks, pageInfo, color} = props.data.page
+
+  const brandBase = {
+    ...base, // copy everything from base
+    colors: {// override the colors property
+      ...base.colors, // copy the everything from base.colors
+      accent: color.hex // override base.colors.accent
+    }
+  }
 
   return (
     <>
       <Layout>
 
-        <Wrapper hasGrid theme={base} noSpace>
+        <Wrapper hasGrid theme={brandBase} noSpace>
 
           {blocks && blocks.blocks.map(block => {
             if (typeof block._type !== 'undefined') {
@@ -54,7 +69,6 @@ export default props => {
                 case 'HeroHome':
                   return <HeroHome key={block._key} data={block} />
                 case 'HeadingBlock':
-                  console.log('HEADING BLOCK')
                   return <HeadingBlock key={block._key} data={block} />
                 case 'ServicesBlock':
                   return <ServicesBlock key={block._key} data={block} />
@@ -71,6 +85,9 @@ export default props => {
               }
             }
           })}
+          <TwoPanelText />
+          <TextBlock1 />
+          <Gallery1 />
         </Wrapper>
 
       </Layout>

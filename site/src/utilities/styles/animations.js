@@ -25,17 +25,26 @@ export const bounce = keyframes`
 
 export const pulse = keyframes`
   0% {
-      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(0,0,0, 0);
   }
   20% {
-    /* box-shadow: 0 0 0 0 rgba(204,169,44, 0.4); */
+    /* box-shadow: 0 0 0 0 rgba(0,0,0, 0.4); */
     /* box-shadow: 0 0 0 0 ${rgba(base.colors.watermelly, 0.5)}; */
     box-shadow: 0 0 0 0;
   }
   50% {
-      box-shadow: 0 0 0 7px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 7px rgba(0,0,0, 0);
   }
   100% {
-      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(0,0,0, 0);
+  }
+`
+
+export const linePulse = keyframes`
+  0% {
+      opacity: .05;
+  }
+  100% {
+    opacity: .1; 
   }
 `

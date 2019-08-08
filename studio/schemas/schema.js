@@ -4,6 +4,9 @@ import createSchema from 'part:@sanity/base/schema-creator'
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
+// color plugin
+// import color from 'part:@sanity/color-input'
+
 // Object Types
 import figure from './objects/figure'
 import imageAlt from './objects/imageAlt'

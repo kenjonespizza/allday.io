@@ -1,7 +1,7 @@
 import {createGlobalStyle} from 'styled-components'
 import styledNormalize from 'styled-normalize'
 import {rgba} from 'polished'
-import {base, darkPulp, lightWatermelly, colorsList} from './theme'
+import {base, darkPulp, lightWatermelly, colorsList, media} from './'
 import {transition} from './transition'
 export const GlobalStyle = createGlobalStyle`
 
@@ -40,6 +40,17 @@ export const GlobalStyle = createGlobalStyle`
     ${transition({})};
   }
 
+  h3 {
+    font-size: 30px;
+
+    ${media.medium`
+      font-size: 35px;
+    `}
+
+    ${media.large`
+      font-size: 40px;
+    `}
+  }
 
   button {
     ${transition({})};

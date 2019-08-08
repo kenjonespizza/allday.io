@@ -38,6 +38,11 @@ export default {
       type: 'string'
     },
     {
+      name: 'color',
+      title: 'Brand Color',
+      type: 'color'
+    },
+    {
       name: 'blocks',
       title: 'Blocks',
       type: 'serviceBlocks',

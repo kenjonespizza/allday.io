@@ -64,13 +64,22 @@ const StyledWrapper = styled.section`
   }
 `
 
-export const Wrapper = ({theme, hasGrid, extraSpace, noSpace, children, className}) => {
-  return (
-    <ThemeProvider theme={theme} >
-      <StyledWrapper hasGrid={hasGrid} noSpace={noSpace} extraSpace={extraSpace} className={className}>
-        {hasGrid && <GridLines />}
+export const Wrapper = ({theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor}) => {
+  if (theme) {
+    return (
+      <ThemeProvider theme={theme} >
+        <StyledWrapper hasGrid={hasGrid} noSpace={noSpace} extraSpace={extraSpace} className={className} >
+          {hasGrid && <GridLines backgroundColor={backgroundColor} lineColor={lineColor} />}
+          {children}
+        </StyledWrapper>
+      </ThemeProvider>
+    )
+  } else {
+    return (
+      <StyledWrapper hasGrid={hasGrid} noSpace={noSpace} extraSpace={extraSpace} className={className} >
+        {hasGrid && <GridLines backgroundColor={backgroundColor} lineColor={lineColor} />}
         {children}
       </StyledWrapper>
-    </ThemeProvider>
-  )
+    )
+  }
 }
