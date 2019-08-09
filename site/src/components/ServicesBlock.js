@@ -21,16 +21,16 @@ const Services = styled.ul`
 `
 
 const servicesBlock = ({data}) => {
-  const {services, heading, button} = data
+  const {services, headingBlock, button} = data
 
   return (
     <Wrapper hasGrid theme={lightWatermelly} addSpace>
       <HeadingBlock>
         <SubHeading>
-          {heading.subHeading && heading.subHeading}
+          {headingBlock.subHeading && headingBlock.subHeading}
         </SubHeading>
         <H1 as='h2'>
-          {heading.heading && heading.heading}
+          {headingBlock.heading && headingBlock.heading}
         </H1>
       </HeadingBlock>
       <Container>

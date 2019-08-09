@@ -89,11 +89,11 @@ const Nav = styled.nav`
       width: 8px;
       height: 8px;
       border-radius: 8px;
-      background-color: ${props => props.theme.colors.accent};
+      background-color: ${base.colors.watermelly};
       position: absolute;
       top: -11px;
       right: -12px;
-      color: ${props => props.theme.colors.accent && rgba(props.theme.colors.accent, 0.5)};
+      color: ${rgba(base.colors.watermelly, 0.5)};
       animation: ${bounce} 2s ease-in-out infinite alternate, ${pulse} 4s linear infinite;
     }
   }
@@ -182,7 +182,7 @@ const NavBar = () => {
   // console.log('siteNodes:', siteNodes)
 
   return (
-    <Wrapper noSpace theme={base}>
+    <Wrapper noSpace theme={base} zIndex='11'>
       <Link to='/'>
         <Logo isopen={isOpen ? 'true' : 'false'} />
       </Link>

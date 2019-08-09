@@ -33,7 +33,7 @@ export const query = graphql`
             url
           }
           description
-          heading {
+          headingBlock {
             heading
             subHeading
           }
@@ -88,7 +88,7 @@ export const query = graphql`
               current
             }
           }
-          heading {
+          headingBlock {
             heading
             subHeading
           }
@@ -122,7 +122,7 @@ export const query = graphql`
         ... on SanityCaseStudiesBlock {
           _key
           _type
-          heading {
+          headingBlock {
             heading
             subHeading
           }

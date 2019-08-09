@@ -4,7 +4,7 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'heading',
+      name: 'headingBlock',
       title: 'Heading',
       type: 'headingBlock'
     },

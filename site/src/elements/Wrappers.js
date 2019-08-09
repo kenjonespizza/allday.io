@@ -12,6 +12,11 @@ const StyledWrapper = styled.section`
   /* overflow: hidden; */
   padding-top: ${base.spacings.sectionS}px;
   padding-bottom: ${base.spacings.sectionS}px;
+  z-index: 1;
+
+  ${({zIndex}) => zIndex && `
+    z-index: ${zIndex};
+  `}
 
   ${({extraSpace}) => extraSpace && `
     padding-top: calc(${base.spacings.sectionS}px + 50px);
@@ -52,6 +57,10 @@ const StyledWrapper = styled.section`
   p {
     /* color: ${props => props.theme.colors.text}; */
     color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 0.7)};
+
+    strong {
+      color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 1)};
+    }
   }
 
   *::-moz-selection {
@@ -64,22 +73,27 @@ const StyledWrapper = styled.section`
   }
 `
 
-export const Wrapper = ({theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor}) => {
+const StyledWrapperComponent = (props) => {
+  const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor} = props
+  return (
+    <StyledWrapper {...props} >
+      {hasGrid && <GridLines backgroundColor={backgroundColor} lineColor={lineColor} />}
+      {children}
+    </StyledWrapper>
+  )
+}
+
+export const Wrapper = (props) => {
+  const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor, zIndex} = props
   if (theme) {
     return (
       <ThemeProvider theme={theme} >
-        <StyledWrapper hasGrid={hasGrid} noSpace={noSpace} extraSpace={extraSpace} className={className} >
-          {hasGrid && <GridLines backgroundColor={backgroundColor} lineColor={lineColor} />}
-          {children}
-        </StyledWrapper>
+        <StyledWrapperComponent {...props} />
       </ThemeProvider>
     )
   } else {
     return (
-      <StyledWrapper hasGrid={hasGrid} noSpace={noSpace} extraSpace={extraSpace} className={className} >
-        {hasGrid && <GridLines backgroundColor={backgroundColor} lineColor={lineColor} />}
-        {children}
-      </StyledWrapper>
+      <StyledWrapperComponent {...props} />
     )
   }
 }

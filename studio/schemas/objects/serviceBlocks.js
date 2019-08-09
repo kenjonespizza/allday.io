@@ -9,7 +9,8 @@ export default {
       title: 'Select Blocks',
       type: 'array',
       of: [
-        {type: 'heroBasic'}
+        {type: 'heroBasic'},
+        {type: 'banner1'}
       ],
       options: [
         {editModal: "popover"}

@@ -30,17 +30,17 @@ const SliderWrapper = styled(FlicityWrapper)`
 `
 
 const CaseStudiesBlock = ({data}) => {
-  const {heading, button, caseStudies} = data
+  const {headingBlock, button, caseStudies} = data
   if (typeof window !== 'undefined') {
     return (
       <Wrapper hasGrid theme={darkPulp} addSpace>
-        {(heading.subHeading || heading.heading) &&
+        {(headingBlock.subHeading || headingBlock.heading) &&
         <HeadingBlock>
           <SubHeading>
-            {heading.subHeading && heading.subHeading}
+            {headingBlock.subHeading && headingBlock.subHeading}
           </SubHeading>
           <H1 as='h2'>
-            {heading.heading && heading.heading}
+            {headingBlock.heading && headingBlock.heading}
           </H1>
         </HeadingBlock>
         }

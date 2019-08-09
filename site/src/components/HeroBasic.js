@@ -34,11 +34,13 @@ const Container = styled(HeroBasicContainer)`
 `
 
 const HeroBasic = ({data}) => {
+  const {heading, subHeading} = data
+
   return (
     <Wrapper hasGrid extraSpace>
       <Container>
-        <SubHeading>New Website</SubHeading>
-        <H1>Want Branding</H1>
+        <SubHeading>{subHeading}</SubHeading>
+        <H1>{heading}</H1>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque 200% increase urna. In nisi neque, aliquet vel, dapibus id, <strong>mattis vel</strong>, nisi. Sed pretium, ligula sollicitudin laoreet viverra, extremely fast load times leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti blandit nunc tortor eu nibh blandit nunc tortor.</p>
       </Container>
     </Wrapper>

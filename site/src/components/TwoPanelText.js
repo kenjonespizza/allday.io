@@ -49,6 +49,10 @@ const Container = styled(TwoPanelTextContainer)`
     margin-top: ${base.spacings.base};
     color: ${props => props.textColor};
     /* color: ${props => props.textColor && rgba(props.textColor, 0.8)}; */
+
+    strong {
+      color: ${props => props.textColor};
+    }
   }
 `
 
@@ -59,7 +63,7 @@ const Side = styled.div`
 const HeroBasic = (props) => {
   const textColor = getContrast(props.theme.colors.accent, base.colors.white) > 4.5 ? base.colors.white : base.colors.black
   return (
-    <Wrapper hasGrid extraSpace lineColor={textColor} backgroundColor={props.theme.colors.accent}>
+    <Wrapper hasGrid lineColor={textColor} backgroundColor={props.theme.colors.accent}>
       <Container textColor={textColor}>
         <Side>
           <h3>Want Branding</h3>

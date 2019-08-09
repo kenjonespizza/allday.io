@@ -8,6 +8,7 @@ import {base} from '../utilities/styles'
 const Container = styled(TextBlock1Container)`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 50px;
 
   & > h1, 
   & > h2, 
@@ -29,14 +30,14 @@ const Container = styled(TextBlock1Container)`
     }
   }
 
-  strong {
+  /* strong {
     color: ${props => props.theme.colors.accent};
-  }
+  } */
 `
 
 const TextBlock1 = ({data}) => {
   return (
-    <Wrapper hasGrid extraSpace>
+    <Wrapper hasGrid>
       <Container>
         <h3>Interactive Web Design</h3>
         <div>

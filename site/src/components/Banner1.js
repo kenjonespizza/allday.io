@@ -1,9 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {Wrapper, Container, SubHeading, H1, Button} from '../elements'
+import {Wrapper as Banner1Wrapper, Container, SubHeading, H1, Button} from '../elements'
 import {darkWatermelly, transition} from '../utilities/styles'
 import PineappleDudeFile from '../../static/pineapple-man.svg'
+
+const Wrapper = styled(Banner1Wrapper)`
+  /* margin-bottom: 18px; */
+`
 
 const BannerButton = styled(Button)`
   margin-top: 30px;
@@ -25,16 +29,16 @@ const PineappleDude = styled(PineappleDudeFile)`
 `
 
 const Banner1 = ({data}) => {
-  const {heading, description, button} = data
+  const {headingBlock, description, button} = data
 
   return (
     <Wrapper theme={darkWatermelly} hasGrid addSpace>
       <Container>
         <SubHeading>
-          {heading.subHeading && heading.subHeading}
+          {headingBlock.subHeading && headingBlock.subHeading}
         </SubHeading>
         <H1 as='h2'>
-          {heading.heading && heading.heading}
+          {headingBlock.heading && headingBlock.heading}
         </H1>
         <p>{description}</p>
         <BannerButton {...button} />

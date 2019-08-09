@@ -13,6 +13,7 @@ import HeroBasic from '../components/HeroBasic'
 import TwoPanelText from '../components/TwoPanelText'
 import TextBlock1 from '../components/TextBlock1'
 import Gallery1 from '../components/Gallery1'
+import Pagination from '../components/Pagination'
 
 export const query = graphql`
   query SAMPLE_PAGE_QUERY($slug: String!) {
@@ -28,14 +29,28 @@ export const query = graphql`
     }
     blocks {
       blocks: serviceBlocks {
-        heading
-        _type
-        _key
-        subHeading
-
-        text {
-          list
-          style
+        ... on SanityBanner1 {
+          _key
+          _type
+          button {
+            url
+            text
+            slug {
+              current
+            }
+            icon
+          }
+          headingBlock {
+            heading
+            subHeading
+          }
+          description
+        }
+        ... on SanityHeroBasic {
+          _key
+          _type
+          heading
+          subHeading
         }
       }
     }
@@ -44,6 +59,7 @@ export const query = graphql`
 `
 
 export default props => {
+  console.log('props:', props)
   const {blocks, pageInfo, color} = props.data.page
 
   const brandBase = {
@@ -88,6 +104,9 @@ export default props => {
           <TwoPanelText />
           <TextBlock1 />
           <Gallery1 />
+          <TextBlock1 />
+          <Gallery1 />
+          <Pagination />
         </Wrapper>
 
       </Layout>
