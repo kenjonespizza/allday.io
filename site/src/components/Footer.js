@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import {useStaticQuery, graphql, Link} from 'gatsby'
+import {rgba} from 'polished'
 
 import LogoFile from '../../static/AllDayLogo.svg'
-import {Wrapper, Container} from '../elements'
+import {Wrapper as FooterWrapper, Container} from '../elements'
 import {base, colorsList} from '../utilities/styles'
 import {mapEdgesToNodes} from '../utilities/helpers'
+
+const Wrapper = styled(FooterWrapper)`
+  border-top: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, 0.05)} solid 1px;
+`
 
 const Logo = styled(LogoFile)`
   left: 48px;

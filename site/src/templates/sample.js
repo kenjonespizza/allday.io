@@ -27,30 +27,35 @@ export const query = graphql`
     color {
       hex
     }
+    _rawBlocks(resolveReferences: {maxDepth: 10})
     blocks {
       blocks: serviceBlocks {
-        ... on SanityBanner1 {
-          _key
-          _type
-          button {
-            url
-            text
-            slug {
-              current
-            }
-            icon
-          }
-          headingBlock {
-            heading
-            subHeading
-          }
-          description
-        }
         ... on SanityHeroBasic {
           _key
           _type
           heading
           subHeading
+        }
+        ... on SanityGallery {
+          _key
+          _type
+          image {
+            caption
+            alt
+            asset {
+              fluid {
+                src
+                aspectRatio
+                base64
+                sizes
+                srcSet
+                srcSetWebp
+                srcWebp
+              }
+              _id
+              url
+            }
+          }
         }
       }
     }
@@ -59,8 +64,8 @@ export const query = graphql`
 `
 
 export default props => {
-  console.log('props:', props)
-  const {blocks, pageInfo, color} = props.data.page
+  const {_rawBlocks, pageInfo, color} = props.data.page
+  const blocks = _rawBlocks.serviceBlocks
 
   const brandBase = {
     ...base, // copy everything from base
@@ -74,9 +79,9 @@ export default props => {
     <>
       <Layout>
 
-        <Wrapper hasGrid theme={brandBase} noSpace>
+        <Wrapper hasGrid theme={typeof brandBase !== 'undefined' ? brandBase : base} noSpace>
 
-          {blocks && blocks.blocks.map(block => {
+          {blocks && blocks.map(block => {
             if (typeof block._type !== 'undefined') {
               const name = block._type
               const Component = name.charAt(0).toUpperCase() + name.slice(1)
@@ -96,6 +101,8 @@ export default props => {
                   return <Banner1 key={block._key} data={block} />
                 case 'HeroBasic':
                   return <HeroBasic key={block._key} data={block} />
+                case 'Gallery':
+                  return <Gallery1 key={block._key} data={block} />
                 default:
                   return null
               }
@@ -103,9 +110,9 @@ export default props => {
           })}
           <TwoPanelText />
           <TextBlock1 />
-          <Gallery1 />
+          {/* <Gallery1 /> */}
           <TextBlock1 />
-          <Gallery1 />
+          {/* <Gallery1 /> */}
           <Pagination />
         </Wrapper>
 

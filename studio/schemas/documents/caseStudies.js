@@ -57,13 +57,13 @@ export default {
       name: 'gallery',
       title: 'Images',
       type: 'gallery'
-    },
-    {
-      title: 'Rich text example',
-      name: 'myRichTextExample',
-      type: 'array',
-      of: [{type: 'block'}]
     }
+    // {
+    //   title: 'Rich text example',
+    //   name: 'myRichTextExample',
+    //   type: 'array',
+    //   of: [{type: 'block'}]
+    // }
     // {
     //   name: 'sampleImage',
     //   title: 'Sample Image',

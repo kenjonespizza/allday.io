@@ -28,11 +28,24 @@ const PineappleDude = styled(PineappleDudeFile)`
   } */
 `
 
-const Banner1 = ({data}) => {
-  const {headingBlock, description, button} = data
+const Banner1 = (props) => {
+  const {headingBlock, description, button} = props.data
+  const {brandTheme} = props
+
+  // If there is a specific theme passed in, swap out the accent color.
+  var bannerTheme
+  if (typeof brandTheme !== 'undefined') {
+    bannerTheme = {
+      ...darkWatermelly, // copy everything from base
+      colors: {// override the colors property
+        ...darkWatermelly.colors, // copy the everything from base.colors
+        accent: brandTheme.colors.accent // override base.colors.accent
+      }
+    }
+  }
 
   return (
-    <Wrapper theme={darkWatermelly} hasGrid addSpace>
+    <Wrapper theme={typeof bannerTheme !== 'undefined' ? bannerTheme : darkWatermelly} hasGrid addSpace>
       <Container>
         <SubHeading>
           {headingBlock.subHeading && headingBlock.subHeading}

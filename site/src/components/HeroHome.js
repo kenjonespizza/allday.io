@@ -103,6 +103,7 @@ const HeroHome = (props) => {
 
   // const {mainText, button, imageRight, imageLeft} = data.sanityHomepage.hero
   const {mainText, button, imageRight, imageLeft} = props.data
+  console.log('imageLeft:', imageLeft)
 
   return (
     <Wrapper noSpace theme={lightPulp} hasGrid>

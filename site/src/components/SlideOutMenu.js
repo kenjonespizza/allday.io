@@ -4,7 +4,7 @@ import styled, {ThemeProvider, keyframes, css} from 'styled-components'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
-import {darkPulp, transition, base} from '../utilities/styles'
+import {darkPulp, transition, base, media} from '../utilities/styles'
 import {GridLines} from '../elements/GridLines'
 import {useGlobalState} from './Layout'
 import {
@@ -73,6 +73,11 @@ const StyledSlideOutMenu = styled.div`
       padding: 0;
     }
 
+    ul:first-of-type {
+      ${media.large`
+        display: none;
+      `}
+    }
 
     ul {
       display: flex;

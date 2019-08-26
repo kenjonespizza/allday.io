@@ -5,7 +5,7 @@ import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
 import LogoFile from '../../static/AllDayLogo.svg'
-import {transition, base, bounce, pulse, lightWatermelly} from '../utilities/styles'
+import {transition, base, bounce, pulse, lightWatermelly, media} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
 import {GridLines, Wrapper} from '../elements'
@@ -55,10 +55,16 @@ const StyledNavBar = styled.header`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  box-shadow: 0 0px 20px rgba(0,0,0,.2);
+  /* box-shadow: 0 0px 20px rgba(0,0,0,.2); */
+  border-bottom: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, 0.05)} solid 1px;
 `
 
 const Nav = styled.nav`
+display: none;
+
+${media.large`
+  display: block;
+`}
   ul, li {
     list-style: none;
   }
@@ -94,7 +100,8 @@ const Nav = styled.nav`
       top: -11px;
       right: -12px;
       color: ${rgba(base.colors.watermelly, 0.5)};
-      animation: ${bounce} 2s ease-in-out infinite alternate, ${pulse} 4s linear infinite;
+      /* animation: ${bounce} 2s ease-in-out infinite alternate, ${pulse} 4s linear infinite; */
+      animation: ${pulse} 4s linear infinite;
     }
   }
 `

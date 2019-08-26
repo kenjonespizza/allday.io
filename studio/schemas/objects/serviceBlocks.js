@@ -10,7 +10,8 @@ export default {
       type: 'array',
       of: [
         {type: 'heroBasic'},
-        {type: 'banner1'}
+        // {type: 'banner1'},
+        {type: 'gallery'}
       ],
       options: [
         {editModal: "popover"}
