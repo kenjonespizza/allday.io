@@ -65,13 +65,17 @@ export const query = graphql`
 
 export default props => {
   const {_rawBlocks, pageInfo, color, blocks} = props.data.page
+  console.log('color:', color)
 
-  const brandBase = {
-    ...base, // copy everything from base
-    colors: {// override the colors property
-      ...base.colors, // copy the everything from base.colors
-      accent: color.hex // override base.colors.accent
+  if (color && color.hex) {
+    var brandBase = {
+      ...base, // copy everything from base
+      colors: {// override the colors property
+        ...base.colors, // copy the everything from base.colors
+        accent: color.hex // override base.colors.accent
+      }
     }
+    // return brandBase
   }
 
   return (

@@ -115,7 +115,7 @@ const CaseStudiesRow = ({theme, data, rawData}) => {
   return (
     <>
       {caseStudies && caseStudies.map((caseStudy, i) => {
-        const hex = caseStudy.color ? caseStudy.color.hex : base.colors.black
+        const hex = caseStudy.color && caseStudy.color.hex ? caseStudy.color.hex : base.colors.black
         const textColor = getContrast(hex, base.colors.white) > 2 ? base.colors.white : base.colors.black
         return (
           <Wrapper key={caseStudy._id + i} halfSpace hasGrid theme={base} bg={hex} textColor={textColor}>

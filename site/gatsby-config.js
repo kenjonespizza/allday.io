@@ -19,9 +19,9 @@ module.exports = {
         overlayDrafts: !isProd && token
       }
     },
-    `gatsby-plugin-styled-components`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-plugin-styled-components',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -31,27 +31,27 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: 'gatsby-plugin-prefetch-google-fonts',
       options: {
         fonts: [
           {
-            family: `Poppins`,
-            variants: [`300`, `300i`, `400`, `400i`, `500`, `500i`, `600`, `600i`, `700`, `700i`]
+            family: 'Poppins',
+            variants: ['300', '300i', '400', '400i', '500', '500i', '600', '600i', '700', '700i']
           }
         ]
       }
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `AllDay`,
-        short_name: `AllDay`,
-        start_url: `/`,
-        background_color: `#FEFEFE`,
-        theme_color: `#00B4BF`,
-        display: `standalone`
+        name: 'AllDay',
+        short_name: 'AllDay',
+        start_url: '/',
+        background_color: '#FEFEFE',
+        theme_color: '#00B4BF',
+        display: 'standalone'
       }
     },
-    `gatsby-plugin-offline`
+    'gatsby-plugin-offline'
   ]
 }
