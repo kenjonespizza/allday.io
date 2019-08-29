@@ -14,7 +14,6 @@ import TwoPanelText from '../components/TwoPanelText'
 import TextBlock1 from '../components/TextBlock1'
 import Gallery1 from '../components/Gallery1'
 import CaseStudiesRow from '../components/CaseStudiesRow'
-import ContactForm from '../components/ContactForm'
 
 export const query = graphql`
   query PagesTemplateQuery($slug: String!) {
@@ -253,7 +252,7 @@ export default props => {
             }
           })}
           {/* <CaseStudyRows /> */}
-          <ContactForm />
+
         </Wrapper>
 
       </Layout>
