@@ -20,12 +20,16 @@ import review from './objects/misc/review'
 import banner1 from './objects/banners/banner1'
 import blocks from './objects/blocks'
 import serviceBlocks from './objects/serviceBlocks'
+import caseStudiesBlocks from './objects/caseStudiesBlocks'
 import seo from './objects/seo'
 import pageInfo from './objects/pageInfo'
 import servicesBlock from './objects/misc/servicesBlock'
 import caseStudiesBlock from './objects/misc/caseStudiesBlock'
+import caseStudiesRow from './objects/misc/caseStudiesRow'
 import richText from './objects/richText'
 import heroBasic from './objects/heroBasic'
+import twoPanelText from './objects/twoPanelText'
+import textBlock1 from './objects/textBlock1'
 import { gallery, body } from './objects/gallery'
 
 // Document types
@@ -56,14 +60,18 @@ export default createSchema({
     banner1,
     blocks,
     serviceBlocks,
+    caseStudiesBlocks,
     seo,
     pageInfo,
     servicesBlock,
     caseStudiesBlock,
+    caseStudiesRow,
     gallery,
     body,
     richText,
     heroBasic,
+    twoPanelText,
+    textBlock1,
     
     /* Your types here! */
     siteSettings,

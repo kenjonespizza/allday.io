@@ -35,20 +35,19 @@ const CaseStudiesBlock = ({data}) => {
     return (
       <Wrapper hasGrid theme={darkPulp} addSpace>
         {(headingBlock.subHeading || headingBlock.heading) &&
-        <HeadingBlock>
-          <SubHeading>
-            {headingBlock.subHeading && headingBlock.subHeading}
-          </SubHeading>
-          <H1 as='h2'>
-            {headingBlock.heading && headingBlock.heading}
-          </H1>
-        </HeadingBlock>
-        }
+          <HeadingBlock>
+            <SubHeading>
+              {headingBlock.subHeading && headingBlock.subHeading}
+            </SubHeading>
+            <H1 as='h2'>
+              {headingBlock.heading && headingBlock.heading}
+            </H1>
+          </HeadingBlock>}
 
         <SliderWrapper>
           <Flickity
-            className={'carousel'} // default ''
-            elementType={'div'} // default 'div'
+            className='carousel' // default ''
+            elementType='div' // default 'div'
             options={flickityOptions} // takes flickity options {}
             disableImagesLoaded={false} // default false
             reloadOnUpdate // default false

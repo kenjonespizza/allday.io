@@ -1,13 +1,8 @@
 export default {
-  name: 'heroBasic',
-  title: 'Hero: Basic',
+  name: 'textBlock1',
+  title: 'Text Block: 1/4 Title 3/4 Text',
   type: 'object',
   fields: [
-    {
-      name: 'subHeading',
-      title: 'Sub Heading',
-      type: 'string'
-    },
     {
       name: 'heading',
       title: 'Heading',

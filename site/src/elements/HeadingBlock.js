@@ -13,6 +13,10 @@ const StlyedHeadingBlock = styled.div`
     align-items: flex-start
   `}
 
+  & > * {
+    text-align: center;
+  }
+
   ${mqs({
     property: 'margin-bottom',
     valueBase: base.spacings.sectionS / 2 + 'px',
@@ -21,12 +25,12 @@ const StlyedHeadingBlock = styled.div`
   })};
 `
 
-export const HeadingBlock = ({children, left, data}) => {
+export const HeadingBlock = ({children, left, data, className}) => {
   if (data && data.heading && data.subHeading) {
     const {heading, subHeading} = data
 
     return (
-      <StlyedHeadingBlock id='HeadingBlock' left={left}>
+      <StlyedHeadingBlock id='HeadingBlock' left={left} className={className}>
         <SubHeading>
           {subHeading && subHeading}
         </SubHeading>
@@ -37,7 +41,7 @@ export const HeadingBlock = ({children, left, data}) => {
     )
   } else {
     return (
-      <StlyedHeadingBlock id='HeadingBlock' left={left}>
+      <StlyedHeadingBlock id='HeadingBlock' left={left} className={className}>
         {children}
       </StlyedHeadingBlock>
     )

@@ -34,7 +34,7 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  a {
+  a, a * {
     text-decoration: none;
     color: ${props => props.theme.colors.accent};
     ${transition({})};

@@ -20,7 +20,7 @@ const Services = styled.ul`
   `}
 `
 
-const servicesBlock = ({data}) => {
+const ServicesBlock = ({data}) => {
   const {services, headingBlock, button} = data
 
   return (
@@ -42,11 +42,11 @@ const servicesBlock = ({data}) => {
           })}
         </Services>
       </Container>
-      <ButtonBlock>
+      {button && button.text && <ButtonBlock>
         <Button {...button} />
-      </ButtonBlock>
+                                </ButtonBlock>}
     </Wrapper>
   )
 }
 
-export default servicesBlock
+export default ServicesBlock

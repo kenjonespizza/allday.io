@@ -29,7 +29,7 @@ export const query = graphql`
     }
     _rawBlocks(resolveReferences: {maxDepth: 10})
     blocks {
-      blocks: serviceBlocks {
+      blocks: caseStudiesBlocks {
         ... on SanityHeroBasic {
           _key
           _type
@@ -43,19 +43,19 @@ export const query = graphql`
             caption
             alt
             asset {
-              fluid {
-                src
-                aspectRatio
-                base64
-                sizes
-                srcSet
-                srcSetWebp
-                srcWebp
-              }
               _id
               url
             }
           }
+        }
+        ... on SanityTwoPanelText {
+          _key
+          _type
+        }
+        ... on SanityTextBlock1 {
+          _key
+          _type
+          heading
         }
       }
     }
@@ -64,8 +64,7 @@ export const query = graphql`
 `
 
 export default props => {
-  const {_rawBlocks, pageInfo, color} = props.data.page
-  const blocks = _rawBlocks.serviceBlocks
+  const {_rawBlocks, pageInfo, color, blocks} = props.data.page
 
   const brandBase = {
     ...base, // copy everything from base
@@ -81,10 +80,13 @@ export default props => {
 
         <Wrapper hasGrid theme={typeof brandBase !== 'undefined' ? brandBase : base} noSpace>
 
-          {blocks && blocks.map(block => {
+          {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
             if (typeof block._type !== 'undefined') {
               const name = block._type
               const Component = name.charAt(0).toUpperCase() + name.slice(1)
+
+              var rawData = _rawBlocks.caseStudiesBlocks
+              rawData = rawData[Object.keys(rawData)[i]]
 
               switch (Component) {
                 case 'HeroHome':
@@ -100,18 +102,22 @@ export default props => {
                 case 'Banner1':
                   return <Banner1 key={block._key} data={block} />
                 case 'HeroBasic':
-                  return <HeroBasic key={block._key} data={block} />
+                  return <HeroBasic key={block._key} data={block} rawData={rawData} />
                 case 'Gallery':
                   return <Gallery1 key={block._key} data={block} />
+                case 'TwoPanelText':
+                  return <TwoPanelText key={block._key} data={block} rawData={rawData} />
+                case 'TextBlock1':
+                  return <TextBlock1 key={block._key} data={block} rawData={rawData} />
                 default:
                   return null
               }
             }
           })}
-          <TwoPanelText />
-          <TextBlock1 />
+          {/* <TwoPanelText /> */}
+          {/* <TextBlock1 /> */}
           {/* <Gallery1 /> */}
-          <TextBlock1 />
+          {/* <TextBlock1 /> */}
           {/* <Gallery1 /> */}
           <Pagination />
         </Wrapper>

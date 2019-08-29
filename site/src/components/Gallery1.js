@@ -55,8 +55,6 @@ const Gallery1 = ({data}) => {
     images.push(img)
   })
 
-  console.log('images:', images)
-
   // const images = [
   //   {
   //     source: 'https://images.unsplash.com/photo-1556910109-a14b4226abff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
@@ -83,10 +81,8 @@ const Gallery1 = ({data}) => {
     changeSelectedIndex(selectedIndex)
   }
 
-  console.log('data:', data)
-
   return (
-    <Wrapper hasGrid>
+    <Wrapper hasGrid noSpace>
       <ModalGateway>
         {modalIsOpen ? (
           <Modal
@@ -118,12 +114,11 @@ const Gallery1 = ({data}) => {
       </ModalGateway>
       <Container>
         {data.image.map(({alt, caption, asset, _key}, j) => {
-          console.log('asset:', asset)
           return (
             <a onClick={() => toggleLightbox(j)} key={_key}>
-              <Img
+              <img
                 alt={caption}
-                fluid={asset.fluid}
+                src={asset.url}
               />
             </a>
           )

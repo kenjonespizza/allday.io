@@ -1,13 +1,8 @@
 export default {
-  name: 'caseStudiesBlock',
-  title: 'Case Studies Scroll',
+  name: 'caseStudiesRow',
+  title: 'Case Studies Rows',
   type: 'object',
   fields: [
-    {
-      name: 'headingBlock',
-      title: 'Heading',
-      type: 'headingBlock'
-    },
     {
       name: 'caseStudies',
       title: 'Case Studies',
@@ -23,11 +18,6 @@ export default {
       options: {
         sortable: true
       }
-    },
-    {
-      name: 'button',
-      title: 'Button',
-      type: 'button'
     }
   ]
 }

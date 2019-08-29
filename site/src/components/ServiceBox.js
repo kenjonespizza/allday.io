@@ -102,10 +102,9 @@ const ServiceBox = ({name, slug, sampleImage, iteration}) => {
   return (
     <>
 
-      <StyledServiceBox >
+      <StyledServiceBox>
         {hasImg &&
-          <BoxImg fluid={sampleImage.asset.fluid} alt={name} />
-        }
+          <BoxImg fluid={sampleImage.asset.fluid} alt={name} />}
 
         <BoxInfo name={name} numberIsWhite={hasImg} iteration={iteration} slug={slug} />
       </StyledServiceBox>

@@ -41,8 +41,10 @@ const Container = styled(HeroBasicContainer)`
   }
 `
 
-const HeroBasic = ({data}) => {
-  const {heading, subHeading, text} = data
+const HeroBasic = ({data, rawData}) => {
+  const {heading, subHeading} = data
+  const {text} = rawData
+  // console.log('rawData:', rawData)
 
   //   const serializers = {
   //   types: {
@@ -61,9 +63,10 @@ const HeroBasic = ({data}) => {
         <H1>{heading}</H1>
         {/* <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque 200% increase urna. In nisi neque, aliquet vel, dapibus id, <strong>mattis vel</strong>, nisi. Sed pretium, ligula sollicitudin laoreet viverra, extremely fast load times leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti blandit nunc tortor eu nibh blandit nunc tortor.</p> */}
         {/* <BlockContent blocks={text} serializers={serializers} /> */}
-        {text && <Text>
-          <BlockContent blocks={text || []} />
-        </Text>}
+        {text &&
+          <Text>
+            <BlockContent blocks={text || []} />
+          </Text>}
       </Container>
     </Wrapper>
   )

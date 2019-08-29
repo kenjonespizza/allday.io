@@ -4,6 +4,7 @@ import {rgba, getContrast, readableColor} from 'polished'
 
 import {Wrapper, H1, H3, SubHeading, Container as TextBlock1Container} from '../elements'
 import {base} from '../utilities/styles'
+import BlockContent from './BlockContent'
 
 const Container = styled(TextBlock1Container)`
   display: grid;
@@ -35,14 +36,22 @@ const Container = styled(TextBlock1Container)`
   } */
 `
 
-const TextBlock1 = ({data}) => {
+const Text = styled.div``
+
+const TextBlock1 = (props) => {
+  const {data, rawData} = props
+  const {heading} = data
+  const {text} = rawData
+  console.log('rawData:', rawData)
+
   return (
     <Wrapper hasGrid>
       <Container>
-        <h3>Interactive Web Design</h3>
-        <div>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque 200% increase urna. In nisi neque, aliquet vel, dapibus id, <strong>mattis vel</strong>, nisi. Sed pretium, ligula sollicitudin laoreet viverra, extremely fast load times leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti blandit nunc tortor eu nibh blandit nunc tortor.</p>
-        </div>
+        <h3>{heading || ''}</h3>
+        {text &&
+          <Text>
+            <BlockContent blocks={text || []} />
+          </Text>}
       </Container>
     </Wrapper>
   )

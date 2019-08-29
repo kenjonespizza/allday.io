@@ -82,11 +82,32 @@ ${media.large`
     }
 
     a {
-      color: ${base.colors.black};
+      color: ${base.colors.text};
       font-weight: ${base.fontWeights.medium};
+      postion: relative;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        right: 0;
+        left: auto;
+        height: 4px;
+        width: 0%;
+        background-color: ${props => props.theme.colors.text};
+        ${transition({
+          duration: '.4s',
+          ease: 'ease-in-out'
+        })};
+      }
       
       &:hover {
-        color: ${props => props.theme.colors.accent}
+        /* color: ${props => props.theme.colors.accent} */
+
+        &:after {
+          width: 100%;
+          left: 0;
+        }
       }
     }
 
@@ -189,7 +210,7 @@ const NavBar = () => {
   // console.log('siteNodes:', siteNodes)
 
   return (
-    <Wrapper noSpace theme={base} zIndex='11'>
+    <Wrapper noSpace theme={lightWatermelly} zIndex='11'>
       <Link to='/'>
         <Logo isopen={isOpen ? 'true' : 'false'} />
       </Link>

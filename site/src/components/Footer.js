@@ -4,8 +4,8 @@ import {useStaticQuery, graphql, Link} from 'gatsby'
 import {rgba} from 'polished'
 
 import LogoFile from '../../static/AllDayLogo.svg'
-import {Wrapper as FooterWrapper, Container} from '../elements'
-import {base, colorsList} from '../utilities/styles'
+import {Wrapper as FooterWrapper, Container, Heading, H2, H3, H4, HeadingBlock, SubHeading} from '../elements'
+import {base, darkPulp, colorsList, media, transition} from '../utilities/styles'
 import {mapEdgesToNodes} from '../utilities/helpers'
 
 const Wrapper = styled(FooterWrapper)`
@@ -43,20 +43,56 @@ const FooterContainer = styled(Container)`
   } */
 `
 
+const HeadingBlockStyled = styled(HeadingBlock)`
+  margin-bottom: 0;
+
+  .accent {
+    color: ${base.colors.white} !important;
+  }
+
+  a > * {
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: ${base.colors.white} !important;
+      transform: scale(1.1);
+
+      .accent {
+        color: ${base.colors.white} !important;
+        transform: scale(1.1);
+      }
+    }
+  }
+`
+
 const FooterCta = styled.div`
   background-color: ${base.colors.seal};
   color: ${base.colors.white};
   height: 400px;
-  padding: 100px 40px;
+  /* padding: 100px 40px; */
   z-index: -10;
+  overflow: hidden;
+  ${transition({})};
 
     & > div {
       position: fixed;
       left: 50%;
-	    transform: translateX(-50%);
-      bottom: 100px;
-      z-index: 0;
+      transform: translateX(-50%);
+      bottom: 0;
+      /* z-index: -1; */
+      height: 400px;
+      display: flex;
+      align-items: center;
     }
+
+  &:hover {
+    background-color: ${base.colors.black};
+
+    a {
+      transform: scale(1.1);
+    }
+  }
 `
 
 const Footer = () => {
@@ -73,11 +109,22 @@ const Footer = () => {
           </Link>
         </FooterContainer>
       </Wrapper>
-      <FooterCta>
-        <div>
-          <h1>Footer Stuff</h1>
-        </div>
-      </FooterCta>
+      <Wrapper hasGrid addSpace theme={darkPulp} noSpace zIndex='1'>
+        <FooterCta>
+          <div>
+            <HeadingBlockStyled>
+              <SubHeading>
+                Ready to get the ball rolling?
+              </SubHeading>
+              <Link to='/contact'>
+                <H2>
+                Let us know what you need!
+                </H2>
+              </Link>
+            </HeadingBlockStyled>
+          </div>
+        </FooterCta>
+      </Wrapper>
     </>
   )
 }

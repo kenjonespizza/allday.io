@@ -22,10 +22,18 @@ export const ButtonStyles = css`
   cursor: pointer;
   ${transition({})};
 
+  & * {
+    color: ${props => props.theme.colors.onAccent};
+  }
+
   &:hover {
     background-color: ${props => props.theme.colors.accentHover};
     /* border-radius: 30px; */
     color: ${props => props.theme.colors.accentHoverText};
+
+    & * {
+      color: ${props => props.theme.colors.accentHoverText};
+    }
   }
 
   i {
@@ -44,10 +52,11 @@ const ButtonStyled = styled.a`
   ${ButtonStyles};
 `
 
-export const Button = ({slug, icon, text, url, children, className}) => {
+export const Button = ({slug, icon, text, url, children, className, slugPrefix}) => {
   if (slug) {
+    console.log('slug:', slug)
     return (
-      <LinkButtonStyled className={className} to={slug && `/${slug.current}`} >
+      <LinkButtonStyled className={className} to={slug && `${slugPrefix}/${slug.current}`}>
         {children || text}  {icon && <i className={icon} />}
       </LinkButtonStyled>
     )

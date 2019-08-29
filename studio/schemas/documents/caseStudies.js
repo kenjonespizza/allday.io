@@ -45,18 +45,13 @@ export default {
     {
       name: 'blocks',
       title: 'Blocks',
-      type: 'serviceBlocks',
+      type: 'caseStudiesBlocks',
       // validation: Rule => Rule.required()
     },
     {
       name: 'seo',
       title: "SEO",
       type: 'seo'
-    },
-    {
-      name: 'gallery',
-      title: 'Images',
-      type: 'gallery'
     }
     // {
     //   title: 'Rich text example',

@@ -1,22 +1,16 @@
 export default {
   title: 'Blocks',
-  name: 'blocks',
+  name: 'caseStudiesBlocks',
   type: 'object',
   description: 'Use this to add/delete/reorder sections on the page',
   fields: [
     {
-      name: 'blocks',
+      name: 'caseStudiesBlocks',
       title: 'Select Blocks',
       type: 'array',
       of: [
-        {type: 'banner1'},
-        {type: 'heroHome'},
-        {type: 'headingBlock'},
-        {type: 'servicesBlock'},
-        {type: 'reviewsBlock'},
-        {type: 'caseStudiesBlock'},
-        {type: 'caseStudiesRow'},
         {type: 'heroBasic'},
+        // {type: 'banner1'},
         {type: 'gallery'},
         {type: 'twoPanelText'},
         {type: 'textBlock1'}

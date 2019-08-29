@@ -2,6 +2,7 @@ import React from 'react'
 import styled, {withTheme} from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
+import BlockContent from './BlockContent'
 import {Wrapper as TwoPanelTextWrapper, H1, SubHeading, Container as TwoPanelTextContainer} from '../elements'
 import {base, media} from '../utilities/styles'
 
@@ -60,22 +61,24 @@ const Side = styled.div`
   grid-column: span 1;
 `
 
-const HeroBasic = (props) => {
-  const textColor = getContrast(props.theme.colors.accent, base.colors.white) > 4.5 ? base.colors.white : base.colors.black
+const TwoPanelText = (props) => {
+  const {data, rawData, theme} = props
+
+  const textColor = getContrast(theme.colors.accent, base.colors.white) > 4.5 ? base.colors.white : base.colors.black
   return (
-    <Wrapper hasGrid lineColor={textColor} backgroundColor={props.theme.colors.accent}>
+    <Wrapper hasGrid lineColor={textColor} backgroundColor={theme.colors.accent}>
       <Container textColor={textColor}>
-        <Side>
-          <h3>Want Branding</h3>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque 200% increase urna. In nisi neque, aliquet vel, dapibus id, <strong>mattis vel</strong>, nisi. Sed pretium, ligula sollicitudin laoreet viverra, extremely fast load times leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti blandit nunc tortor eu nibh blandit nunc tortor.</p>
-        </Side>
-        <Side>
-          <h3>Want Branding</h3>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque 200% increase urna. In nisi neque, aliquet vel, dapibus id, <strong>mattis vel</strong>, nisi. Sed pretium, ligula sollicitudin laoreet viverra, extremely fast load times leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti blandit nunc tortor eu nibh blandit nunc tortor.</p>
-        </Side>
+        {rawData.leftText &&
+          <Side>
+            <BlockContent blocks={rawData.leftText || []} />
+          </Side>}
+        {rawData.rightText &&
+          <Side>
+            <BlockContent blocks={rawData.rightText || []} />
+          </Side>}
       </Container>
     </Wrapper>
   )
 }
 
-export default withTheme(HeroBasic)
+export default withTheme(TwoPanelText)

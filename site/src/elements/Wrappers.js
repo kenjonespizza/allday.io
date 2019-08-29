@@ -12,7 +12,7 @@ const StyledWrapper = styled.section`
   /* overflow: hidden; */
   padding-top: ${base.spacings.sectionS}px;
   padding-bottom: ${base.spacings.sectionS}px;
-  z-index: 1;
+  z-index: 2;
 
   ${({zIndex}) => zIndex && `
     z-index: ${zIndex};
@@ -21,6 +21,11 @@ const StyledWrapper = styled.section`
   ${({extraSpace}) => extraSpace && `
     padding-top: calc(${base.spacings.sectionS}px + 50px);
     padding-bottom: calc(${base.spacings.sectionS}px + 50px);
+  `}
+  
+  ${({halfSpace}) => halfSpace && `
+    padding-top: calc(${base.spacings.sectionS}px / 2);
+    padding-bottom: calc(${base.spacings.sectionS}px / 2);
   `}
 
   ${media.medium`
@@ -31,6 +36,11 @@ const StyledWrapper = styled.section`
       padding-top: calc(${base.spacings.sectionM}px + 50px);
       padding-bottom: calc(${base.spacings.sectionM}px + 50px);
     `}
+    
+    ${({halfSpace}) => halfSpace && `
+      padding-top: calc(${base.spacings.sectionM}px / 2);
+      padding-bottom: calc(${base.spacings.sectionM}px / 2);
+    `}
   `}
   
   ${media.large`
@@ -40,6 +50,11 @@ const StyledWrapper = styled.section`
     ${({extraSpace}) => extraSpace && `
       padding-top: calc(${base.spacings.sectionL}px + 50px);
       padding-bottom: calc(${base.spacings.sectionL}px + 50px);
+    `}
+    
+    ${({halfSpace}) => halfSpace && `
+      padding-top: calc(${base.spacings.sectionL}px / 2);
+      padding-bottom: calc(${base.spacings.sectionL}px / 2);
     `}
   `}
 
@@ -74,9 +89,9 @@ const StyledWrapper = styled.section`
 `
 
 const StyledWrapperComponent = (props) => {
-  const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor} = props
+  const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor, halfSpace} = props
   return (
-    <StyledWrapper {...props} >
+    <StyledWrapper {...props}>
       {hasGrid && <GridLines backgroundColor={backgroundColor} lineColor={lineColor} />}
       {children}
     </StyledWrapper>
@@ -84,10 +99,10 @@ const StyledWrapperComponent = (props) => {
 }
 
 export const Wrapper = (props) => {
-  const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor, zIndex} = props
+  const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor, zIndex, halfSpace} = props
   if (theme) {
     return (
-      <ThemeProvider theme={theme} >
+      <ThemeProvider theme={theme}>
         <StyledWrapperComponent {...props} />
       </ThemeProvider>
     )

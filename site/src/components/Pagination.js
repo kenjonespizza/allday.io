@@ -7,7 +7,7 @@ import PrevArrow from '../../static/baseline-arrow_back-24px.svg'
 import NextArrow from '../../static/baseline-arrow_forward-24px.svg'
 import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {Wrapper, H1, H3, SubHeading, Container} from '../elements'
-import {base} from '../utilities/styles'
+import {base, darkPulp} from '../utilities/styles'
 
 const Prev = styled.li`
 
@@ -28,7 +28,7 @@ const PaginationWrap = styled.nav`
   }
 
 
-    a {
+    a, a * {
       display: grid;
       align-items: center;
       grid-template-columns: auto auto;
@@ -47,7 +47,7 @@ const PaginationWrap = styled.nav`
 
 const Pagination = ({data}) => {
   return (
-    <Wrapper hasGrid>
+    <Wrapper hasGrid theme={base}>
       <Container>
         <PaginationWrap>
           <ul>

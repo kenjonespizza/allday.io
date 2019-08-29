@@ -9,6 +9,12 @@ import ServicesBlock from '../components/ServicesBlock'
 import CaseStudiesBlock from '../components/CaseStudiesBlock'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
+import HeroBasic from '../components/HeroBasic'
+import TwoPanelText from '../components/TwoPanelText'
+import TextBlock1 from '../components/TextBlock1'
+import Gallery1 from '../components/Gallery1'
+import CaseStudiesRow from '../components/CaseStudiesRow'
+import ContactForm from '../components/ContactForm'
 
 export const query = graphql`
   query PagesTemplateQuery($slug: String!) {
@@ -19,6 +25,7 @@ export const query = graphql`
         }
       }
       id
+      _rawBlocks(resolveReferences: {maxDepth: 10})
       blocks {
         blocks {
         ... on SanityBanner1 {
@@ -146,6 +153,51 @@ export const query = graphql`
             _id
           }
         }
+        ... on SanityHeroBasic {
+          _key
+          _type
+          heading
+          subHeading
+        }
+        ... on SanityGallery {
+          _key
+          _type
+          image {
+            caption
+            alt
+            asset {
+              _id
+              url
+            }
+          }
+        }
+        ... on SanityTwoPanelText {
+          _key
+          _type
+        }
+        ... on SanityTextBlock1 {
+          _key
+          _type
+          heading
+        }
+        ... on SanityCaseStudiesRow {
+          _key
+          _type
+          caseStudies {
+            color {
+              hex
+            }
+            title
+            excerpt
+            _id
+            pageInfo {
+              slug {
+                current
+              }
+              pageName
+            }
+          }
+        }
       }
     }
   }
@@ -153,7 +205,9 @@ export const query = graphql`
 `
 
 export default props => {
-  const {blocks, pageInfo} = props.data.page
+  // const {blocks, pageInfo} = props.data.page
+  const {_rawBlocks, pageInfo, color, blocks} = props.data.page
+  console.log('blocks:', blocks)
 
   return (
     <>
@@ -161,10 +215,14 @@ export default props => {
 
         <Wrapper hasGrid theme={base} noSpace>
 
-          {blocks && blocks.blocks.map(block => {
+          {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
             if (typeof block._type !== 'undefined') {
               const name = block._type
+
               const Component = name.charAt(0).toUpperCase() + name.slice(1)
+
+              var rawData = _rawBlocks.blocks
+              rawData = rawData[Object.keys(rawData)[i]]
 
               switch (Component) {
                 case 'HeroHome':
@@ -179,11 +237,23 @@ export default props => {
                   return <CaseStudiesBlock key={block._key} data={block} />
                 case 'Banner1':
                   return <Banner1 key={block._key} data={block} />
+                case 'HeroBasic':
+                  return <HeroBasic key={block._key} data={block} rawData={rawData} />
+                case 'Gallery':
+                  return <Gallery1 key={block._key} data={block} />
+                case 'TwoPanelText':
+                  return <TwoPanelText key={block._key} data={block} rawData={rawData} />
+                case 'TextBlock1':
+                  return <TextBlock1 key={block._key} data={block} rawData={rawData} />
+                case 'CaseStudiesRow':
+                  return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
                 default:
                   return null
               }
             }
           })}
+          {/* <CaseStudyRows /> */}
+          <ContactForm />
         </Wrapper>
 
       </Layout>
