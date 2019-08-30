@@ -66,7 +66,7 @@ const TwoPanelText = (props) => {
 
   const textColor = getContrast(theme.colors.accent, base.colors.white) > 4.5 ? base.colors.white : base.colors.black
   return (
-    <Wrapper hasGrid lineColor={textColor} backgroundColor={data.color ? theme.colors.accent : base.colors.white}>
+    <Wrapper hasGrid lineColor={textColor} backgroundColor={theme.colors.accent}>
       <Container textColor={textColor}>
         {rawData.leftText &&
           <Side>
