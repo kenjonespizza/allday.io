@@ -21,7 +21,8 @@ export const colorsList = {
   gatsby: gatsby,
   netlify: netlify,
   sanity: sanity,
-  github: github}
+  github: github
+}
 
 const accentHover = (color, ammount = 0.1, makeDarker = true) => {
   return (makeDarker === true ? darken(ammount, color) : lighten(ammount, color))
@@ -77,6 +78,7 @@ export const base = {
     '40em', '56em', '64em'
   ],
   sizes: {
+    xxLarge: 1500,
     xLarge: 1200,
     large: 992,
     medium: 768,
@@ -165,7 +167,26 @@ const darkWatermellyTheme = {
   }
 }
 
+const darkBaseTheme = {
+  colors: {
+    text: white,
+    background: black,
+    accent: seal,
+    accentHover: white,
+    accentHoverText: seal,
+    onAccent: white,
+    black: black,
+    white: white,
+    seal: seal,
+    watermelly: watermelly,
+    pulp: pulp,
+    aloe: aloe,
+    lines: white
+  }
+}
+
 export const lightPulp = {...base, ...lightPulpTheme}
 export const darkPulp = {...base, ...darkPulpTheme}
 export const lightWatermelly = {...base, ...lightWatermellyTheme}
 export const darkWatermelly = {...base, ...darkWatermellyTheme}
+export const darkBase = {...base, ...darkBaseTheme}

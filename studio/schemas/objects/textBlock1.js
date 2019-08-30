@@ -12,6 +12,11 @@ export default {
       name: 'text',
       title: 'Text',
       type: 'richText'
+    },
+    {
+      name: 'isDark',
+      title: 'Dark Theme',
+      type: 'boolean'
     }
   ]
 }

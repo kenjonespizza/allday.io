@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "gatsby build",
+    "serve": "gatsby serve",
     "clean-cache": "gatsby clean",
     "dev": "npm run clean-cache && gatsby develop",
     "lint": "eslint .",

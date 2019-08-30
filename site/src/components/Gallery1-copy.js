@@ -52,8 +52,6 @@ export default class Gallery1 extends Component {
 
   render() {
     const { modalIsOpen } = this.state;
-
-    console.log('images:', images)
     return (
       <>
         <ModalGateway>

@@ -36,7 +36,7 @@ position: relative;
     ${transition({duration: '.1s', delay: '.5s'})};
     /* z-index: -1; */
 
-    ${media.xLarge`
+    ${media.xxLarge`
       /* min-width: 20px;
       width: 2vw; */
       width: 50px;
@@ -109,7 +109,6 @@ const OverlayLink = styled(Link)`
 `
 
 const CaseStudiesRow = ({theme, data, rawData}) => {
-  console.log('data:', data)
   const {caseStudies} = data
 
   return (

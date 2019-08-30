@@ -157,6 +157,7 @@ export const query = graphql`
           _type
           heading
           subHeading
+          isDark
         }
         ... on SanityGallery {
           _key
@@ -178,6 +179,7 @@ export const query = graphql`
           _key
           _type
           heading
+          isDark
         }
         ... on SanityCaseStudiesRow {
           _key
@@ -206,7 +208,6 @@ export const query = graphql`
 export default props => {
   // const {blocks, pageInfo} = props.data.page
   const {_rawBlocks, pageInfo, color, blocks} = props.data.page
-  console.log('blocks:', blocks)
 
   return (
     <>

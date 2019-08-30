@@ -31,42 +31,40 @@ const SliderWrapper = styled(FlicityWrapper)`
 
 const CaseStudiesBlock = ({data}) => {
   const {headingBlock, button, caseStudies} = data
-  if (typeof window !== 'undefined') {
-    return (
-      <Wrapper hasGrid theme={darkPulp} addSpace>
-        {(headingBlock.subHeading || headingBlock.heading) &&
-          <HeadingBlock>
-            <SubHeading>
-              {headingBlock.subHeading && headingBlock.subHeading}
-            </SubHeading>
-            <H1 as='h2'>
-              {headingBlock.heading && headingBlock.heading}
-            </H1>
-          </HeadingBlock>}
 
-        <SliderWrapper>
+  return (
+    <Wrapper hasGrid theme={darkPulp} addSpace>
+      {(headingBlock.subHeading || headingBlock.heading) &&
+        <HeadingBlock>
+          <SubHeading>
+            {headingBlock.subHeading && headingBlock.subHeading}
+          </SubHeading>
+          <H1 as='h2'>
+            {headingBlock.heading && headingBlock.heading}
+          </H1>
+        </HeadingBlock>}
+
+      <SliderWrapper>
+        {typeof window !== 'undefined' &&
           <Flickity
             className='carousel' // default ''
             elementType='div' // default 'div'
             options={flickityOptions} // takes flickity options {}
             disableImagesLoaded={false} // default false
             reloadOnUpdate // default false
-            static // default false
+            static
           >
             {caseStudies.map(caseStudy => (
               <CaseStudyBox key={caseStudy._id} {...caseStudy} />
             ))}
-          </Flickity>
-        </SliderWrapper>
+          </Flickity>}
 
-        <ButtonBlock>
-          <Button {...button} />
-        </ButtonBlock>
-      </Wrapper>
-    )
-  }
-  return (
-    <h1>Hi</h1>
+      </SliderWrapper>
+
+      <ButtonBlock>
+        <Button {...button} />
+      </ButtonBlock>
+    </Wrapper>
   )
 }
 

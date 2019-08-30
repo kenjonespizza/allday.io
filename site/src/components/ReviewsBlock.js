@@ -82,7 +82,6 @@ const Review = styled.blockquote`
 
 const ReviewsBlock = ({data}) => {
   const {reviews, button} = data
-  // console.log('button:', button)
 
   return (
     <Wrapper hasGrid theme={base} addSpace>

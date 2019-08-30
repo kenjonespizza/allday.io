@@ -32,6 +32,7 @@ const Container = styled(Gallery1Container)`
     margin-bottom: 50px;
     cursor: pointer;
     display: block;
+    page-break-inside: avoid;
 
     img {
       width: 100%;
@@ -49,29 +50,11 @@ const Gallery1 = ({data}) => {
 
   data.image.map((i) => {
     img = {
-      source: i.asset.url,
+      source: `${i.asset.url}?w=1920`,
       caption: i.caption
     }
     images.push(img)
   })
-
-  // const images = [
-  //   {
-  //     source: 'https://images.unsplash.com/photo-1556910109-a14b4226abff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-  //     caption: 'Want Branding Example 1'
-  //   },
-  //   {
-  //     source: 'https://images.unsplash.com/photo-1565191999001-551c187427bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
-  //     caption: 'Want Branding Example 2'
-  //   },
-  //   {
-  //     source: 'https://images.unsplash.com/photo-1565210339691-46c2d66d0ac8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
-  //     caption: 'Want Branding Example 3'
-  //   },
-  //   {
-  //     source: 'https://images.unsplash.com/photo-1565207470645-0c3bff5d8c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-  //     caption: 'Want Branding Example 4'
-  //   }]
 
   const [modalIsOpen, toggleModal] = useState(false)
   const [selectedIndex, changeSelectedIndex] = useState(0)
@@ -116,25 +99,13 @@ const Gallery1 = ({data}) => {
         {data.image.map(({alt, caption, asset, _key}, j) => {
           return (
             <a onClick={() => toggleLightbox(j)} key={_key}>
-              <img
+              <Img
                 alt={caption}
-                src={asset.url}
+                fluid={asset.fluid}
               />
             </a>
           )
         })}
-        {/* <a onClick={() => toggleLightbox(1)}>
-          <img src='https://images.unsplash.com/photo-1556910109-a14b4226abff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80' />
-        </a>
-        <a onClick={() => toggleLightbox(2)}>
-          <img src='https://images.unsplash.com/photo-1565191999001-551c187427bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80' />
-        </a>
-        <a onClick={() => toggleLightbox(3)}>
-          <img src='https://images.unsplash.com/photo-1565210339691-46c2d66d0ac8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80' />
-        </a>
-        <a onClick={() => toggleLightbox(4)}>
-          <img src='https://images.unsplash.com/photo-1565207470645-0c3bff5d8c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80' />
-        </a> */}
       </Container>
     </Wrapper>
   )

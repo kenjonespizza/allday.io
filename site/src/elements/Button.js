@@ -54,7 +54,6 @@ const ButtonStyled = styled.a`
 
 export const Button = ({slug, icon, text, url, children, className, slugPrefix}) => {
   if (slug) {
-    console.log('slug:', slug)
     return (
       <LinkButtonStyled className={className} to={slug && `${slugPrefix}/${slug.current}`}>
         {children || text}  {icon && <i className={icon} />}

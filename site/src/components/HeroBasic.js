@@ -4,7 +4,7 @@ import {rgba, getContrast, readableColor} from 'polished'
 import BlockContent from './BlockContent'
 
 import {Wrapper, H1, SubHeading, Container as HeroBasicContainer} from '../elements'
-import {base} from '../utilities/styles'
+import {base, darkBase} from '../utilities/styles'
 
 const Text = styled.div``
 
@@ -42,22 +42,12 @@ const Container = styled(HeroBasicContainer)`
 `
 
 const HeroBasic = ({data, rawData}) => {
-  const {heading, subHeading} = data
+  const {heading, subHeading, isDark} = data
+  console.log('data:', data)
   const {text} = rawData
-  // console.log('rawData:', rawData)
-
-  //   const serializers = {
-  //   types: {
-  //     code: props => (
-  //       <pre data-language={props.node.language}>
-  //         <code>{props.node.code}</code>
-  //       </pre>
-  //     )
-  //   }
-  // }
 
   return (
-    <Wrapper hasGrid>
+    <Wrapper hasGrid theme={isDark ? darkBase : base}>
       <Container>
         <SubHeading>{subHeading}</SubHeading>
         <H1>{heading}</H1>

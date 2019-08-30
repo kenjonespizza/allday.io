@@ -161,21 +161,27 @@ const SlideOutMenu = () => {
           <ul>
             {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
               const {pageInfo, _id} = node
-              return (
-                <li key={_id}>
-                  <Link onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current}`}>{pageInfo.pageName}</Link>
-                </li>
-              )
+
+              if (pageInfo) {
+                return (
+                  <li key={_id}>
+                    <Link onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current}`}>{pageInfo.pageName}</Link>
+                  </li>
+                )
+              }
             })}
           </ul>
           <ul>
             {data.navigation.edges && data.navigation.edges[0].node.hiddenNavLinks.map(node => {
               const {pageInfo, _id} = node
-              return (
-                <li key={_id}>
-                  <Link onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current !== '/' ? pageInfo.slug.current : ''}`}>{pageInfo.pageName}</Link>
-                </li>
-              )
+
+              if (pageInfo) {
+                return (
+                  <li key={_id}>
+                    <Link onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current !== '/' ? pageInfo.slug.current : ''}`}>{pageInfo.pageName}</Link>
+                  </li>
+                )
+              }
             })}
           </ul>
         </nav>

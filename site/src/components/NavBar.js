@@ -140,10 +140,10 @@ const Logo = styled(LogoFile)`
     fill: ${props => props.isopen === 'true' ? props.theme.colors.white : props.theme.colors.black};
    
     /* animation: ${props => colorSwap} 2s linear alternate infinite; */
-    ${props => props.isopen === 'true'
+    /* ${props => props.isopen === 'true'
     ? css`animation: ${props => colorSwap} 15s linear infinite;`
     : css`animation: none;`
-}
+} */
   }
 `
 
@@ -160,9 +160,9 @@ const MenuButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.white};
-    background-color: ${props => props.isOpen ? props.theme.colors.accent : props.theme.colors.accent};
-    border-color: ${props => props.isOpen ? props.theme.colors.accent : props.theme.colors.accent};
+    color: ${props => props.isOpen ? props.theme.colors.black : props.theme.colors.white};
+    background-color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.black};
+    border-color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.black};
   }
 `
 
@@ -203,11 +203,6 @@ const NavBar = () => {
     }
 
   `)
-
-  // const {logo} = data.site.nodes[0]
-  // console.log('logo:', logo)
-
-  // console.log('siteNodes:', siteNodes)
 
   return (
     <Wrapper noSpace theme={lightWatermelly} zIndex='11'>

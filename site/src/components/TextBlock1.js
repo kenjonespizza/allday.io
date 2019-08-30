@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
 import {Wrapper, H1, H3, SubHeading, Container as TextBlock1Container} from '../elements'
-import {base} from '../utilities/styles'
+import {base, darkBase} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
 const Container = styled(TextBlock1Container)`
@@ -40,12 +40,11 @@ const Text = styled.div``
 
 const TextBlock1 = (props) => {
   const {data, rawData} = props
-  const {heading} = data
+  const {heading, isDark} = data
   const {text} = rawData
-  console.log('rawData:', rawData)
 
   return (
-    <Wrapper hasGrid>
+    <Wrapper hasGrid theme={isDark ? darkBase : base}>
       <Container>
         <h3>{heading || ''}</h3>
         {text &&

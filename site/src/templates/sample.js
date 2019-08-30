@@ -35,14 +35,19 @@ export const query = graphql`
           _type
           heading
           subHeading
+          isDark
         }
         ... on SanityGallery {
           _key
           _type
           image {
+            _key
             caption
             alt
             asset {
+              fluid(maxWidth: 800) {
+                ...GatsbySanityImageFluid
+              }
               _id
               url
             }
@@ -65,7 +70,6 @@ export const query = graphql`
 
 export default props => {
   const {_rawBlocks, pageInfo, color, blocks} = props.data.page
-  console.log('color:', color)
 
   if (color && color.hex) {
     var brandBase = {
