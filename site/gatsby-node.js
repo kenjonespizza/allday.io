@@ -55,7 +55,8 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
 
   services.forEach(edge => {
     const page = edge.node
-    const slug = `service/${page.slug.current}`
+    const slug = `services/${page.slug.current}`
+    const slugName = page.slug.current
 
     reporter.info(`Creating service page: ${slug}`)
 
@@ -63,7 +64,7 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
       path: slug,
       component: require.resolve('./src/templates/service.js'),
       context: {
-        slug
+        slugName
       }
     })
   })

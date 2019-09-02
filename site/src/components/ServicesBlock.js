@@ -24,7 +24,7 @@ const ServicesBlock = ({data}) => {
   const {services, headingBlock, button} = data
 
   return (
-    <Wrapper hasGrid theme={lightWatermelly} addSpace>
+    <Wrapper hasGrid theme={base} addSpace>
       <HeadingBlock>
         <SubHeading>
           {headingBlock.subHeading && headingBlock.subHeading}
@@ -44,7 +44,7 @@ const ServicesBlock = ({data}) => {
       </Container>
       {button && button.text && <ButtonBlock>
         <Button {...button} />
-                                </ButtonBlock>}
+      </ButtonBlock>}
     </Wrapper>
   )
 }

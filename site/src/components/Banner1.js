@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {Wrapper as Banner1Wrapper, Container, SubHeading, H1, Button} from '../elements'
-import {darkWatermelly, transition} from '../utilities/styles'
+import {darkWatermelly, transition, darkBase} from '../utilities/styles'
 import PineappleDudeFile from '../../static/pineapple-man.svg'
 
 const Wrapper = styled(Banner1Wrapper)`

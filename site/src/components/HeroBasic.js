@@ -20,18 +20,19 @@ const Container = styled(HeroBasicContainer)`
   }
   
   ${H1} {
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 3;
     grid-row: 2 / span 1;
     font-size: 70px;
   }
   
-  ${Text} {
+  /* ${Text} { */
+  div[class*="Text"] {
     grid-column: 1 / span 3;
     grid-row: 3 / span 1;
-    margin-top: ${base.spacings.base};
+    /* margin-top: ${base.spacings.base}px; */
 
     strong {
-      color: ${props => props.theme.colors.accent};
+      /* color: ${props => props.theme.colors.accent}; */
     }
 
     a {
@@ -41,25 +42,33 @@ const Container = styled(HeroBasicContainer)`
   }
 `
 
-const HeroBasic = ({data, rawData}) => {
-  const {heading, subHeading, isDark} = data
-  console.log('data:', data)
-  const {text} = rawData
+const HeroBasic = ({data, rawData, children}) => {
+  if (typeof data !== 'undefined') {
+    const {heading, subHeading, isDark} = data
+    const {text} = rawData
 
-  return (
-    <Wrapper hasGrid theme={isDark ? darkBase : base}>
-      <Container>
-        <SubHeading>{subHeading}</SubHeading>
-        <H1>{heading}</H1>
-        {/* <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque 200% increase urna. In nisi neque, aliquet vel, dapibus id, <strong>mattis vel</strong>, nisi. Sed pretium, ligula sollicitudin laoreet viverra, extremely fast load times leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti blandit nunc tortor eu nibh blandit nunc tortor.</p> */}
-        {/* <BlockContent blocks={text} serializers={serializers} /> */}
-        {text &&
-          <Text>
-            <BlockContent blocks={text || []} />
-          </Text>}
-      </Container>
-    </Wrapper>
-  )
+    return (
+      <Wrapper hasGrid theme={isDark ? darkBase : base}>
+        <Container>
+          <SubHeading>{subHeading}</SubHeading>
+          <H1>{heading}</H1>
+          {text &&
+            <Text>
+              <BlockContent blocks={text || []} />
+            </Text>}
+        </Container>
+      </Wrapper>
+    )
+  } else {
+    return (
+      <Wrapper hasGrid>
+        <Container>
+          {children}
+        </Container>
+      </Wrapper>
+
+    )
+  }
 }
 
 export default HeroBasic

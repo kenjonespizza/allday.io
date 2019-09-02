@@ -3,7 +3,7 @@ import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
 import styled, {ThemeProvider} from 'styled-components'
 
-import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base} from '../utilities/styles/'
+import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, darkBase} from '../utilities/styles/'
 import {Button, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
 import ServiceBox from './ServiceBox'
 import {reColorPunctuation} from '../utilities/helpers'
@@ -44,7 +44,7 @@ const CTA1 = () => {
   // const {services, servicesHeading} = data.services
 
   return (
-    <Wrapper hasGrid theme={darkWatermelly} addSpace>
+    <Wrapper hasGrid theme={darkBase} addSpace>
       {/* <HeadingBlock left>
         <SubHeading>
           {servicesHeading.subHeading}

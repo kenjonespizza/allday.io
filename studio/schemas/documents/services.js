@@ -25,6 +25,16 @@ export default {
       name: 'sampleImage',
       title: 'Sample Image',
       type: 'image'
+    },
+    {
+      name: 'overview',
+      title: 'Overview',
+      type: 'richText'
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'richText'
     }
   ]
 }

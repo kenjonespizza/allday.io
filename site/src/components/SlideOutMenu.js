@@ -74,9 +74,13 @@ const StyledSlideOutMenu = styled.div`
     }
 
     ul:first-of-type {
-      ${media.large`
+      /* ${media.large`
         display: none;
-      `}
+      `} */
+    }
+
+    ul:last-of-type {
+      display: none;
     }
 
     ul {

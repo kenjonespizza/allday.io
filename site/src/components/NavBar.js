@@ -52,9 +52,10 @@ const StyledNavBar = styled.header`
   height: 124px;
   z-index: 10;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   overflow: hidden;
+  padding: 0 48px;
   /* box-shadow: 0 0px 20px rgba(0,0,0,.2); */
   border-bottom: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, 0.05)} solid 1px;
 `
@@ -158,6 +159,11 @@ const MenuButton = styled.button`
   padding: 15px;
   font-weight: ${base.fontWeights.medium};
   cursor: pointer;
+  display: block;
+
+  ${media.large`
+    display: ${props => props.isOpen ? 'block' : 'none'};
+  `}
 
   &:hover {
     color: ${props => props.isOpen ? props.theme.colors.black : props.theme.colors.white};

@@ -40,6 +40,18 @@ export const GlobalStyle = createGlobalStyle`
     ${transition({})};
   }
 
+  h2 {
+    font-size: 40px;
+
+    ${media.medium`
+      font-size: 45px;
+    `}
+
+    ${media.large`
+      font-size: 50px;
+    `}
+  }
+
   h3 {
     font-size: 30px;
 

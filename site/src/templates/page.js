@@ -6,7 +6,7 @@ import {Wrapper, HeadingBlock} from '../elements'
 import {base} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
-import CaseStudiesBlock from '../components/CaseStudiesBlock'
+// import CaseStudiesBlock from '../components/CaseStudiesBlock'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
@@ -14,6 +14,7 @@ import TwoPanelText from '../components/TwoPanelText'
 import TextBlock1 from '../components/TextBlock1'
 import Gallery1 from '../components/Gallery1'
 import CaseStudiesRow from '../components/CaseStudiesRow'
+import ContactForm from '../components/ContactForm'
 
 export const query = graphql`
   query PagesTemplateQuery($slug: String!) {
@@ -215,6 +216,8 @@ export default props => {
 
         <Wrapper hasGrid theme={base} noSpace>
 
+          {pageInfo.slug.current === 'get-in-touch' && <ContactForm />}
+
           {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
             if (typeof block._type !== 'undefined') {
               const name = block._type
@@ -234,7 +237,8 @@ export default props => {
                 case 'ReviewsBlock':
                   return <ReviewsBlock key={block._key} data={block} />
                 case 'CaseStudiesBlock':
-                  return <CaseStudiesBlock key={block._key} data={block} />
+                  // return <CaseStudiesBlock key={block._key} data={block} />
+                  return <p>hi</p>
                 case 'Banner1':
                   return <Banner1 key={block._key} data={block} />
                 case 'HeroBasic':
