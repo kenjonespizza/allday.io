@@ -229,7 +229,8 @@ export default props => {
 
               switch (Component) {
                 case 'HeroHome':
-                  return <HeroHome key={block._key} data={block} />
+                  // return <HeroHome key={block._key} data={block} />
+                  break
                 case 'HeadingBlock':
                   return <HeadingBlock key={block._key} data={block} />
                 case 'ServicesBlock':

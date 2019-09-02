@@ -49,7 +49,8 @@ module.exports = {
         start_url: '/',
         background_color: '#FEFEFE',
         theme_color: '#00B4BF',
-        display: 'standalone'
+        display: 'standalone',
+        icon: 'static/pineapple-man.svg'
       }
     },
     'gatsby-plugin-offline'
