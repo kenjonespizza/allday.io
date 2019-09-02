@@ -6,7 +6,7 @@ import {Wrapper, HeadingBlock} from '../elements'
 import {base} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
-// import CaseStudiesBlock from '../components/CaseStudiesBlock'
+import CaseStudiesBlock from '../components/CaseStudiesBlock'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
@@ -237,8 +237,7 @@ export default props => {
                 case 'ReviewsBlock':
                   return <ReviewsBlock key={block._key} data={block} />
                 case 'CaseStudiesBlock':
-                  // return <CaseStudiesBlock key={block._key} data={block} />
-                  return <p>hi</p>
+                  return <CaseStudiesBlock key={block._key} data={block} />
                 case 'Banner1':
                   return <Banner1 key={block._key} data={block} />
                 case 'HeroBasic':
