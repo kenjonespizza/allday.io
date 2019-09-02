@@ -12,7 +12,7 @@ export default function HTML (props) {
           content='width=device-width, initial-scale=1, shrink-to-fit=no'
         />
         {props.headComponents}
-        <script defer src='https://kit.fontawesome.com/8714152a25.js' />
+
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
@@ -25,6 +25,7 @@ export default function HTML (props) {
           dangerouslySetInnerHTML={{__html: props.body}}
         />
         {props.postBodyComponents}
+        <script defer async src='https://kit.fontawesome.com/8714152a25.js' />
       </body>
     </html>
   )
