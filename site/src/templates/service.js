@@ -8,6 +8,7 @@ import Layout from '../components/Layout'
 import HeroBasic from '../components/HeroBasic'
 import BlockContent from '../components/BlockContent'
 import TextBlock from '../components/TextBlock'
+import Seo from '../components/Seo'
 
 export const query = graphql`
   query ServicesQuery($slugName: String!) {
@@ -26,18 +27,12 @@ export const query = graphql`
 //     display: block;
 // `
 
-const Service = ({pageContext, data}) => {
-  console.log('data.service._rawBody:', data.service._rawBody)
-  console.log('data.service._rawOverview:', data.service._rawOverview)
-
+const Service = ({pageContext, data, seo}) => {
   const {name} = data.service
-  // if (typeof data.service._rawBody !== 'undefined') {
-  //   var {text} = data.service._rawBody
-  //   return text
-  // }
 
   return (
     <Layout>
+      {seo && <Seo context={props.pageContext} {...seo} />}
       <HeroBasic>
         <SubHeading>we offer:</SubHeading>
         <H1>{name}</H1>

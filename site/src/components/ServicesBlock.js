@@ -42,9 +42,11 @@ const ServicesBlock = ({data}) => {
           })}
         </Services>
       </Container>
-      {button && button.text && <ButtonBlock>
-        <Button {...button} />
-      </ButtonBlock>}
+      {button && button.text && (button.text !== ' ')(
+        <ButtonBlock>
+          <Button {...button} />
+        </ButtonBlock>
+      )}
     </Wrapper>
   )
 }

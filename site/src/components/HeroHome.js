@@ -6,7 +6,7 @@ import {readableColor} from 'polished'
 
 import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {useGlobalState} from './Layout'
-import {centerIt, lightPulp, lightWatermelly, base, transition} from '../utilities/styles/'
+import {centerIt, lightPulp, lightWatermelly, base, transition, media} from '../utilities/styles/'
 import {Button, ButtonStyles, Wrapper, GridLines} from '../elements/'
 
 const HeroHomeWrapper = styled.section`
@@ -55,7 +55,30 @@ const CenteredBox = styled.div`
   border-bottom-left-radius: 100px;
 `
 
-const NewButton = styled(Button)``
+const HeroHomeMobile = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 70px ${base.spacings.base}px ${base.spacings.base}px;
+  font-size: 21px;
+  text-align: center;
+  line-height: 1.39;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+
+  ${PineappleDudeWrap} {
+    position: static;
+    bottom: calc(100% - 60px);
+    left: 50%;
+    transform: translate(0, 0);
+    transform-origin: center center;
+    ${transition({})};
+    width: 136px;
+    height: 258px;
+    margin-bottom: ${base.spacings.base}px;
+  }
+`
 
 const HeroButton = styled.a`
   ${ButtonStyles}
@@ -67,64 +90,53 @@ const HeroButton = styled.a`
 `
 
 const HeroHome = (props) => {
-  // const data = useStaticQuery(graphql`
-  //   query HERO_QUERY {
-  //     sanityHomepage {
-  //       hero {
-  //         button {
-  //           buttonIcon
-  //           buttonText
-  //           slug {
-  //             current
-  //           }
-  //           url
-  //         }
-  //         mainText
-  //         imageRight {
-  //           alt
-  //           asset {
-  //             fluid(maxWidth: 4000) {
-  //               ...GatsbySanityImageFluid
-  //             }
-  //           }
-  //         }
-  //         imageLeft {
-  //           alt
-  //           asset {
-  //             fluid(maxWidth: 4000) {
-  //               ...GatsbySanityImageFluid
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-
-  // const {mainText, button, imageRight, imageLeft} = data.sanityHomepage.hero
   const {mainText, button, imageRight, imageLeft} = props.data
 
-  return (
-    <Wrapper noSpace theme={lightPulp} hasGrid>
-      <HeroHomeWrapper id='HeroHomeWrapperEl'>
-        <Side>
-          <SideImg fluid={imageLeft.asset.fluid} alt={imageLeft.alt} />
-        </Side>
-        <Side>
-          <SideImg fluid={imageRight.asset.fluid} alt={imageRight.alt} />
-        </Side>
+  if (typeof window !== 'undefined') {
+    var [dimensions, setDimensions] = useState({
+      height: window.innerHeight,
+      width: window.innerWidth
+    })
+    // return {dimensions, setDimensions}
+  }
 
-        <CenteredBox>
+  if (typeof window !== 'undefined' && dimensions.width > 768) {
+    return (
+      <Wrapper noSpace theme={lightPulp} hasGrid>
+        <HeroHomeWrapper>
+          <Side>
+            <SideImg fluid={imageLeft.asset.fluid} alt={imageLeft.alt} />
+          </Side>
+          <Side>
+            <SideImg fluid={imageRight.asset.fluid} alt={imageRight.alt} />
+          </Side>
+
+          <CenteredBox>
+            {mainText}
+
+            <HeroButton {...button} as={Button} />
+            <PineappleDudeWrap>
+              {/* <PineappleDudeFile /> */}
+            </PineappleDudeWrap>
+          </CenteredBox>
+        </HeroHomeWrapper>
+      </Wrapper>
+    )
+  } else {
+    return (
+      <Wrapper noSpace theme={lightPulp} hasGrid>
+        <HeroHomeMobile>
+          <PineappleDudeWrap>
+            {/* <PineappleDudeFile /> */}
+          </PineappleDudeWrap>
           {mainText}
 
           <HeroButton {...button} as={Button} />
-          <PineappleDudeWrap>
-            <PineappleDudeFile />
-          </PineappleDudeWrap>
-        </CenteredBox>
-      </HeroHomeWrapper>
-    </Wrapper>
-  )
+
+        </HeroHomeMobile>
+      </Wrapper>
+    )
+  }
 }
 
 export default HeroHome

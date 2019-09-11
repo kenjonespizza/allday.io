@@ -6,7 +6,8 @@ export default {
     {
       name: 'title',
       title: 'Meta Title',
-      type: 'string'
+      type: 'string',
+      validation: Rule => Rule.required()
     },
     {
       name: 'description',
@@ -38,6 +39,18 @@ export default {
       title: 'Index/Follow?',
       type: 'boolean',
       description: 'Defaults to true'
-    }
+    },
+    {
+      name: 'url',
+      title: 'og:url',
+      type: 'string',
+      description: 'Leave blank unless URL you need to set specifically.  Changing this will not change the path to this page '
+    },
+    {
+      name: 'type',
+      title: 'og:type',
+      type: 'string',
+      description: 'Leave blank to set to default:"Website". For more see: https://ogp.me/?fbclid=IwAR31dyQltNRT7vhbjopUGPjmnw1HE3NzdwAX0jH_-mNzHEiSrNV3s8vG9Sw#types'
+    },
   ]
 }

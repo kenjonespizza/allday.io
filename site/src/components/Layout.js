@@ -5,6 +5,7 @@ import {createGlobalState} from 'react-hooks-global-state'
 import {GlobalStyle, base} from '../utilities/styles'
 import NavBar from './NavBar'
 import Footer from './Footer'
+import {GridLines} from '../elements/'
 import {reColorPunctuation} from '../utilities/helpers'
 
 const initialState = {
@@ -17,20 +18,36 @@ const LayoutStyled = styled.div`
   overflow: hidden;
 `
 
+const BodyWrap = styled.div`
+  min-height: calc(100vh - (124px + 400px));
+`
+
+const loadScript = src => {
+  const tag = document.createElement('script')
+  tag.src = src
+  tag.defer = true
+
+  document.getElementsByTagName('body')[0].appendChild(tag)
+}
+
 const InnerLayout = ({children}) => {
   useEffect(() => {
     reColorPunctuation()
-  })
+    loadScript('https://kit.fontawesome.com/8714152a25.js')
+  }, [])
 
   return (
-    <>
+    <div>
       <GlobalStyle />
       <LayoutStyled id='rappers-delight'>
-        <NavBar />
-        {children}
+        <BodyWrap>
+          <GridLines />
+          <NavBar />
+          {children}
+        </BodyWrap>
         <Footer />
       </LayoutStyled>
-    </>
+    </div>
 
   )
 }

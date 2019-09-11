@@ -34,7 +34,8 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  a, a * {
+  /* a, a * { */
+  a {
     text-decoration: none;
     color: ${props => props.theme.colors.accent};
     ${transition({})};
@@ -104,4 +105,6 @@ export const GlobalStyle = createGlobalStyle`
   svg .pulp {
     fill: ${base.colors.pulp};
   }
+
+  i {display: none !important}
 `

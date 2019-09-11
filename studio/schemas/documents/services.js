@@ -35,6 +35,11 @@ export default {
       name: 'body',
       title: 'Body',
       type: 'richText'
+    },
+    {
+      name: 'seo',
+      title: "SEO",
+      type: 'seo'
     }
   ]
 }

@@ -64,7 +64,8 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
       path: slug,
       component: require.resolve('./src/templates/service.js'),
       context: {
-        slugName
+        slugName,
+        slug
       }
     })
   })
@@ -80,6 +81,30 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
               }
             }
           }
+          next {
+            _id
+            pageInfo {
+              pageName
+              slug {
+                current
+              }
+            }
+            color {
+              hex
+            }
+          }
+          previous {
+            pageInfo {
+              pageName
+              slug {
+                current
+              }
+            }
+            color {
+              hex
+            }
+            _id
+          }
         }
       }
     }
@@ -93,6 +118,8 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
     const page = edge.node
     const slug = `sample/${page.pageInfo.slug.current}`
     const slugName = page.pageInfo.slug.current
+    const next = edge.next
+    const previous = edge.previous
 
     reporter.info(`Creating Case Study page: ${slug}`)
 
@@ -100,7 +127,9 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
       path: slug,
       component: require.resolve('./src/templates/sample.js'),
       context: {
-        slug: slugName
+        slug: slugName,
+        next,
+        previous
       }
     })
   })

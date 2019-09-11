@@ -1,4 +1,6 @@
 import {format, isFuture} from 'date-fns'
+import {base} from './styles'
+import {getContrast} from 'polished'
 
 export function addNavHeightToWrapper () {
   const navBarHeight = document.getElementById('nav-bar').offsetHeight
@@ -60,4 +62,9 @@ export function buildImageObj (source) {
   if (source.hotspot) imageObj.hotspot = source.hotspot
 
   return imageObj
+}
+
+export function getContrastTextColor (color) {
+  const textColor = getContrast(color, base.colors.white) > 2 ? base.colors.white : base.colors.black
+  return textColor
 }

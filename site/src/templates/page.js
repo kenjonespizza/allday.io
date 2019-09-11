@@ -15,9 +15,11 @@ import TextBlock1 from '../components/TextBlock1'
 import Gallery1 from '../components/Gallery1'
 import CaseStudiesRow from '../components/CaseStudiesRow'
 import ContactForm from '../components/ContactForm'
+import Seo from '../components/Seo'
 
 export const query = graphql`
   query PagesTemplateQuery($slug: String!) {
+
     page: sanityPages(pageInfo: {slug: {current: {eq: $slug}}}) {
       pageInfo {
         slug {
@@ -26,6 +28,20 @@ export const query = graphql`
       }
       id
       _rawBlocks(resolveReferences: {maxDepth: 10})
+      seo {
+        title
+        url
+        type
+        keywords
+        index
+        image {
+          asset {
+            url
+          }
+        }
+        description
+        author
+      }
       blocks {
         blocks {
         ... on SanityBanner1 {
@@ -64,7 +80,7 @@ export const query = graphql`
           imageLeft {
             alt
             asset {
-              fluid(maxWidth: 2000) {
+              fluid(maxWidth: 1000) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -72,7 +88,7 @@ export const query = graphql`
           imageRight {
             alt
             asset {
-              fluid(maxWidth: 2000) {
+              fluid(maxWidth: 1000) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -86,7 +102,7 @@ export const query = graphql`
             name
             sampleImage {
               asset {
-                fluid(maxWidth: 800) {
+                fluid(maxWidth: 700) {
                   ...GatsbySanityImageFluid
                 }
               }
@@ -206,13 +222,15 @@ export const query = graphql`
 }
 `
 
-export default props => {
-  // const {blocks, pageInfo} = props.data.page
-  const {_rawBlocks, pageInfo, color, blocks} = props.data.page
+export default (props) => {
+  const {_rawBlocks, pageInfo, blocks, seo} = props.data.page
 
   return (
     <>
       <Layout>
+
+        {seo ? <Seo context={props.pageContext} {...seo} /> : <h1>NO SEO</h1>}
+        {/* <Seo context={props.pageContext} {...seo} /> */}
 
         <Wrapper hasGrid theme={base} noSpace>
 
@@ -229,8 +247,7 @@ export default props => {
 
               switch (Component) {
                 case 'HeroHome':
-                  // return <HeroHome key={block._key} data={block} />
-                  break
+                  return <HeroHome key={block._key} data={block} />
                 case 'HeadingBlock':
                   return <HeadingBlock key={block._key} data={block} />
                 case 'ServicesBlock':
@@ -256,8 +273,6 @@ export default props => {
               }
             }
           })}
-          {/* <CaseStudyRows /> */}
-
         </Wrapper>
 
       </Layout>

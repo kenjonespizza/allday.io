@@ -68,7 +68,7 @@ export const Button = ({slug, icon, text, url, children, className, slugPrefix})
     )
   } else {
     return (
-      <ButtonStyled className={className}>
+      <ButtonStyled as='button' className={className}>
         {children || text}  {icon && <i className={icon} />}
       </ButtonStyled>
     )

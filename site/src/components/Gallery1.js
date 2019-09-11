@@ -14,8 +14,9 @@ const Container = styled(Gallery1Container)`
   grid-template-columns: 1fr 1fr; */
   columns: 2 calc(${themeBase.sizes.medium}px / 2);
   /* columns: 2 300px; */
-  column-gap: 50px;
+  /* column-gap: 50px; */
   column-fill: auto;
+  
 
   & > h1, 
   & > h2, 
@@ -28,11 +29,23 @@ const Container = styled(Gallery1Container)`
   }
   
   & > a {
+    &:first-of-type {
+      column-span: all;
+    }
+
+    padding: 25px;
     /* grid-column: span 1; */
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     cursor: pointer;
     display: block;
+    -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
+    break-inside: avoid;
+
+    & > div {
+      /* overflow: visible !important; */
+      box-shadow: 0px 5px 20px rgba(2, 22, 30, 0.2);
+    }
 
     img {
       width: 100%;

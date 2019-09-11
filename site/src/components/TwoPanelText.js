@@ -64,7 +64,7 @@ const Side = styled.div`
 const TwoPanelText = (props) => {
   const {data, rawData, theme} = props
 
-  const textColor = getContrast(theme.colors.accent, base.colors.white) > 4.5 ? base.colors.white : base.colors.black
+  const textColor = getContrast(theme.colors.accent, base.colors.white) > 2 ? base.colors.white : base.colors.black
   return (
     <Wrapper hasGrid lineColor={textColor} backgroundColor={theme.colors.accent}>
       <Container textColor={textColor}>

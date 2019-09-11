@@ -3,6 +3,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`
 })
 
+const path = require('path')
+
 const clientConfig = require('./client-config')
 const token = process.env.SANITY_READ_TOKEN
 
@@ -20,6 +22,13 @@ module.exports = {
       }
     },
     'gatsby-plugin-styled-components',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/img`,
+        name: 'images'
+      }
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {

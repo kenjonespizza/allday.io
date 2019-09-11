@@ -1,6 +1,8 @@
 import React from 'react'
 import {graphql} from 'gatsby'
+import styled from 'styled-components'
 
+import {getContrastTextColor} from '../utilities/helpers'
 import Layout from '../components/Layout'
 import {Wrapper, HeadingBlock} from '../elements'
 import {base} from '../utilities/styles'
@@ -14,6 +16,7 @@ import TwoPanelText from '../components/TwoPanelText'
 import TextBlock1 from '../components/TextBlock1'
 import Gallery1 from '../components/Gallery1'
 import Pagination from '../components/Pagination'
+import Seo from '../components/Seo'
 
 export const query = graphql`
   query SAMPLE_PAGE_QUERY($slug: String!) {
@@ -23,6 +26,20 @@ export const query = graphql`
       slug {
         current
       }
+    }
+    seo {
+      title
+      url
+      type
+      keywords
+      index
+      image {
+        asset {
+          url
+        }
+      }
+      description
+      author
     }
     color {
       hex
@@ -68,8 +85,39 @@ export const query = graphql`
 }
 `
 
+const ColorWrap = styled.div`
+/* display: none; */
+
+*::selection {
+  background: ${props => props.color} !important; /* WebKit/Blink Browsers */
+  color: ${props => props.textColor} !important; /* WebKit/Blink Browsers */
+}
+*::-moz-selection {
+  background: ${props => props.color} !important; /* Gecko Browsers */
+  color: ${props => props.textColor} !important; /* Gecko Browsers */
+}
+`
+
 export default props => {
-  const {_rawBlocks, pageInfo, color, blocks} = props.data.page
+  const {_rawBlocks, color, blocks, seo} = props.data.page
+
+  const textColor = getContrastTextColor(color.hex)
+
+  if (props.pageContext.next) {
+    var next = {
+      title: props.pageContext.next.pageInfo.pageName,
+      path: `/sample/${props.pageContext.next.pageInfo.slug.current}`,
+      color: props.pageContext.next.color.hex
+    }
+  }
+
+  if (props.pageContext.previous) {
+    var previous = {
+      title: props.pageContext.previous.pageInfo.pageName,
+      path: `/sample/${props.pageContext.previous.pageInfo.slug.current}`,
+      color: props.pageContext.previous.color.hex
+    }
+  }
 
   if (color && color.hex) {
     var brandBase = {
@@ -79,55 +127,53 @@ export default props => {
         accent: color.hex // override base.colors.accent
       }
     }
-    // return brandBase
   }
 
   return (
     <>
       <Layout>
 
+        {/* {seo && <Seo context={props.pageContext} {...seo} />} */}
+        {seo && <Seo context={props.pageContext} {...seo} />}
+
         <Wrapper hasGrid theme={typeof brandBase !== 'undefined' ? brandBase : base} noSpace>
+          <ColorWrap color={color.hex} textColor={textColor}>
+            {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
+              if (typeof block._type !== 'undefined') {
+                const name = block._type
+                const Component = name.charAt(0).toUpperCase() + name.slice(1)
 
-          {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
-            if (typeof block._type !== 'undefined') {
-              const name = block._type
-              const Component = name.charAt(0).toUpperCase() + name.slice(1)
+                var rawData = _rawBlocks.caseStudiesBlocks
+                rawData = rawData[Object.keys(rawData)[i]]
 
-              var rawData = _rawBlocks.caseStudiesBlocks
-              rawData = rawData[Object.keys(rawData)[i]]
-
-              switch (Component) {
-                case 'HeroHome':
-                  return <HeroHome key={block._key} data={block} />
-                case 'HeadingBlock':
-                  return <HeadingBlock key={block._key} data={block} />
-                case 'ServicesBlock':
-                  return <ServicesBlock key={block._key} data={block} />
-                case 'ReviewsBlock':
-                  return <ReviewsBlock key={block._key} data={block} />
-                case 'CaseStudiesBlock':
-                  return <CaseStudiesBlock key={block._key} data={block} />
-                case 'Banner1':
-                  return <Banner1 key={block._key} data={block} />
-                case 'HeroBasic':
-                  return <HeroBasic key={block._key} data={block} rawData={rawData} />
-                case 'Gallery':
-                  return <Gallery1 key={block._key} data={block} />
-                case 'TwoPanelText':
-                  return <TwoPanelText key={block._key} data={block} rawData={rawData} />
-                case 'TextBlock1':
-                  return <TextBlock1 key={block._key} data={block} rawData={rawData} />
-                default:
-                  return null
+                switch (Component) {
+                  case 'HeroHome':
+                    return <HeroHome key={block._key} data={block} />
+                  case 'HeadingBlock':
+                    return <HeadingBlock key={block._key} data={block} />
+                  case 'ServicesBlock':
+                    return <ServicesBlock key={block._key} data={block} />
+                  case 'ReviewsBlock':
+                    return <ReviewsBlock key={block._key} data={block} />
+                  case 'CaseStudiesBlock':
+                    return <CaseStudiesBlock key={block._key} data={block} />
+                  case 'Banner1':
+                    return <Banner1 key={block._key} data={block} />
+                  case 'HeroBasic':
+                    return <HeroBasic key={block._key} data={block} rawData={rawData} />
+                  case 'Gallery':
+                    return <Gallery1 key={block._key} data={block} />
+                  case 'TwoPanelText':
+                    return <TwoPanelText key={block._key} data={block} rawData={rawData} />
+                  case 'TextBlock1':
+                    return <TextBlock1 key={block._key} data={block} rawData={rawData} />
+                  default:
+                    return null
+                }
               }
-            }
-          })}
-          {/* <TwoPanelText /> */}
-          {/* <TextBlock1 /> */}
-          {/* <Gallery1 /> */}
-          {/* <TextBlock1 /> */}
-          {/* <Gallery1 /> */}
-          <Pagination />
+            })}
+            <Pagination next={next} previous={previous} />
+          </ColorWrap>
         </Wrapper>
 
       </Layout>

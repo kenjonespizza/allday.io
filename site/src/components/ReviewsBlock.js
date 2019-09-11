@@ -99,9 +99,11 @@ const ReviewsBlock = ({data}) => {
           </Review>
         ))}
 
-        <ButtonBlock>
-          <Button {...button} />
-        </ButtonBlock>
+        {button && button.text && (button.text !== ' ')(
+          <ButtonBlock>
+            <Button {...button} />
+          </ButtonBlock>
+        )}
       </ReviewsContainer>
     </Wrapper>
   )

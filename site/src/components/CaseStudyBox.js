@@ -1,14 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from 'gatsby'
 
 import {base, media, transition} from '../utilities/styles'
+import {Button} from '../elements'
 
 const CaseStudyWrap = styled.div`
   display: flex;
   flex-direction: column;
   /* width: 20vw; */
   /* padding: 0 60px; */
-  transform: scale(.5);
+  transform: scale(.5) translateY(-50%);
+  top: 0;
+  transform-origin: center center;
   opacity: .5;
   ${transition({duration: '.7s'})};
   width: 80vw;
@@ -30,8 +34,9 @@ const CaseStudyWrap = styled.div`
 
   &.is-selected {
     /* width: 60vw; */
-    transform: scale(1);
+    transform: scale(1) translateY(-50%);
     opacity: 1;
+    top: 50%;
   }
 
   .title{ 
@@ -69,18 +74,47 @@ const CaseStudyWrap = styled.div`
   }
 `
 
-const CaseStudyBox = ({pageInfo, title, excerpt}) => (
-  <CaseStudyWrap>
-    <div className='title'>
-      {pageInfo.pageName}&nbsp; - &nbsp;
-      <span className='project-title'>
-        {title}
-      </span>
-    </div>
-    <p className='excerpt'>
-      {excerpt}
-    </p>
-  </CaseStudyWrap>
-)
+const BoxLink = styled(Button)`
+  color: ${props => props.theme.colors.accent};
+  background: none;
+
+  i {
+    color: ${props => props.theme.colors.accent};
+  }
+
+  &:hover {
+    background: none;
+    color: ${props => props.theme.colors.accent};
+    text-decoration: underline;
+  }
+
+  &:hover i {
+    color: ${props => props.theme.colors.accent};
+  }
+`
+
+const CaseStudyBox = ({pageInfo, title, excerpt}) => {
+  const button = {
+    text: 'View Case Study',
+    icon: 'fas fa-chevron-right',
+    slug: pageInfo.slug,
+    slugPrefix: '/sample'
+  }
+
+  return (
+    <CaseStudyWrap>
+      <div className='title'>
+        {pageInfo.pageName}&nbsp; - &nbsp;
+        <span className='project-title'>
+          {title}
+        </span>
+      </div>
+      <p className='excerpt'>
+        {excerpt}
+      </p>
+      <BoxLink {...button} />
+    </CaseStudyWrap>
+  )
+}
 
 export default CaseStudyBox

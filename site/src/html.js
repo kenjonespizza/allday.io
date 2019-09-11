@@ -25,7 +25,7 @@ export default function HTML (props) {
           dangerouslySetInnerHTML={{__html: props.body}}
         />
         {props.postBodyComponents}
-        <script defer async src='https://kit.fontawesome.com/8714152a25.js' />
+        {/* <script defer async src='https://kit.fontawesome.com/8714152a25.js' /> */}
       </body>
     </html>
   )

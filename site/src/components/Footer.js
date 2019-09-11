@@ -116,7 +116,7 @@ const Footer = () => {
               <SubHeading>
                 Ready to get the ball rolling?
               </SubHeading>
-              <Link to='/contact'>
+              <Link to='/get-in-touch'>
                 <H2>
                 Let us know what you need!
                 </H2>

@@ -7,18 +7,52 @@ export default {
     {
       name: 'title',
       type: 'string',
-      title: 'Title'
+      title: 'Title',
+      description: 'Fallback incase a page has an empty title'
+    },
+    {
+      name: 'titleBase',
+      type: 'string',
+      title: 'Title Base',
+      description: 'second part of Mete Title.  Ex: ___ - THIS VALUE'
     },
     {
       name: 'description',
       type: 'text',
       title: 'Description',
-      description: 'Describe your portfolio for search engines and social media.'
+      description: 'Fallback incase a page has an empty description.'
     },
     {
-      name: 'logo',
-      title: 'Logo',
-      type: 'image-alt'
+      name: 'keywords',
+      title: 'Meta Keywords',
+      type: 'array',
+      description: 'Fallback incase keyworks is left empty',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags'
+      }
+    },
+    {
+      name: 'lang',
+      type: 'string',
+      title: 'Site Language',
+      description: 'This set the "meta-lang".'
+    },
+    {
+      name: 'baseUrl',
+      type: 'string',
+      title: 'Site Base URL'
+    },
+    {
+      name: 'twitterId',
+      type: 'string',
+      title: 'Twitter User'
+    },
+    {
+      name: 'image',
+      title: 'Meta Image',
+      type: 'image-alt',
+      description: 'Default share image'
     },
     {
       name: 'navLinks',
@@ -46,5 +80,13 @@ export default {
         }
       ],
     }
-  ]
+  ],
+  preview: {
+    select: {},
+    prepare(value) {
+      return {
+        title: 'Site Settings'
+      }
+    }
+  }
 }

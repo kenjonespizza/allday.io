@@ -29,18 +29,21 @@ export default {
     },
     {
       name: 'title',
-      title: 'Project Title',
-      type: 'string'
+      title: 'Job Type',
+      type: 'string',
+      description: 'Ex: New Website, App Design, etc.'
     },
     {
       name: 'excerpt',
       title: 'Short Description',
-      type: 'string'
+      type: 'string',
+      description: 'This is displayed on the site where a short excerpt/preview is needed. Ex: On the homepage.'
     },
     {
       name: 'color',
       title: 'Brand Color',
-      type: 'color'
+      type: 'color',
+      validation: Rule => Rule.required()
     },
     {
       name: 'blocks',
@@ -64,5 +67,16 @@ export default {
     //   title: 'Sample Image',
     //   type: 'image'
     // }
-  ]
+  ],
+  preview: {
+    select: {
+      name: 'pageInfo'
+    },
+    prepare(value) {
+      const title = value.name.pageName
+      return {
+        title
+      }
+    }
+  }
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import {useStaticQuery, graphql} from 'gatsby'
+import Img from 'gatsby-image'
 
 import {Wrapper as Banner1Wrapper, Container, SubHeading, H1, Button} from '../elements'
 import {darkWatermelly, transition, darkBase} from '../utilities/styles'
@@ -13,12 +15,14 @@ const BannerButton = styled(Button)`
   margin-top: 30px;
 `
 
-const PineappleDude = styled(PineappleDudeFile)`
+const PineappleDudeWrap = styled.div`
   position: absolute;
   top: -60px;
-  left: calc(100% - 60px);
+  left: calc(100% - 172px);
   height: calc(100% + 78px);
-  transform: translate(-50%, 0%);
+  width: 100vw;
+  /* height: calc(100% + 78px);
+  transform: translate(-50%, 0%); */
   /* transform-origin: center center; */
   ${transition({})};
 
@@ -26,6 +30,13 @@ const PineappleDude = styled(PineappleDudeFile)`
     transform: scale(1);
     transform-origin: center center;
   } */
+
+   
+`
+
+const PineappleDude = styled(Img)`
+  position: absolute !important;
+  bottom: 0;
 `
 
 const Banner1 = (props) => {
@@ -44,6 +55,18 @@ const Banner1 = (props) => {
     }
   }
 
+  const {PineappleDudeImg} = useStaticQuery(graphql`
+    query PineappleDudeQuery {
+      PineappleDudeImg: file(relativePath: { eq: "pineappledude.png" }) {
+        childImageSharp {
+          fixed(width: 323, height: 616) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <Wrapper theme={typeof bannerTheme !== 'undefined' ? bannerTheme : darkWatermelly} hasGrid addSpace>
       <Container>
@@ -56,9 +79,23 @@ const Banner1 = (props) => {
         <p>{description}</p>
         <BannerButton {...button} />
       </Container>
-      <PineappleDude />
+      <PineappleDudeWrap>
+        <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
+      </PineappleDudeWrap>
     </Wrapper>
   )
 }
 
 export default Banner1
+
+// export const pageQuery = graphql`
+//   query PineappleDudeQuery {
+//     PineappleDude: file(relativePath: { eq: "pineappledude.png" }) {
+//       childImageSharp {
+//         fluid(maxWidth: 293) {
+//           ...GatsbyImageSharpFluid
+//         }
+//       }
+//     }
+//   }
+// `

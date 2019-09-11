@@ -10,12 +10,12 @@ export default {
       description: 'This is for internal use only'
     },
     {
-      name: 'rightText',
+      name: 'leftText',
       title: 'Left Text',
       type: 'richText'
     },
     {
-      name: 'leftText',
+      name: 'rightText',
       title: 'Right Text',
       type: 'richText'
     }

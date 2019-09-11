@@ -55,7 +55,7 @@ const StyledNavBar = styled.header`
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
-  padding: 0 48px;
+  padding: 0 ${base.spacings.base}px;
   /* box-shadow: 0 0px 20px rgba(0,0,0,.2); */
   border-bottom: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, 0.05)} solid 1px;
 `
@@ -114,9 +114,9 @@ ${media.large`
 
     &.hasNotification:after {
       content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 20px;
       background-color: ${base.colors.watermelly};
       position: absolute;
       top: -11px;
@@ -129,7 +129,7 @@ ${media.large`
 `
 
 const Logo = styled(LogoFile)`
-  left: 48px;
+  left: ${base.spacings.base}px;
   top: 38px;
   z-index: 20;
   position: fixed;
@@ -149,7 +149,7 @@ const Logo = styled(LogoFile)`
 `
 
 const MenuButton = styled.button`
-  right: 48px;
+  right: ${base.spacings.base}px;
   top: calc((124px / 2) - 24px);
   z-index: 20;
   position: fixed;
@@ -177,20 +177,6 @@ const NavBar = () => {
 
   const data = useStaticQuery(graphql`
     query HEADER_QUERY {
-      site: allSanitySiteSettings(limit: 1) {
-        edges {
-          node {
-            logo {
-              alt
-              asset {
-                url
-              }
-            }
-          }
-        }
-      }
-
-
       navigation: allSanitySiteSettings {
         edges {
           node {

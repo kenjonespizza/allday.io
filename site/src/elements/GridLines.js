@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {rgba} from 'polished'
 
-import {linePulse} from '../utilities/styles'
+import {linePulse, media, base} from '../utilities/styles'
 
 const lineOpacity = 0.05
 
@@ -18,6 +18,12 @@ const StyledGridWrap = styled.div`
   z-index: -1;
   overflow: hidden;
 
+  @media (min-width: 1200px){ 
+    width: 100%;
+    padding-left: ${base.spacings.base}px;
+    padding-right: ${base.spacings.base}px;
+  }
+
   ${({backgroundColor}) => backgroundColor && `
     background-color: ${backgroundColor};
   `}
@@ -26,7 +32,8 @@ const StyledGridWrap = styled.div`
 const StyledGrid = styled.div`
   /* animation: ${linePulse} 5s infinite alternate; */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-template-columns: ${base.spacings.base}px 1fr 1fr ${base.spacings.base}px;
   height: 0;
   width: 100%;
   max-width: 1200px;
@@ -35,14 +42,27 @@ const StyledGrid = styled.div`
   z-index: -1;
   /* opacity: lineOpacity; */
 
+  @media (min-width: 1200px){ 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
 
   > div {
     height: 100%;
     border-left: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, lineOpacity)} solid 1px;
     
+    &:first-of-type {
+      
+    }
+
     &:last-of-type {
-    width: calc(100% - 1px);
+    /* width: calc(100% - 1px); */
+    transform: translateX(-1px);
     border-right: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, lineOpacity)} solid 1px;
+
+    ${media.xLarge`
+        transform: translateX(0);
+      `}
 
     ${({lineColor}) => lineColor && `
       border-color: ${rgba(lineColor, lineOpacity)};
