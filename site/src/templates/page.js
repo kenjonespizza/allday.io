@@ -267,6 +267,7 @@ export default (props) => {
                 case 'TextBlock1':
                   return <TextBlock1 key={block._key} data={block} rawData={rawData} />
                 case 'CaseStudiesRow':
+                  console.log('block:', block)
                   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
                 default:
                   return null

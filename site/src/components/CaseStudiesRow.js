@@ -117,7 +117,7 @@ const CaseStudiesRow = ({theme, data, rawData}) => {
         const hex = caseStudy.color && caseStudy.color.hex ? caseStudy.color.hex : base.colors.black
         const textColor = getContrast(hex, base.colors.white) > 2 ? base.colors.white : base.colors.black
         return (
-          <Wrapper key={caseStudy._id + i} halfSpace hasGrid theme={base} bg={hex} textColor={textColor}>
+          <Wrapper key={caseStudy._id + i} hasGrid theme={base} bg={hex} textColor={textColor}>
             <OverlayLink to={`/sample/${caseStudy.pageInfo.slug.current}`} />
             <Block>
 
