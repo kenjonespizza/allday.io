@@ -98,7 +98,7 @@ const CaseStudyBox = ({pageInfo, title, excerpt}) => {
     text: 'View Case Study',
     icon: 'fas fa-chevron-right',
     slug: pageInfo.slug,
-    slugPrefix: '/sample'
+    slugPrefix: '/work-samples/'
   }
 
   return (

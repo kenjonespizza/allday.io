@@ -19,7 +19,8 @@ export default {
         {type: 'heroBasic'},
         {type: 'gallery'},
         {type: 'twoPanelText'},
-        {type: 'textBlock1'}
+        {type: 'textBlock1'},
+        {type: 'formContact'}
       ],
       options: [
         {editModal: "popover"}

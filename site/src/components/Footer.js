@@ -102,7 +102,7 @@ const Footer = () => {
         <FooterContainer as='footer'>
           <div>
             <p>© 2015–2019 AllDayIO. All rights reserved.</p>
-            <p>This site is built with <a href='https://gatsbyjs.org'>Gatsby</a>, hosted by <a href='https://netlify.com'>Netlify</a>, and populated by <a href='https://sanity.io'>Sanity</a>. Checkout the source code on <a href='https://github.com'>Github</a></p>
+            <p>This site is built with <a href='https://gatsbyjs.org' target='_blank' rel='noopener noreferrer'>Gatsby</a>, hosted by <a href='https://netlify.com' target='_blank' rel='noopener noreferrer'>Netlify</a>, and populated by <a href='https://sanity.io' target='_blank' rel='noopener noreferrer'>Sanity</a>. Checkout the source code on <a href='https://github.com' target='_blank' rel='noopener noreferrer'>Github</a></p>
           </div>
           <Link to='/'>
             <Logo alt='AllDay' />

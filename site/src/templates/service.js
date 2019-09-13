@@ -9,6 +9,7 @@ import HeroBasic from '../components/HeroBasic'
 import BlockContent from '../components/BlockContent'
 import TextBlock from '../components/TextBlock'
 import Seo from '../components/Seo'
+import Pagination from '../components/Pagination'
 
 export const query = graphql`
   query ServicesQuery($slugName: String!) {
@@ -27,12 +28,28 @@ export const query = graphql`
 //     display: block;
 // `
 
-const Service = ({pageContext, data, seo}) => {
+const Service = (props) => {
+  const {pageContext, data, seo} = props
+
+  if (pageContext.next) {
+    var next = {
+      path: `/services/${pageContext.next.slug.current}`,
+      text: pageContext.next.name
+    }
+  }
+
+  if (pageContext.previous) {
+    var previous = {
+      path: `/services/${pageContext.previous.slug.current}`,
+      text: pageContext.previous.name
+    }
+  }
+
   const {name} = data.service
 
   return (
     <Layout>
-      {seo && <Seo context={props.pageContext} {...seo} />}
+      {seo && <Seo context={pageContext} {...seo} />}
       <HeroBasic>
         <SubHeading>we offer:</SubHeading>
         <H1>{name}</H1>
@@ -44,6 +61,8 @@ const Service = ({pageContext, data, seo}) => {
 
       {data.service._rawBody &&
         <TextBlock isDark text={data.service._rawBody} />}
+
+      <Pagination next={next} previous={previous} />
     </Layout>
   )
 }

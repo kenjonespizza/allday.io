@@ -44,6 +44,18 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
               current
             }
           }
+          next {
+            slug {
+              current
+            }
+            name
+          }
+          previous {
+            slug {
+              current
+            }
+            name
+          }
         }
       }
     }
@@ -57,6 +69,8 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
     const page = edge.node
     const slug = `services/${page.slug.current}`
     const slugName = page.slug.current
+    const next = edge.next
+    const previous = edge.previous
 
     reporter.info(`Creating service page: ${slug}`)
 
@@ -65,7 +79,9 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
       component: require.resolve('./src/templates/service.js'),
       context: {
         slugName,
-        slug
+        slug,
+        next,
+        previous
       }
     })
   })
@@ -82,7 +98,6 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
             }
           }
           next {
-            _id
             pageInfo {
               pageName
               slug {
@@ -103,7 +118,6 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
             color {
               hex
             }
-            _id
           }
         }
       }
@@ -116,7 +130,7 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
 
   caseStudies.forEach(edge => {
     const page = edge.node
-    const slug = `sample/${page.pageInfo.slug.current}`
+    const slug = `work-samples/${page.pageInfo.slug.current}`
     const slugName = page.pageInfo.slug.current
     const next = edge.next
     const previous = edge.previous

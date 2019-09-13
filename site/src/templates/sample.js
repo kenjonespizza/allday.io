@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import {getContrastTextColor} from '../utilities/helpers'
 import Layout from '../components/Layout'
-import {Wrapper, HeadingBlock} from '../elements'
+import {Wrapper, HeadingBlock, SubHeading, H1} from '../elements'
 import {base} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
@@ -17,72 +17,75 @@ import TextBlock1 from '../components/TextBlock1'
 import Gallery1 from '../components/Gallery1'
 import Pagination from '../components/Pagination'
 import Seo from '../components/Seo'
+import BlockContent from '../components/BlockContent'
 
 export const query = graphql`
   query SAMPLE_PAGE_QUERY($slug: String!) {
     page: sanityCaseStudies(pageInfo: {slug: {current: {eq: $slug}}}) {
-    pageInfo {
-      pageName
-      slug {
-        current
+      pageInfo {
+        pageName
+        slug {
+          current
+        }
       }
-    }
-    seo {
       title
-      url
-      type
-      keywords
-      index
-      image {
-        asset {
-          url
-        }
-      }
-      description
-      author
-    }
-    color {
-      hex
-    }
-    _rawBlocks(resolveReferences: {maxDepth: 10})
-    blocks {
-      blocks: caseStudiesBlocks {
-        ... on SanityHeroBasic {
-          _key
-          _type
-          heading
-          subHeading
-          isDark
-        }
-        ... on SanityGallery {
-          _key
-          _type
-          image {
-            _key
-            caption
-            alt
-            asset {
-              fluid(maxWidth: 800) {
-                ...GatsbySanityImageFluid
-              }
-              _id
-              url
-            }
+      seo {
+        title
+        url
+        type
+        keywords
+        index
+        image {
+          asset {
+            url
           }
         }
-        ... on SanityTwoPanelText {
-          _key
-          _type
-        }
-        ... on SanityTextBlock1 {
-          _key
-          _type
-          heading
+        description
+        author
+      }
+      color {
+        hex
+      }
+      _rawBlocks(resolveReferences: {maxDepth: 10})
+      _rawSummary(resolveReferences: {maxDepth: 10})
+      blocks {
+        blocks: caseStudiesBlocks {
+          ... on SanityHeroBasic {
+            _key
+            _type
+            heading
+            subHeading
+            isDark
+          }
+          ... on SanityGallery {
+            _key
+            _type
+            image {
+              _key
+              caption
+              alt
+              asset {
+                fluid(maxWidth: 800) {
+                  ...GatsbySanityImageFluid
+                }
+                _id
+                url
+              }
+            }
+          }
+          ... on SanityTwoPanelText {
+            _key
+            _type
+          }
+          ... on SanityTextBlock1 {
+            _key
+            _type
+            heading
+          }
         }
       }
     }
   }
-}
 `
 
 const ColorWrap = styled.div`
@@ -98,24 +101,29 @@ const ColorWrap = styled.div`
 }
 `
 
+const Text = styled.div``
+
 export default props => {
-  const {_rawBlocks, color, blocks, seo} = props.data.page
+  const {_rawBlocks, _rawSummary, color, blocks, seo, pageInfo, title} = props.data.page
+  console.log('props.data.page:', props.data.page)
 
   const textColor = getContrastTextColor(color.hex)
 
   if (props.pageContext.next) {
     var next = {
       title: props.pageContext.next.pageInfo.pageName,
-      path: `/sample/${props.pageContext.next.pageInfo.slug.current}`,
-      color: props.pageContext.next.color.hex
+      path: `/work-samples/${props.pageContext.next.pageInfo.slug.current}`,
+      color: props.pageContext.next.color.hex,
+      text: 'Next Project'
     }
   }
 
   if (props.pageContext.previous) {
     var previous = {
       title: props.pageContext.previous.pageInfo.pageName,
-      path: `/sample/${props.pageContext.previous.pageInfo.slug.current}`,
-      color: props.pageContext.previous.color.hex
+      path: `/work-samples/${props.pageContext.previous.pageInfo.slug.current}`,
+      color: props.pageContext.previous.color.hex,
+      text: 'Previous Project'
     }
   }
 
@@ -138,6 +146,16 @@ export default props => {
 
         <Wrapper hasGrid theme={typeof brandBase !== 'undefined' ? brandBase : base} noSpace>
           <ColorWrap color={color.hex} textColor={textColor}>
+
+            <HeroBasic>
+              <SubHeading>{title}</SubHeading>
+              <H1>{pageInfo.pageName}</H1>
+              {_rawSummary &&
+                <Text>
+                  <BlockContent blocks={_rawSummary || []} />
+                </Text>}
+            </HeroBasic>
+
             {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
               if (typeof block._type !== 'undefined') {
                 const name = block._type

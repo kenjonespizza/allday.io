@@ -30,6 +30,7 @@ import richText from './objects/richText'
 import heroBasic from './objects/heroBasic'
 import twoPanelText from './objects/twoPanelText'
 import textBlock1 from './objects/textBlock1'
+import formContact from './objects/forms/formContact'
 import { gallery, body } from './objects/gallery'
 
 // Document types
@@ -38,6 +39,7 @@ import pages from './documents/pages'
 // import homepage from './documents/homepage'
 import services from './documents/services'
 import caseStudies from './documents/caseStudies'
+import caseStudyCategories from './documents/caseStudyCategories'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -72,12 +74,14 @@ export default createSchema({
     heroBasic,
     twoPanelText,
     textBlock1,
+    formContact,
     
     /* Your types here! */
     siteSettings,
     pages,
     // homepage,
     services,
-    caseStudies
+    caseStudies,
+    caseStudyCategories
   ])
 })

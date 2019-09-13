@@ -7,6 +7,16 @@ import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, media, trans
 import {Button as OriginalButton, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper as CaseStudyWrapper, Container} from '../elements/'
 import ServiceBox from './ServiceBox'
 
+const Wrap = styled(CaseStudyWrapper)`
+  display: grid;
+  grid-template-columns: 1fr;
+  
+  ${media.xLarge`
+    grid-template-columns: 1fr 1fr;
+    grid-gap: ${base.spacings.base}px;
+  `}
+`
+
 const Button = styled(OriginalButton)`
   background-color: transparent;
   border: solid 2px ${base.colors.black};
@@ -22,6 +32,7 @@ const Button = styled(OriginalButton)`
 
 const Wrapper = styled(CaseStudyWrapper)`
 position: relative;
+background: transparent;
 
   &:after {
     content: "";
@@ -36,11 +47,9 @@ position: relative;
     ${transition({duration: '.1s', delay: '.5s'})};
     /* z-index: -1; */
 
-    ${media.xxLarge`
-      /* min-width: 20px;
-      width: 2vw; */
+    /* ${media.xxLarge`
       width: 50px;
-    `}
+    `} */
   }
 
   &:before {
@@ -112,13 +121,13 @@ const CaseStudiesRow = ({theme, data, rawData}) => {
   const {caseStudies} = data
 
   return (
-    <>
+    <Wrap hasGrid noSpace>
       {caseStudies && caseStudies.map((caseStudy, i) => {
         const hex = caseStudy.color && caseStudy.color.hex ? caseStudy.color.hex : base.colors.black
         const textColor = getContrast(hex, base.colors.white) > 2 ? base.colors.white : base.colors.black
         return (
-          <Wrapper key={caseStudy._id + i} hasGrid theme={base} bg={hex} textColor={textColor}>
-            <OverlayLink to={`/sample/${caseStudy.pageInfo.slug.current}`} />
+          <Wrapper key={caseStudy._id + i} theme={base} bg={hex} textColor={textColor}>
+            <OverlayLink to={`/work-samples/${caseStudy.pageInfo.slug.current}`} />
             <Block>
 
               <Container>
@@ -126,7 +135,7 @@ const CaseStudiesRow = ({theme, data, rawData}) => {
                 <SubHeading>{caseStudy.title}</SubHeading>
                 <p>{caseStudy.excerpt}</p>
 
-                <Button slug={caseStudy.pageInfo.slug} slugPrefix='/sample' color={hex} textColor={textColor}>
+                <Button slug={caseStudy.pageInfo.slug} slugPrefix='/work-samples' color={hex} textColor={textColor}>
                   View Project Details
                 </Button>
 
@@ -138,7 +147,7 @@ const CaseStudiesRow = ({theme, data, rawData}) => {
         )
       })}
 
-    </>
+    </Wrap>
   )
 }
 

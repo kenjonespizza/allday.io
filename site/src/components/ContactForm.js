@@ -3,11 +3,15 @@ import styled from 'styled-components'
 import {rgba} from 'polished'
 
 import {Wrapper, Container, H1, SubHeading, HeadingBlock, Button} from '../elements/'
-import {darkBase, base} from '../utilities/styles'
+import {darkBase, base, media} from '../utilities/styles'
 
 const FromWrapper = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+
+  ${media.medium`
+    grid-template-columns: 1fr 1fr;
+  `}
 `
 
 const Form = styled.form`
@@ -34,14 +38,6 @@ const ContactForm = () => {
   return (
     <Wrapper hasGrid theme={base}>
       <Container main>
-        <HeadingBlock left>
-          <SubHeading>
-            Speak directly to us
-          </SubHeading>
-          <H1 as='h2'>
-            Send us a message
-          </H1>
-        </HeadingBlock>
         <FromWrapper>
           <Form name='contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field' action='/'>
             <input type='hidden' name='bot-field' />

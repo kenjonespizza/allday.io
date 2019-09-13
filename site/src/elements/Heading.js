@@ -1,24 +1,72 @@
 import styled, {css} from 'styled-components'
 
-import {base} from '../utilities/styles'
+import {base, media} from '../utilities/styles'
 
 const H1css = css`
-  font-size: 55px;
+  font-size: 35px;
+  
+  ${media.medium`
+    font-size: 45px;
+  `}
+
+  ${media.large`
+    font-size: 55px;
+  `}
 `
 const H2css = css`
   font-size: 28px;
+  
+  ${media.medium`
+    font-size: 28px;
+  `}
+
+  ${media.large`
+    font-size: 28px;
+  `}
 `
 const H3css = css`
   font-size: 25px;
+  
+  ${media.medium`
+    font-size: 25px;
+  `}
+
+  ${media.large`
+    font-size: 25px;
+  `}
 `
 const H4css = css`
   font-size: 22px;
+  
+  ${media.medium`
+    font-size: 22px;
+  `}
+
+  ${media.large`
+    font-size: 22px;
+  `}
 `
 const H5css = css`
   font-size: 21px;
+  
+  ${media.medium`
+    font-size: 21px;
+  `}
+
+  ${media.large`
+    font-size: 21px;
+  `}
 `
 const H6css = css`
   font-size: 19px;
+  
+  ${media.medium`
+    font-size: 19px;
+  `}
+
+  ${media.large`
+    font-size: 19px;
+  `}
 `
 
 export const Heading = styled.span`
@@ -99,6 +147,10 @@ export const H6 = styled(Heading.withComponent('h6'))`
 `
 
 export const SubHeading = styled.span`
-  font-size: 19px;
+  font-size: 16px;
   font-weight: ${base.fontWeights.light}
+
+  ${media.medium`
+    font-size: 19px;
+  `}
 `

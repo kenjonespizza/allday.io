@@ -59,6 +59,7 @@ const HeroHomeMobile = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 70px ${base.spacings.base}px ${base.spacings.base}px;
   font-size: 21px;
@@ -89,6 +90,11 @@ const HeroButton = styled.a`
   }
 `
 
+const PineappleDude = styled(Img)`
+  /* position: absolute !important;
+  bottom: 0; */
+`
+
 const HeroHome = (props) => {
   const {mainText, button, imageRight, imageLeft} = props.data
 
@@ -99,6 +105,18 @@ const HeroHome = (props) => {
     })
     // return {dimensions, setDimensions}
   }
+
+  const {PineappleDudeImg} = useStaticQuery(graphql`
+    query PineappleDudeHeroQuery {
+      PineappleDudeImg: file(relativePath: { eq: "pineappledude.png" }) {
+        childImageSharp {
+          fixed(width: 136, height: 258) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
 
   if (typeof window !== 'undefined' && dimensions.width > 768) {
     return (
@@ -116,7 +134,7 @@ const HeroHome = (props) => {
 
             <HeroButton {...button} as={Button} />
             <PineappleDudeWrap>
-              {/* <PineappleDudeFile /> */}
+              <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
             </PineappleDudeWrap>
           </CenteredBox>
         </HeroHomeWrapper>
@@ -127,7 +145,7 @@ const HeroHome = (props) => {
       <Wrapper noSpace theme={lightPulp} hasGrid>
         <HeroHomeMobile>
           <PineappleDudeWrap>
-            {/* <PineappleDudeFile /> */}
+            <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
           </PineappleDudeWrap>
           {mainText}
 

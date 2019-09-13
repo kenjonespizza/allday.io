@@ -4,7 +4,7 @@ import {rgba, getContrast, readableColor} from 'polished'
 import BlockContent from './BlockContent'
 
 import {Wrapper, H1, SubHeading, Container as HeroBasicContainer} from '../elements'
-import {base, darkBase} from '../utilities/styles'
+import {base, darkBase, media} from '../utilities/styles'
 
 const Text = styled.div``
 
@@ -22,7 +22,11 @@ const Container = styled(HeroBasicContainer)`
   ${H1} {
     grid-column: 1 / span 3;
     grid-row: 2 / span 1;
-    font-size: 70px;
+    font-size: 55px;
+
+    ${media.medium`
+      font-size: 70px;
+    `}
   }
   
   /* ${Text} { */
