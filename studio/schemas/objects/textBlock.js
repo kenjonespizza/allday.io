@@ -1,6 +1,6 @@
 export default {
   name: 'textBlock',
-  title: 'Text Block',
+  title: 'Text Block: Simple',
   type: 'object',
   fields: [
     {

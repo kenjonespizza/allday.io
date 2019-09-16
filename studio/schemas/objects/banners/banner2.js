@@ -1,6 +1,6 @@
 export default {
-  name: "banner1",
-  title: "Banner: Simple w/ Pineapple man",
+  name: "banner2",
+  title: "Banner: Simple",
   type: 'object',
   fields: [
     {

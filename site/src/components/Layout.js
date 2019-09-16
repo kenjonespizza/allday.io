@@ -33,7 +33,7 @@ const loadScript = src => {
 const InnerLayout = ({children}) => {
   useEffect(() => {
     reColorPunctuation()
-    loadScript('https://kit.fontawesome.com/8714152a25.js')
+    // loadScript('https://kit.fontawesome.com/8714152a25.js')
   }, [])
 
   return (

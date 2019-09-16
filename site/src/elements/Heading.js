@@ -79,6 +79,7 @@ export const Heading = styled.span`
   font-weight: ${props => (props.regular ? base.fontWeights.regular : '')};
   font-weight: ${props => (props.black ? base.fontWeights.black : '')};
   margin: 0;
+  line-height: ${base.lineHeights.heading};
 
   span.accent {
     color: ${props => props.theme.colors.accent};

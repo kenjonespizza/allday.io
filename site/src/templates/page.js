@@ -191,6 +191,11 @@ export const query = graphql`
         ... on SanityTwoPanelText {
           _key
           _type
+          isDark
+          headingBlock {
+            heading
+            subHeading
+          }
         }
         ... on SanityTextBlock1 {
           _key

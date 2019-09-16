@@ -76,6 +76,10 @@ export const query = graphql`
           ... on SanityTwoPanelText {
             _key
             _type
+            headingBlock {
+              heading
+              subHeading
+            }
           }
           ... on SanityTextBlock1 {
             _key
@@ -182,7 +186,8 @@ export default props => {
                   case 'Gallery':
                     return <Gallery1 key={block._key} data={block} />
                   case 'TwoPanelText':
-                    return <TwoPanelText key={block._key} data={block} rawData={rawData} />
+                    return <TwoPanelText key={block._key} data={block} rawData={rawData} bgColor={color.hex} />
+                    // return <TwoPanelText key={block._key} data={block} rawData={rawData} isDark />
                   case 'TextBlock1':
                     return <TextBlock1 key={block._key} data={block} rawData={rawData} />
                   default:

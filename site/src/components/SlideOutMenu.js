@@ -4,8 +4,8 @@ import styled, {ThemeProvider, keyframes, css} from 'styled-components'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
-import {darkPulp, transition, base, media} from '../utilities/styles'
-import {GridLines} from '../elements/GridLines'
+import {darkPulp, darkWatermelly, transition, base, media} from '../utilities/styles'
+import {GridLines, LinkButtonStyled} from '../elements'
 import {useGlobalState} from './Layout'
 import {
   mapEdgesToNodes
@@ -66,7 +66,9 @@ const StyledSlideOutMenu = styled.div`
 
   nav {
     /* width: 1200px; */
-    display: flex:
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     ul, li {
       list-style: none;
@@ -84,28 +86,34 @@ const StyledSlideOutMenu = styled.div`
     }
 
     ul {
+      padding: 0;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       justify-content: flex-start;
       /* margin-right: auto; */
       &:last-child {
         border-top: ${props => props.theme.colors.white && rgba(props.theme.colors.white, 0.1)} dotted 1px;
       }
+   
+      a {
+        color: ${props => props.theme.colors.white};
+        font-size: 25px;
+        padding: 10px 0;
+        display: block;
+        font-weight: ${base.fontWeights.bold};
+        text-transform: uppercase;
+        ${transition({})};
+
+        ${media.medium`
+          font-size: 45px;
+        `}
+
+        &:hover {
+          color: ${props => props.theme.colors.accent};
+        }
     }
 
-    a {
-      color: ${props => props.theme.colors.white};
-      font-size: 45px;
-      padding: 10px 0;
-      display: block;
-      font-weight: ${base.fontWeights.bold};
-      text-transform: uppercase;
-      ${transition({})};
-
-      &:hover {
-        color: ${props => props.theme.colors.pulp};
-      }
     }
   }
 `
@@ -158,7 +166,7 @@ const SlideOutMenu = () => {
   `)
 
   return (
-    <ThemeProvider theme={darkPulp}>
+    <ThemeProvider theme={darkWatermelly}>
       <StyledSlideOutMenu isOpen={isOpen}>
         <GridLines />
         <nav>
@@ -188,8 +196,24 @@ const SlideOutMenu = () => {
               }
             })}
           </ul>
+          <LinkButtonStyled onClick={() => toggleMenu(!isOpen)} to='/get-in-touch'>
+            Start A Project!
+          </LinkButtonStyled>
         </nav>
-        {/* <button onClick={toggle} aria-expanded={isOpen}>Menu</button> */}
+
+        {/* <Social>
+          <ul>
+            <li>
+              <a href="#">F</a>
+            </li>
+            <li>
+              <a href="#">F</a>
+            </li>
+            <li>
+              <a href="#">F</a>
+            </li>
+          </ul>
+        </Social> */}
 
       </StyledSlideOutMenu>
     </ThemeProvider>

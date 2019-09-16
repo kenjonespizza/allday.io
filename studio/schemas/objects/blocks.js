@@ -10,6 +10,7 @@ export default {
       type: 'array',
       of: [
         {type: 'banner1'},
+        {type: 'banner2'},
         {type: 'heroHome'},
         {type: 'headingBlock'},
         {type: 'servicesBlock'},
@@ -19,6 +20,7 @@ export default {
         {type: 'heroBasic'},
         {type: 'gallery'},
         {type: 'twoPanelText'},
+        {type: 'textBlock'},
         {type: 'textBlock1'},
         {type: 'formContact'}
       ],

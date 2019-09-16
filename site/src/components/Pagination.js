@@ -100,6 +100,7 @@ const PaaginationLink = styled(Link)`
     }
 
     svg {
+      fill: ${props => props.theme.colors.accent};
       fill: ${props => props.color};
     }
   }

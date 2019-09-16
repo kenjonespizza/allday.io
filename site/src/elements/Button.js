@@ -42,13 +42,13 @@ export const ButtonStyles = css`
   }
 `
 
-const LinkButtonStyled = styled(Link)`
+export const LinkButtonStyled = styled(Link)`
   ${ButtonStyles};
 `
-const AButtonStyled = styled.a`
+export const AButtonStyled = styled.a`
   ${ButtonStyles};
 `
-const ButtonStyled = styled.a`
+export const ButtonStyled = styled.a`
   ${ButtonStyles};
 `
 
