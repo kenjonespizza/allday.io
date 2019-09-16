@@ -102,7 +102,7 @@ ${media.large`
         })};
       }
       
-      &:hover {
+      &:hover, &.active {
         /* color: ${props => props.theme.colors.accent} */
 
         &:after {
@@ -209,7 +209,11 @@ const NavBar = () => {
               const {pageInfo, _id} = node
               return (
                 <li key={_id} className={pageInfo.slug.current.includes('sample') ? 'hasNotification' : ''}>
-                  <Link to={`/${pageInfo.slug.current}`}>{pageInfo.pageName}</Link>
+                  <Link
+                    activeClassName='active' partiallyActive
+                    to={`/${pageInfo.slug.current}`}
+                  >{pageInfo.pageName}
+                  </Link>
                 </li>
               )
             })}

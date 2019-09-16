@@ -3,12 +3,24 @@ import styled from 'styled-components'
 import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
 
-import {Wrapper as Banner1Wrapper, Container, SubHeading, H1, Button} from '../elements'
-import {darkWatermelly, transition, darkBase} from '../utilities/styles'
-import PineappleDudeFile from '../../static/pineapple-man.svg'
+import {Wrapper as Banner1Wrapper, Container as Banner1Container, SubHeading, H1, Button} from '../elements'
+import {darkWatermelly, transition, darkBase, media} from '../utilities/styles'
 
 const Wrapper = styled(Banner1Wrapper)`
   /* margin-bottom: 18px; */
+`
+
+const Container = styled(Banner1Container)`
+  /* margin-bottom: 18px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  ${media.medium`
+    align-items: flex-start;
+    text-align: normal;
+  `}
 `
 
 const BannerButton = styled(Button)`
@@ -16,22 +28,17 @@ const BannerButton = styled(Button)`
 `
 
 const PineappleDudeWrap = styled.div`
+  display: none;
   position: absolute;
   top: -60px;
   left: calc(100% - 172px);
   height: calc(100% + 78px);
   width: 100vw;
-  /* height: calc(100% + 78px);
-  transform: translate(-50%, 0%); */
-  /* transform-origin: center center; */
   ${transition({})};
 
-  /* .strokey {
-    transform: scale(1);
-    transform-origin: center center;
-  } */
-
-   
+  ${media.medium`
+    display: block;
+  `}
 `
 
 const PineappleDude = styled(Img)`
@@ -70,12 +77,14 @@ const Banner1 = (props) => {
   return (
     <Wrapper theme={typeof bannerTheme !== 'undefined' ? bannerTheme : darkWatermelly} hasGrid addSpace>
       <Container>
+
         <SubHeading>
           {headingBlock.subHeading && headingBlock.subHeading}
         </SubHeading>
         <H1 as='h2'>
           {headingBlock.heading && headingBlock.heading}
         </H1>
+
         <p>{description}</p>
         <BannerButton {...button} />
       </Container>

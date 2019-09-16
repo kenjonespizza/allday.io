@@ -3,8 +3,8 @@ import styled, {withTheme} from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
 import BlockContent from './BlockContent'
-import {Wrapper as TwoPanelTextWrapper, H1, SubHeading, Container as TwoPanelTextContainer} from '../elements'
-import {base, media} from '../utilities/styles'
+import {Wrapper as TwoPanelTextWrapper, H1, SubHeading, Container as TwoPanelTextContainer, HeadingBlock} from '../elements'
+import {base, media, darkBase} from '../utilities/styles'
 
 const Wrapper = styled(TwoPanelTextWrapper)`
   /* background-color: ${props => props.theme.colors.accent}; */
@@ -12,20 +12,8 @@ const Wrapper = styled(TwoPanelTextWrapper)`
 `
 
 const Container = styled(TwoPanelTextContainer)`
-  display: grid;
-  grid-template-columns: 1fr;
   /* grid-gap: 50px; */
   color: ${props => props.textColor};
-
-  ${media.medium`
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
-  `}
-  
-  ${media.medium`
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 100px;
-  `}
 
   ${SubHeading} {
     grid-column: 1 / span 2;
@@ -40,7 +28,7 @@ const Container = styled(TwoPanelTextContainer)`
   ${H1} {
     grid-column: 1 / span 2;
     grid-row: 2 / span 1;
-    font-size: 70px;
+    /* font-size: 70px; */
     color: ${props => props.textColor};
   }
   
@@ -61,21 +49,42 @@ const Side = styled.div`
   grid-column: span 1;
 `
 
-const TwoPanelText = (props) => {
-  const {data, rawData, theme} = props
+const SidesWrap = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
 
-  const textColor = getContrast(theme.colors.accent, base.colors.white) > 2 ? base.colors.white : base.colors.black
+   ${media.medium`
+    grid-template-columns: 1fr 1fr;
+    grid-gap: ${base.spacings.base}px;
+  `}
+  
+  ${media.large`
+    grid-template-columns: 1fr 1fr;
+    /* grid-gap: 100px; */
+  `}
+`
+
+const TwoPanelText = (props) => {
+  const {data, rawData, theme, bgColor} = props
+
+  if (bgColor) {
+    var textColor = getContrast(bgColor, base.colors.white) > 2 ? base.colors.white : base.colors.black
+  }
   return (
-    <Wrapper hasGrid lineColor={textColor} backgroundColor={theme.colors.accent}>
+    <Wrapper hasGrid lineColor={textColor} backgroundColor={bgColor} theme={data.isDark ? darkBase : base}>
       <Container textColor={textColor}>
-        {rawData.leftText &&
-          <Side>
-            <BlockContent blocks={rawData.leftText || []} />
-          </Side>}
-        {rawData.rightText &&
-          <Side>
-            <BlockContent blocks={rawData.rightText || []} />
-          </Side>}
+        {data.headingBlock && <HeadingBlock data={data.headingBlock} />}
+
+        <SidesWrap>
+          {rawData.leftText &&
+            <Side>
+              <BlockContent blocks={rawData.leftText || []} />
+            </Side>}
+          {rawData.rightText &&
+            <Side>
+              <BlockContent blocks={rawData.rightText || []} />
+            </Side>}
+        </SidesWrap>
       </Container>
     </Wrapper>
   )

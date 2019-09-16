@@ -17,8 +17,8 @@ const Number = styled.span`
 `
 
 const Name = styled.span`
-  padding: 20px 0 0 30px;
-  font-size: 22px;
+  padding: 0px 0 0 10px;
+  font-size: 15px;
   font-weight: ${base.fontWeights.bold};
   color: ${base.colors.black};
 
@@ -27,6 +27,7 @@ const Name = styled.span`
   `}
 
   ${media.medium`
+    padding: 20px 0 0 30px;
     font-size: 32px;
   `}
 `
@@ -45,28 +46,13 @@ const StyledServiceBox = styled.li`
   }
 `
 
-const StyledServiceBoxImg = styled(StyledServiceBox.withComponent(BackgroundImage))`
-  color: ${base.colors.white};
-  box-shadow: none;
-
-  &:before {
-    content: "";
-  }
-
-  .filler {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
-`
-
 const ServiceBoxInner = styled(Link)`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  padding: ${base.spacings.base}px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   ${transition({})}
@@ -78,6 +64,10 @@ const ServiceBoxInner = styled(Link)`
       color: ${props => props.theme.colors.onAccent};
     }
   }
+
+  ${media.medium`
+    padding: ${base.spacings.base}px;
+  `}
 `
 
 const BoxImg = styled(Img)`

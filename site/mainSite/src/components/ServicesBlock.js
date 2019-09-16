@@ -7,12 +7,12 @@ import ServiceBox from './ServiceBox'
 
 const Services = styled.ul`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: ${base.spacings.base}px;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
   padding: 0;
 
   ${media.medium`
-    grid-template-columns: 1fr 1fr;
+  grid-gap: ${base.spacings.base}px;
   `}
  
   ${media.xLarge`

@@ -191,6 +191,11 @@ export const query = graphql`
         ... on SanityTwoPanelText {
           _key
           _type
+          isDark
+          headingBlock {
+            heading
+            subHeading
+          }
         }
         ... on SanityTextBlock1 {
           _key
@@ -216,6 +221,14 @@ export const query = graphql`
             }
           }
         }
+        ... on SanityFormContact {
+          _key
+          _type
+          redirectLocation {
+            current
+          }
+          text
+        }
       }
     }
   }
@@ -224,6 +237,7 @@ export const query = graphql`
 
 export default (props) => {
   const {_rawBlocks, pageInfo, blocks, seo} = props.data.page
+  console.log('props.data.page:', props.data.page)
 
   return (
     <>
@@ -233,8 +247,6 @@ export default (props) => {
         {/* <Seo context={props.pageContext} {...seo} /> */}
 
         <Wrapper hasGrid theme={base} noSpace>
-
-          {pageInfo.slug.current === 'get-in-touch' && <ContactForm />}
 
           {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
             if (typeof block._type !== 'undefined') {
@@ -267,8 +279,9 @@ export default (props) => {
                 case 'TextBlock1':
                   return <TextBlock1 key={block._key} data={block} rawData={rawData} />
                 case 'CaseStudiesRow':
-                  console.log('block:', block)
                   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
+                case 'FormContact':
+                  return <ContactForm key={block._key} data={block} rawData={rawData} />
                 default:
                   return null
               }

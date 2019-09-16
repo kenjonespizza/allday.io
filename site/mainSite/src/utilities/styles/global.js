@@ -95,7 +95,7 @@ export const GlobalStyle = createGlobalStyle`
 
   p {
     line-height: 2;
-    font-size: 
+    font-size: ;
   }
 
   {${Object.keys(colorsList).map(function (color) {

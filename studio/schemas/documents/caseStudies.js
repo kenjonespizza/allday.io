@@ -29,15 +29,26 @@ export default {
     },
     {
       name: 'title',
-      title: 'Job Type',
+      title: 'Job Type / SubHeading',
       type: 'string',
       description: 'Ex: New Website, App Design, etc.'
+    },
+    {
+      title: 'Category',
+      name: 'category',
+      type: 'reference',
+      to: [{type: 'caseStudyCategories'}]
     },
     {
       name: 'excerpt',
       title: 'Short Description',
       type: 'string',
       description: 'This is displayed on the site where a short excerpt/preview is needed. Ex: On the homepage.'
+    },
+    {
+      name: 'summary',
+      title: 'Project Summary',
+      type: 'richText'
     },
     {
       name: 'color',

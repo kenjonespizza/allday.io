@@ -7,7 +7,7 @@ import Carousel, {Modal, ModalGateway} from 'react-images'
 import Img from 'gatsby-image'
 
 import {Wrapper, H1, H3, SubHeading, Container as Gallery1Container} from '../elements'
-import {base as themeBase} from '../utilities/styles'
+import {base as themeBase, media} from '../utilities/styles'
 
 const Container = styled(Gallery1Container)`
   /* display: grid;
@@ -33,7 +33,7 @@ const Container = styled(Gallery1Container)`
       column-span: all;
     }
 
-    padding: 25px;
+    padding: 0 0 30px;
     /* grid-column: span 1; */
     /* margin-bottom: 50px; */
     cursor: pointer;
@@ -41,6 +41,10 @@ const Container = styled(Gallery1Container)`
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid;
+
+    ${media.medium`
+      padding: 25px;
+    `}
 
     & > div {
       /* overflow: visible !important; */

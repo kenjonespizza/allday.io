@@ -86,7 +86,7 @@ export const base = {
   },
   spacings: {
     base: 40,
-    sectionS: 50,
+    sectionS: 80,
     sectionM: 100,
     sectionL: 150
   },

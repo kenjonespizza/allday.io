@@ -18,6 +18,7 @@ import headingBlock from './objects/headingBlock'
 import reviewsBlock from './objects/misc/reviewsBlock'
 import review from './objects/misc/review'
 import banner1 from './objects/banners/banner1'
+import banner2 from './objects/banners/banner2'
 import blocks from './objects/blocks'
 import serviceBlocks from './objects/serviceBlocks'
 import caseStudiesBlocks from './objects/caseStudiesBlocks'
@@ -29,7 +30,9 @@ import caseStudiesRow from './objects/misc/caseStudiesRow'
 import richText from './objects/richText'
 import heroBasic from './objects/heroBasic'
 import twoPanelText from './objects/twoPanelText'
+import textBlock from './objects/textBlock'
 import textBlock1 from './objects/textBlock1'
+import formContact from './objects/forms/formContact'
 import { gallery, body } from './objects/gallery'
 
 // Document types
@@ -38,6 +41,7 @@ import pages from './documents/pages'
 // import homepage from './documents/homepage'
 import services from './documents/services'
 import caseStudies from './documents/caseStudies'
+import caseStudyCategories from './documents/caseStudyCategories'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -58,6 +62,7 @@ export default createSchema({
     reviewsBlock,
     review,
     banner1,
+    banner2,
     blocks,
     serviceBlocks,
     caseStudiesBlocks,
@@ -71,13 +76,16 @@ export default createSchema({
     richText,
     heroBasic,
     twoPanelText,
+    textBlock,
     textBlock1,
+    formContact,
     
     /* Your types here! */
     siteSettings,
     pages,
     // homepage,
     services,
-    caseStudies
+    caseStudies,
+    caseStudyCategories
   ])
 })

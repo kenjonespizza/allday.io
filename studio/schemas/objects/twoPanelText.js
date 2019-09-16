@@ -10,6 +10,11 @@ export default {
       description: 'This is for internal use only'
     },
     {
+      name: 'headingBlock',
+      title: 'Heading',
+      type: 'headingBlock'
+    },
+    {
       name: 'leftText',
       title: 'Left Text',
       type: 'richText'
@@ -18,6 +23,11 @@ export default {
       name: 'rightText',
       title: 'Right Text',
       type: 'richText'
+    },
+    {
+      name: 'isDark',
+      title: 'Dark Theme',
+      type: 'boolean'
     }
   ]
 }
