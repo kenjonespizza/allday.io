@@ -57,11 +57,11 @@ const ContactForm = (props) => {
   return (
     <Wrapper hasGrid theme={base}>
       <Container main>
-        <FromWrapper twoColumn={rawData.sidebarText}>
+        <FromWrapper twoColumn={rawData && rawData.sidebarText && rawData.sidebarText}>
           <Form name='contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field' action='/'>
-            <div className='formText'>
+            {data && data.text && <div className='formText'>
               {data.text}
-            </div>
+            </div>}
             <input type='hidden' name='bot-field' />
             <input type='hidden' name='form-name' value='contact' />
             <Field className='field half first'>
@@ -82,7 +82,7 @@ const ContactForm = (props) => {
             </Button>
 
           </Form>
-          {rawData.sidebarText &&
+          {rawData && rawData.sidebarText &&
             <SideBar>
               <BlockContent blocks={rawData.sidebarText || []} />
             </SideBar>}

@@ -217,6 +217,13 @@ const NavBar = () => {
                 </li>
               )
             })}
+            <li key='blog'>
+                <Link
+                  activeClassName='active' partiallyActive
+                  to={`/blog`}
+                >Blog
+                </Link>
+              </li>
           </ul>
         </Nav>
       </StyledNavBar>
