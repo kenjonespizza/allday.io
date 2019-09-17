@@ -49,19 +49,6 @@ module.exports = {
           }
         ]
       }
-    },
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'AllDay',
-        short_name: 'AllDay',
-        start_url: '/',
-        background_color: '#FEFEFE',
-        theme_color: '#00B4BF',
-        display: 'standalone',
-        icon: 'static/pineapple-man.svg'
-      }
-    },
-    'gatsby-plugin-offline'
+    }
   ]
 }
