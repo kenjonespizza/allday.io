@@ -8,14 +8,15 @@
     "serve": "gatsby serve",
     "clean-cache": "gatsby clean",
     "dev1": "npm run clean-cache && gatsby develop",
-    "dev": "gatsby develop",
+    "dev": "npm run clean-cache && gatsby develop",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
-    "gatsby": "^2.14.0",
+    "@narative/gatsby-theme-novela": "^0.7.0",
     "allday-main-site": "*",
+    "gatsby": "^2.14.0",
     "gatsby-plugin-manifest": "^2.2.9",
     "gatsby-plugin-offline": "^3.0.6",
     "react": "^16.9.0",
