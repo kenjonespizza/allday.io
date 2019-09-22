@@ -79,3 +79,6 @@ yarn-error.log
 
 # Nelify
 .netlify/
+
+# Sanity Studio... I dont need to share this since Im not sharing our actual content
+studio/
