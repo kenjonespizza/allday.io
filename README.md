@@ -1,12 +1,29 @@
+<p align="center">
+  <a href="allday.netlify.io">
+    <img alt="Gatsby" src="http://allday.io/assets/images/allday-logo-dark.png" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  AllDay.io GatsbyJS Website
+</h1>
+
+AllDay loves transparancy, community, and open source. While we cant open souce our clients websites and web apps, we are very excited to open source our own website! While we are launching without the full fleet of features, If you are interested in contributiong to the site or have questions, just opwn an issue or send an message to the site owner, Ken @ [ken@allday.io](mailto:ken@allday.io).
+
+## Tech stack
+
+- Built with GatsbyJS (React): [GatsbyJS](https://gatsbyjs.org)
+- Content managed on Sanity: [SanityIO](https://sanity.io/docs)
+- Built and Hosted on Netlify: [Netlify](https://netlify.com/)
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
   </a>
 </p>
-<h1 align="center">
+<h2 align="center">
   Gatsby's hello-world starter
-</h1>
+</h2>
 
 Kick off your project with this hello-world boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
