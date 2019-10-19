@@ -218,12 +218,9 @@ const NavBar = () => {
               )
             })}
             <li key='blog'>
-                <Link
-                  activeClassName='active' partiallyActive
-                  to={`/blog`}
-                >Blog
-                </Link>
-              </li>
+              <Link activeClassName='active' partiallyActive to='/blog'>Blog</Link>
+            </li>
+            {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
           </ul>
         </Nav>
       </StyledNavBar>

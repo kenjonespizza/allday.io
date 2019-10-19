@@ -236,14 +236,13 @@ export const query = graphql`
 `
 
 export default (props) => {
-  const {_rawBlocks, pageInfo, blocks, seo} = props.data.page
-  console.log('props.data.page:', props.data.page)
+  const {_rawBlocks, blocks, seo} = props.data.page
 
   return (
     <>
       <Layout>
 
-        {seo ? <Seo context={props.pageContext} {...seo} /> : <h1>NO SEO</h1>}
+        {seo && <Seo context={props.pageContext} {...seo} />}
         {/* <Seo context={props.pageContext} {...seo} /> */}
 
         <Wrapper hasGrid theme={base} noSpace>

@@ -73,7 +73,7 @@ const TwoPanelText = (props) => {
   return (
     <Wrapper hasGrid lineColor={textColor} backgroundColor={bgColor} theme={data.isDark ? darkBase : base}>
       <Container textColor={textColor}>
-        {data.headingBlock && <HeadingBlock data={data.headingBlock} />}
+        {data.headingBlock && <HeadingBlock left data={data.headingBlock} />}
 
         <SidesWrap>
           {rawData.leftText &&

@@ -61,7 +61,7 @@ const ContactForm = (props) => {
           <Form name='contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field' action='/'>
             {data && data.text && <div className='formText'>
               {data.text}
-            </div>}
+                                  </div>}
             <input type='hidden' name='bot-field' />
             <input type='hidden' name='form-name' value='contact' />
             <Field className='field half first'>

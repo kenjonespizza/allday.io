@@ -4,7 +4,7 @@ import {getContrast, rgba, invert} from 'polished'
 import {Link} from 'gatsby'
 
 import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, media, transition} from '../utilities/styles/'
-import {Button as OriginalButton, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper as CaseStudyWrapper, Container} from '../elements/'
+import {Button as OriginalButton, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper as CaseStudyWrapper, Container as CaseStudyContainer} from '../elements/'
 import ServiceBox from './ServiceBox'
 
 const Wrap = styled(CaseStudyWrapper)`
@@ -115,6 +115,11 @@ const OverlayLink = styled(Link)`
   top: 0;
   left: 0;
   z-index: 2;
+`
+
+const Container = styled(CaseStudyContainer)`
+  padding-left: calc(${base.spacings.base}px + 20px);
+  padding-right: calc(${base.spacings.base}px + 20px);
 `
 
 const CaseStudiesRow = ({theme, data, rawData}) => {
