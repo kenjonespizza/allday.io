@@ -45,25 +45,10 @@ export const query = graphql`
       blocks {
         blocks {
         ... on SanityBanner1 {
-          _key
-          _type
-          button {
-            slug {
-              current
-            }
-            icon
-            text
-            url
-          }
-          description
-          headingBlock {
-            heading
-            subHeading
-          }
+          ...Banner1
         }
         ... on SanityHeadingBlock {
-          _key
-          _type
+          ...HeadingBlock
         }
         ... on SanityHeroHome {
           _key
@@ -248,6 +233,7 @@ export default (props) => {
         <Wrapper hasGrid theme={base} noSpace>
 
           {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
+            console.log('block:', block)
             if (typeof block._type !== 'undefined') {
               const name = block._type
 

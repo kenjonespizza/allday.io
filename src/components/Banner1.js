@@ -97,14 +97,22 @@ const Banner1 = (props) => {
 
 export default Banner1
 
-// export const pageQuery = graphql`
-//   query PineappleDudeQuery {
-//     PineappleDude: file(relativePath: { eq: "pineappledude.png" }) {
-//       childImageSharp {
-//         fluid(maxWidth: 293) {
-//           ...GatsbyImageSharpFluid
-//         }
-//       }
-//     }
-//   }
-// `
+export const Banner1Fragment = graphql`
+  fragment Banner1 on SanityBanner1 {
+    _key
+    _type
+    button {
+      slug {
+        current
+      }
+      icon
+      text
+      url
+    }
+    description
+    headingBlock {
+      heading
+      subHeading
+    }
+  }
+`

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {graphql} from 'gatsby'
 
 import {mqs, base} from '../utilities/styles'
 import {H1, SubHeading} from './'
@@ -26,6 +27,7 @@ const StlyedHeadingBlock = styled.div`
 `
 
 export const HeadingBlock = ({children, left, data, className}) => {
+  console.log('dataHEAD:', data)
   if (data && data.heading && data.subHeading) {
     const {heading, subHeading} = data
 
@@ -47,3 +49,12 @@ export const HeadingBlock = ({children, left, data, className}) => {
     )
   }
 }
+
+export const Banner1Fragment = graphql`
+  fragment HeadingBlock on SanityHeadingBlock {
+    _key
+    _type
+    heading
+    subHeading
+  }
+`
