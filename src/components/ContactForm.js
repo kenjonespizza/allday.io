@@ -84,10 +84,11 @@ const ContactForm = (props) => {
             </Button>
 
           </Form>
-          {rawData && rawData.sidebarText &&
+          {rawData && rawData.sidebarText && (
             <SideBar>
               <BlockContent blocks={rawData.sidebarText || []} />
-            </SideBar>}
+            </SideBar>
+          )}
         </FromWrapper>
       </Container>
     </Wrapper>

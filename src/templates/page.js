@@ -143,8 +143,33 @@ export const query = graphql`
           _type
           heading
           subHeading
+          heroImage: image {
+            alt
+            asset {
+              fluid(maxWidth: 2000) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+          imagePosition
           isDark
         }
+        ... on SanityHeroWithImage {
+            _key
+            _type
+            heading
+            heroImage: image {
+              alt
+              asset {
+                fluid(maxWidth: 1000) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+            imageSide
+            isDark
+            subHeading
+          }
         ... on SanityGallery {
           _key
           _type
