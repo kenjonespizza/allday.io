@@ -65,6 +65,8 @@ const FullSpanWrapper = styled(Wrapper)`
 const LeftRightSpanWrapper = styled(Wrapper)`
   padding-bottom: 0;
 
+  
+
   ${HeroImage} {
     /* margin-top: 100px; */
     ${mqs({
