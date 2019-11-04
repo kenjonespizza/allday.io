@@ -54,8 +54,16 @@ const HeroBasic = ({data, rawData, children}) => {
     return (
       <Wrapper hasGrid theme={isDark ? darkBase : base}>
         <Container>
-          <SubHeading>{subHeading}</SubHeading>
-          <H1>{heading}</H1>
+          {subHeading && (
+            <SubHeading>
+              {subHeading}
+            </SubHeading>
+          )}
+          {heading && (
+            <H1>
+              {heading}
+            </H1>
+          )}
           {text &&
             <Text>
               <BlockContent blocks={text || []} />

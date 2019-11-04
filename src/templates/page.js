@@ -1,24 +1,10 @@
 import React from 'react'
 import {graphql} from 'gatsby'
 
-import Layout from '../components/Layout'
-import {Wrapper, HeadingBlock} from '../elements'
-import {base} from '../utilities/styles'
-import HeroHome from '../components/HeroHome'
-import ServicesBlock from '../components/ServicesBlock'
-import CaseStudiesBlock from '../components/CaseStudiesBlock'
-import ReviewsBlock from '../components/ReviewsBlock'
-import Banner1 from '../components/Banner1'
-import HeroBasic from '../components/HeroBasic'
-import TwoPanelText from '../components/TwoPanelText'
-import TextBlock1 from '../components/TextBlock1'
-import Gallery1 from '../components/Gallery1'
-import CaseStudiesRow from '../components/CaseStudiesRow'
-import ContactForm from '../components/ContactForm'
-import Seo from '../components/Seo'
+import Page from '../components/Page'
 
 export const query = graphql`
-  query PagesTemplateQuery($slug: String!) {
+  query ($slug: String!) {
 
     page: sanityPages(pageInfo: {slug: {current: {eq: $slug}}}) {
       pageInfo {
@@ -46,9 +32,6 @@ export const query = graphql`
         blocks {
         ... on SanityBanner1 {
           ...Banner1
-        }
-        ... on SanityHeadingBlock {
-          ...HeadingBlock
         }
         ... on SanityHeroHome {
           _key
@@ -214,67 +197,32 @@ export const query = graphql`
           }
           text
         }
+        ... on SanityButtonsBlock {
+          _key
+          _type
+          isDark
+          headingBlock {
+            heading
+            subHeading
+          }
+          buttons {
+            _key
+            url
+            text
+            color
+            isGhost
+            slug {
+              current
+            }
+            icon
+          }
+        }
       }
     }
   }
 }
 `
 
-export default (props) => {
-  const {_rawBlocks, blocks, seo} = props.data.page
+const PageTemplate = (props) => <Page pageProps={props} />
 
-  return (
-    <>
-      <Layout>
-
-        {seo && <Seo context={props.pageContext} {...seo} />}
-        {/* <Seo context={props.pageContext} {...seo} /> */}
-
-        <Wrapper hasGrid theme={base} noSpace>
-
-          {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
-            console.log('block:', block)
-            if (typeof block._type !== 'undefined') {
-              const name = block._type
-
-              const Component = name.charAt(0).toUpperCase() + name.slice(1)
-
-              var rawData = _rawBlocks.blocks
-              rawData = rawData[Object.keys(rawData)[i]]
-
-              switch (Component) {
-                case 'HeroHome':
-                  return <HeroHome key={block._key} data={block} />
-                case 'HeadingBlock':
-                  return <HeadingBlock key={block._key} data={block} />
-                case 'ServicesBlock':
-                  return <ServicesBlock key={block._key} data={block} />
-                case 'ReviewsBlock':
-                  return <ReviewsBlock key={block._key} data={block} />
-                case 'CaseStudiesBlock':
-                  return <CaseStudiesBlock key={block._key} data={block} />
-                case 'Banner1':
-                  return <Banner1 key={block._key} data={block} />
-                case 'HeroBasic':
-                  return <HeroBasic key={block._key} data={block} rawData={rawData} />
-                case 'Gallery':
-                  return <Gallery1 key={block._key} data={block} />
-                case 'TwoPanelText':
-                  return <TwoPanelText key={block._key} data={block} rawData={rawData} />
-                case 'TextBlock1':
-                  return <TextBlock1 key={block._key} data={block} rawData={rawData} />
-                case 'CaseStudiesRow':
-                  return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
-                case 'FormContact':
-                  return <ContactForm key={block._key} data={block} rawData={rawData} />
-                default:
-                  return null
-              }
-            }
-          })}
-        </Wrapper>
-
-      </Layout>
-    </>
-  )
-}
+export default PageTemplate

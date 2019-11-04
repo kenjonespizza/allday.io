@@ -97,7 +97,6 @@ const FooterCta = styled.div`
 `
 
 const Footer = () => {
-  console.log('base.colors.white:', base.colors.white)
   return (
     <>
       <Wrapper hasGrid addSpace theme={base} backgroundColor={base.colors.white}>

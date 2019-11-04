@@ -3,7 +3,7 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`
 })
 
-const path = require('path')
+// const path = require('path')
 
 const clientConfig = require('./client-config')
 const token = process.env.SANITY_READ_TOKEN
@@ -11,7 +11,7 @@ const token = process.env.SANITY_READ_TOKEN
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  siteMetadata: {
+  siteMetadata: { // SiteMeta is only used for blog right now
     title: 'Blog by AllDay',
     name: 'AllDay',
     siteUrl: 'https://allday.io/blog',
@@ -94,7 +94,7 @@ module.exports = {
         background_color: '#FEFEFE',
         theme_color: '#00B4BF',
         display: 'standalone',
-        icon: 'static/pineapple-man.svg'
+        icon: 'src/img/favicon.svg'
       }
     },
     'gatsby-plugin-offline'

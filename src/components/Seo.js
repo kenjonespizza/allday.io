@@ -11,7 +11,7 @@ const Seo = (props) => {
       query={detailsQuery}
       render={data => {
         // URL configuration
-        var baseUrl = data.site.baseUrl // Get base url
+        var baseUrl = data.site.globalSeo.baseUrl // Get base url
         var tempUrl = ''
 
         if (url) {
@@ -32,24 +32,24 @@ const Seo = (props) => {
           tempIndex = false
         }
 
-        const metaDescription = description || data.site.description || ''
-        const metaTitle = title || data.site.title || ''
+        const metaDescription = description || data.site.globalSeo.description || ''
+        const metaTitle = title || data.site.globalSeo.title || ''
         const metaAuthor = author || ''
-        const metaDefaultTitle = data.site.title
-        const metaKeywords = keywords || data.site.keywords || ''
+        const metaDefaultTitle = data.site.globalSeo.title
+        const metaKeywords = keywords || data.site.globalSeo.keywords || ''
         const metaUrl = tempUrl
-        const metaLang = data.site.lang
+        const metaLang = data.site.globalSeo.lang
         const metaIndex = tempIndex
-        const metaImage = image || data.site.image || ''
+        const metaImage = image || data.site.globalSeo.image || ''
         const metaType = type || 'website'
-        const metaTwitterId = data.site.twitterId || 'AllDayIO'
+        const metaTwitterId = data.site.globalSeo.twitterId || 'AllDayIO'
 
         return (
 
           <Helmet
             htmlAttributes={{metaLang}}
             title={metaTitle}
-            titleTemplate={metaTitle === data.site.titleBase ? '%s' : `%s | ${data.site.titleBase}`}
+            titleTemplate={metaTitle === data.site.globalSeo.titleBase ? '%s' : `%s | ${data.site.globalSeo.titleBase}`}
             defaultTitle={metaDefaultTitle}
             meta={[
               {
@@ -113,7 +113,7 @@ const Seo = (props) => {
                     content: keywords.join(', ')
                   }
                   : []
-              )}
+            )}
           >
             {/* <meta property='og:url' content='http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' />
             <meta property='og:type' content='article' />
@@ -146,15 +146,17 @@ export default Seo
 const detailsQuery = graphql`
   query DefaultSEOQuery {
     site: sanitySiteSettings {
-      title
-      titleBase
-      description
-      lang
-      baseUrl
-      twitterId
-      image {
-        asset {
-          url
+      globalSeo {
+        title
+        titleBase
+        description
+        lang
+        baseUrl
+        twitterId
+        image {
+          asset {
+            url
+          }
         }
       }
     }

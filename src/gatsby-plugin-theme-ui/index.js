@@ -48,6 +48,4 @@ const colors = {
   }
 }
 
-// console.log('colors:', colors)
-
 export default colors

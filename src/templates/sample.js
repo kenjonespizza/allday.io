@@ -109,7 +109,6 @@ const Text = styled.div``
 
 export default props => {
   const {_rawBlocks, _rawSummary, color, blocks, seo, pageInfo, title} = props.data.page
-  console.log('props.data.page:', props.data.page)
 
   const textColor = getContrastTextColor(color.hex)
 

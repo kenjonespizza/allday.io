@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean-cache": "gatsby clean",
+    "clean": "gatsby clean",
     "dev1": "npm run clean-cache && gatsby develop",
     "dev": "gatsby develop",
     "lint": "eslint .",
@@ -14,7 +14,7 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
-    "@narative/gatsby-theme-novela": "^0.7.0",
+    "@narative/gatsby-theme-novela": "^0.9.6",
     "@sanity/block-content-to-react": "^2.0.6",
     "babel-plugin-styled-components": "^1.10.6",
     "date-fns": "^2.0.1",

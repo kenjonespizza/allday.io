@@ -27,18 +27,21 @@ const StlyedHeadingBlock = styled.div`
 `
 
 export const HeadingBlock = ({children, left, data, className}) => {
-  console.log('dataHEAD:', data)
-  if (data && data.heading && data.subHeading) {
+  if (data && (data.heading || data.subHeading)) {
     const {heading, subHeading} = data
 
     return (
       <StlyedHeadingBlock id='HeadingBlock' left={left} className={className}>
-        <SubHeading>
-          {subHeading && subHeading}
-        </SubHeading>
-        <H1 as='h2'>
-          {heading && heading}
-        </H1>
+        {subHeading && (
+          <SubHeading>
+            {subHeading}
+          </SubHeading>
+        )}
+        {heading && (
+          <H1 as='h2'>
+            {heading}
+          </H1>
+        )}
       </StlyedHeadingBlock>
     )
   } else {
