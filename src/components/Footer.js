@@ -68,7 +68,7 @@ const HeadingBlockStyled = styled(HeadingBlock)`
 `
 
 const FooterCta = styled.div`
-  background-color: ${base.colors.seal};
+  background-color: ${base.colors.black};
   color: ${base.colors.white};
   height: 400px;
   /* padding: 100px 40px; */
@@ -88,7 +88,7 @@ const FooterCta = styled.div`
     }
 
   &:hover {
-    background-color: ${base.colors.black};
+    background-color: ${base.colors.seal};
 
     a {
       transform: scale(1.1);

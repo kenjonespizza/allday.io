@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import {StaticQuery, graphql} from 'gatsby'
 
 const Seo = (props) => {
-  const {title, description, keywords, image, author, type, index, url, context} = props
+  const {title, description, keywords, image, author, type, index, url, context, follow} = props
 
   return (
     <StaticQuery
@@ -25,11 +25,21 @@ const Seo = (props) => {
         // Index/Follow configuration
         var tempIndex = ''
         if (index === null) {
-          tempIndex = true
+          tempIndex = 'index'
         } else if (index === true) {
-          tempIndex = true
+          tempIndex = 'index'
         } else {
-          tempIndex = false
+          tempIndex = 'noindex'
+        }
+
+        // Index/Follow configuration
+        var tempFollow = ''
+        if (follow === null) {
+          tempFollow = 'follow'
+        } else if (follow === true) {
+          tempFollow = 'follow'
+        } else {
+          tempFollow = 'nofollow'
         }
 
         const metaDescription = description || data.site.globalSeo.description || ''
@@ -40,9 +50,10 @@ const Seo = (props) => {
         const metaUrl = tempUrl
         const metaLang = data.site.globalSeo.lang
         const metaIndex = tempIndex
+        const metaFollow = tempFollow
         const metaImage = image || data.site.globalSeo.image || ''
         const metaType = type || 'website'
-        const metaTwitterId = data.site.globalSeo.twitterId || 'AllDayIO'
+        const metaTwitterId = data.site.socialMediaHandle.twitter || ''
 
         return (
 
@@ -94,7 +105,7 @@ const Seo = (props) => {
               },
               {
                 name: 'robots',
-                content: metaIndex ? 'index, follow' : 'noindex, nofollow'
+                content: `${metaIndex}, ${metaFollow}`
                 // TODO: update this
               },
               {
@@ -113,7 +124,7 @@ const Seo = (props) => {
                     content: keywords.join(', ')
                   }
                   : []
-            )}
+              )}
           >
             {/* <meta property='og:url' content='http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' />
             <meta property='og:type' content='article' />
@@ -152,12 +163,14 @@ const detailsQuery = graphql`
         description
         lang
         baseUrl
-        twitterId
         image {
           asset {
             url
           }
         }
+      }
+      socialMediaHandle {
+        twitter
       }
     }
   }

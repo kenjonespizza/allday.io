@@ -55,13 +55,15 @@ const SideBar = styled.div`
 const ContactForm = (props) => {
   const {data, rawData} = props
   return (
-    <Wrapper hasGrid theme={base}>
+    <Wrapper hasGrid theme={base} noSpace>
       <Container main>
         <FromWrapper twoColumn={rawData && rawData.sidebarText && rawData.sidebarText}>
           <Form name='contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field' action='/'>
-            {data && data.text && <div className='formText'>
-              {data.text}
-                                  </div>}
+            {data && data.text && (
+              <div className='formText'>
+                {data.text}
+              </div>
+            )}
             <input type='hidden' name='bot-field' />
             <input type='hidden' name='form-name' value='contact' />
             <Field className='field half first'>

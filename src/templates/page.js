@@ -20,6 +20,7 @@ export const query = graphql`
         type
         keywords
         index
+        follow
         image {
           asset {
             url
