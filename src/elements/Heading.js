@@ -149,7 +149,8 @@ export const H6 = styled(Heading.withComponent('h6'))`
 
 export const SubHeading = styled.span`
   font-size: 16px;
-  font-weight: ${base.fontWeights.light}
+  font-weight: ${base.fontWeights.light};
+  margin-bottom: 10px;
 
   ${media.medium`
     font-size: 19px;

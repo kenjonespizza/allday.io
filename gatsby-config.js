@@ -12,14 +12,14 @@ const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   siteMetadata: { // SiteMeta is only used for blog right now
-    title: 'Blog by AllDay',
+    title: 'Design Studio Blog | Web | App Development | AllDay Consultants',
     name: 'AllDay',
-    siteUrl: 'https://allday.io/blog',
-    description: 'AllDay Blog - Tampa & Charleston web design and development services',
+    siteUrl: 'https://allday.io/design-studio-blog',
+    description: 'Our design pros talk all things web, app, UX/UI design and strategy tips all day! Visit our blog to create a better brand that connects with your customers.',
 
     // important to set the main text that appears in the hero
     hero: {
-      heading: 'Perspectives on technology, design and business from the team at Narative.',
+      heading: 'Good sh!t. AllDay.',
       maxWidth: 652
     },
     social: [

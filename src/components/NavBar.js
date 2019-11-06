@@ -6,7 +6,7 @@ import {rgba} from 'polished'
 
 import LogoFile from '../../static/AllDayLogo.svg'
 import {transition, base, bounce, pulse, lightWatermelly, media} from '../utilities/styles'
-// import SlideOutMenu from '../components/SlideOutMenu'
+import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
 import {GridLines, Wrapper} from '../elements'
 import {mapEdgesToNodes} from '../utilities/helpers'
@@ -224,7 +224,7 @@ const NavBar = () => {
           </ul>
         </Nav>
       </StyledNavBar>
-      {/* <SlideOutMenu /> */}
+      <SlideOutMenu menu={data.navigation.edges[0].node.navLinks} />
 
       <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
 

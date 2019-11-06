@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {graphql} from 'gatsby'
 
 import {mqs, base} from '../utilities/styles'
-import {H1, SubHeading} from './'
+import {H1, SubHeading as StyledSubHeading} from './'
 
 const StlyedHeadingBlock = styled.div`
   display: flex;
@@ -24,6 +24,10 @@ const StlyedHeadingBlock = styled.div`
     valueM: base.spacings.sectionM / 2 + 'px',
     valueL: base.spacings.sectionL / 2 + 'px'
   })};
+`
+
+const SubHeading = styled(StyledSubHeading)`
+  margin-bottom: 10px;
 `
 
 export const HeadingBlock = ({children, left, data, className}) => {

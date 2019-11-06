@@ -4,7 +4,7 @@ import {rgba} from 'polished'
 
 import {linePulse, media, base} from '../utilities/styles'
 
-const lineOpacity = 0.05
+const lineOpacity = 0.1
 
 const StyledGridWrap = styled.div`
   background-color: ${props => props.theme.colors.background};

@@ -4,14 +4,14 @@ import {rgba, getContrast, readableColor} from 'polished'
 import Image from 'gatsby-image'
 
 import BlockContent from './BlockContent'
-import {Wrapper, H1, SubHeading, Container as HeroBasicContainer} from '../elements'
+import {Wrapper, H1, SubHeading, Container as TextBlockWithImageContainer} from '../elements'
 import {base, darkBase, media, mqs} from '../utilities/styles'
 
 const Text = styled.div`
   margin-top: ${base.spacings.base}px;
 `
 
-const Container = styled(HeroBasicContainer)`
+const Container = styled(TextBlockWithImageContainer)`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
@@ -53,12 +53,12 @@ const Container = styled(HeroBasicContainer)`
   }
 `
 
-const HeroImage = styled(Image)``
+const TextBlockImage = styled(Image)``
 
 const FullSpanWrapper = styled(Wrapper)`
   padding-bottom: 0;
 
-  ${HeroImage} {
+  ${TextBlockImage} {
     height: 80vh;
     /* margin-top: 100px; */
     ${mqs({
@@ -105,7 +105,7 @@ const LeftRightSpanWrapper = styled(Wrapper)`
   }
   
 
-  ${HeroImage} {
+  ${TextBlockImage} {
     /* height: 70vh; */
     min-height: 100%;
     /* margin-top: 100px; */
@@ -135,7 +135,7 @@ const CenterWrapper = styled(Wrapper)`
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  ${HeroImage} {
+  ${TextBlockImage} {
     /* margin-top: 100px; */
     width: 100%
     ${mqs({
@@ -146,36 +146,26 @@ const CenterWrapper = styled(Wrapper)`
   }
 `
 
-const HeroBasic = ({data, rawData, children}) => {
+const TextBlockWithImage = ({data, rawData, children}) => {
   if (typeof data !== 'undefined') {
-    const {heading, subHeading, isDark, heroImage, imagePosition} = data
+    const {isDark, textBlockImage, imagePosition} = data
     const {text} = rawData
 
     // If hero has image
-    if (heroImage) {
+    if (textBlockImage) {
       // if layout is 'fullSpan'
       if (imagePosition === 'fullSpan') {
         return (
           <>
             <FullSpanWrapper hasGrid theme={isDark ? darkBase : base}>
               <Container>
-                {subHeading && (
-                  <SubHeading>
-                    {subHeading}
-                  </SubHeading>
-                )}
-                {heading && (
-                  <H1>
-                    {heading}
-                  </H1>
-                )}
                 {text &&
                   <Text>
                     <BlockContent blocks={text || []} />
                   </Text>}
               </Container>
-              {heroImage && (
-                <HeroImage fluid={{...heroImage.asset.fluid}} alt={heroImage.alt} />
+              {textBlockImage && (
+                <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
               )}
             </FullSpanWrapper>
           </>
@@ -186,24 +176,14 @@ const HeroBasic = ({data, rawData, children}) => {
             <LeftRightSpanWrapper imagePosition={imagePosition} hasGrid theme={isDark ? darkBase : base}>
               <Container>
                 <div>
-                  {subHeading && (
-                    <SubHeading>
-                      {subHeading}
-                    </SubHeading>
-                  )}
-                  {heading && (
-                    <H1>
-                      {heading}
-                    </H1>
-                  )}
                   {text &&
                     <Text>
                       <BlockContent blocks={text || []} />
                     </Text>}
                 </div>
               </Container>
-              {heroImage && (
-                <HeroImage fluid={{...heroImage.asset.fluid}} alt={heroImage.alt} />
+              {textBlockImage && (
+                <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
               )}
             </LeftRightSpanWrapper>
           </>
@@ -213,23 +193,13 @@ const HeroBasic = ({data, rawData, children}) => {
           <CenterWrapper hasGrid theme={isDark ? darkBase : base}>
             <Container>
               <div>
-                {subHeading && (
-                  <SubHeading>
-                    {subHeading}
-                  </SubHeading>
-                )}
-                {heading && (
-                  <H1>
-                    {heading}
-                  </H1>
-                )}
                 {text &&
                   <Text>
                     <BlockContent blocks={text || []} />
                   </Text>}
               </div>
-              {heroImage && (
-                <HeroImage fluid={{...heroImage.asset.fluid, aspectRatio: 16 / 9}} alt={heroImage.alt} />
+              {textBlockImage && (
+                <TextBlockImage fluid={{...textBlockImage.asset.fluid, aspectRatio: 16 / 9}} alt={textBlockImage.alt} />
               )}
             </Container>
 
@@ -239,24 +209,14 @@ const HeroBasic = ({data, rawData, children}) => {
         return (
           <Wrapper hasGrid theme={isDark ? darkBase : base}>
             <Container>
-              {subHeading && (
-                <SubHeading>hiiiii
-                  {subHeading}
-                </SubHeading>
-              )}
-              {heading && (
-                <H1>
-                  {heading}
-                </H1>
-              )}
               {text &&
                 <Text>
                   <BlockContent blocks={text || []} />
                 </Text>}
 
             </Container>
-            {heroImage && (
-              <HeroImage fluid={heroImage.asset.fluid} alt={heroImage.alt} />
+            {textBlockImage && (
+              <TextBlockImage fluid={textBlockImage.asset.fluid} alt={textBlockImage.alt} />
             )}
           </Wrapper>
         )
@@ -265,16 +225,6 @@ const HeroBasic = ({data, rawData, children}) => {
       return (
         <Wrapper hasGrid theme={isDark ? darkBase : base}>
           <Container>
-            {subHeading && (
-              <SubHeading>
-                {subHeading}
-              </SubHeading>
-            )}
-            {heading && (
-              <H1>
-                {heading}
-              </H1>
-            )}
             {text &&
               <Text>
                 <BlockContent blocks={text || []} />
@@ -296,4 +246,4 @@ const HeroBasic = ({data, rawData, children}) => {
   }
 }
 
-export default HeroBasic
+export default TextBlockWithImage

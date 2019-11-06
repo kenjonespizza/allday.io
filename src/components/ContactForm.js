@@ -49,7 +49,9 @@ const Input = styled.input`
 `
 
 const SideBar = styled.div`
-
+  p:first-of-type {
+    margin-top: 0;
+  }
 `
 
 const ContactForm = (props) => {

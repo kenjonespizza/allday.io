@@ -10,9 +10,9 @@ import CaseStudiesBlock from '../components/CaseStudiesBlock'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
-import HeroWithImage from '../components/HeroWithImage'
 import TwoPanelText from '../components/TwoPanelText'
 import TextBlock1 from '../components/TextBlock1'
+import TextBlockWithImage from '../components/TextBlockWithImage'
 import Gallery1 from '../components/Gallery1'
 import CaseStudiesRow from '../components/CaseStudiesRow'
 import ContactForm from '../components/ContactForm'
@@ -22,6 +22,7 @@ import ButtonsBlock from '../components/ButtonsBlock'
 const Page = ({pageProps}) => {
   console.log('pageProps:', pageProps)
   const {_rawBlocks, blocks, seo} = pageProps.data.page
+  console.log('seo:', seo)
   return (
     <Layout>
 
@@ -53,14 +54,14 @@ const Page = ({pageProps}) => {
                 return <Banner1 key={block._key} data={block} />
               case 'HeroBasic':
                 return <HeroBasic key={block._key} data={block} rawData={rawData} />
-              case 'HeroWithImage':
-                return <HeroWithImage key={block._key} data={block} rawData={rawData} />
               case 'Gallery':
                 return <Gallery1 key={block._key} data={block} />
               case 'TwoPanelText':
                 return <TwoPanelText key={block._key} data={block} rawData={rawData} />
               case 'TextBlock1':
                 return <TextBlock1 key={block._key} data={block} rawData={rawData} />
+              case 'TextBlockWithImage':
+                return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
               case 'CaseStudiesRow':
                 return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
               case 'FormContact':

@@ -49,7 +49,7 @@ export const query = graphql`
           imageLeft {
             alt
             asset {
-              fluid(maxWidth: 1000) {
+              fluid(maxWidth: 1600) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -57,7 +57,7 @@ export const query = graphql`
           imageRight {
             alt
             asset {
-              fluid(maxWidth: 1000) {
+              fluid(maxWidth: 1600) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -146,7 +146,7 @@ export const query = graphql`
           heroImage: image {
             alt
             asset {
-              fluid(maxWidth: 2000) {
+              fluid(maxWidth: 1600) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -154,22 +154,20 @@ export const query = graphql`
           imagePosition
           isDark
         }
-        ... on SanityHeroWithImage {
-            _key
-            _type
-            heading
-            heroImage: image {
-              alt
-              asset {
-                fluid(maxWidth: 1000) {
-                  ...GatsbySanityImageFluid
-                }
+        ... on SanityTextBlockWithImage {
+          _key
+          _type
+          textBlockImage: image {
+            alt
+            asset {
+              fluid(maxWidth: 1600) {
+                ...GatsbySanityImageFluid
               }
             }
-            imageSide
-            isDark
-            subHeading
           }
+          imagePosition
+          isDark
+        }
         ... on SanityGallery {
           _key
           _type
