@@ -4,7 +4,6 @@ import {base, media} from '../utilities/styles'
 
 export const HeadingBase = css`
   margin: ${base.spacings.heading}px 0 ${base.spacings.heading / 2}px};
-  color: green;
 
   &:first-child {
     margin-top: 0 ;
@@ -24,9 +23,8 @@ export const H1css = css`
   `}
 `
 export const H2css = css`
-  ${HeadingBase};
+  ${HeadingBase}
   font-size: 40px;
-  
   
   ${media.medium`
     font-size: 45px;
@@ -106,42 +104,42 @@ export const Heading = styled.span`
     css`
       ${H1css};
     `
-};
+  };
 
-${props =>
-    props.H2 &&
-    css`
-      ${H2css};
-    `
-};
+  ${props =>
+      props.H2 &&
+      css`
+        ${H2css};
+      `
+  };
 
-${props =>
-    props.H3 &&
-    css`
-      ${H3css};
-    `
-};
+  ${props =>
+      props.H3 &&
+      css`
+        ${H3css};
+      `
+  };
 
-${props =>
-    props.H4 &&
-    css`
-      ${H4css};
-    `
-};
+  ${props =>
+      props.H4 &&
+      css`
+        ${H4css};
+      `
+  };
 
-${props =>
-    props.H5 &&
-    css`
-      ${H5css};
-    `
-};
+  ${props =>
+      props.H5 &&
+      css`
+        ${H5css};
+      `
+  };
 
-${props =>
-    props.H6 &&
-    css`
-      ${H6css};
-    `
-};
+  ${props =>
+      props.H6 &&
+      css`
+        ${H6css};
+      `
+  };
 `
 
 export const H1 = styled(Heading.withComponent('h1'))`

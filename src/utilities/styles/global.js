@@ -71,8 +71,7 @@ export const GlobalStyle = createGlobalStyle`
     ${H1css}
   }
   h2 {
-    ${H2css},
-    color: red;
+    ${H2css}
   }
   h3 {
     ${H3css}
