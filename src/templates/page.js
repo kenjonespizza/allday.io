@@ -39,12 +39,7 @@ export const query = graphql`
           _type
           mainText
           button {
-            text
-            icon
-            url
-            slug {
-              current
-            }
+            ...ButtonFragment
           }
           imageLeft {
             alt
@@ -85,12 +80,7 @@ export const query = graphql`
             subHeading
           }
           button {
-            text
-            icon
-            url
-            slug {
-              current
-            }
+            ...ButtonFragment
           }
         }
         ... on SanityReviewsBlock {
@@ -103,12 +93,7 @@ export const query = graphql`
             _key
           }
           button {
-            icon
-            text
-            slug {
-              current
-            }
-            url
+            ...ButtonFragment
           }
         }
         ... on SanityCaseStudiesBlock {
@@ -119,12 +104,7 @@ export const query = graphql`
             subHeading
           }
           button {
-            icon
-            slug {
-              current
-            }
-            text
-            url
+            ...ButtonFragment
           }
           caseStudies {
             pageInfo {
@@ -164,6 +144,10 @@ export const query = graphql`
                 ...GatsbySanityImageFluid
               }
             }
+          }
+          video {
+            url
+            _type
           }
           imagePosition
           isDark
@@ -230,15 +214,7 @@ export const query = graphql`
             subHeading
           }
           buttons {
-            _key
-            url
-            text
-            color
-            isGhost
-            slug {
-              current
-            }
-            icon
+            ...ButtonFragment
           }
         }
       }

@@ -7,7 +7,7 @@ import {readableColor} from 'polished'
 import PineappleDudeFile from '../../static/pineapple-man.svg'
 import {useGlobalState} from './Layout'
 import {centerIt, lightPulp, lightWatermelly, base, transition, media} from '../utilities/styles/'
-import {Button, ButtonStyles, Wrapper, GridLines} from '../elements/'
+import {Button as HeroButton, Wrapper, GridLines} from '../elements/'
 
 const HeroHomeWrapper = styled.section`
   display: flex;
@@ -81,8 +81,7 @@ const HeroHomeMobile = styled.div`
   }
 `
 
-const HeroButton = styled.a`
-  ${ButtonStyles}
+const Button = styled(HeroButton)`
   margin-top: ${base.spacings.base}px !important;
 
   &:hover + div {
@@ -132,7 +131,7 @@ const HeroHome = (props) => {
           <CenteredBox>
             {mainText}
 
-            <HeroButton {...button} as={Button} />
+            <Button {...button} />
             <PineappleDudeWrap>
               <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
             </PineappleDudeWrap>
@@ -149,7 +148,7 @@ const HeroHome = (props) => {
           </PineappleDudeWrap>
           {mainText}
 
-          <HeroButton {...button} as={Button} />
+          <Button {...button} />
 
         </HeroHomeMobile>
       </Wrapper>

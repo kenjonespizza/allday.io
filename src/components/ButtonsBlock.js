@@ -35,7 +35,7 @@ const ButtonsBlock = ({data}) => {
           <ButtonsWrap count={buttons.length <= 3 ? buttons.length : 3}>
             {buttons.map((button, i) => {
               return (
-                <Button key={button._key} isDark={isDark ? 'true' : 'false'} {...button} />
+                <Button key={button._key} {...button} />
               )
             })}
           </ButtonsWrap>

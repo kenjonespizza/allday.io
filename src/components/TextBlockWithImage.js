@@ -4,12 +4,14 @@ import {rgba, getContrast, readableColor} from 'polished'
 import Image from 'gatsby-image'
 
 import BlockContent from './BlockContent'
-import {Wrapper, H1, SubHeading, Container as TextBlockWithImageContainer} from '../elements'
+import {Wrapper, H1, SubHeading, YouTubePlayer, Container as TextBlockWithImageContainer, VideoHolder as TextBlockWithImageVideoHolder} from '../elements'
 import {base, darkBase, media, mqs} from '../utilities/styles'
 
 const Text = styled.div`
-  margin-top: ${base.spacings.base}px;
+  /* margin-top: ${base.spacings.base}px; */
 `
+
+const VideoHolder = styled(TextBlockWithImageVideoHolder)``
 
 const Container = styled(TextBlockWithImageContainer)`
   display: grid;
@@ -23,7 +25,7 @@ const Container = styled(TextBlockWithImageContainer)`
   }
   
   ${H1} {
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
     grid-row: 2 / span 1;
     font-size: 55px;
 
@@ -38,7 +40,7 @@ const Container = styled(TextBlockWithImageContainer)`
   
   /* ${Text} { */
   div[class*="Text"] {
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
     grid-row: 3 / span 1;
     /* margin-top: ${base.spacings.base}px; */
 
@@ -46,7 +48,7 @@ const Container = styled(TextBlockWithImageContainer)`
       /* color: ${props => props.theme.colors.accent}; */
     }
 
-    a {
+    a:not([class^="Button"]) {
       color: ${props => props.theme.colors.accent};
       text-decoration: underline;
     }
@@ -71,12 +73,15 @@ const FullSpanWrapper = styled(Wrapper)`
 
 const LeftRightSpanWrapper = styled(Wrapper)`
   padding: 0;
-  justify-content: center;
+  /* justify-content: center;
   flex-direction: column;
-  display: flex;
+  display: flex; */
+  display: grid;
+  grid-template-columns: 1fr;
 
   ${media.medium`
-    flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'};
+    /* flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'}; */
+    grid-template-columns: 1fr 1fr;
   `}
 
   ${Container} {
@@ -107,7 +112,6 @@ const LeftRightSpanWrapper = styled(Wrapper)`
 
   ${TextBlockImage} {
     /* height: 70vh; */
-    min-height: 100%;
     /* margin-top: 100px; */
     /* ${mqs({
       property: 'margin-top',
@@ -116,6 +120,16 @@ const LeftRightSpanWrapper = styled(Wrapper)`
     })}; */
 
     ${media.medium`
+      min-height: 100%;
+      width: 50vw;
+      flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'};
+    `}
+  }
+
+  ${VideoHolder} {
+
+    ${media.medium`
+      min-height: 100%;
       width: 50vw;
       flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'};
     `}
@@ -127,17 +141,18 @@ const CenterWrapper = styled(Wrapper)`
 
   ${Container} {
     grid-template-columns: 1fr;
+
+    > div.text {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
   
-
-  > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  ${TextBlockImage} {
+  ${VideoHolder} {
     /* margin-top: 100px; */
-    width: 100%
+    width: 100%;
+    height: auto;
+    
     ${mqs({
       property: 'margin-top',
       valueBase: `${base.spacings.base}px`,
@@ -148,11 +163,11 @@ const CenterWrapper = styled(Wrapper)`
 
 const TextBlockWithImage = ({data, rawData, children}) => {
   if (typeof data !== 'undefined') {
-    const {isDark, textBlockImage, imagePosition} = data
+    const {isDark, textBlockImage, imagePosition, video} = data
     const {text} = rawData
 
     // If hero has image
-    if (textBlockImage) {
+    if (textBlockImage || video.url) {
       // if layout is 'fullSpan'
       if (imagePosition === 'fullSpan') {
         return (
@@ -164,8 +179,13 @@ const TextBlockWithImage = ({data, rawData, children}) => {
                     <BlockContent blocks={text || []} />
                   </Text>}
               </Container>
-              {textBlockImage && (
+              {textBlockImage && !video.url && (
                 <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+              )}
+              {video.url && (
+                <VideoHolder video={video}>
+                  <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+                </VideoHolder>
               )}
             </FullSpanWrapper>
           </>
@@ -174,6 +194,18 @@ const TextBlockWithImage = ({data, rawData, children}) => {
         return (
           <>
             <LeftRightSpanWrapper imagePosition={imagePosition} hasGrid theme={isDark ? darkBase : base}>
+              {imagePosition === 'left' && (
+                <>
+                  {textBlockImage && !video.url && (
+                    <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+                  )}
+                  {video && video.url && (
+                    <VideoHolder video={video}>
+                      <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+                    </VideoHolder>
+                  )}
+                </>
+              )}
               <Container>
                 <div>
                   {text &&
@@ -182,43 +214,42 @@ const TextBlockWithImage = ({data, rawData, children}) => {
                     </Text>}
                 </div>
               </Container>
-              {textBlockImage && (
-                <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+              {imagePosition === 'right' && (
+                <>
+                  {textBlockImage && !video.url && (
+                    <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+                  )}
+                  {video && video.url && (
+                    <VideoHolder video={video}>
+                      <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+                    </VideoHolder>
+                  )}
+                </>
               )}
             </LeftRightSpanWrapper>
           </>
         )
-      } else if (imagePosition === 'center') {
+      } else {
         return (
           <CenterWrapper hasGrid theme={isDark ? darkBase : base}>
             <Container>
-              <div>
+              <div className='text'>
                 {text &&
                   <Text>
                     <BlockContent blocks={text || []} />
                   </Text>}
               </div>
-              {textBlockImage && (
+              {textBlockImage && !video.url && (
                 <TextBlockImage fluid={{...textBlockImage.asset.fluid, aspectRatio: 16 / 9}} alt={textBlockImage.alt} />
+              )}
+              {video && (
+                <VideoHolder video={video}>
+                  <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
+                </VideoHolder>
               )}
             </Container>
 
           </CenterWrapper>
-        )
-      } else {
-        return (
-          <Wrapper hasGrid theme={isDark ? darkBase : base}>
-            <Container>
-              {text &&
-                <Text>
-                  <BlockContent blocks={text || []} />
-                </Text>}
-
-            </Container>
-            {textBlockImage && (
-              <TextBlockImage fluid={textBlockImage.asset.fluid} alt={textBlockImage.alt} />
-            )}
-          </Wrapper>
         )
       }
     } else {

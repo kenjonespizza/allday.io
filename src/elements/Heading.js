@@ -2,7 +2,17 @@ import styled, {css} from 'styled-components'
 
 import {base, media} from '../utilities/styles'
 
-const H1css = css`
+export const HeadingBase = css`
+  margin: ${base.spacings.heading}px 0 ${base.spacings.heading / 2}px};
+  color: green;
+
+  &:first-child {
+    margin-top: 0 ;
+  }
+`
+
+export const H1css = css`
+  ${HeadingBase}
   font-size: 35px;
   
   ${media.medium`
@@ -13,29 +23,33 @@ const H1css = css`
     font-size: 55px;
   `}
 `
-const H2css = css`
-  font-size: 28px;
+export const H2css = css`
+  ${HeadingBase};
+  font-size: 40px;
+  
   
   ${media.medium`
-    font-size: 28px;
+    font-size: 45px;
   `}
 
   ${media.large`
-    font-size: 28px;
+    font-size: 50px;
   `}
 `
-const H3css = css`
-  font-size: 25px;
+export const H3css = css`
+  ${HeadingBase}
+  font-size: 30px;
   
   ${media.medium`
-    font-size: 25px;
+    font-size: 35px;
   `}
 
   ${media.large`
-    font-size: 25px;
+    font-size: 40px;
   `}
 `
-const H4css = css`
+export const H4css = css`
+  ${HeadingBase}
   font-size: 22px;
   
   ${media.medium`
@@ -46,7 +60,8 @@ const H4css = css`
     font-size: 22px;
   `}
 `
-const H5css = css`
+export const H5css = css`
+  ${HeadingBase}
   font-size: 21px;
   
   ${media.medium`
@@ -57,7 +72,8 @@ const H5css = css`
     font-size: 21px;
   `}
 `
-const H6css = css`
+export const H6css = css`
+  ${HeadingBase}
   font-size: 19px;
   
   ${media.medium`

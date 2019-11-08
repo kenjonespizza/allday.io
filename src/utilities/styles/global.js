@@ -3,6 +3,8 @@ import styledNormalize from 'styled-normalize'
 import {rgba} from 'polished'
 import {base, darkPulp, lightWatermelly, colorsList, media} from './'
 import {transition} from './transition'
+import {H1css, H2css, H3css, H4css, H5css, H6css} from '../../elements/Heading'
+
 export const GlobalStyle = createGlobalStyle`
 
 
@@ -40,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.colors.accent};
     ${transition({})};
   }
-
+/* 
   h2 {
     font-size: 40px;
 
@@ -63,6 +65,26 @@ export const GlobalStyle = createGlobalStyle`
     ${media.large`
       font-size: 40px;
     `}
+  } */
+
+  h1 {
+    ${H1css}
+  }
+  h2 {
+    ${H2css},
+    color: red;
+  }
+  h3 {
+    ${H3css}
+  }
+  h4 {
+    ${H4css}
+  }
+  h5 {
+    ${H5css}
+  }
+  h6 {
+    ${H6css}
   }
 
   button {
@@ -107,4 +129,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   i {display: none !important}
+
+  .vid-close-icon {
+    fill: ${base.colors.white};
+    /* width: 60px;
+    height:60px; */
+  }
 `

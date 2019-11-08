@@ -72,6 +72,7 @@ ${media.large`
 
   ul {
     display: flex;
+    margin: 0;
   }
 
   li {

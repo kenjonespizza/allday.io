@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {Link} from 'gatsby'
+import {Link, graphql} from 'gatsby'
 // import {readableColor} from 'polished'
 
 import {transition, base} from '../utilities/styles'
@@ -17,7 +17,7 @@ export const ButtonStyles = css`
   font-weight: ${base.fontWeights.semibold};
   border-radius: 1px;
   text-decoration: none;
-  color: ${props => props.theme.colors.onAccent};
+  color: ${props => props.theme.colors.white};
   color: ${props => (props.color === 'white' || props.color === 'pulp') ? props.theme.colors.black : ''};
   color: ${props => (props.isghost === 'true' && props.color) ? props.theme.colors[props.color] : ''};
   padding: 23px 50px 21px;
@@ -78,28 +78,28 @@ export const LinkButtonStyled = styled(Link)`
 export const AButtonStyled = styled.a`
   ${ButtonStyles};
 `
-export const ButtonStyled = styled.a`
+export const ButtonStyled = styled.button`
   ${ButtonStyles};
 `
 
-export const Button = ({slug, icon, text, url, children, className, slugPrefix, color, isGhost, isDark}) => {
+export const Button = ({slug, icon, text, url, children, className, slugPrefix, color, isGhost, isOnDark}) => {
   if (slug) {
     const slugPre = slugPrefix || ''
 
     return (
-      <LinkButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isDark} className={className} to={slug && `${slugPre}/${slug.current}`}>
+      <LinkButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark} className={className} to={slug && `${slugPre}/${slug.current}`}>
         {children || text}  {icon && <i className={icon} />}
       </LinkButtonStyled>
     )
   } else if (url) {
     return (
-      <AButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isDark} className={className} href={url}>
+      <AButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark} className={className} href={url}>
         {children || text}  {icon && <i className={icon} />}
       </AButtonStyled>
     )
   } else {
     return (
-      <ButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isDark} as='button' className={className}>
+      <ButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark} as='button' className={className}>
         {children || text}  {icon && <i className={icon} />}
       </ButtonStyled>
     )
@@ -123,3 +123,18 @@ export const Button = ({slug, icon, text, url, children, className, slugPrefix, 
 // }
 
 // export const Button = styled(ButtonMerge)``
+
+export const query = graphql`
+  fragment ButtonFragment on SanityButton {
+    _key
+    url
+    text
+    color
+    isGhost
+    isOnDark
+    slug {
+      current
+    }
+    icon
+  }
+`

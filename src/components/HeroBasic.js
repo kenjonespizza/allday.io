@@ -127,17 +127,16 @@ const CenterWrapper = styled(Wrapper)`
 
   ${Container} {
     grid-template-columns: 1fr;
+    
+    > div.text {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
   
-
-  > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
   ${HeroImage} {
     /* margin-top: 100px; */
-    width: 100%
+    width: 100%;
     ${mqs({
       property: 'margin-top',
       valueBase: `${base.spacings.base}px`,
@@ -212,7 +211,7 @@ const HeroBasic = ({data, rawData, children}) => {
         return (
           <CenterWrapper hasGrid theme={isDark ? darkBase : base}>
             <Container>
-              <div>
+              <div className='text'>
                 {subHeading && (
                   <SubHeading>
                     {subHeading}

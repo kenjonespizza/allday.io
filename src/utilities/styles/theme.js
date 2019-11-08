@@ -88,7 +88,8 @@ export const base = {
     base: 40,
     sectionS: 80,
     sectionM: 100,
-    sectionL: 150
+    sectionL: 150,
+    heading: 40
   },
   shadows: {
     box: `0px 10px 35px ${rgba('black', 0.1)}`
