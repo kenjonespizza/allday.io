@@ -25,8 +25,9 @@ const Button = styled(OriginalButton)`
   position: relative;
 
   &:hover {
-    background-color: ${props => props.textColor} !important;
-    color: ${props => props.color} !important;
+    background-color: transparent !important;
+    border-color: ${props => props.textColor} !important;
+    color: ${props => props.textColor} !important;
   }
 `
 
@@ -88,9 +89,9 @@ background: transparent;
     }
 
     ${Button} {
-      background-color: transparent;
       border-color: ${props => props.textColor};
-      color: ${props => props.textColor};
+      background-color: ${props => props.textColor};
+      color: ${props => props.color} !important;
     }
   }
 

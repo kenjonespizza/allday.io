@@ -70,6 +70,10 @@ export const ButtonStyles = css`
     font-size: 16px;
     margin-left: 10px;
   }
+
+  &.isTextBox {
+    margin-top: ${base.spacings.base}px;
+  }
 `
 
 export const LinkButtonStyled = styled(Link)`
@@ -87,19 +91,19 @@ export const Button = ({slug, icon, text, url, children, className, slugPrefix, 
     const slugPre = slugPrefix || ''
 
     return (
-      <LinkButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark} className={className} to={slug && `${slugPre}/${slug.current}`}>
+      <LinkButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} className={className} to={slug && `${slugPre}/${slug.current}`}>
         {children || text}  {icon && <i className={icon} />}
       </LinkButtonStyled>
     )
   } else if (url) {
     return (
-      <AButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark} className={className} href={url}>
+      <AButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} className={className} href={url}>
         {children || text}  {icon && <i className={icon} />}
       </AButtonStyled>
     )
   } else {
     return (
-      <ButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark} as='button' className={className}>
+      <ButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} as='button' className={className}>
         {children || text}  {icon && <i className={icon} />}
       </ButtonStyled>
     )

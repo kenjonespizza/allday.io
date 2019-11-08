@@ -46,7 +46,7 @@ const serializers = {
     button: (button) => {
       console.log('button:', button)
       return (
-        <Button key={button._key} isDark='false' {...button.node} />
+        <Button key={button._key} className='isTextBox' isDark='false' {...button.node} />
       )
     },
     block: (props) => {
