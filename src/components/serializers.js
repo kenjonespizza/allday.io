@@ -44,13 +44,11 @@ const serializers = {
       )
     },
     button: (button) => {
-      console.log('button:', button)
       return (
         <Button key={button._key} className='isTextBox' isDark='false' {...button.node} />
       )
     },
     block: (props) => {
-      console.log('props:', props)
       if (props.node.style === 'h1') {
         return (
           <H1 as='h2'>{props.children}</H1> // This is custome component

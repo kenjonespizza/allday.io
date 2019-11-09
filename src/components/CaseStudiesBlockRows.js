@@ -3,7 +3,7 @@ import styled, {withTheme} from 'styled-components'
 import {getContrast, rgba, invert} from 'polished'
 import {Link} from 'gatsby'
 
-import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, media, transition} from '../utilities/styles/'
+import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, darkBase, media, transition} from '../utilities/styles/'
 import {Button as OriginalButton, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper as CaseStudyWrapper, Container as CaseStudyContainer} from '../elements/'
 import ServiceBox from './ServiceBox'
 
@@ -91,7 +91,7 @@ background: transparent;
     ${Button} {
       border-color: ${props => props.textColor};
       background-color: ${props => props.textColor};
-      color: ${props => props.color} !important;
+      color: ${props => props.bg};
     }
   }
 
@@ -123,23 +123,23 @@ const Container = styled(CaseStudyContainer)`
   padding-right: calc(${base.spacings.base}px + 20px);
 `
 
-const CaseStudiesRow = ({theme, data, rawData}) => {
-  const {caseStudies, headingBlock} = data
-  console.log('headingBlock:', headingBlock)
+const CaseStudiesBlockRows = ({data, rawData}) => {
+  const {caseStudies, headingBlock, isDark} = data
+  console.log('data:', data)
 
   return (
     <>
       {headingBlock && (headingBlock.heading || headingBlock.subHeading) && (
-        <Wrapper theme={base} noSpace hasGrid>
+        <Wrapper theme={isDark ? darkBase : base} noSpaceBottom hasGrid>
           <HeadingBlock {...headingBlock} />
         </Wrapper>
       )}
-      <Wrap hasGrid noSpace>
+      <Wrap theme={isDark ? darkBase : base} hasGrid noSpace>
         {caseStudies && caseStudies.map((caseStudy, i) => {
           const hex = caseStudy.color && caseStudy.color.hex ? caseStudy.color.hex : base.colors.black
           const textColor = getContrast(hex, base.colors.white) > 2 ? base.colors.white : base.colors.black
           return (
-            <Wrapper key={caseStudy._id + i} theme={base} bg={hex} textColor={textColor}>
+            <Wrapper key={caseStudy._id + i} theme={isDark ? darkBase : base} bg={hex} textColor={textColor}>
               <OverlayLink to={`/work-samples/${caseStudy.pageInfo.slug.current}`} />
               <Block>
 
@@ -165,4 +165,4 @@ const CaseStudiesRow = ({theme, data, rawData}) => {
   )
 }
 
-export default withTheme(CaseStudiesRow)
+export default withTheme(CaseStudiesBlockRows)

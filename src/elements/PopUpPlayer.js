@@ -28,7 +28,7 @@ class PopUpPlayer extends Component {
             margin: 'auto'
           },
           overlay: {
-            background: 'rgba(0, 0, 0, 0.5)',
+            background: base.colors.black,
             padding: 0
           },
           closeButton: {

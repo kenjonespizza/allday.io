@@ -46,7 +46,6 @@ const VideoHolderWrap = styled.div`
 
 export const VideoHolder = ({video, className, children}) => {
   const [isOpen, toggleOpen] = useState(false)
-  console.log('isOpen:', isOpen)
 
   return (
     <VideoHolderWrap onClick={() => toggleOpen(!isOpen)} className={className}>

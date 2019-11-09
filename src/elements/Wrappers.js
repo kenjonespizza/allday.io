@@ -9,7 +9,7 @@ const StyledWrapper = styled.section`
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};
   position: relative;
-  /* overflow: hidden; */
+  overflow: auto;
   padding-top: ${base.spacings.sectionS}px;
   padding-bottom: ${base.spacings.sectionS}px;
   z-index: 2;
@@ -67,6 +67,14 @@ const StyledWrapper = styled.section`
     padding-bottom: 0 !important;
   `}
 
+  ${({noSpaceBottom}) => noSpaceBottom && `
+    padding-bottom: 0 !important;
+  `}
+
+  ${({noSpaceTop}) => noSpaceTop && `
+    padding-top: 0 !important;
+  `}
+
   
 
   p {
@@ -99,7 +107,7 @@ const StyledWrapperComponent = (props) => {
 }
 
 export const Wrapper = (props) => {
-  const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor, zIndex, halfSpace} = props
+  const {theme, hasGrid, extraSpace, noSpace, noSpaceBottom, children, className, backgroundColor, lineColor, zIndex, halfSpace} = props
   if (theme) {
     return (
       <ThemeProvider theme={theme}>

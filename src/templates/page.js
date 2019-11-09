@@ -96,28 +96,6 @@ export const query = graphql`
             ...ButtonFragment
           }
         }
-        ... on SanityCaseStudiesBlock {
-          _key
-          _type
-          headingBlock {
-            heading
-            subHeading
-          }
-          button {
-            ...ButtonFragment
-          }
-          caseStudies {
-            pageInfo {
-              slug {
-                current
-              }
-              pageName
-            }
-            title
-            excerpt
-            _id
-          }
-        }
         ... on SanityHeroBasic {
           _key
           _type
@@ -179,9 +157,14 @@ export const query = graphql`
           heading
           isDark
         }
-        ... on SanityCaseStudiesRow {
+        ... on SanityCaseStudiesBlock {
           _key
           _type
+          layout
+          headingBlock {
+            heading
+            subHeading
+          }
           caseStudies {
             color {
               hex
@@ -189,12 +172,25 @@ export const query = graphql`
             title
             excerpt
             _id
+            _key
             pageInfo {
               slug {
                 current
               }
               pageName
             }
+            projectImage: image {
+              alt
+              asset {
+                fluid(maxWidth: 800) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+          }
+          isDark
+          button {
+            ...ButtonFragment
           }
         }
         ... on SanityFormContact {

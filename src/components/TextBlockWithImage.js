@@ -166,8 +166,11 @@ const TextBlockWithImage = ({data, rawData, children}) => {
     const {isDark, textBlockImage, imagePosition, video} = data
     const {text} = rawData
 
+    const hasImage = !!((textBlockImage && textBlockImage.asset.fluid))
+    const hasVideo = !!((video && video.url))
+
     // If hero has image
-    if (textBlockImage || video.url) {
+    if (hasImage || hasVideo) {
       // if layout is 'fullSpan'
       if (imagePosition === 'fullSpan') {
         return (
@@ -179,10 +182,10 @@ const TextBlockWithImage = ({data, rawData, children}) => {
                     <BlockContent blocks={text || []} />
                   </Text>}
               </Container>
-              {textBlockImage && !video.url && (
+              {hasImage && !hasVideo && (
                 <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
               )}
-              {video.url && (
+              {hasVideo && (
                 <VideoHolder video={video}>
                   <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                 </VideoHolder>
@@ -196,10 +199,10 @@ const TextBlockWithImage = ({data, rawData, children}) => {
             <LeftRightSpanWrapper imagePosition={imagePosition} hasGrid theme={isDark ? darkBase : base}>
               {imagePosition === 'left' && (
                 <>
-                  {textBlockImage && !video.url && (
+                  {hasImage && !hasVideo && (
                     <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                   )}
-                  {video && video.url && (
+                  {hasVideo && (
                     <VideoHolder video={video}>
                       <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                     </VideoHolder>
@@ -216,10 +219,10 @@ const TextBlockWithImage = ({data, rawData, children}) => {
               </Container>
               {imagePosition === 'right' && (
                 <>
-                  {textBlockImage && !video.url && (
+                  {hasImage && !hasVideo && (
                     <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                   )}
-                  {video && video.url && (
+                  {hasVideo && (
                     <VideoHolder video={video}>
                       <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                     </VideoHolder>
@@ -239,10 +242,10 @@ const TextBlockWithImage = ({data, rawData, children}) => {
                     <BlockContent blocks={text || []} />
                   </Text>}
               </div>
-              {textBlockImage && !video.url && (
+              {hasImage && !hasVideo && (
                 <TextBlockImage fluid={{...textBlockImage.asset.fluid, aspectRatio: 16 / 9}} alt={textBlockImage.alt} />
               )}
-              {video && (
+              {hasVideo && (
                 <VideoHolder video={video}>
                   <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                 </VideoHolder>

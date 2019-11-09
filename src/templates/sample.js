@@ -8,7 +8,8 @@ import {Wrapper, HeadingBlock, SubHeading, H1} from '../elements'
 import {base} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
-import CaseStudiesBlock from '../components/CaseStudiesBlock'
+import CaseStudiesBlockRows from '../components/CaseStudiesBlockRows'
+import CaseStudiesBlockBlocks from '../components/CaseStudiesBlockBlocks'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
@@ -170,14 +171,18 @@ export default props => {
                 switch (Component) {
                   case 'HeroHome':
                     return <HeroHome key={block._key} data={block} />
-                  case 'HeadingBlock':
-                    return <HeadingBlock key={block._key} data={block} />
+                  // case 'HeadingBlock':
+                  //   return <HeadingBlock key={block._key} data={block} />
                   case 'ServicesBlock':
                     return <ServicesBlock key={block._key} data={block} />
                   case 'ReviewsBlock':
                     return <ReviewsBlock key={block._key} data={block} />
                   case 'CaseStudiesBlock':
-                    return <CaseStudiesBlock key={block._key} data={block} />
+                    if (block.layout === 'row') {
+                      return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />
+                    } else {
+                      return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} />
+                    }
                   case 'Banner1':
                     return <Banner1 key={block._key} data={block} />
                   case 'HeroBasic':

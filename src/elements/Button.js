@@ -72,7 +72,7 @@ export const ButtonStyles = css`
   }
 
   &.isTextBox {
-    margin-top: ${base.spacings.base}px;
+    margin-top: ${base.spacings.base / 2}px;
   }
 `
 

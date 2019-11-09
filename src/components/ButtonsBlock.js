@@ -28,7 +28,7 @@ const ButtonsBlock = ({data}) => {
       <Container>
 
         {(heading || subHeading) && (
-          <HeadingBlock data={headingBlock} />
+          <HeadingBlock {...headingBlock} />
         )}
 
         {buttons && (

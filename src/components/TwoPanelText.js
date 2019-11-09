@@ -3,7 +3,7 @@ import styled, {withTheme} from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
 import BlockContent from './BlockContent'
-import {Wrapper as TwoPanelTextWrapper, H1, SubHeading, Container as TwoPanelTextContainer, HeadingBlock} from '../elements'
+import {Wrapper as TwoPanelTextWrapper, H1, H2, H3, H4, H5, H6, SubHeading, Container as TwoPanelTextContainer, HeadingBlock} from '../elements'
 import {base, media, darkBase} from '../utilities/styles'
 
 const Wrapper = styled(TwoPanelTextWrapper)`
@@ -25,17 +25,17 @@ const Container = styled(TwoPanelTextContainer)`
     }
   }
   
-  ${H1} {
+  ${H1}, ${H2}, ${H3}, ${H4}, ${H5}, ${H6} {
     grid-column: 1 / span 2;
     grid-row: 2 / span 1;
     /* font-size: 70px; */
-    color: ${props => props.textColor};
+    color: ${props => props.textColor} !important;
   }
   
   p {
     grid-column: 1 / span 3;
     grid-row: 3 / span 1;
-    margin-top: ${base.spacings.base};
+    margin-top: ${base.spacings.base}px;
     color: ${props => props.textColor};
     /* color: ${props => props.textColor && rgba(props.textColor, 0.8)}; */
 
@@ -73,7 +73,7 @@ const TwoPanelText = (props) => {
   return (
     <Wrapper hasGrid lineColor={textColor} backgroundColor={bgColor} theme={data.isDark ? darkBase : base}>
       <Container textColor={textColor}>
-        {data.headingBlock && <HeadingBlock left data={data.headingBlock} />}
+        {data.headingBlock && <HeadingBlock left {...data.headingBlock} />}
 
         <SidesWrap>
           {rawData.leftText &&

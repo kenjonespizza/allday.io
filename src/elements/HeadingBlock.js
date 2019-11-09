@@ -30,10 +30,8 @@ const SubHeading = styled(StyledSubHeading)`
   margin-bottom: 10px;
 `
 
-export const HeadingBlock = ({children, left, data, className}) => {
-  if (data && (data.heading || data.subHeading)) {
-    const {heading, subHeading} = data
-
+export const HeadingBlock = ({children, left, heading, subHeading, className}) => {
+  if (heading || subHeading) {
     return (
       <StlyedHeadingBlock id='HeadingBlock' left={left} className={className}>
         {subHeading && (

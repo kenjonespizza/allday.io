@@ -6,7 +6,8 @@ import {Wrapper, HeadingBlock} from '../elements'
 import {base} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
-import CaseStudiesBlock from '../components/CaseStudiesBlock'
+import CaseStudiesBlockRows from '../components/CaseStudiesBlockRows'
+import CaseStudiesBlockBlocks from '../components/CaseStudiesBlockBlocks'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
@@ -14,15 +15,14 @@ import TwoPanelText from '../components/TwoPanelText'
 import TextBlock1 from '../components/TextBlock1'
 import TextBlockWithImage from '../components/TextBlockWithImage'
 import Gallery1 from '../components/Gallery1'
-import CaseStudiesRow from '../components/CaseStudiesRow'
+// import CaseStudiesRow from '../components/CaseStudiesRow'
 import ContactForm from '../components/ContactForm'
 import Seo from '../components/Seo'
 import ButtonsBlock from '../components/ButtonsBlock'
 
 const Page = ({pageProps}) => {
-  console.log('pageProps:', pageProps)
   const {_rawBlocks, blocks, seo} = pageProps.data.page
-  console.log('seo:', seo)
+
   return (
     <Layout>
 
@@ -42,14 +42,18 @@ const Page = ({pageProps}) => {
             switch (Component) {
               case 'HeroHome':
                 return <HeroHome key={block._key} data={block} />
-              case 'HeadingBlock':
-                return <HeadingBlock key={block._key} data={block} />
+              // case 'HeadingBlock':
+              //   return <HeadingBlock key={block._key} data={block} />
               case 'ServicesBlock':
                 return <ServicesBlock key={block._key} data={block} />
               case 'ReviewsBlock':
                 return <ReviewsBlock key={block._key} data={block} />
               case 'CaseStudiesBlock':
-                return <CaseStudiesBlock key={block._key} data={block} />
+                if (block.layout === 'row') {
+                  return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />
+                } else {
+                  return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} />
+                }
               case 'Banner1':
                 return <Banner1 key={block._key} data={block} />
               case 'HeroBasic':
@@ -62,8 +66,8 @@ const Page = ({pageProps}) => {
                 return <TextBlock1 key={block._key} data={block} rawData={rawData} />
               case 'TextBlockWithImage':
                 return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
-              case 'CaseStudiesRow':
-                return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
+              // case 'CaseStudiesRow':
+              //   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
               case 'FormContact':
                 return <ContactForm key={block._key} data={block} rawData={rawData} />
               case 'ButtonsBlock':
