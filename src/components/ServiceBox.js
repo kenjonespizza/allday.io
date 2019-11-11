@@ -29,6 +29,7 @@ const Name = styled.span`
   ${media.medium`
     padding: 20px 0 0 30px;
     font-size: 32px;
+    line-height: 1.5;
   `}
 `
 

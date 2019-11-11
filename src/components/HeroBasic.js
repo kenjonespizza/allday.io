@@ -26,6 +26,7 @@ const Container = styled(HeroBasicContainer)`
     grid-column: 1 / span 3;
     grid-row: 2 / span 1;
     font-size: 55px;
+    margin-top: 0;
 
     ${mqs({
       property: 'font-size',

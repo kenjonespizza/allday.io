@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components'
 
 import {base, media} from '../utilities/styles'
+console.log('base:', base)
 
 export const HeadingBase = css`
   margin: ${base.spacings.heading}px 0 ${base.spacings.heading / 2}px};

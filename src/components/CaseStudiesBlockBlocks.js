@@ -6,15 +6,13 @@ import {rgba} from 'polished'
 
 import {getContrastTextColor} from '../utilities/helpers'
 import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, darkBase, media, transition} from '../utilities/styles/'
-import {Button, H1, H2, H3, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container} from '../elements/'
+import {Button, H1, H2, H3, SubHeading, HeadingBlock, ButtonBlock, Wrapper, Container as CaseStudiesContainer} from '../elements/'
 
 const CaseStudies = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
   padding: 0;
-
-  
 
   ${media.medium`
     grid-gap: ${base.spacings.base}px;
@@ -69,18 +67,15 @@ const Number = styled.span`
   border-radius: 90px;
   border: 2px solid #fff;
   text-align: center;
+  line-height: 1.5;
   ${transition({})}
 `
 
 const Name = styled.span`
-
   font-size: 25px;
   font-weight: ${base.fontWeights.bold};
   color: ${base.colors.black};
-
-  ${({white}) => white && `
-    color: ${base.colors.white};
-  `}
+  line-height: 1.5;
 
   ${media.medium`
     font-size: 32px;
@@ -107,20 +102,42 @@ const StyledServiceBox = styled.li`
   &:after {
     content: '';
     position: absolute;
-    left: 0;
+    left: auto;
+    right: 0;
     top: 0;
     width: 10px;
+    width: 0px;
     height: 100%;
     background-color: ${props => props.color && props.color};
     z-index: 1;
     ${transition({})}
   }
 
+  .bar {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0px;
+    height: 100%;
+    z-index: 1;
+    background-color: ${props => props.color && props.color};
+    ${transition({duration: '.2s', delay: '.1s'})};
+  }
+
   &:hover {
     &:after {
       width: 100%;
+      right: auto;
+      left: 0;
+    }
+
+    .bar {
+      width: 0;
+      ${transition({duration: '.5s', delay: '0s'})};
     }
   }
+
 `
 
 const ServiceBoxInner = styled(Link)`
@@ -142,6 +159,8 @@ const ServiceBoxInner = styled(Link)`
   
   ${Name}{
     color: ${props => props.hasimage === 'true' ? props.theme.colors.white : props.black};
+    color: ${props => props.hasimage === 'true' ? props.theme.colors.white : props.black};
+    text-shadow: ${props => props.hasimage === 'true' ? `0 0 20px ${rgba(base.colors.black, 0.2)}, 0 2px 2px ${rgba(base.colors.black, 0.3)}` : ''};
   }
 
   &:hover {
@@ -178,8 +197,23 @@ const BoxImg = styled(Image)`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: ${rgba(base.colors.black, 0.5)}
+    background-color: ${rgba(base.colors.black, 0)}
   }
+`
+
+const Container = styled(CaseStudiesContainer)`
+  max-width: none;
+  /* width: 100vw; */
+  padding: 0;
+
+  ${CaseStudies} {
+    grid-gap: 0;
+  }
+
+  ${StyledServiceBox}:after {
+    /* width: 0; */
+  }
+
 `
 
 const CaseStudiesBlockBlocks = ({data, rawData}) => {
@@ -201,6 +235,7 @@ const CaseStudiesBlockBlocks = ({data, rawData}) => {
                   </Name>
                   <Number>{caseStudy.title}</Number>
                 </ServiceBoxInner>
+                <div className='bar' />
               </StyledServiceBox>
             )
           })}
