@@ -65,7 +65,7 @@ const Number = styled.span`
   align-self: flex-end;
   padding: 10px 20px;
   border-radius: 90px;
-  border: 2px solid #fff;
+  /* border: 2px solid #fff; */
   text-align: center;
   line-height: 1.5;
   ${transition({})}
@@ -155,6 +155,7 @@ const ServiceBoxInner = styled(Link)`
 
   ${Number}{
     /* border-color: ${props => props.color ? props.color : props.black}; */
+    background-color: ${props => props.color && props.color};
   }
   
   ${Name}{
@@ -172,7 +173,7 @@ const ServiceBoxInner = styled(Link)`
 
     ${Number} {
       border-color: transparent;
-      background-color: transparent;
+      /* background-color: transparent; */
       color: ${props => props.textcolor ? props.textcolor : props.theme.colors.black};
     }}
   }
@@ -197,26 +198,29 @@ const BoxImg = styled(Image)`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: ${rgba(base.colors.black, 0)}
+    background-color: ${rgba(base.colors.black, 0.2)}
   }
 `
 
 const Container = styled(CaseStudiesContainer)`
-  max-width: none;
-  padding: 0;
+  ${({layout}) => (layout === 'fullBlock') && `
+    max-width: none;
+    padding: 0;
 
-  ${CaseStudies} {
-    grid-gap: 0;
-  }
+    ${CaseStudies} {
+      grid-gap: 0;
+    }
+  `}
 `
 
 const CaseStudiesBlockBlocks = ({data, rawData}) => {
-  const {caseStudies, headingBlock, isDark, button} = data
+  const {caseStudies, headingBlock, isDark, button, layout} = data
+  console.log('layout:', layout)
 
   return (
     <Wrapper hasGrid theme={isDark ? darkBase : base} addSpace>
       {headingBlock && (headingBlock.heading || headingBlock.subHeading) && <HeadingBlock {...headingBlock} />}
-      <Container>
+      <Container layout={layout}>
         <CaseStudies count={caseStudies.length}>
           {caseStudies && caseStudies.map((caseStudy, i) => {
             const textColor = getContrastTextColor(caseStudy.color.hex)

@@ -58,7 +58,7 @@ const LogosWrap = styled.ul`
     a {
       width: 60%;
 
-      img {
+      img, .notSVG {
         width: 100%;
         max-height: 120px;
         ${(transition({duration: '.2s'}))} !important;
@@ -73,7 +73,11 @@ const LogosWrap = styled.ul`
 
         .notSVG img {
           top: 50% !important;
-          transform: translateY(-50%) scale(1.1);
+          transform: translateY(-50%);
+        }
+
+        .notSVG {
+          transform: scale(1.1);
         }
       }
 

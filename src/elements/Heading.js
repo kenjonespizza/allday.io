@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components'
 
-import {base, media} from '../utilities/styles'
+import {base} from '../utilities/styles/theme'
+import {media} from '../utilities/styles/media'
 
 export const HeadingBase = css`
   margin: ${props => props.theme.spacings.heading}px 0 ${props => props.theme.spacings.heading / 2}px};
