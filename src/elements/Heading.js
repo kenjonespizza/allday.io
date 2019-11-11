@@ -1,10 +1,9 @@
 import styled, {css} from 'styled-components'
 
 import {base, media} from '../utilities/styles'
-console.log('base:', base)
 
 export const HeadingBase = css`
-  margin: ${base.spacings.heading}px 0 ${base.spacings.heading / 2}px};
+  margin: ${props => props.theme.spacings.heading}px 0 ${props => props.theme.spacings.heading / 2}px};
 
   &:first-child {
     margin-top: 0 ;

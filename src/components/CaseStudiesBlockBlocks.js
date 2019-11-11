@@ -203,17 +203,11 @@ const BoxImg = styled(Image)`
 
 const Container = styled(CaseStudiesContainer)`
   max-width: none;
-  /* width: 100vw; */
   padding: 0;
 
   ${CaseStudies} {
     grid-gap: 0;
   }
-
-  ${StyledServiceBox}:after {
-    /* width: 0; */
-  }
-
 `
 
 const CaseStudiesBlockBlocks = ({data, rawData}) => {
