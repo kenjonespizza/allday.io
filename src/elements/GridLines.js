@@ -59,9 +59,11 @@ const StyledGrid = styled.div`
     /* width: calc(100% - 1px); */
     transform: translateX(-1px);
     border-right: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, lineOpacity)} solid 1px;
+    width: calc(100% + 1px);
 
     ${media.xLarge`
         transform: translateX(0);
+        width: 100%;
       `}
 
     ${({lineColor}) => lineColor && `

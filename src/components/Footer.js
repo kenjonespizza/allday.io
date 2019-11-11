@@ -87,10 +87,20 @@ const FooterCta = styled.div`
       align-items: center;
     }
 
+    a, h3 {
+      ${transition({})};
+    }
+
   &:hover {
     background-color: ${base.colors.seal};
 
-    a {
+    h3 {
+      transform: scale(1.05);
+    }
+  }
+
+  a:hover {
+    h3 {
       transform: scale(1.1);
     }
   }
@@ -118,9 +128,9 @@ const Footer = () => {
                 Ready to get the ball rolling?
               </SubHeading>
               <Link to='/get-in-touch'>
-                <H2>
+                <H3>
                 Let us know what you need!
-                </H2>
+                </H3>
               </Link>
             </HeadingBlockStyled>
           </div>

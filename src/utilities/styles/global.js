@@ -114,9 +114,12 @@ export const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.colors.accentHover};
   }
 
-  p {
+  p, li {
     line-height: 2;
-    font-size: ;
+  }
+
+  ul {
+    list-style-type: square;
   }
 
   {${Object.keys(colorsList).map(function (color) {

@@ -20,8 +20,8 @@ const StlyeButtonBlock = styled.div`
   })};
 `
 
-export const ButtonBlock = ({children, left}) => (
-  <StlyeButtonBlock left={left}>
+export const ButtonBlock = ({children, left, className}) => (
+  <StlyeButtonBlock left={left} className={className}>
     {children}
   </StlyeButtonBlock>
 )

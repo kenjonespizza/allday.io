@@ -19,6 +19,7 @@ import Gallery1 from '../components/Gallery1'
 import ContactForm from '../components/ContactForm'
 import Seo from '../components/Seo'
 import ButtonsBlock from '../components/ButtonsBlock'
+import LogoGrid from '../components/LogoGrid'
 
 const Page = ({pageProps}) => {
   const {_rawBlocks, blocks, seo} = pageProps.data.page
@@ -72,6 +73,8 @@ const Page = ({pageProps}) => {
                 return <ContactForm key={block._key} data={block} rawData={rawData} />
               case 'ButtonsBlock':
                 return <ButtonsBlock key={block._key} data={block} />
+              case 'LogoGrid':
+                return <LogoGrid key={block._key} data={block} rawData={rawData} />
               default:
                 return null
             }

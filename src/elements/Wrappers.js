@@ -77,7 +77,7 @@ const StyledWrapper = styled.section`
 
   
 
-  p {
+  p, li {
     /* color: ${props => props.theme.colors.text}; */
     color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 0.7)};
 

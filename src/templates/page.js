@@ -213,6 +213,9 @@ export const query = graphql`
             ...ButtonFragment
           }
         }
+        ... on SanityLogoGrid {
+          ...LogoGridFragment
+        }
       }
     }
   }
