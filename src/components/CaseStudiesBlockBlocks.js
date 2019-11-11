@@ -62,7 +62,7 @@ const CaseStudies = styled.ul`
 const Number = styled.span`
   font-size: 17px;
   color: ${props => props.theme.colors.white};
-  align-self: flex-end;
+  align-self: flex-start;
   padding: 10px 20px;
   border-radius: 90px;
   /* border: 2px solid #fff; */
@@ -110,7 +110,7 @@ const StyledServiceBox = styled.li`
     height: 100%;
     background-color: ${props => props.color && props.color};
     z-index: 1;
-    ${transition({})}
+    ${transition({duration: '.4s'})}
   }
 
   .bar {

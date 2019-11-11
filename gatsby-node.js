@@ -30,7 +30,8 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
       path: slug,
       component: require.resolve('./src/templates/page.js'),
       context: {
-        slug
+        slug,
+        pageType: 'page'
       }
     })
   })
@@ -81,7 +82,8 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
         slugName,
         slug,
         next,
-        previous
+        previous,
+        pageType: 'services'
       }
     })
   })
@@ -139,11 +141,13 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
 
     createPage({
       path: slug,
-      component: require.resolve('./src/templates/sample.js'),
+      // component: require.resolve('./src/templates/sample.js'),
+      component: require.resolve('./src/templates/page.js'),
       context: {
         slug: slugName,
         next,
-        previous
+        previous,
+        pageType: 'caseStudy'
       }
     })
   })
