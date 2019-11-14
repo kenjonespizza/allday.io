@@ -83,11 +83,36 @@ const Name = styled.span`
   `}
 `
 
+const BoxImg = styled(Image)`
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  ${transition({})};
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: ${rgba(base.colors.black, 0.2)} */
+  }
+
+  &:hover {
+
+  }
+`
+
 const StyledServiceBox = styled.li`
   position: relative;
   background-color: ${base.colors.white};
-  box-shadow: ${base.shadows.box};
+  /* box-shadow: ${base.shadows.box}; */
   list-style: none;
+  overflow: hidden;
   ${transition({})};
 
   &:before {
@@ -109,6 +134,7 @@ const StyledServiceBox = styled.li`
     width: 100%;
     height: 100%;
     background-color: ${props => rgba(base.colors.black, 0.5)};
+    background-color: #848F9E;
     ${transition({duration: '.4s'})}
   }
 
@@ -140,6 +166,10 @@ const StyledServiceBox = styled.li`
     .bar {
       background-color: ${props => rgba(props.color && props.color, 0.5)};
       ${transition({duration: '.5s', delay: '0s'})};
+    }
+
+    ${BoxImg} {
+      transform: scale(1.05);
     }
   }
 
@@ -180,8 +210,8 @@ const ServiceBoxInner = styled(Link)`
     ${Number} {
       border-color: transparent;
       background-color: transparent;
-      background-color: ${rgba(base.colors.white, 1)};
-      color: ${props => props.theme.colors.black};
+      background-color: ${rgba(base.colors.black, 0.9)};
+      color: ${props => props.theme.colors.white};
     }}
   }
   /* F7941C */
@@ -189,29 +219,6 @@ const ServiceBoxInner = styled(Link)`
   ${media.medium`
     padding: ${base.spacings.base}px;
   `}
-`
-
-const BoxImg = styled(Image)`
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background-color: ${rgba(base.colors.black, 0.2)} */
-  }
-
-  &:hover {
-
-  }
 `
 
 const Container = styled(CaseStudiesContainer)`
@@ -229,7 +236,7 @@ const CaseStudiesBlockBlocks = ({data, rawData}) => {
   const {caseStudies, headingBlock, isDark, button, layout} = data
 
   return (
-    <Wrapper hasGrid theme={isDark ? darkBase : base} addSpace>
+    <Wrapper theme={isDark ? darkBase : base} addSpace>
       {headingBlock && (headingBlock.heading || headingBlock.subHeading) && <HeadingBlock {...headingBlock} />}
       <Container layout={layout}>
         <CaseStudies count={caseStudies.length}>
