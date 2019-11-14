@@ -2,27 +2,6 @@ import React, {useContext} from 'react'
 import SanityBlockContent from '@sanity/block-content-to-react'
 
 import {YouTubePlayer, H1, H2, H3, H4, H5, H6, Button} from '../elements'
-import {base} from '../utilities/styles'
-// import Figure from './figure'
-
-const BlockRenderer = props => {
-  console.log('props:', props)
-  const style = props.node.style || 'normal'
-
-  // if (/^h\d/.test(style)) {
-  //   const level = style.replace(/[^\d]/g, '')
-  //   return <h2 className={`my-heading level-${level}`}>{props.children}</h2>
-  // }
-
-  // return style === 'blockquote'
-  //   ? <blockquote className="my-block-quote">{props.children}</blockquote>
-  //   : <p className="my-paragraph">{props.children}</p>
-  return props
-
-  // return style === 'h1'
-  //   ? <H1>{props.children}</H1>
-  //   : props
-}
 
 const serializers = {
   types: {

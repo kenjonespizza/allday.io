@@ -157,3 +157,30 @@ const HeroHome = (props) => {
 }
 
 export default HeroHome
+
+export const query = graphql`
+  fragment HeroHomeFragment on SanityHeroHome {
+    _key
+    _type
+    mainText
+    button {
+      ...ButtonFragment
+    }
+    imageLeft {
+      alt
+      asset {
+        fluid(maxWidth: 1600) {
+          ...GatsbySanityImageFluid
+        }
+      }
+    }
+    imageRight {
+      alt
+      asset {
+        fluid(maxWidth: 1600) {
+          ...GatsbySanityImageFluid
+        }
+      }
+    }
+  }
+`

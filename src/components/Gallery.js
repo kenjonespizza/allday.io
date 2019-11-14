@@ -1,15 +1,16 @@
 /* @jsx glam */
 import glam from 'glam'
+import {graphql} from 'gatsby'
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 import Carousel, {Modal, ModalGateway} from 'react-images'
 import Img from 'gatsby-image'
 
-import {Wrapper, H1, H3, SubHeading, Container as Gallery1Container} from '../elements'
+import {Wrapper, H1, H3, SubHeading, Container as GalleryContainer} from '../elements'
 import {base as themeBase, media} from '../utilities/styles'
 
-const Container = styled(Gallery1Container)`
+const Container = styled(GalleryContainer)`
   /* display: grid;
   grid-template-columns: 1fr 1fr; */
   columns: 2 calc(${themeBase.sizes.medium}px / 2);
@@ -61,7 +62,7 @@ const Container = styled(Gallery1Container)`
   }
 `
 
-const Gallery1 = ({data}) => {
+const Gallery = ({data}) => {
   var images = []
   var img = {}
 
@@ -128,4 +129,23 @@ const Gallery1 = ({data}) => {
   )
 }
 
-export default Gallery1
+export default Gallery
+
+export const query = graphql`
+  fragment GalleryFragment on SanityGallery {
+    _key
+    _type
+    image {
+      _key
+      caption
+      alt
+      asset {
+        fluid(maxWidth: 800) {
+          ...GatsbySanityImageFluid
+        }
+        _id
+        url
+      }
+    }
+  }
+`

@@ -1,4 +1,5 @@
 import React from 'react'
+import {graphql} from 'gatsby'
 import styled from 'styled-components'
 
 import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, media} from '../utilities/styles/'
@@ -52,3 +53,31 @@ const ServicesBlock = ({data}) => {
 }
 
 export default ServicesBlock
+
+export const query = graphql`
+  fragment ServicesBlockFragment on SanityServicesBlock {
+    _key
+    _type
+    services {
+      _id
+      name
+      sampleImage {
+        asset {
+          fluid(maxWidth: 700) {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      slug {
+        current
+      }
+    }
+    headingBlock {
+      heading
+      subHeading
+    }
+    button {
+      ...ButtonFragment
+    }
+  }
+`

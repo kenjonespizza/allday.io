@@ -151,7 +151,6 @@ const LogoGrid = ({data}) => {
         {logos && (
           <LogosWrap count={logos.length} columns={columns} convertToBW={convertToBW} isDark={isDark}>
             {logos.map((logo, i) => {
-              console.log('logo:', logo)
               return (
                 <li key={logo._key}>
                   <a href={logo.url} target='_blank' rel='noopener noreferrer'>

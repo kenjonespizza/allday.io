@@ -1,4 +1,5 @@
 import React from 'react'
+import {graphql} from 'gatsby'
 import styled from 'styled-components'
 
 import {Wrapper, Container as ButtonsBlockContainer, HeadingBlock, Button} from '../elements'
@@ -46,3 +47,18 @@ const ButtonsBlock = ({data}) => {
 }
 
 export default ButtonsBlock
+
+export const query = graphql`
+  fragment ButtonsBlockFragment on SanityButtonsBlock {
+    _key
+    _type
+    isDark
+    headingBlock {
+      heading
+      subHeading
+    }
+    buttons {
+      ...ButtonFragment
+    }
+  }
+`

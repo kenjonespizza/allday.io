@@ -1,6 +1,7 @@
 import React from 'react'
+import {graphql, Link} from 'gatsby'
 import styled from 'styled-components'
-import {Link} from 'gatsby'
+
 import Image from 'gatsby-image'
 import {rgba} from 'polished'
 
@@ -64,7 +65,7 @@ const Number = styled.span`
   color: ${props => props.theme.colors.white};
   align-self: flex-start;
   padding: 10px 20px;
-  border-radius: 90px;
+  border-radius: 1px;
   /* border: 2px solid #fff; */
   text-align: center;
   line-height: 1.5;
@@ -83,11 +84,11 @@ const Name = styled.span`
 `
 
 const StyledServiceBox = styled.li`
-  /* background-color: ${props => props.theme.colors.accent}; */
   position: relative;
   background-color: ${base.colors.white};
   box-shadow: ${base.shadows.box};
   list-style: none;
+  ${transition({})};
 
   &:before {
     content: "";
@@ -105,11 +106,9 @@ const StyledServiceBox = styled.li`
     left: auto;
     right: 0;
     top: 0;
-    width: 10px;
-    width: 0px;
+    width: 100%;
     height: 100%;
-    background-color: ${props => props.color && props.color};
-    z-index: 1;
+    background-color: ${props => rgba(base.colors.black, 0.5)};
     ${transition({duration: '.4s'})}
   }
 
@@ -118,22 +117,28 @@ const StyledServiceBox = styled.li`
     position: absolute;
     top: 0;
     left: 0;
-    width: 0px;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 100%; */
     z-index: 1;
-    background-color: ${props => props.color && props.color};
+    background-color: ${props => rgba(props.color && props.color, 0)};
     ${transition({duration: '.2s', delay: '.1s'})};
   }
 
   &:hover {
+    /* background-color: ${props => props.theme.colors.black}; */
+    /* background-color: ${props => props.color && rgba(props.color, 1)}; */
+    /* background: url('https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2285&q=80'); */
+    /* background-size: cover; */
     &:after {
-      width: 100%;
+      /* width: 100%; */
       right: auto;
       left: 0;
+      background-color: ${props => rgba(props.color && props.color, 1)};
+      /* background-color: ${props => rgba(base.colors.black, 1)}; */
     }
 
     .bar {
-      width: 0;
+      background-color: ${props => rgba(props.color && props.color, 0.5)};
       ${transition({duration: '.5s', delay: '0s'})};
     }
   }
@@ -156,6 +161,7 @@ const ServiceBoxInner = styled(Link)`
   ${Number}{
     /* border-color: ${props => props.color ? props.color : props.black}; */
     background-color: ${props => props.color && props.color};
+    background-color: ${rgba(base.colors.black, 0.2)};
   }
   
   ${Name}{
@@ -173,8 +179,9 @@ const ServiceBoxInner = styled(Link)`
 
     ${Number} {
       border-color: transparent;
-      /* background-color: transparent; */
-      color: ${props => props.textcolor ? props.textcolor : props.theme.colors.black};
+      background-color: transparent;
+      background-color: ${rgba(base.colors.white, 1)};
+      color: ${props => props.theme.colors.black};
     }}
   }
   /* F7941C */
@@ -190,6 +197,7 @@ const BoxImg = styled(Image)`
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
 
   &:after {
     content: "";
@@ -198,7 +206,11 @@ const BoxImg = styled(Image)`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: ${rgba(base.colors.black, 0.2)}
+    /* background-color: ${rgba(base.colors.black, 0.2)} */
+  }
+
+  &:hover {
+
   }
 `
 
@@ -215,7 +227,6 @@ const Container = styled(CaseStudiesContainer)`
 
 const CaseStudiesBlockBlocks = ({data, rawData}) => {
   const {caseStudies, headingBlock, isDark, button, layout} = data
-  console.log('layout:', layout)
 
   return (
     <Wrapper hasGrid theme={isDark ? darkBase : base} addSpace>
@@ -252,3 +263,42 @@ const CaseStudiesBlockBlocks = ({data, rawData}) => {
 // 2A2C57
 
 export default CaseStudiesBlockBlocks
+
+export const query = graphql`
+  fragment CaseStudiesBlockFragment on SanityCaseStudiesBlock {
+    _key
+    _type
+    layout
+    headingBlock {
+      heading
+      subHeading
+    }
+    caseStudies {
+      color {
+        hex
+      }
+      title
+      excerpt
+      _id
+      _key
+      pageInfo {
+        slug {
+          current
+        }
+        pageName
+      }
+      projectImage: image {
+        alt
+        asset {
+          fluid(maxWidth: 800) {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+    }
+    isDark
+    button {
+      ...ButtonFragment
+    }
+  }
+`

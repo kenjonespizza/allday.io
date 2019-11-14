@@ -1,4 +1,5 @@
 import React from 'react'
+import {graphql} from 'gatsby'
 import styled from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 import Image from 'gatsby-image'
@@ -281,3 +282,24 @@ const TextBlockWithImage = ({data, rawData, children}) => {
 }
 
 export default TextBlockWithImage
+
+export const query = graphql`
+  fragment TextBlockWithImageFragment on SanityTextBlockWithImage {
+    _key
+    _type
+    textBlockImage: image {
+      alt
+      asset {
+        fluid(maxWidth: 1600) {
+          ...GatsbySanityImageFluid
+        }
+      }
+    }
+    video {
+      url
+      _type
+    }
+    imagePosition
+    isDark
+  }
+`

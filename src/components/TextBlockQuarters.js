@@ -1,12 +1,13 @@
 import React from 'react'
+import {graphql} from 'gatsby'
 import styled from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
-import {Wrapper, H1, H2, H3, SubHeading, Container as TextBlock1Container} from '../elements'
+import {Wrapper, H1, H2, H3, SubHeading, Container as TextBlockQuartersContainer} from '../elements'
 import {base, darkBase, media} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
-const Container = styled(TextBlock1Container)`
+const Container = styled(TextBlockQuartersContainer)`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: calc(${base.spacings.base}px / 2);
@@ -56,7 +57,7 @@ const Text = styled.div`
   }
 `
 
-const TextBlock1 = (props) => {
+const TextBlockQuarters = (props) => {
   const {data, rawData} = props
   const {heading, isDark} = data
   const {text} = rawData
@@ -74,4 +75,13 @@ const TextBlock1 = (props) => {
   )
 }
 
-export default TextBlock1
+export default TextBlockQuarters
+
+export const query = graphql`
+  fragment TextBlockQuartersFragment on SanityTextBlockQuarters {
+    _key
+    _type
+    heading
+    isDark
+  }
+`

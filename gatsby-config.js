@@ -78,7 +78,8 @@ module.exports = {
         sources: {
           local: true
         },
-        basePath: '/blog',
+        basePath: '/design-studio-blog',
+        rootPath: '/',
         contentPosts: 'content/posts',
         contentAuthors: 'content/authors',
         authorsPage: true,

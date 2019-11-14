@@ -8,7 +8,7 @@ import LogoFile from '../../static/AllDayLogo.svg'
 import {transition, base, bounce, pulse, lightWatermelly, media} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
-import {GridLines, Wrapper} from '../elements'
+import {GridLines, Wrapper, Button} from '../elements'
 import {mapEdgesToNodes} from '../utilities/helpers'
 
 function colorSwap (props) {
@@ -219,7 +219,7 @@ const NavBar = () => {
               )
             })}
             <li key='blog'>
-              <Link activeClassName='active' partiallyActive to='/blog'>Blog</Link>
+              <Link activeClassName='active' partiallyActive to='/design-studio-blog'>Blog</Link>
             </li>
             {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
           </ul>

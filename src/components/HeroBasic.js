@@ -1,4 +1,5 @@
 import React from 'react'
+import {graphql} from 'gatsby'
 import styled from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 import Image from 'gatsby-image'
@@ -297,3 +298,22 @@ const HeroBasic = ({data, rawData, children}) => {
 }
 
 export default HeroBasic
+
+export const query = graphql`
+  fragment HeroBasicFragment on SanityHeroBasic {
+    _key
+    _type
+    heading
+    subHeading
+    heroImage: image {
+      alt
+      asset {
+        fluid(maxWidth: 1600) {
+          ...GatsbySanityImageFluid
+        }
+      }
+    }
+    imagePosition
+    isDark
+  }
+`

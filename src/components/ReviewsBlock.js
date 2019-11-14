@@ -110,3 +110,19 @@ const ReviewsBlock = ({data}) => {
 }
 
 export default ReviewsBlock
+
+export const query = graphql`
+  fragment ReviewsBlockFragment on SanityReviewsBlock {
+    _key
+    _type
+    reviews {
+      company
+      quote
+      reviewer
+      _key
+    }
+    button {
+      ...ButtonFragment
+    }
+  }
+`

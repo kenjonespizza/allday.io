@@ -1,4 +1,5 @@
 import React from 'react'
+import {graphql} from 'gatsby'
 import styled from 'styled-components'
 import {rgba} from 'polished'
 
@@ -98,3 +99,14 @@ const ContactForm = (props) => {
 }
 
 export default ContactForm
+
+export const query = graphql`
+  fragment FormContactFragment on SanityFormContact {
+    _key
+    _type
+    redirectLocation {
+      current
+    }
+    text
+  }
+`

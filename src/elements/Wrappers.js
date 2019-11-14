@@ -9,7 +9,8 @@ const StyledWrapper = styled.section`
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};
   position: relative;
-  overflow: auto;
+  /* overflow: auto; */
+  overflow: hidden;
   padding-top: ${base.spacings.sectionS}px;
   padding-bottom: ${base.spacings.sectionS}px;
   z-index: 2;

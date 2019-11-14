@@ -99,14 +99,14 @@ const StyledSlideOutMenu = styled.div`
       a {
         color: ${props => props.theme.colors.white};
         font-size: 25px;
-        padding: 10px 0;
+        /* padding: 10px 0; */
         display: block;
         font-weight: ${base.fontWeights.bold};
         text-transform: uppercase;
         ${transition({})};
 
         ${media.medium`
-          font-size: 45px;
+          font-size: 35px;
         `}
 
         &.active {
@@ -158,7 +158,7 @@ const SlideOutMenu = ({menu}) => {
               }
             })}
             <li key='blog'>
-              <Link activeClassName='active' partiallyActive to='/blog'>Blog</Link>
+              <Link activeClassName='active' partiallyActive to='/design-studio-blog'>Blog</Link>
             </li>
           </ul>
           {/* <ul>

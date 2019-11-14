@@ -14,8 +14,8 @@ import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
 import TwoPanelText from '../components/TwoPanelText'
-import TextBlock1 from '../components/TextBlock1'
-import Gallery1 from '../components/Gallery1'
+import TextBlockQuarters from '../components/TextBlockQuarters'
+import Gallery from '../components/Gallery'
 import Pagination from '../components/Pagination'
 import Seo from '../components/Seo'
 import BlockContent from '../components/BlockContent'
@@ -59,20 +59,7 @@ export const query = graphql`
             isDark
           }
           ... on SanityGallery {
-            _key
-            _type
-            image {
-              _key
-              caption
-              alt
-              asset {
-                fluid(maxWidth: 800) {
-                  ...GatsbySanityImageFluid
-                }
-                _id
-                url
-              }
-            }
+            ...GalleryFragment
           }
           ... on SanityTwoPanelText {
             _key
@@ -82,7 +69,7 @@ export const query = graphql`
               subHeading
             }
           }
-          ... on SanityTextBlock1 {
+          ... on SanityTextBlockQuarters {
             _key
             _type
             heading
@@ -188,12 +175,12 @@ export default props => {
                   case 'HeroBasic':
                     return <HeroBasic key={block._key} data={block} rawData={rawData} />
                   case 'Gallery':
-                    return <Gallery1 key={block._key} data={block} />
+                    return <Gallery key={block._key} data={block} />
                   case 'TwoPanelText':
                     return <TwoPanelText key={block._key} data={block} rawData={rawData} bgColor={color.hex} />
                     // return <TwoPanelText key={block._key} data={block} rawData={rawData} isDark />
-                  case 'TextBlock1':
-                    return <TextBlock1 key={block._key} data={block} rawData={rawData} />
+                  case 'TextBlockQuarters':
+                    return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
                   default:
                     return null
                 }

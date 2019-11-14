@@ -1,4 +1,5 @@
 import React from 'react'
+import {graphql} from 'gatsby'
 import styled, {withTheme} from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
@@ -65,7 +66,7 @@ const SidesWrap = styled.div`
 `
 
 const TwoPanelText = (props) => {
-  const {data, rawData, theme, bgColor} = props
+  const {data, rawData, bgColor} = props
 
   if (bgColor) {
     var textColor = getContrast(bgColor, base.colors.white) > 2 ? base.colors.white : base.colors.black
@@ -91,3 +92,15 @@ const TwoPanelText = (props) => {
 }
 
 export default withTheme(TwoPanelText)
+
+export const query = graphql`
+  fragment TwoPanelTextFragment on SanityTwoPanelText {
+    _key
+    _type
+    isDark
+    headingBlock {
+      heading
+      subHeading
+    }
+  }
+`

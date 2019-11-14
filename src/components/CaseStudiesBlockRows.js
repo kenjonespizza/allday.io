@@ -125,7 +125,6 @@ const Container = styled(CaseStudyContainer)`
 
 const CaseStudiesBlockRows = ({data, rawData}) => {
   const {caseStudies, headingBlock, isDark} = data
-  console.log('data:', data)
 
   return (
     <>
@@ -166,3 +165,5 @@ const CaseStudiesBlockRows = ({data, rawData}) => {
 }
 
 export default withTheme(CaseStudiesBlockRows)
+
+// Graphql fragment for this is defined in /src/components/CaseStudiesBlockBlocks.js

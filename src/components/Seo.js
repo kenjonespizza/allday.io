@@ -1,15 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import {StaticQuery, graphql} from 'gatsby'
 
 const Seo = (props) => {
   const {title, description, keywords, image, author, type, index, url, context, follow} = props
+  console.log('image:', image)
 
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
+        console.log('data.site.globalSeo.image:', data.site.globalSeo.image)
         // URL configuration
         var baseUrl = data.site.globalSeo.baseUrl // Get base url
         var tempUrl = ''
@@ -51,9 +52,11 @@ const Seo = (props) => {
         const metaLang = data.site.globalSeo.lang
         const metaIndex = tempIndex
         const metaFollow = tempFollow
-        const metaImage = image || data.site.globalSeo.image || ''
+        const metaImage = ((image && image.asset && image.asset.url) ? image.asset : false) || data.site.globalSeo.image.asset || ''
         const metaType = type || 'website'
         const metaTwitterId = data.site.socialMediaHandle.twitter || ''
+
+        console.log('metaImage.url:', metaImage.url)
 
         return (
 
@@ -85,7 +88,7 @@ const Seo = (props) => {
               },
               {
                 property: 'og:image',
-                content: `${metaImage.asset.url}?w=630`
+                content: `${metaImage.url}?w=630`
               },
               {
                 name: 'twitter:card',
@@ -124,7 +127,7 @@ const Seo = (props) => {
                     content: keywords.join(', ')
                   }
                   : []
-            )}
+              )}
           >
             {/* <meta property='og:url' content='http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' />
             <meta property='og:type' content='article' />
@@ -173,5 +176,23 @@ const detailsQuery = graphql`
         twitter
       }
     }
+  }
+`
+
+export const query = graphql`
+  fragment SeoFragment on SanitySeo {
+    title
+    url
+    type
+    keywords
+    index
+    follow
+    image {
+      asset {
+        url
+      }
+    }
+    description
+    author
   }
 `

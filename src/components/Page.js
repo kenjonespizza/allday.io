@@ -12,9 +12,9 @@ import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
 import HeroBasic from '../components/HeroBasic'
 import TwoPanelText from '../components/TwoPanelText'
-import TextBlock1 from '../components/TextBlock1'
+import TextBlockQuarters from '../components/TextBlockQuarters'
 import TextBlockWithImage from '../components/TextBlockWithImage'
-import Gallery1 from '../components/Gallery1'
+import Gallery from '../components/Gallery'
 // import CaseStudiesRow from '../components/CaseStudiesRow'
 import ContactForm from '../components/ContactForm'
 import Seo from '../components/Seo'
@@ -23,6 +23,7 @@ import LogoGrid from '../components/LogoGrid'
 
 const Page = ({pageProps}) => {
   const {_rawBlocks, blocks, seo} = pageProps.data.page
+  console.log('seo:', seo)
 
   return (
     <Layout>
@@ -60,11 +61,11 @@ const Page = ({pageProps}) => {
               case 'HeroBasic':
                 return <HeroBasic key={block._key} data={block} rawData={rawData} />
               case 'Gallery':
-                return <Gallery1 key={block._key} data={block} />
+                return <Gallery key={block._key} data={block} rawData={rawData} />
               case 'TwoPanelText':
                 return <TwoPanelText key={block._key} data={block} rawData={rawData} />
-              case 'TextBlock1':
-                return <TextBlock1 key={block._key} data={block} rawData={rawData} />
+              case 'TextBlockQuarters':
+                return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
               case 'TextBlockWithImage':
                 return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
               // case 'CaseStudiesRow':

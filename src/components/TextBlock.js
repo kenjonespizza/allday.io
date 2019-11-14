@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
-import {Wrapper, H1, H3, SubHeading, Container as TextBlock1Container} from '../elements'
+import {Wrapper, H1, H3, SubHeading, Container as TextBlockQuartersContainer} from '../elements'
 import {base, darkBase} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
-const Container = styled(TextBlock1Container)`
+const Container = styled(TextBlockQuartersContainer)`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 50px;
