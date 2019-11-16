@@ -14,6 +14,9 @@ const CaseStudies = styled.ul`
   grid-template-columns: 1fr;
   grid-gap: 10px;
   padding: 0;
+  background-color: #848F9E;
+  background: linear-gradient(70deg, #848F9E 0%, ${rgba(base.colors.black, 0.2)} 100%);
+
 
   ${media.medium`
     grid-gap: ${base.spacings.base}px;
@@ -109,7 +112,7 @@ const BoxImg = styled(Image)`
 
 const StyledServiceBox = styled.li`
   position: relative;
-  background-color: ${base.colors.white};
+  /* background-color: ${base.colors.white}; */
   /* box-shadow: ${base.shadows.box}; */
   list-style: none;
   overflow: hidden;
@@ -133,8 +136,8 @@ const StyledServiceBox = styled.li`
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: ${props => rgba(base.colors.black, 0.5)};
-    background-color: #848F9E;
+    /* background-color: ${props => rgba(base.colors.black, 0.5)};
+    background-color: #848F9E; */
     ${transition({duration: '.4s'})}
   }
 
@@ -236,7 +239,7 @@ const CaseStudiesBlockBlocks = ({data, rawData}) => {
   const {caseStudies, headingBlock, isDark, button, layout} = data
 
   return (
-    <Wrapper theme={isDark ? darkBase : base} addSpace>
+    <Wrapper hasGrid theme={isDark ? darkBase : base} addSpace>
       {headingBlock && (headingBlock.heading || headingBlock.subHeading) && <HeadingBlock {...headingBlock} />}
       <Container layout={layout}>
         <CaseStudies count={caseStudies.length}>
