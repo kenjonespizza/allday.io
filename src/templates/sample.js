@@ -1,6 +1,6 @@
 import React from 'react'
 import {graphql} from 'gatsby'
-import styled from 'styled-components'
+import styled, {ThemeProvider} from 'styled-components'
 
 import {getContrastTextColor} from '../utilities/helpers'
 import Layout from '../components/Layout'
@@ -12,13 +12,20 @@ import CaseStudiesBlockRows from '../components/CaseStudiesBlockRows'
 import CaseStudiesBlockBlocks from '../components/CaseStudiesBlockBlocks'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
+import Banner2 from '../components/Banner2'
 import HeroBasic from '../components/HeroBasic'
 import TwoPanelText from '../components/TwoPanelText'
+import TextBlock from '../components/TextBlock'
 import TextBlockQuarters from '../components/TextBlockQuarters'
+import TextBlockWithImage from '../components/TextBlockWithImage'
 import Gallery from '../components/Gallery'
-import Pagination from '../components/Pagination'
+// import CaseStudiesRow from '../components/CaseStudiesRow'
+import ContactForm from '../components/ContactForm'
 import Seo from '../components/Seo'
+import ButtonsBlock from '../components/ButtonsBlock'
+import LogoGrid from '../components/LogoGrid'
 import BlockContent from '../components/BlockContent'
+import Pagination from '../components/Pagination'
 
 export const query = graphql`
   query SAMPLE_PAGE_QUERY($slug: String!) {
@@ -50,29 +57,51 @@ export const query = graphql`
       _rawBlocks(resolveReferences: {maxDepth: 10})
       _rawSummary(resolveReferences: {maxDepth: 10})
       blocks {
-        blocks: caseStudiesBlocks {
+        blocks {
+          ... on SanityBanner1 {
+            ...Banner1Fragment
+          }
+          ... on SanityBanner2 {
+            ...Banner2Fragment
+          }
+          ... on SanityHeroHome {
+            ...HeroHomeFragment
+          }
+          ... on SanityServicesBlock {
+            ...ServicesBlockFragment
+          }
+          ... on SanityReviewsBlock {
+            ...ReviewsBlockFragment
+          }
           ... on SanityHeroBasic {
-            _key
-            _type
-            heading
-            subHeading
-            isDark
+            ...HeroBasicFragment
+          }
+          ... on SanityTextBlockWithImage {
+            ...TextBlockWithImageFragment
           }
           ... on SanityGallery {
             ...GalleryFragment
           }
           ... on SanityTwoPanelText {
-            _key
-            _type
-            headingBlock {
-              heading
-              subHeading
-            }
+          ...TwoPanelTextFragment
           }
-          ... on SanityTextBlockQuarters {
-            _key
-            _type
-            heading
+          ... on SanityTextBlock {
+            ...TextBlockFragment
+          }
+          ... on SanityTextBlockQuarters{
+            ...TextBlockQuartersFragment
+          }
+          ... on SanityCaseStudiesBlock {
+            ...CaseStudiesBlockFragment
+          }
+          ... on SanityFormContact {
+            ...FormContactFragment
+          }
+          ... on SanityButtonsBlock {
+            ...ButtonsBlockFragment
+          }
+          ... on SanityLogoGrid {
+            ...LogoGridFragment
           }
         }
       }
@@ -93,10 +122,8 @@ const ColorWrap = styled.div`
 }
 `
 
-const Text = styled.div``
-
 export default props => {
-  const {_rawBlocks, _rawSummary, color, blocks, seo, pageInfo, title} = props.data.page
+  const {_rawBlocks, color, blocks, seo} = props.data.page
 
   const textColor = getContrastTextColor(color.hex)
 
@@ -118,15 +145,22 @@ export default props => {
     }
   }
 
+  console.log('color:', color)
+  console.log('base:', base)
   if (color && color.hex) {
     var brandBase = {
       ...base, // copy everything from base
       colors: {// override the colors property
         ...base.colors, // copy the everything from base.colors
-        accent: color.hex // override base.colors.accent
+        accent: color.hex, // override base.colors.accent
+        useSpecial: true
       }
     }
+  } else {
+    console.log('HeHEH')
   }
+
+  console.log('brandBase:', brandBase)
 
   return (
     <>
@@ -135,58 +169,64 @@ export default props => {
         {/* {seo && <Seo context={props.pageContext} {...seo} />} */}
         {seo && <Seo context={props.pageContext} {...seo} />}
 
-        <Wrapper hasGrid theme={typeof brandBase !== 'undefined' ? brandBase : base} noSpace>
+        <Wrapper hasGrid theme={base} noSpace>
           <ColorWrap color={color.hex} textColor={textColor}>
+            <ThemeProvider theme={typeof brandBase !== 'undefined' ? brandBase : base}>
 
-            <HeroBasic>
-              <SubHeading>{title}</SubHeading>
-              <H1>{pageInfo.pageName}</H1>
-              {_rawSummary &&
-                <Text>
-                  <BlockContent blocks={_rawSummary || []} />
-                </Text>}
-            </HeroBasic>
+              {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
+                if (typeof block._type !== 'undefined') {
+                  const name = block._type
+                  const Component = name.charAt(0).toUpperCase() + name.slice(1)
 
-            {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
-              if (typeof block._type !== 'undefined') {
-                const name = block._type
-                const Component = name.charAt(0).toUpperCase() + name.slice(1)
+                  var rawData = _rawBlocks.blocks
+                  rawData = rawData[Object.keys(rawData)[i]]
 
-                var rawData = _rawBlocks.caseStudiesBlocks
-                rawData = rawData[Object.keys(rawData)[i]]
-
-                switch (Component) {
-                  case 'HeroHome':
-                    return <HeroHome key={block._key} data={block} />
-                  // case 'HeadingBlock':
-                  //   return <HeadingBlock key={block._key} data={block} />
-                  case 'ServicesBlock':
-                    return <ServicesBlock key={block._key} data={block} />
-                  case 'ReviewsBlock':
-                    return <ReviewsBlock key={block._key} data={block} />
-                  case 'CaseStudiesBlock':
-                    if (block.layout === 'row') {
-                      return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />
-                    } else {
-                      return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} />
-                    }
-                  case 'Banner1':
-                    return <Banner1 key={block._key} data={block} />
-                  case 'HeroBasic':
-                    return <HeroBasic key={block._key} data={block} rawData={rawData} />
-                  case 'Gallery':
-                    return <Gallery key={block._key} data={block} />
-                  case 'TwoPanelText':
-                    return <TwoPanelText key={block._key} data={block} rawData={rawData} bgColor={color.hex} />
-                    // return <TwoPanelText key={block._key} data={block} rawData={rawData} isDark />
-                  case 'TextBlockQuarters':
-                    return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
-                  default:
-                    return null
+                  switch (Component) {
+                    case 'HeroHome':
+                      return <HeroHome key={block._key} data={block} />
+                    // case 'HeadingBlock':
+                    //   return <HeadingBlock key={block._key} data={block} />
+                    case 'ServicesBlock':
+                      return <ServicesBlock key={block._key} data={block} />
+                    case 'ReviewsBlock':
+                      return <ReviewsBlock key={block._key} data={block} />
+                    case 'CaseStudiesBlock':
+                      if (block.layout === 'row') {
+                        return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />
+                      } else {
+                        return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} />
+                      }
+                    case 'Banner1':
+                      return <Banner1 key={block._key} data={block} />
+                    case 'Banner2':
+                      return <Banner2 key={block._key} data={block} />
+                    case 'HeroBasic':
+                      return <HeroBasic key={block._key} data={block} rawData={rawData} />
+                    case 'Gallery':
+                      return <Gallery key={block._key} data={block} rawData={rawData} />
+                    case 'TwoPanelText':
+                      return <TwoPanelText key={block._key} data={block} rawData={rawData} />
+                    case 'TextBlockQuarters':
+                      return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
+                    case 'TextBlockWithImage':
+                      return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
+                    case 'TextBlock':
+                      return <TextBlock key={block._key} data={block} rawData={rawData} />
+                    // case 'CaseStudiesRow':
+                    //   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
+                    case 'FormContact':
+                      return <ContactForm key={block._key} data={block} rawData={rawData} />
+                    case 'ButtonsBlock':
+                      return <ButtonsBlock key={block._key} data={block} />
+                    case 'LogoGrid':
+                      return <LogoGrid key={block._key} data={block} rawData={rawData} />
+                    default:
+                      return null
+                  }
                 }
-              }
-            })}
-            <Pagination next={next} previous={previous} />
+              })}
+              <Pagination next={next} previous={previous} />
+            </ThemeProvider>
           </ColorWrap>
         </Wrapper>
 

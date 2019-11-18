@@ -10,7 +10,7 @@ import {mapEdgesToNodes} from '../utilities/helpers'
 
 const Wrapper = styled(FooterWrapper)`
   background-color: ${base.colors.white};
-  border-top: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, 0.05)} solid 1px;
+  border-top: ${props => props.theme.grid.color && rgba(props.theme.grid.color, props.theme.grid.opacity)} solid 1px;
 `
 
 const Logo = styled(LogoFile)`

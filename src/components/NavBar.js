@@ -57,7 +57,7 @@ const StyledNavBar = styled.header`
   overflow: hidden;
   padding: 0 ${base.spacings.base}px;
   /* box-shadow: 0 0px 20px rgba(0,0,0,.2); */
-  border-bottom: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, 0.05)} solid 1px;
+  border-bottom: ${props => props.theme.grid.color && rgba(props.theme.grid.color, props.theme.grid.opacity)} solid 1px;
 `
 
 const Nav = styled.nav`

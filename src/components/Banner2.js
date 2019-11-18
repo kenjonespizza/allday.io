@@ -58,3 +58,18 @@ const Banner2 = (props) => {
 }
 
 export default Banner2
+
+export const Banner2Fragment = graphql`
+  fragment Banner2Fragment on SanityBanner2 {
+    _key
+    _type
+    button {
+      ...ButtonFragment
+    }
+    description
+    headingBlock {
+      heading
+      subHeading
+    }
+  }
+`

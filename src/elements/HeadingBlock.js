@@ -55,8 +55,8 @@ export const HeadingBlock = ({children, left, heading, subHeading, className}) =
   }
 }
 
-export const Banner1Fragment = graphql`
-  fragment HeadingBlock on SanityHeadingBlock {
+export const HeadingBlockFragment = graphql`
+  fragment HeadingBlockFragment on SanityHeadingBlock {
     _key
     _type
     heading

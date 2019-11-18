@@ -6,7 +6,7 @@ import {Link, graphql} from 'gatsby'
 import {transition, base} from '../utilities/styles'
 
 export const ButtonStyles = css`
-  border: ${props => (props.color) ? `3px solid ${props.theme.colors.accent}` : ''};
+  border: 3px solid ${props => props.theme.colors.accent};
   background-color: ${props => props.theme.colors.accent};
   /* Apply background color and border color if the color prop is passed */
   background-color: ${props => (props.color) ? props.theme.colors[props.color] : ''};
@@ -43,6 +43,7 @@ export const ButtonStyles = css`
     color: ${props => (props.color === 'white' || props.color === 'black') ? props.theme.colors.onAccent : ''};
     color: ${props => props.isghost === 'true' && (props.color === 'white' || props.color === 'black') ? props.theme.colors.accentHoverText : ''};
     color: ${props => props.isghost === 'true' && props.color === 'pulp' ? props.theme.colors.black : ''};
+    color: ${props => props.isdark === 'true' ? base.colors.black : ''};
 
     background-color: ${props => props.color && props.isdark === 'false' ? props.theme.colors.black : ''};
     border-color: ${props => props.color && props.isdark === 'false' ? props.theme.colors.black : ''};

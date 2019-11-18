@@ -10,8 +10,10 @@ import CaseStudiesBlockRows from '../components/CaseStudiesBlockRows'
 import CaseStudiesBlockBlocks from '../components/CaseStudiesBlockBlocks'
 import ReviewsBlock from '../components/ReviewsBlock'
 import Banner1 from '../components/Banner1'
+import Banner2 from '../components/Banner2'
 import HeroBasic from '../components/HeroBasic'
 import TwoPanelText from '../components/TwoPanelText'
+import TextBlock from '../components/TextBlock'
 import TextBlockQuarters from '../components/TextBlockQuarters'
 import TextBlockWithImage from '../components/TextBlockWithImage'
 import Gallery from '../components/Gallery'
@@ -23,6 +25,7 @@ import LogoGrid from '../components/LogoGrid'
 
 const Page = ({pageProps}) => {
   const {_rawBlocks, blocks, seo} = pageProps.data.page
+  console.log('pageProps.data.page:', pageProps.data.page)
   console.log('seo:', seo)
 
   return (
@@ -35,10 +38,11 @@ const Page = ({pageProps}) => {
         {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
           if (typeof block._type !== 'undefined') {
             const name = block._type
+            console.log('name:', name)
 
             const Component = name.charAt(0).toUpperCase() + name.slice(1)
 
-            var rawData = _rawBlocks.blocks
+            var rawData = _rawBlocks.blocks || ''
             rawData = rawData[Object.keys(rawData)[i]]
 
             switch (Component) {
@@ -58,6 +62,8 @@ const Page = ({pageProps}) => {
                 }
               case 'Banner1':
                 return <Banner1 key={block._key} data={block} />
+              case 'Banner2':
+                return <Banner2 key={block._key} data={block} />
               case 'HeroBasic':
                 return <HeroBasic key={block._key} data={block} rawData={rawData} />
               case 'Gallery':
@@ -68,6 +74,8 @@ const Page = ({pageProps}) => {
                 return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
               case 'TextBlockWithImage':
                 return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
+              case 'TextBlock':
+                return <TextBlock key={block._key} data={block} rawData={rawData} />
               // case 'CaseStudiesRow':
               //   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
               case 'FormContact':

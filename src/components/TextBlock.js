@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
+import {graphql} from 'gatsby'
 
-import {Wrapper, H1, H3, SubHeading, Container as TextBlockQuartersContainer} from '../elements'
+import {Wrapper, H1, H3, SubHeading, Container as TextBlockQuartersContainer, HeadingBlock} from '../elements'
 import {base, darkBase} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
@@ -37,12 +38,16 @@ const Container = styled(TextBlockQuartersContainer)`
 
 const Text = styled.div``
 
-const TextBlock = (props) => {
-  const {text, isDark} = props
+const TextBlock = ({data, rawData}) => {
+  console.log('rawData:', rawData)
+  console.log('data:', data)
+  const {headingBlock, isDark} = data
+  const {text} = rawData
 
   return (
     <Wrapper hasGrid theme={isDark ? darkBase : base}>
       <Container>
+        {headingBlock && (headingBlock.heading || headingBlock.subHeading) && <HeadingBlock {...headingBlock} />}
         {text &&
           <Text>
             <BlockContent blocks={text || []} />
@@ -53,3 +58,14 @@ const TextBlock = (props) => {
 }
 
 export default TextBlock
+
+export const TextBlockFragment = graphql`
+  fragment TextBlockFragment on SanityTextBlock {
+    _key
+    _type
+    headingBlock {
+      ...HeadingBlockFragment
+    }
+    isDark
+  }
+`

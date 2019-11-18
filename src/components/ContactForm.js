@@ -1,21 +1,40 @@
 import React from 'react'
 import {graphql} from 'gatsby'
 import styled from 'styled-components'
-import {rgba} from 'polished'
+import {rgba, invert} from 'polished'
 
 import {Wrapper, Container, H1, SubHeading, HeadingBlock, Button} from '../elements/'
-import {darkBase, base, media} from '../utilities/styles'
+import {darkBase, base, media, mqs} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
 const FromWrapper = styled.section`
+  background-color: ${props => props.theme.colors.background};
+  border: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)};
+  border-bottom: none;
+  /* padding: ${base.spacings.base}px; */
   display: grid;
   grid-template-columns: 1fr;
 
-  ${media.medium`
+  ${mqs({
+      property: 'padding',
+      valueBase: `${base.spacings.sectionS / 2}px`,
+      valueM: `${base.spacings.sectionS / 2}px`,
+      valueL: `${base.spacings.sectionM / 2}px`,
+      valueXL: `${base.spacings.sectionL / 2}px`
+    })};
+
+    ${mqs({
+      property: 'grid-gap',
+      valueBase: `${base.spacings.sectionS / 2}px`,
+      valueM: `${base.spacings.sectionS / 2}px`,
+      valueL: `${base.spacings.sectionM / 2}px`,
+      valueXL: `${base.spacings.sectionL / 2}px`
+    })};
+
+  ${media.large`
 
     ${props => props.twoColumn ? (`
       grid-template-columns: 1fr 1fr;
-      grid-gap: ${base.spacings.base}px;
     `) : (`
       // width:50%;
     `)
@@ -29,7 +48,7 @@ const Form = styled.form`
   }
 
   .formText {
-    border-bottom: solid 1px ${rgba(base.colors.black, 0.1)};
+    border-bottom: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)};
     padding-bottom: 20px;
     margin-bottom: 20px;
     font-weight: ${base.fontWeights.bold};
@@ -40,10 +59,22 @@ const Field = styled.div`
   display: flex;
   flex-direction: column;
 
+  /* label {
+    transform: translateY(50px);
+  }
+
+  &.focused {
+    label {
+      transform: translateY(0);
+      font-size: 14px;
+    }
+  } */
 `
 
 const Input = styled.input`
-  border: 1px solid ${rgba(base.colors.black, 0.1)};
+  border: none;
+  border-bottom: 2px solid ${props => rgba(props.theme.grid.color, props.theme.grid.opacity * 2)};
+  /* background-color: ${props => invert(rgba(props.theme.colors.background, 0.025))}; */
   border-radius: 1px;
   padding: 15px;
   margin: 15px 0 30px 1px;

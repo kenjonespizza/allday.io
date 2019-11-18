@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {graphql} from 'gatsby'
-import styled, {withTheme} from 'styled-components'
+import styled, {ThemeContext} from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 
+import {getContrastTextColor} from '../utilities/helpers'
 import BlockContent from './BlockContent'
 import {Wrapper as TwoPanelTextWrapper, H1, H2, H3, H4, H5, H6, SubHeading, Container as TwoPanelTextContainer, HeadingBlock} from '../elements'
 import {base, media, darkBase} from '../utilities/styles'
@@ -68,13 +69,16 @@ const SidesWrap = styled.div`
 const TwoPanelText = (props) => {
   const {data, rawData, bgColor} = props
 
-  if (bgColor) {
-    var textColor = getContrast(bgColor, base.colors.white) > 2 ? base.colors.white : base.colors.black
+  const themeContext = useContext(ThemeContext)
+  console.log('themeContext:', themeContext)
+
+  if (themeContext.colors.useSpecial) {
+    var textColor = getContrastTextColor(themeContext.colors.accent)
   }
   return (
-    <Wrapper hasGrid lineColor={textColor} backgroundColor={bgColor} theme={data.isDark ? darkBase : base}>
+    <Wrapper hasGrid lineColor={textColor} backgroundColor={themeContext.colors.accent} theme={data.isDark ? darkBase : base}>
       <Container textColor={textColor}>
-        {data.headingBlock && <HeadingBlock left {...data.headingBlock} />}
+        {data.headingBlock && <HeadingBlock {...data.headingBlock} />}
 
         <SidesWrap>
           {rawData.leftText &&
@@ -91,7 +95,7 @@ const TwoPanelText = (props) => {
   )
 }
 
-export default withTheme(TwoPanelText)
+export default TwoPanelText
 
 export const query = graphql`
   fragment TwoPanelTextFragment on SanityTwoPanelText {

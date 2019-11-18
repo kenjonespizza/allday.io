@@ -4,8 +4,6 @@ import {rgba} from 'polished'
 
 import {linePulse, media, base} from '../utilities/styles'
 
-const lineOpacity = 0.1
-
 const StyledGridWrap = styled.div`
   background-color: ${props => props.theme.colors.background};
   width: 100%;
@@ -49,7 +47,7 @@ const StyledGrid = styled.div`
 
   > div {
     height: 100%;
-    border-left: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, lineOpacity)} solid 1px;
+    border-left: ${props => props.theme.grid.color && rgba(props.lineColor ? props.lineColor : props.theme.grid.color, props.theme.grid.opacity)} solid 1px;
     
     &:first-of-type {
       
@@ -58,7 +56,7 @@ const StyledGrid = styled.div`
     &:last-of-type {
     /* width: calc(100% - 1px); */
     transform: translateX(-1px);
-    border-right: ${props => props.theme.colors.lines && rgba(props.theme.colors.lines, lineOpacity)} solid 1px;
+    border-right: ${props => props.theme.grid.color && rgba(props.lineColor ? props.lineColor : props.theme.grid.color, props.theme.grid.opacity)} solid 1px;
     width: calc(100% + 1px);
 
     ${media.xLarge`
@@ -66,22 +64,16 @@ const StyledGrid = styled.div`
         width: 100%;
       `}
 
-    ${({lineColor}) => lineColor && `
-      border-color: ${rgba(lineColor, lineOpacity)};
-    `}
     }
-    
-    ${({lineColor}) => lineColor && `
-      border-color: ${rgba(lineColor, lineOpacity)};
-    `}
     
   }
 `
 
 export const GridLines = ({backgroundColor, lineColor}) => {
+  console.log('lineColorrrrr:', lineColor)
   return (
-    <StyledGridWrap backgroundColor={backgroundColor}>
-      <StyledGrid lineColor={lineColor}>
+    <StyledGridWrap backgroundColor={backgroundColor} lineColor={lineColor}>
+      <StyledGrid>
         <div />
         <div />
         <div />

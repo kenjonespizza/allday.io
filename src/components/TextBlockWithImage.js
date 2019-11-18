@@ -133,6 +133,7 @@ const LeftRightSpanWrapper = styled(Wrapper)`
       min-height: 100%;
       width: 50vw;
       flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'};
+      background: black;
     `}
   }
 `
@@ -167,7 +168,7 @@ const TextBlockWithImage = ({data, rawData, children}) => {
     const {isDark, textBlockImage, imagePosition, video} = data
     const {text} = rawData
 
-    const hasImage = !!((textBlockImage && textBlockImage.asset.fluid))
+    const hasImage = !!((textBlockImage && textBlockImage.asset && textBlockImage.asset.fluid))
     const hasVideo = !!((video && video.url))
 
     // If hero has image
@@ -186,10 +187,13 @@ const TextBlockWithImage = ({data, rawData, children}) => {
               {hasImage && !hasVideo && (
                 <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
               )}
-              {hasVideo && (
+              {hasVideo && hasImage && (
                 <VideoHolder video={video}>
                   <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                 </VideoHolder>
+              )}
+              {hasVideo && !hasImage && (
+                <VideoHolder video={video} />
               )}
             </FullSpanWrapper>
           </>
@@ -203,7 +207,7 @@ const TextBlockWithImage = ({data, rawData, children}) => {
                   {hasImage && !hasVideo && (
                     <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                   )}
-                  {hasVideo && (
+                  {hasVideo && hasImage && (
                     <VideoHolder video={video}>
                       <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                     </VideoHolder>
@@ -223,7 +227,7 @@ const TextBlockWithImage = ({data, rawData, children}) => {
                   {hasImage && !hasVideo && (
                     <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                   )}
-                  {hasVideo && (
+                  {hasVideo && hasImage && (
                     <VideoHolder video={video}>
                       <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                     </VideoHolder>
@@ -246,7 +250,7 @@ const TextBlockWithImage = ({data, rawData, children}) => {
               {hasImage && !hasVideo && (
                 <TextBlockImage fluid={{...textBlockImage.asset.fluid, aspectRatio: 16 / 9}} alt={textBlockImage.alt} />
               )}
-              {hasVideo && (
+              {hasVideo && hasImage && (
                 <VideoHolder video={video}>
                   <TextBlockImage fluid={{...textBlockImage.asset.fluid}} alt={textBlockImage.alt} />
                 </VideoHolder>

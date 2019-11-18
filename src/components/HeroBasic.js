@@ -149,11 +149,14 @@ const CenterWrapper = styled(Wrapper)`
 
 const HeroBasic = ({data, rawData, children}) => {
   if (typeof data !== 'undefined') {
-    const {heading, subHeading, isDark, heroImage, imagePosition} = data
+    const {headingBlock, isDark, heroImage, imagePosition} = data
+    const {heading, subHeading} = headingBlock
     const {text} = rawData
 
+    const hasImage = !!((heroImage && heroImage.asset && heroImage.asset.fluid))
+
     // If hero has image
-    if (heroImage) {
+    if (hasImage) {
       // if layout is 'fullSpan'
       if (imagePosition === 'fullSpan') {
         return (
@@ -303,8 +306,9 @@ export const query = graphql`
   fragment HeroBasicFragment on SanityHeroBasic {
     _key
     _type
-    heading
-    subHeading
+    headingBlock {
+      ...HeadingBlockFragment
+    }
     heroImage: image {
       alt
       asset {

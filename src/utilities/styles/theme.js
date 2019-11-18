@@ -41,8 +41,7 @@ export const base = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
-    lines: black
+    aloe: aloe
   },
   fonts: {
     body: 'Poppins, sans-serif',
@@ -93,6 +92,10 @@ export const base = {
   },
   shadows: {
     box: `0px 10px 35px ${rgba('black', 0.1)}`
+  },
+  grid: {
+    opacity: 0.1,
+    color: black
   }
 }
 
@@ -109,8 +112,7 @@ const lightPulpTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
-    lines: black
+    aloe: aloe
   }
 }
 
@@ -127,8 +129,11 @@ const darkPulpTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
-    lines: white
+    aloe: aloe
+  },
+  grid: {
+    opacity: 0.1,
+    color: white
   }
 }
 
@@ -145,8 +150,7 @@ const lightWatermellyTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
-    lines: black
+    aloe: aloe
   }
 }
 
@@ -163,8 +167,11 @@ const darkWatermellyTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
-    lines: white
+    aloe: aloe
+  },
+  grid: {
+    opacity: 0.1,
+    color: white
   }
 }
 
@@ -181,8 +188,11 @@ const darkBaseTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe,
-    lines: white
+    aloe: aloe
+  },
+  grid: {
+    opacity: 0.1,
+    color: white
   }
 }
 

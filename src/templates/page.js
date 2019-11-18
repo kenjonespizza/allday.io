@@ -20,7 +20,10 @@ export const query = graphql`
       blocks {
         blocks {
         ... on SanityBanner1 {
-          ...Banner1
+          ...Banner1Fragment
+        }
+        ... on SanityBanner2 {
+          ...Banner2Fragment
         }
         ... on SanityHeroHome {
           ...HeroHomeFragment
@@ -42,6 +45,9 @@ export const query = graphql`
         }
         ... on SanityTwoPanelText {
          ...TwoPanelTextFragment
+        }
+        ... on SanityTextBlock {
+          ...TextBlockFragment
         }
         ... on SanityTextBlockQuarters{
           ...TextBlockQuartersFragment
