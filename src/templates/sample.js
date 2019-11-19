@@ -145,8 +145,6 @@ export default props => {
     }
   }
 
-  console.log('color:', color)
-  console.log('base:', base)
   if (color && color.hex) {
     var brandBase = {
       ...base, // copy everything from base
@@ -157,10 +155,7 @@ export default props => {
       }
     }
   } else {
-    console.log('HeHEH')
   }
-
-  console.log('brandBase:', brandBase)
 
   return (
     <>

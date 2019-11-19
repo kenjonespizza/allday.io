@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled, {keyframes, css} from 'styled-components'
 import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
+import Headroom from 'react-headroom'
 
 import LogoFile from '../../static/AllDayLogo.svg'
-import {transition, base, bounce, pulse, lightWatermelly, media} from '../utilities/styles'
+import {transition, base, bounce, pulse, lightWatermelly, darkWatermelly, media} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
 import {GridLines, Wrapper, Button} from '../elements'
@@ -44,8 +45,8 @@ function colorSwap (props) {
 }
 
 const StyledNavBar = styled.header`
-  background-color: ${props => props.theme.colors.white};
-  position: fixed;
+  /* background-color: ${props => props.theme.colors.white}; */
+  /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;
@@ -58,6 +59,7 @@ const StyledNavBar = styled.header`
   padding: 0 ${base.spacings.base}px;
   /* box-shadow: 0 0px 20px rgba(0,0,0,.2); */
   border-bottom: ${props => props.theme.grid.color && rgba(props.theme.grid.color, props.theme.grid.opacity)} solid 1px;
+  ${transition({})};
 `
 
 const Nav = styled.nav`
@@ -87,6 +89,7 @@ ${media.large`
       color: ${base.colors.text};
       font-weight: ${base.fontWeights.medium};
       postion: relative;
+      ${transition({})};
 
       &:after {
         content: "";
@@ -131,9 +134,10 @@ ${media.large`
 
 const Logo = styled(LogoFile)`
   left: ${base.spacings.base}px;
-  top: 38px;
+  top: 50%;
   z-index: 20;
   position: fixed;
+  transform: translateY(-50%);
   /* transform: scale(${props => props.isopen === 'true' ? 1.5 : 1}); */
   /* width: ${props => props.isopen === 'true' ? '300px' : '105px'} */
   ${transition({})};
@@ -173,8 +177,39 @@ const MenuButton = styled.button`
   }
 `
 
+const StyledHeadroom = styled(Headroom)`
+    .headroom {
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+
+  .headroom--unfixed {
+    position: relative;
+    transform: translateY(0);
+  }
+  .headroom--scrolled {
+    transition: transform 200ms ease-in-out;
+  }
+  .headroom--unpinned {
+    position: fixed;
+    transform: translateY(-100%);
+  }
+  .headroom--pinned {
+    position: fixed;
+    transform: translateY(0%);
+
+    ${StyledNavBar} {
+      height: 94px;
+      /* filter: invert(100%); */
+    }
+  }
+`
+
 const NavBar = () => {
   const [isOpen, toggleMenu] = useGlobalState('isMenuOpen')
+  const [isPinned, setAsPinned] = useState(false)
 
   const data = useStaticQuery(graphql`
     query HEADER_QUERY {
@@ -198,38 +233,40 @@ const NavBar = () => {
   `)
 
   return (
-    <Wrapper noSpace theme={lightWatermelly} zIndex='11'>
-      <Link to='/'>
-        <Logo isopen={isOpen ? 'true' : 'false'} />
-      </Link>
-      <StyledNavBar id='nav-bar'>
-        <GridLines />
-        <Nav>
-          <ul>
-            {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
-              const {pageInfo, _id} = node
-              return (
-                <li key={_id} className={pageInfo.slug.current.includes('sample') ? 'hasNotification' : ''}>
-                  <Link
-                    activeClassName='active' partiallyActive
-                    to={`/${pageInfo.slug.current}`}
-                  >{pageInfo.pageName}
-                  </Link>
-                </li>
-              )
-            })}
-            <li key='blog'>
-              <Link activeClassName='active' partiallyActive to='/design-studio-blog'>Blog</Link>
-            </li>
-            {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
-          </ul>
-        </Nav>
-      </StyledNavBar>
-      <SlideOutMenu menu={data.navigation.edges[0].node.navLinks} />
+    <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={40}>
+      <Wrapper noSpace theme={lightWatermelly} zIndex='11'>
+        <Link to='/'>
+          <Logo isopen={isOpen ? 'true' : 'false'} />
+        </Link>
+        <StyledNavBar id='nav-bar'>
+          <GridLines />
+          <Nav>
+            <ul>
+              {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
+                const {pageInfo, _id} = node
+                return (
+                  <li key={_id} className={pageInfo.slug.current.includes('sample') ? 'hasNotification' : ''}>
+                    <Link
+                      activeClassName='active' partiallyActive
+                      to={`/${pageInfo.slug.current}`}
+                    >{pageInfo.pageName}
+                    </Link>
+                  </li>
+                )
+              })}
+              <li key='blog'>
+                <Link activeClassName='active' partiallyActive to='/design-studio-blog'>Blog</Link>
+              </li>
+              {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
+            </ul>
+          </Nav>
+        </StyledNavBar>
+        <SlideOutMenu menu={data.navigation.edges[0].node.navLinks} />
 
-      <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
+        <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
 
-    </Wrapper>
+      </Wrapper>
+    </StyledHeadroom>
   )
 }
 

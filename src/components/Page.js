@@ -25,8 +25,6 @@ import LogoGrid from '../components/LogoGrid'
 
 const Page = ({pageProps}) => {
   const {_rawBlocks, blocks, seo} = pageProps.data.page
-  console.log('pageProps.data.page:', pageProps.data.page)
-  console.log('seo:', seo)
 
   return (
     <Layout>
@@ -38,7 +36,6 @@ const Page = ({pageProps}) => {
         {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
           if (typeof block._type !== 'undefined') {
             const name = block._type
-            console.log('name:', name)
 
             const Component = name.charAt(0).toUpperCase() + name.slice(1)
 

@@ -67,10 +67,9 @@ const SidesWrap = styled.div`
 `
 
 const TwoPanelText = (props) => {
-  const {data, rawData, bgColor} = props
+  const {data, rawData} = props
 
   const themeContext = useContext(ThemeContext)
-  console.log('themeContext:', themeContext)
 
   if (themeContext.colors.useSpecial) {
     var textColor = getContrastTextColor(themeContext.colors.accent)

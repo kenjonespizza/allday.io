@@ -14,7 +14,7 @@ const initialState = {
 export const {GlobalStateProvider, useGlobalState} = createGlobalState(initialState)
 
 const LayoutStyled = styled.div`
-  padding-top: 124px;
+  /* padding-top: 124px; */
   overflow: hidden;
 `
 

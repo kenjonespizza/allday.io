@@ -39,9 +39,9 @@ const Container = styled(TextBlockQuartersContainer)`
 const Text = styled.div``
 
 const TextBlock = ({data, rawData}) => {
-  console.log('rawData:', rawData)
-  console.log('data:', data)
-  const {headingBlock, isDark} = data
+  if (headingBlock) {
+    var {headingBlock, isDark} = data
+  }
   const {text} = rawData
 
   return (

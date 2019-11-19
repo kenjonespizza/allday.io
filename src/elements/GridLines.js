@@ -70,7 +70,6 @@ const StyledGrid = styled.div`
 `
 
 export const GridLines = ({backgroundColor, lineColor}) => {
-  console.log('lineColorrrrr:', lineColor)
   return (
     <StyledGridWrap backgroundColor={backgroundColor} lineColor={lineColor}>
       <StyledGrid>

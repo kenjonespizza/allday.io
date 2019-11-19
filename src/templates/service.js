@@ -45,6 +45,9 @@ const Service = (props) => {
     }
   }
 
+  const rawData = data.service._rawBody
+  console.log('rawData:', rawData)
+
   const {name} = data.service
 
   return (
@@ -59,8 +62,8 @@ const Service = (props) => {
           </div>}
       </HeroBasic>
 
-      {data.service._rawBody &&
-        <TextBlock isDark text={data.service._rawBody} />}
+      {rawData &&
+        <TextBlock isDark data={rawData} />}
 
       <Pagination next={next} previous={previous} />
     </Layout>

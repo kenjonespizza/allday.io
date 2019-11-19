@@ -107,13 +107,14 @@ const FooterCta = styled.div`
 `
 
 const Footer = () => {
+  const data = useStaticQuery(query)
   return (
     <>
       <Wrapper hasGrid addSpace theme={base} backgroundColor={base.colors.white}>
         <FooterContainer as='footer'>
           <div>
             <p>© 2015–2019 AllDayIO. All rights reserved.</p>
-            <p>This site is built with <a href='https://gatsbyjs.org'>Gatsby</a>, hosted by <a href='https://netlify.com'>Netlify</a>, and populated by <a href='https://sanity.io'>Sanity</a>. Checkout the source code on <a href='https://github.com'>Github</a></p>
+            <p>This site was built on {data.site.buildTime} with <a href='https://gatsbyjs.org'>Gatsby</a>, hosted by <a href='https://netlify.com'>Netlify</a>, and populated by <a href='https://sanity.io'>Sanity</a>. Checkout the source code on <a href='https://github.com'>Github</a></p>
           </div>
           <Link to='/'>
             <Logo alt='AllDay' />
@@ -141,3 +142,11 @@ const Footer = () => {
 }
 
 export default Footer
+
+const query = graphql`
+  query Info {
+    site {
+      buildTime(formatString: "M D, YYYY")
+    }
+  }
+`
