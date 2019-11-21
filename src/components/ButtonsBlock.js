@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {graphql} from 'gatsby'
-import styled from 'styled-components'
+import styled, {ThemeContext} from 'styled-components'
 
 import {Wrapper, Container as ButtonsBlockContainer, HeadingBlock, Button} from '../elements'
 import {base, darkBase, media} from '../utilities/styles'
@@ -22,13 +22,16 @@ const ButtonsWrap = styled.div`
 
 const ButtonsBlock = ({data}) => {
   const {isDark, headingBlock, buttons} = data
-  const {heading, subHeading} = headingBlock
+  const {heading, subHeading} = headingBlock || ''
+
+  const themeContext = useContext(ThemeContext)
+  console.log('themeContext:', themeContext)
 
   return (
     <ButtonsBlockWrap hasGrid theme={isDark ? darkBase : base}>
       <Container>
 
-        {(heading || subHeading) && (
+        {headingBlock && (heading || subHeading) && (
           <HeadingBlock {...headingBlock} />
         )}
 

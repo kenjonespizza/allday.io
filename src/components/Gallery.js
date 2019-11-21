@@ -1,14 +1,14 @@
 /* @jsx glam */
 import glam from 'glam'
 import {graphql} from 'gatsby'
-import React, {useState} from 'react'
-import styled from 'styled-components'
+import React, {useState, useContext} from 'react'
+import styled, {ThemeContext} from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 import Carousel, {Modal, ModalGateway} from 'react-images'
 import Img from 'gatsby-image'
 
 import {Wrapper, H1, H3, SubHeading, Container as GalleryContainer} from '../elements'
-import {base as themeBase, media} from '../utilities/styles'
+import {base as themeBase, media, transition} from '../utilities/styles'
 
 const Container = styled(GalleryContainer)`
   /* display: grid;
@@ -34,7 +34,7 @@ const Container = styled(GalleryContainer)`
       column-span: all;
     }
 
-    padding: 0 0 30px;
+    padding: 30px 0 30px;
     /* grid-column: span 1; */
     /* margin-bottom: 50px; */
     cursor: pointer;
@@ -52,8 +52,18 @@ const Container = styled(GalleryContainer)`
       box-shadow: 0px 5px 20px rgba(2, 22, 30, 0.2);
     }
 
+    .gatsby-image-wrapper {
+      background-color: ${themeBase.colors.white};
+    }
+
     img {
+      background-color: ${themeBase.colors.white};
       width: 100%;
+      ${transition({})} !important;
+
+      &:hover {
+        background-color: ${rgba(themeBase.colors.black, 0.05)};
+      }
     }
   }
 
@@ -67,11 +77,13 @@ const Gallery = ({data}) => {
   var img = {}
 
   data.image.map((i) => {
-    img = {
-      source: `${i.asset.url}?w=1920`,
-      caption: i.caption
+    if (i.asset && i.asset.url) {
+      img = {
+        source: `${i.asset.url}?w=1920`,
+        caption: i.caption
+      }
+      images.push(img)
     }
-    images.push(img)
   })
 
   const [modalIsOpen, toggleModal] = useState(false)
@@ -83,7 +95,7 @@ const Gallery = ({data}) => {
   }
 
   return (
-    <Wrapper hasGrid noSpace>
+    <Wrapper hasGrid halfSpace>
       <ModalGateway>
         {modalIsOpen ? (
           <Modal
@@ -91,7 +103,7 @@ const Gallery = ({data}) => {
             styles={{
               blanket: base => ({
                 ...base,
-                backgroundColor: themeBase.colors.black,
+                backgroundColor: rgba(themeBase.colors.white, 0.9),
                 zIndex: 21
               }),
               positioner: base => ({
@@ -107,6 +119,48 @@ const Gallery = ({data}) => {
                 container: base => ({
                   ...base,
                   zIndex: 22
+                }),
+                header: base => ({
+                  ...base,
+                  background: `${themeBase.colors.white} !important`,
+                  padding: 20
+                }),
+                headerClose: base => ({
+                  ...base,
+                  color: rgba(themeBase.colors.black, 0.7),
+                  '&:hover': {
+                    color: rgba(themeBase.colors.black, 1)
+                  }
+                }),
+                footer: base => ({
+                  ...base,
+                  background: `${themeBase.colors.white} !important`,
+                  padding: 20
+                }),
+                footerCaption: base => ({
+                  ...base,
+                  color: rgba(themeBase.colors.black, 0.7)
+                }),
+                footerCount: base => ({
+                  ...base,
+                  color: rgba(themeBase.colors.black, 0.7)
+                }),
+                headerFullscreen: base => ({
+                  ...base,
+                  color: rgba(themeBase.colors.black, 0.7),
+                  '&:hover': {
+                    color: rgba(themeBase.colors.black, 1)
+                  }
+                }),
+                navigation: base => ({
+                  ...base,
+                  '& button': {
+                    color: rgba(themeBase.colors.black, 0.7),
+                    backgroundColor: rgba(themeBase.colors.black, 0.1),
+                    '&:hover': {
+                      backgroundColor: rgba(themeBase.colors.black, 0.2)
+                    }
+                  }
                 })
               }}
             />
@@ -115,14 +169,16 @@ const Gallery = ({data}) => {
       </ModalGateway>
       <Container>
         {data.image.map(({alt, caption, asset, _key}, j) => {
-          return (
-            <a onClick={() => toggleLightbox(j)} key={_key}>
-              <Img
-                alt={caption}
-                fluid={asset.fluid}
-              />
-            </a>
-          )
+          if (asset && asset.fluid) {
+            return (
+              <a onClick={() => toggleLightbox(j)} key={_key}>
+                <Img
+                  alt={caption}
+                  fluid={asset.fluid}
+                />
+              </a>
+            )
+          }
         })}
       </Container>
     </Wrapper>

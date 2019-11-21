@@ -1,7 +1,8 @@
-import React from 'react'
-import styled, {css, ThemeProvider} from 'styled-components'
+import React, {useContext} from 'react'
+import styled, {css, ThemeProvider, ThemeContext} from 'styled-components'
 import {rgba} from 'polished'
 
+import {getContrastTextColor} from '../utilities/helpers'
 import {GridLines} from './'
 import {base, media} from '../utilities/styles'
 
@@ -110,6 +111,17 @@ const StyledWrapperComponent = (props) => {
 export const Wrapper = (props) => {
   const {theme, hasGrid, extraSpace, noSpace, noSpaceBottom, children, className, backgroundColor, lineColor, zIndex, halfSpace} = props
   if (theme) {
+    const themeContext = useContext(ThemeContext)
+    if (themeContext.colors.useSpecial) {
+      theme.colors.accent = themeContext.colors.accent
+
+      if (theme.colors.background === '#02161E') {
+        theme.colors.accent = themeContext.colors.accent
+        theme.colors.background = themeContext.colors.accent
+        theme.colors.text = getContrastTextColor(themeContext.colors.accent)
+      }
+    }
+
     return (
       <ThemeProvider theme={theme}>
         <StyledWrapperComponent {...props} />

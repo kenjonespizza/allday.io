@@ -71,11 +71,11 @@ const TwoPanelText = (props) => {
 
   const themeContext = useContext(ThemeContext)
 
-  if (themeContext.colors.useSpecial) {
+  if (themeContext.colors.useSpecial && data.isDark) {
     var textColor = getContrastTextColor(themeContext.colors.accent)
   }
   return (
-    <Wrapper hasGrid lineColor={textColor} backgroundColor={themeContext.colors.accent} theme={data.isDark ? darkBase : base}>
+    <Wrapper hasGrid lineColor={textColor} theme={data.isDark ? darkBase : base}>
       <Container textColor={textColor}>
         {data.headingBlock && <HeadingBlock {...data.headingBlock} />}
 

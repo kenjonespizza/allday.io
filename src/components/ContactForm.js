@@ -9,11 +9,13 @@ import BlockContent from './BlockContent'
 
 const FromWrapper = styled.section`
   background-color: ${props => props.theme.colors.background};
-  border: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)};
+  border: solid 5px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)};
   border-bottom: none;
   /* padding: ${base.spacings.base}px; */
   display: grid;
   grid-template-columns: 1fr;
+  /* box-shadow: 0 10px 100px rgba(0,0,0,.25);
+  z-index: 10; */
 
   ${mqs({
       property: 'padding',

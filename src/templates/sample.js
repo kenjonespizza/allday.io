@@ -5,7 +5,7 @@ import styled, {ThemeProvider} from 'styled-components'
 import {getContrastTextColor} from '../utilities/helpers'
 import Layout from '../components/Layout'
 import {Wrapper, HeadingBlock, SubHeading, H1} from '../elements'
-import {base} from '../utilities/styles'
+import {base, darkBase} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
 import CaseStudiesBlockRows from '../components/CaseStudiesBlockRows'
@@ -24,7 +24,6 @@ import ContactForm from '../components/ContactForm'
 import Seo from '../components/Seo'
 import ButtonsBlock from '../components/ButtonsBlock'
 import LogoGrid from '../components/LogoGrid'
-import BlockContent from '../components/BlockContent'
 import Pagination from '../components/Pagination'
 
 export const query = graphql`
@@ -154,7 +153,15 @@ export default props => {
         useSpecial: true
       }
     }
-  } else {
+    var brandBaseDark = {
+      ...darkBase, // copy everything from base
+      colors: {// override the colors property
+        ...base.colors, // copy the everything from base.colors
+        accent: color.hex, // override base.colors.accent
+        background: color.hex, // override base.colors.accent
+        useSpecial: true
+      }
+    }
   }
 
   return (

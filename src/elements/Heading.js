@@ -50,6 +50,7 @@ export const H3css = css`
 export const H4css = css`
   ${HeadingBase}
   font-size: 22px;
+  line-height: 1.5;
   
   ${media.medium`
     font-size: 22px;
@@ -62,6 +63,7 @@ export const H4css = css`
 export const H5css = css`
   ${HeadingBase}
   font-size: 21px;
+  line-height: 1.5;
   
   ${media.medium`
     font-size: 21px;
@@ -74,6 +76,7 @@ export const H5css = css`
 export const H6css = css`
   ${HeadingBase}
   font-size: 19px;
+  line-height: 1.5;
   
   ${media.medium`
     font-size: 19px;

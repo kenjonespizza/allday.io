@@ -19,6 +19,7 @@ export const ButtonStyles = css`
   text-decoration: none;
   color: ${props => props.theme.colors.white};
   color: ${props => (props.color === 'white' || props.color === 'pulp') ? props.theme.colors.black : ''};
+  color: ${props => (props.isghost === 'true') ? props.theme.colors.accent : ''};
   color: ${props => (props.isghost === 'true' && props.color) ? props.theme.colors[props.color] : ''};
   padding: 23px 50px 21px;
   display: inline-block;

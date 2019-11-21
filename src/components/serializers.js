@@ -40,7 +40,7 @@ const serializers = {
         return (
           <H3>{props.children}</H3> // This is custome component
         )
-      } else if (props.node.style === '42') {
+      } else if (props.node.style === 'h4') {
         return (
           <H4>{props.children}</H4> // This is custome component
         )

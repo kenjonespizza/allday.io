@@ -233,7 +233,7 @@ const NavBar = () => {
   `)
 
   return (
-    <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={40}>
+    <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
       <Wrapper noSpace theme={lightWatermelly} zIndex='11'>
         <Link to='/'>
           <Logo isopen={isOpen ? 'true' : 'false'} />

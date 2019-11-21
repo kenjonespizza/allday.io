@@ -46,7 +46,6 @@ const Service = (props) => {
   }
 
   const rawData = data.service._rawBody
-  console.log('rawData:', rawData)
 
   const {name} = data.service
 
