@@ -60,16 +60,18 @@ export const query = graphql`
     _type
     services {
       _id
-      name
+      pageInfo {
+        pageName
+        slug {
+          current
+        }
+      }
       sampleImage {
         asset {
           fluid(maxWidth: 700) {
             ...GatsbySanityImageFluid
           }
         }
-      }
-      slug {
-        current
       }
     }
     headingBlock {

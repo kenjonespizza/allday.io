@@ -39,23 +39,35 @@ const Container = styled(TextBlockQuartersContainer)`
 const Text = styled.div``
 
 const TextBlock = ({data, rawData}) => {
-  if (data.headingBlock) {
-    var {headingBlock} = data
-  }
-  const {isDark} = data
-  const {text} = rawData
+  if (data) {
+    var {isDark} = data
 
-  return (
-    <Wrapper hasGrid theme={isDark ? darkBase : base}>
-      <Container>
-        {headingBlock && (headingBlock.heading || headingBlock.subHeading) && <HeadingBlock {...headingBlock} />}
-        {text &&
-          <Text>
-            <BlockContent blocks={text || []} />
-          </Text>}
-      </Container>
-    </Wrapper>
-  )
+    if (data.headingBlock) {
+      var {headingBlock} = data
+    }
+  }
+
+  if (rawData) {
+    var {text} = rawData
+  }
+
+  if (isDark || rawData) {
+    return (
+      <Wrapper hasGrid theme={isDark ? darkBase : base}>
+        <Container>
+          {headingBlock && (headingBlock.heading || headingBlock.subHeading) && <HeadingBlock {...headingBlock} />}
+          {text &&
+            <Text>
+              <BlockContent blocks={text || []} />
+            </Text>}
+        </Container>
+      </Wrapper>
+    )
+  } else {
+    return (
+      <div />
+    )
+  }
 }
 
 export default TextBlock

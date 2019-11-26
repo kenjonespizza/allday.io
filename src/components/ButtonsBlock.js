@@ -24,9 +24,6 @@ const ButtonsBlock = ({data}) => {
   const {isDark, headingBlock, buttons} = data
   const {heading, subHeading} = headingBlock || ''
 
-  const themeContext = useContext(ThemeContext)
-  console.log('themeContext:', themeContext)
-
   return (
     <ButtonsBlockWrap hasGrid theme={isDark ? darkBase : base}>
       <Container>

@@ -38,7 +38,7 @@ const PaginationWrap = styled.nav`
   }
 `
 
-const PaaginationLink = styled(Link)`
+const PaginationLink = styled(Link)`
   display: grid;
   align-items: center;
   grid-gap: 10px;
@@ -143,26 +143,26 @@ const Pagination = ({next, previous}) => {
           <ul>
             {(previous && previous.path) ? (
               <Previous>
-                <PaaginationLink to={previous.path} color={previous.color}>
+                <PaginationLink to={previous.path} color={previous.color}>
                   <PreviousArrow />
                   <div>
                     <span className='link-sub'>{previous.title}</span>
                     <span className='link-main'>{previous.text}</span>
                   </div>
-                </PaaginationLink>
+                </PaginationLink>
               </Previous>
             ) : (
               <div />
             )}
             {(next && next.path) ? (
               <Next>
-                <PaaginationLink to={next.path} color={next.color}>
+                <PaginationLink to={next.path} color={next.color}>
                   <div>
                     <span className='link-sub'>{next.title}</span>
                     <span className='link-main'>{next.text}</span>
                   </div>
                   <NextArrow />
-                </PaaginationLink>
+                </PaginationLink>
               </Next>
             ) : (
               <div />

@@ -1,72 +1,30 @@
 import React from 'react'
-import styled from 'styled-components'
 import {graphql} from 'gatsby'
 
-import {base} from '../utilities/styles'
-import {SubHeading, H1} from '../elements'
-import Layout from '../components/Layout'
-import HeroBasic from '../components/HeroBasic'
-import BlockContent from '../components/BlockContent'
-import TextBlock from '../components/TextBlock'
-import Seo from '../components/Seo'
-import Pagination from '../components/Pagination'
+import Page from '../components/Page'
 
 export const query = graphql`
-  query ServicesQuery($slugName: String!) {
-    service: sanityServices(slug: {current: {eq: $slugName}}) {
-      name
-      _rawBody(resolveReferences: {maxDepth: 10})
-      _rawOverview(resolveReferences: {maxDepth: 10})
+  query ($slugName: String!) {
+
+    page: sanityServices(pageInfo: {slug: {current: {eq: $slugName}}}) {
+      pageInfo {
+        pageName
+        slug {
+          current
+        }
+      }
+      id
+      _rawBlocks(resolveReferences: {maxDepth: 10})
+      seo {
+        ...SeoFragment
+      }
+      blocks {
+        ...BlocksFragment
+      }
     }
   }
 `
 
-// const Text = styled.div`
-//   /* grid-column: 1 / span 3;
-//     grid-row: 3 / span 1;
-//     margin-top: ${base.spacings.base}px; */
-//     display: block;
-// `
+const ServiceTemplate = (props) => <Page hasPagination pageProps={props} />
 
-const Service = (props) => {
-  const {pageContext, data, seo} = props
-
-  if (pageContext.next) {
-    var next = {
-      path: `/services/${pageContext.next.slug.current}`,
-      text: pageContext.next.name
-    }
-  }
-
-  if (pageContext.previous) {
-    var previous = {
-      path: `/services/${pageContext.previous.slug.current}`,
-      text: pageContext.previous.name
-    }
-  }
-
-  const rawData = data.service._rawBody
-
-  const {name} = data.service
-
-  return (
-    <Layout>
-      {seo && <Seo context={pageContext} {...seo} />}
-      <HeroBasic>
-        <SubHeading>we offer:</SubHeading>
-        <H1>{name}</H1>
-        {data.service._rawOverview &&
-          <div className='Text'>
-            <BlockContent blocks={data.service._rawOverview || []} />
-          </div>}
-      </HeroBasic>
-
-      {rawData &&
-        <TextBlock isDark data={rawData} />}
-
-      <Pagination next={next} previous={previous} />
-    </Layout>
-  )
-}
-
-export default Service
+export default ServiceTemplate

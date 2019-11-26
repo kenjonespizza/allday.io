@@ -38,24 +38,31 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
 
   const servicesResults = await graphql(`
     {
-      services: allSanityServices(filter: {slug: {current: {ne: null}}}) {
+      services: allSanityServices(filter: {pageInfo: {slug: {current: {ne: null}}}}) {
         edges {
           node {
-            slug {
-              current
+            pageInfo {
+              pageName
+              slug {
+                current
+              }
             }
           }
           next {
-            slug {
-              current
+            pageInfo {
+              pageName
+              slug {
+                current
+              }
             }
-            name
           }
           previous {
-            slug {
-              current
+            pageInfo {
+              pageName
+              slug {
+                current
+              }
             }
-            name
           }
         }
       }
@@ -68,8 +75,8 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
 
   services.forEach(edge => {
     const page = edge.node
-    const slug = `services/${page.slug.current}`
-    const slugName = page.slug.current
+    const slug = `services/${page.pageInfo.slug.current}`
+    const slugName = page.pageInfo.slug.current
     const next = edge.next
     const previous = edge.previous
 

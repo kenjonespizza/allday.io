@@ -77,16 +77,21 @@ const BoxImg = styled(Img)`
   height: 100%;
 `
 
-const BoxInfo = ({name, slug, iteration, numberIsWhite}) => (
-  <ServiceBoxInner to={`/services/${slug.current}`}>
-    <Number white={!!numberIsWhite}>{iteration}</Number>
-    <Name white={!!numberIsWhite}>
-      {name}
-    </Name>
-  </ServiceBoxInner>
-)
+const BoxInfo = ({name, slug, iteration, numberIsWhite}) => {
+  return (
+    <ServiceBoxInner to={`/services/${slug.current}`}>
+      <Number white={!!numberIsWhite}>{iteration}</Number>
+      <Name white={!!numberIsWhite}>
+        {name}
+      </Name>
+    </ServiceBoxInner>
+  )
+}
 
-const ServiceBox = ({name, slug, sampleImage, iteration}) => {
+const ServiceBox = ({pageInfo, sampleImage, iteration}) => {
+  if (pageInfo) {
+    var {pageName, slug} = pageInfo
+  }
   const isEven = iteration % 2 === 0
   const hasImg = !!((sampleImage !== null && sampleImage.asset !== null && !isEven))
 
@@ -95,9 +100,9 @@ const ServiceBox = ({name, slug, sampleImage, iteration}) => {
 
       <StyledServiceBox>
         {hasImg &&
-          <BoxImg fluid={sampleImage.asset.fluid} alt={name} />}
+          <BoxImg fluid={sampleImage.asset.fluid} alt={pageName} />}
 
-        <BoxInfo name={name} numberIsWhite={hasImg} iteration={iteration} slug={slug} />
+        <BoxInfo name={pageName} numberIsWhite={hasImg} iteration={iteration} slug={slug} />
       </StyledServiceBox>
     </>
 

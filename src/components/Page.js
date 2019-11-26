@@ -22,9 +22,29 @@ import ContactForm from '../components/ContactForm'
 import Seo from '../components/Seo'
 import ButtonsBlock from '../components/ButtonsBlock'
 import LogoGrid from '../components/LogoGrid'
+import Pagination from '../components/Pagination'
 
-const Page = ({pageProps}) => {
+const Page = (props) => {
+  console.log('props:', props)
+  const {pageProps, hasPagination} = props
+  const {pageContext} = pageProps
   const {_rawBlocks, blocks, seo} = pageProps.data.page
+
+  if (hasPagination) {
+    if (pageContext.next) {
+      var next = {
+        path: `/services/${pageContext.next.pageInfo.slug.current}`,
+        text: pageContext.next.pageInfo.pageName
+      }
+    }
+
+    if (pageContext.previous) {
+      var previous = {
+        path: `/services/${pageContext.previous.pageInfo.slug.current}`,
+        text: pageContext.previous.pageInfo.pageName
+      }
+    }
+  }
 
   return (
     <Layout>
@@ -86,6 +106,7 @@ const Page = ({pageProps}) => {
             }
           }
         })}
+        <Pagination next={next} previous={previous} />
       </Wrapper>
 
     </Layout>
