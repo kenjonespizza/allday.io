@@ -29,7 +29,9 @@ const accentHover = (color, ammount = 0.1, makeDarker = true) => {
 }
 
 export const base = {
+  themeName: 'base',
   colors: {
+    isDark: false,
     text: black,
     background: white,
     accent: seal,
@@ -41,7 +43,8 @@ export const base = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe
+    aloe: aloe,
+    useSpecial: false
   },
   fonts: {
     body: 'Poppins, sans-serif',
@@ -100,7 +103,9 @@ export const base = {
 }
 
 const lightPulpTheme = {
+  themeName: 'lightPulpTheme',
   colors: {
+    isDark: false,
     text: black,
     background: white,
     accent: pulp,
@@ -117,7 +122,9 @@ const lightPulpTheme = {
 }
 
 const darkPulpTheme = {
+  themeName: 'darkPulpTheme',
   colors: {
+    isDark: true,
     text: white,
     background: black,
     accent: pulp,
@@ -138,7 +145,9 @@ const darkPulpTheme = {
 }
 
 const lightWatermellyTheme = {
+  themeName: 'lightWatermellyTheme',
   colors: {
+    isDark: false,
     text: black,
     background: white,
     accent: watermelly,
@@ -155,7 +164,9 @@ const lightWatermellyTheme = {
 }
 
 const darkWatermellyTheme = {
+  themeName: 'darkWatermellyTheme',
   colors: {
+    isDark: true,
     text: white,
     background: black,
     accent: watermelly,
@@ -176,7 +187,9 @@ const darkWatermellyTheme = {
 }
 
 const darkBaseTheme = {
+  themeName: 'darkBaseTheme',
   colors: {
+    isDark: true,
     text: white,
     background: black,
     accent: seal,

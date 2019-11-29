@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {createContext} from 'react'
 import {graphql} from 'gatsby'
 import styled, {ThemeProvider} from 'styled-components'
 
@@ -25,6 +25,8 @@ import Seo from '../components/Seo'
 import ButtonsBlock from '../components/ButtonsBlock'
 import LogoGrid from '../components/LogoGrid'
 import Pagination from '../components/Pagination'
+
+import {BrandThemeContext} from '../utilities/context'
 
 export const query = graphql`
   query SAMPLE_PAGE_QUERY($slug: String!) {
@@ -75,7 +77,7 @@ const ColorWrap = styled.div`
 }
 `
 
-export default props => {
+const Sample = (props) => {
   const {_rawBlocks, color, blocks, seo} = props.data.page
 
   const textColor = getContrastTextColor(color.hex)
@@ -107,16 +109,24 @@ export default props => {
         useSpecial: true
       }
     }
-    var brandBaseDark = {
+
+    var darkBrandBase = {
       ...darkBase, // copy everything from base
       colors: {// override the colors property
-        ...base.colors, // copy the everything from base.colors
+        ...darkBase.colors, // copy the everything from base.colors
         accent: color.hex, // override base.colors.accent
         background: color.hex, // override base.colors.accent
+        text: getContrastTextColor(color.hex), // override base.colors.accent
         useSpecial: true
+      },
+      grid: {
+        ...darkBase.grid,
+        color: getContrastTextColor(color.hex) // override base.colors.accent
       }
     }
   }
+
+  const brandTheme = {overrideTheme: true, light: brandBase, dark: darkBrandBase}
 
   return (
     <>
@@ -125,9 +135,10 @@ export default props => {
         {/* {seo && <Seo context={props.pageContext} {...seo} />} */}
         {seo && <Seo context={props.pageContext} {...seo} />}
 
-        <Wrapper hasGrid theme={base} noSpace>
+        <Wrapper hasGrid noSpace>
           <ColorWrap color={color.hex} textColor={textColor}>
-            <ThemeProvider theme={typeof brandBase !== 'undefined' ? brandBase : base}>
+
+            <BrandThemeContext.Provider value={brandTheme}>
 
               {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
                 if (typeof block._type !== 'undefined') {
@@ -139,50 +150,50 @@ export default props => {
 
                   switch (Component) {
                     case 'HeroHome':
-                      return <HeroHome key={block._key} data={block} />
-                    // case 'HeadingBlock':
-                    //   return <HeadingBlock key={block._key} data={block} />
+                      return <HeroHome key={block._key} data={block} theme={brandBase} darkTheme={darkBrandBase} />
+                      // case 'HeadingBlock':
+                      //   return <HeadingBlock key={block._key} data={block} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'ServicesBlock':
-                      return <ServicesBlock key={block._key} data={block} />
+                      return <ServicesBlock key={block._key} data={block} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'ReviewsBlock':
-                      return <ReviewsBlock key={block._key} data={block} />
+                      return <ReviewsBlock key={block._key} data={block} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'CaseStudiesBlock':
                       if (block.layout === 'row') {
-                        return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />
+                        return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                       } else {
-                        return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} />
+                        return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                       }
                     case 'Banner1':
-                      return <Banner1 key={block._key} data={block} />
+                      return <Banner1 key={block._key} data={block} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'Banner2':
-                      return <Banner2 key={block._key} data={block} />
+                      return <Banner2 key={block._key} data={block} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'HeroBasic':
-                      return <HeroBasic key={block._key} data={block} rawData={rawData} />
+                      return <HeroBasic key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'Gallery':
-                      return <Gallery key={block._key} data={block} rawData={rawData} />
+                      return <Gallery key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'TwoPanelText':
-                      return <TwoPanelText key={block._key} data={block} rawData={rawData} />
+                      return <TwoPanelText key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'TextBlockQuarters':
-                      return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
+                      return <TextBlockQuarters key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'TextBlockWithImage':
-                      return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
+                      return <TextBlockWithImage key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'TextBlock':
-                      return <TextBlock key={block._key} data={block} rawData={rawData} />
-                    // case 'CaseStudiesRow':
-                    //   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
+                      return <TextBlock key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
+                      // case 'CaseStudiesRow':
+                      //   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'FormContact':
-                      return <ContactForm key={block._key} data={block} rawData={rawData} />
+                      return <ContactForm key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'ButtonsBlock':
-                      return <ButtonsBlock key={block._key} data={block} />
+                      return <ButtonsBlock key={block._key} data={block} theme={brandBase} darkTheme={darkBrandBase} />
                     case 'LogoGrid':
-                      return <LogoGrid key={block._key} data={block} rawData={rawData} />
+                      return <LogoGrid key={block._key} data={block} rawData={rawData} theme={brandBase} darkTheme={darkBrandBase} />
                     default:
                       return null
                   }
                 }
               })}
               <Pagination next={next} previous={previous} />
-            </ThemeProvider>
+            </BrandThemeContext.Provider>
           </ColorWrap>
         </Wrapper>
 
@@ -190,3 +201,5 @@ export default props => {
     </>
   )
 }
+
+export default Sample

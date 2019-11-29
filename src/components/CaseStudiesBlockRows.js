@@ -5,7 +5,7 @@ import {Link} from 'gatsby'
 
 import {lightWatermelly, darkWatermelly, lightPulp, darkPulp, base, darkBase, media, transition} from '../utilities/styles/'
 import {Button as OriginalButton, H1, H2, SubHeading, HeadingBlock, ButtonBlock, Wrapper as CaseStudyWrapper, Container as CaseStudyContainer} from '../elements/'
-import ServiceBox from './ServiceBox'
+// import ServiceBox from './ServiceBox'
 
 const Wrap = styled(CaseStudyWrapper)`
   display: grid;

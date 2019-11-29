@@ -24,6 +24,7 @@ class PopUpPlayer extends Component {
           modal: {
             maxWidth: 'unset',
             width: '90%',
+            height: '90%',
             padding: 'unset',
             margin: 'auto'
           },

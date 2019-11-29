@@ -5,6 +5,7 @@ import {rgba} from 'polished'
 import {getContrastTextColor} from '../utilities/helpers'
 import {GridLines} from './'
 import {base, media} from '../utilities/styles'
+import {BrandThemeContext} from '../utilities/context'
 
 const StyledWrapper = styled.section`
   background-color: ${props => props.theme.colors.background};
@@ -102,34 +103,31 @@ const StyledWrapperComponent = (props) => {
   const {theme, hasGrid, extraSpace, noSpace, children, className, backgroundColor, lineColor, halfSpace} = props
   return (
     <StyledWrapper {...props}>
-      {hasGrid && <GridLines backgroundColor={backgroundColor} lineColor={lineColor} />}
+      {hasGrid && <GridLines backgroundColor={theme.colors.background} lineColor={theme.grid.color} />}
       {children}
     </StyledWrapper>
   )
 }
 
 export const Wrapper = (props) => {
-  const {theme, hasGrid, extraSpace, noSpace, noSpaceBottom, children, className, backgroundColor, lineColor, zIndex, halfSpace} = props
-  if (theme) {
-    const themeContext = useContext(ThemeContext)
-    if (themeContext.colors.useSpecial) {
-      theme.colors.accent = themeContext.colors.accent
+  const {theme} = props
 
-      if (theme.colors.background === '#02161E') {
-        theme.colors.accent = themeContext.colors.accent
-        theme.colors.background = themeContext.colors.accent
-        theme.colors.text = getContrastTextColor(themeContext.colors.accent)
-      }
+  let UseThisTheme
+
+  const themeContext = useContext(BrandThemeContext)
+  if (themeContext.overrideTheme === true) {
+    if (theme && theme.colors.isDark) {
+      UseThisTheme = themeContext.dark
+    } else {
+      UseThisTheme = themeContext.light
     }
-
-    return (
-      <ThemeProvider theme={theme}>
-        <StyledWrapperComponent {...props} />
-      </ThemeProvider>
-    )
   } else {
-    return (
-      <StyledWrapperComponent {...props} />
-    )
+    UseThisTheme = theme || base
   }
+
+  return (
+    <ThemeProvider theme={UseThisTheme}>
+      <StyledWrapperComponent {...props} theme={UseThisTheme} />
+    </ThemeProvider>
+  )
 }
