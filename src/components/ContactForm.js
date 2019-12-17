@@ -4,12 +4,12 @@ import styled from 'styled-components'
 import {rgba, invert} from 'polished'
 
 import {Wrapper, Container, H1, SubHeading, HeadingBlock, Button} from '../elements/'
-import {darkBase, base, media, mqs} from '../utilities/styles'
+import {darkBase, base, media, mqs, transition} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
 const FromWrapper = styled.section`
   background-color: ${props => props.theme.colors.background};
-  border: solid 5px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)};
+  /* border: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)}; */
   border-bottom: none;
   /* padding: ${base.spacings.base}px; */
   display: grid;
@@ -19,18 +19,34 @@ const FromWrapper = styled.section`
 
   ${mqs({
       property: 'padding',
+      valueBase: `${base.spacings.sectionS}px`,
+      valueM: `${base.spacings.sectionS}px`,
+      valueL: `${base.spacings.sectionM}px`,
+      valueXL: `${base.spacings.sectionL}px`
+    })};
+
+    ${mqs({
+      property: 'padding-left',
       valueBase: `${base.spacings.sectionS / 2}px`,
       valueM: `${base.spacings.sectionS / 2}px`,
-      valueL: `${base.spacings.sectionM / 2}px`,
-      valueXL: `${base.spacings.sectionL / 2}px`
+      valueL: '0px',
+      valueXL: '0px'
+    })};
+
+    ${mqs({
+      property: 'padding-right',
+      valueBase: `${base.spacings.sectionS / 2}px`,
+      valueM: `${base.spacings.sectionS / 2}px`,
+      valueL: '0px',
+      valueXL: '0px'
     })};
 
     ${mqs({
       property: 'grid-gap',
-      valueBase: `${base.spacings.sectionS / 2}px`,
-      valueM: `${base.spacings.sectionS / 2}px`,
-      valueL: `${base.spacings.sectionM / 2}px`,
-      valueXL: `${base.spacings.sectionL / 2}px`
+      valueBase: `${base.spacings.sectionS / 1}px`,
+      valueM: `${base.spacings.sectionS / 1}px`,
+      valueL: `${base.spacings.sectionM / 1}px`,
+      valueXL: `${base.spacings.sectionL / 1}px`
     })};
 
   ${media.large`
@@ -38,22 +54,29 @@ const FromWrapper = styled.section`
     ${props => props.twoColumn ? (`
       grid-template-columns: 1fr 1fr;
     `) : (`
-      // width:50%;
+      grid-template-columns: 1fr;
     `)
     }
   `}
+
+  .formText {
+    /* border-bottom: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)}; */
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    font-weight: ${base.fontWeights.bold};
+    font-size: 35px;
+    line-height: 1.5;
+
+    ${media.large`
+      grid-column: span 2;
+      width: 75%;
+    `}
+  }
 `
 
 const Form = styled.form`
   button {
     width: 50%; 
-  }
-
-  .formText {
-    border-bottom: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)};
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    font-weight: ${base.fontWeights.bold};
   }
 `
 
@@ -75,11 +98,17 @@ const Field = styled.div`
 
 const Input = styled.input`
   border: none;
-  border-bottom: 2px solid ${props => rgba(props.theme.grid.color, props.theme.grid.opacity * 2)};
+  border-bottom: 3px solid ${props => rgba(props.theme.colors.black, 0.8)};
   /* background-color: ${props => invert(rgba(props.theme.colors.background, 0.025))}; */
   border-radius: 1px;
   padding: 15px;
   margin: 15px 0 30px 1px;
+  font-weight: ${base.fontWeights.bold};
+  ${transition({})};
+
+  &:focus, &:hover {
+    border-color: ${base.colors.seal};
+  }
 `
 
 const SideBar = styled.div`
@@ -94,12 +123,13 @@ const ContactForm = (props) => {
     <Wrapper hasGrid theme={base} noSpace>
       <Container main>
         <FromWrapper twoColumn={rawData && rawData.sidebarText && rawData.sidebarText}>
+          {data && data.text && (
+            <div className='formText'>
+              {data.text}
+            </div>
+          )}
           <Form name='contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field' action='/'>
-            {data && data.text && (
-              <div className='formText'>
-                {data.text}
-              </div>
-            )}
+
             <input type='hidden' name='bot-field' />
             <input type='hidden' name='form-name' value='contact' />
             <Field className='field half first'>

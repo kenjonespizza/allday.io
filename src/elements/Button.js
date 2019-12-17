@@ -88,18 +88,27 @@ export const ButtonStyled = styled.button`
   ${ButtonStyles};
 `
 
-export const Button = ({slug, icon, text, url, children, className, slugPrefix, color, isGhost, isOnDark}) => {
-  if (slug) {
+export const Button = ({slug, icon, text, url, children, className, slugPrefix, color, isGhost, isOnDark, openNew}) => {
+  console.log('openNew:', openNew)
+  if (slug && slug !== '' && !openNew) {
     const slugPre = slugPrefix || ''
 
     return (
-      <LinkButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} className={className} to={slug && `${slugPre}/${slug.current}`}>
+      <LinkButtonStyled target={openNew && '_blank'} isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} className={className} to={slug && `${slugPre}/${slug.pageInfo.slug.current}`}>
         {children || text}  {icon && <i className={icon} />}
       </LinkButtonStyled>
     )
+  } else if (slug && slug !== '' && openNew) {
+    const slugPre = slugPrefix || ''
+
+    return (
+      <AButtonStyled target={openNew && '_blank'} rel={openNew && 'noreferrer'} isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} className={className} href={`/${slug.pageInfo.slug.current}`}>
+        {children || text}  {icon && <i className={icon} />}
+      </AButtonStyled>
+    )
   } else if (url) {
     return (
-      <AButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} className={className} href={url}>
+      <AButtonStyled target={openNew && '_blank'} rel={openNew && 'noreferrer'} isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} className={className} href={url}>
         {children || text}  {icon && <i className={icon} />}
       </AButtonStyled>
     )
@@ -138,8 +147,29 @@ export const query = graphql`
     color
     isGhost
     isOnDark
+    openNew
     slug {
-      current
+      ... on SanityPages {
+        pageInfo {
+          slug {
+            current
+          }
+        }
+      }
+      ... on SanityCaseStudies {
+        pageInfo {
+          slug {
+            current
+          }
+        }
+      }
+      ... on SanityServices {
+        pageInfo {
+          slug {
+            current
+          }
+        }
+      }
     }
     icon
   }

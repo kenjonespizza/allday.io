@@ -17,6 +17,10 @@ const Container = styled(TwoPanelTextContainer)`
   /* grid-gap: 50px; */
   color: ${props => props.textColor};
 
+  a {
+    color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) > 2 ? props.theme.colors.accent : props.theme.colors.text};
+  }
+
   ${SubHeading} {
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
@@ -40,6 +44,10 @@ const Container = styled(TwoPanelTextContainer)`
     margin-top: ${base.spacings.base}px;
     color: ${props => props.textColor};
     /* color: ${props => props.textColor && rgba(props.textColor, 0.8)}; */
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     strong {
       color: ${props => props.textColor};

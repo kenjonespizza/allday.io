@@ -23,7 +23,6 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
   pages.forEach(edge => {
     const page = edge.node
     const slug = page.pageInfo.slug.current
-
     reporter.info(`Creating page: ${slug}`)
 
     createPage({
@@ -75,7 +74,7 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
 
   services.forEach(edge => {
     const page = edge.node
-    const slug = `services/${page.pageInfo.slug.current}`
+    const slug = `${page.pageInfo.slug.current}`
     const slugName = page.pageInfo.slug.current
     const next = edge.next
     const previous = edge.previous
@@ -139,7 +138,7 @@ exports.createPages = async ({actions: {createPage}, graphql, reporter}) => {
 
   caseStudies.forEach(edge => {
     const page = edge.node
-    const slug = `work-samples/${page.pageInfo.slug.current}`
+    const slug = `${page.pageInfo.slug.current}`
     const slugName = page.pageInfo.slug.current
     const next = edge.next
     const previous = edge.previous

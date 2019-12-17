@@ -24,10 +24,6 @@ export const colorsList = {
   github: github
 }
 
-const accentHover = (color, ammount = 0.1, makeDarker = true) => {
-  return (makeDarker === true ? darken(ammount, color) : lighten(ammount, color))
-}
-
 export const base = {
   themeName: 'base',
   colors: {
@@ -52,7 +48,7 @@ export const base = {
     monospace: 'Menlo, monospace'
   },
   fontSizes: {
-    base: '17px',
+    base: '19px',
     small: '15px',
     button: '19px',
     buttonIcon: '16px',
@@ -69,7 +65,7 @@ export const base = {
     black: 900
   },
   lineHeights: {
-    body: 1.5,
+    body: 1.9,
     heading: 1.125
   },
   letterSpacings: {
@@ -88,16 +84,20 @@ export const base = {
   },
   spacings: {
     base: 40,
-    sectionS: 80,
-    sectionM: 100,
-    sectionL: 150,
-    heading: 40
+    sectionS: 50,
+    sectionM: 60,
+    sectionL: 100
+    // heading: 40
+    // sectionS: 80,
+    // sectionM: 100,
+    // sectionL: 150,
+    // heading: 40
   },
   shadows: {
     box: `0px 10px 35px ${rgba('black', 0.1)}`
   },
   grid: {
-    opacity: 0.1,
+    opacity: 0.07,
     color: black
   }
 }

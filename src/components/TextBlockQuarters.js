@@ -12,6 +12,10 @@ const Container = styled(TextBlockQuartersContainer)`
   grid-template-columns: 1fr;
   grid-gap: calc(${base.spacings.base}px / 2);
 
+  a {
+    color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) > 2 ? props.theme.colors.accent : props.theme.colors.text};
+  }
+
   ${media.medium`
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: ${base.spacings.base}px;

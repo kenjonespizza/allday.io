@@ -12,12 +12,22 @@ const Text = styled.div`
   /* margin-top: ${base.spacings.base}px; */
 `
 
+const ThinText = styled.div`
+  max-width: 700px;
+  text-align: center;
+  margin: 0 auto;
+`
+
 const VideoHolder = styled(TextBlockWithImageVideoHolder)``
 
 const Container = styled(TextBlockWithImageContainer)`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
+
+  a {
+    color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) > 2 ? props.theme.colors.accent : props.theme.colors.text};
+  }
 
   ${SubHeading} {
     grid-column: 1 / span 2;
@@ -265,9 +275,9 @@ const TextBlockWithImage = ({data, rawData, children}) => {
         <Wrapper hasGrid theme={isDark ? darkBase : base}>
           <Container>
             {text &&
-              <Text>
+              <ThinText>
                 <BlockContent blocks={text || []} />
-              </Text>}
+              </ThinText>}
 
           </Container>
         </Wrapper>

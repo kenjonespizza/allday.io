@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {css, ThemeProvider, ThemeContext} from 'styled-components'
-import {rgba} from 'polished'
+import {rgba, getContrast} from 'polished'
 
 import {getContrastTextColor} from '../utilities/helpers'
 import {GridLines} from './'
@@ -16,6 +16,10 @@ const StyledWrapper = styled.section`
   padding-top: ${base.spacings.sectionS}px;
   padding-bottom: ${base.spacings.sectionS}px;
   z-index: 2;
+
+  a:not([class^="Button"]) {
+    color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) > 2 ? props.theme.colors.accent : props.theme.colors.text};
+  }
 
   ${({zIndex}) => zIndex && `
     z-index: ${zIndex};
@@ -82,7 +86,7 @@ const StyledWrapper = styled.section`
 
   p, li {
     /* color: ${props => props.theme.colors.text}; */
-    color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 0.7)};
+    color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 0.8)};
 
     strong {
       color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 1)};

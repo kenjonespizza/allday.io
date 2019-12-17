@@ -14,8 +14,9 @@ const CaseStudies = styled.ul`
   grid-template-columns: 1fr;
   grid-gap: 10px;
   padding: 0;
-  background-color: #848F9E;
-  background: linear-gradient(70deg, #848F9E 0%, ${rgba(base.colors.black, 0.2)} 100%);
+  /* background-color: #848F9E; */
+  /* background-color: #fff; */
+  /* background: linear-gradient(70deg, #848F9E 0%, ${rgba(base.colors.black, 0.2)} 100%); */
 
 
   ${media.medium`
@@ -80,6 +81,7 @@ const Name = styled.span`
   font-weight: ${base.fontWeights.bold};
   color: ${base.colors.black};
   line-height: 1.5;
+  text-decoration: none;
 
   ${media.medium`
     font-size: 32px;
@@ -189,18 +191,18 @@ const ServiceBoxInner = styled(Link)`
   justify-content: space-between;
   flex-direction: column;
   z-index: 2;
-  ${transition({})}
+  ${transition({})};
+  text-decoration: none;
 
   ${Number}{
     /* border-color: ${props => props.color ? props.color : props.black}; */
     background-color: ${props => props.color && props.color};
-    background-color: ${rgba(base.colors.black, 0.2)};
+    background-color: ${rgba(base.colors.black, 0.4)};
   }
   
   ${Name}{
-    color: ${props => props.hasimage === 'true' ? props.theme.colors.white : props.black};
-    color: ${props => props.hasimage === 'true' ? props.theme.colors.white : props.black};
-    text-shadow: ${props => props.hasimage === 'true' ? `0 0 20px ${rgba(base.colors.black, 0.2)}, 0 2px 2px ${rgba(base.colors.black, 0.3)}` : ''};
+    color: ${props => props.hasimage === 'true' ? props.theme.colors.text : props.black};
+    /* text-shadow: ${props => props.hasimage === 'true' ? `0 0 20px ${rgba(base.colors.black, 0.2)}, 0 2px 2px ${rgba(base.colors.black, 0.3)}` : ''}; */
   }
 
   &:hover {
@@ -248,7 +250,7 @@ const CaseStudiesBlockBlocks = ({data, rawData}) => {
             return (
               <StyledServiceBox key={caseStudy._id} color={caseStudy.color.hex}>
                 {caseStudy.projectImage && caseStudy.projectImage.asset && <BoxImg fluid={caseStudy.projectImage.asset.fluid} alt={caseStudy.projectImage.alt || caseStudy.pageInfo.pageName} />}
-                <ServiceBoxInner to={`/work-samples/${caseStudy.pageInfo.slug.current}`} color={caseStudy.color.hex} textcolor={textColor} hasimage={(caseStudy.projectImage && caseStudy.projectImage.asset) ? 'true' : 'false'}>
+                <ServiceBoxInner to={`/${caseStudy.pageInfo.slug.current}`} color={caseStudy.color.hex} textcolor={textColor} hasimage={(caseStudy.projectImage && caseStudy.projectImage.asset) ? 'true' : 'false'}>
                   <Name>
                     {caseStudy.pageInfo.pageName}
                   </Name>

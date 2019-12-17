@@ -8,12 +8,13 @@ import ServiceBox from './ServiceBox'
 
 const Services = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 10px;
   padding: 0;
 
   ${media.medium`
-  grid-gap: ${base.spacings.base}px;
+    grid-gap: ${base.spacings.base}px;
+    grid-template-columns: 1fr 1fr;
   `}
  
   ${media.xLarge`
@@ -23,17 +24,13 @@ const Services = styled.ul`
 
 const ServicesBlock = ({data}) => {
   const {services, headingBlock, button} = data
+  const {heading, subHeading} = headingBlock || ''
 
   return (
     <Wrapper hasGrid theme={base} addSpace>
-      <HeadingBlock>
-        <SubHeading>
-          {headingBlock.subHeading && headingBlock.subHeading}
-        </SubHeading>
-        <H1 as='h2'>
-          {headingBlock.heading && headingBlock.heading}
-        </H1>
-      </HeadingBlock>
+      {headingBlock && (heading || subHeading) && (
+        <HeadingBlock {...headingBlock} />
+      )}
       <Container>
         <Services>
           {services.map((service, i) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {graphql} from 'gatsby'
-import styled from 'styled-components'
+import styled, {ThemeContext} from 'styled-components'
 import {rgba, getContrast, readableColor} from 'polished'
 import Image from 'gatsby-image'
 
@@ -17,10 +17,14 @@ const Container = styled(HeroBasicContainer)`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
 
+  a {
+    color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) > 2 ? props.theme.colors.accent : props.theme.colors.text};
+  }
+
   ${SubHeading} {
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
-    color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 0.7)};
+    /* color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 0.7)}; */
   }
   
   ${H1} {
@@ -49,7 +53,7 @@ const Container = styled(HeroBasicContainer)`
     }
 
     a {
-      color: ${props => props.theme.colors.accent};
+      /* color: ${props => props.theme.colors.accent}; */
       text-decoration: underline;
     }
   }
@@ -148,6 +152,8 @@ const CenterWrapper = styled(Wrapper)`
 `
 
 const HeroBasic = ({data, rawData, children}) => {
+  const themeContext = React.useContext(ThemeContext)
+  console.log('themeContext:', themeContext)
   if (typeof data !== 'undefined') {
     const {headingBlock, isDark, heroImage, imagePosition} = data
     const {heading, subHeading} = headingBlock

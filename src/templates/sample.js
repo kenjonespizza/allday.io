@@ -85,7 +85,7 @@ const Sample = (props) => {
   if (props.pageContext.next) {
     var next = {
       title: props.pageContext.next.pageInfo.pageName,
-      path: `/work-samples/${props.pageContext.next.pageInfo.slug.current}`,
+      path: `/${props.pageContext.next.pageInfo.slug.current}`,
       color: props.pageContext.next.color.hex,
       text: 'Next Project'
     }
@@ -94,7 +94,7 @@ const Sample = (props) => {
   if (props.pageContext.previous) {
     var previous = {
       title: props.pageContext.previous.pageInfo.pageName,
-      path: `/work-samples/${props.pageContext.previous.pageInfo.slug.current}`,
+      path: `/${props.pageContext.previous.pageInfo.slug.current}`,
       color: props.pageContext.previous.color.hex,
       text: 'Previous Project'
     }

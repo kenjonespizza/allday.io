@@ -4,6 +4,7 @@ import styled, {ThemeProvider, keyframes, css} from 'styled-components'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
+import {links} from '../utilities/links'
 import {darkPulp, darkWatermelly, darkBase, transition, base, media} from '../utilities/styles'
 import {GridLines, LinkButtonStyled} from '../elements'
 import {useGlobalState} from './Layout'
@@ -158,7 +159,7 @@ const SlideOutMenu = ({menu}) => {
               }
             })}
             <li key='blog'>
-              <Link activeClassName='active' partiallyActive to='/design-studio-blog'>Blog</Link>
+              <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
             </li>
           </ul>
           {/* <ul>
@@ -174,7 +175,7 @@ const SlideOutMenu = ({menu}) => {
               }
             })}
           </ul> */}
-          <LinkButtonStyled color='watermelly' onClick={() => toggleMenu(!isOpen)} to='/get-in-touch'>
+          <LinkButtonStyled color='watermelly' onClick={() => toggleMenu(!isOpen)} to={links.contact}>
             Start A Project!
           </LinkButtonStyled>
         </nav>

@@ -32,14 +32,14 @@ const Page = (props) => {
   if (hasPagination) {
     if (pageContext.next) {
       var next = {
-        path: `/services/${pageContext.next.pageInfo.slug.current}`,
+        path: `/${pageContext.next.pageInfo.slug.current}`,
         text: pageContext.next.pageInfo.pageName
       }
     }
 
     if (pageContext.previous) {
       var previous = {
-        path: `/services/${pageContext.previous.pageInfo.slug.current}`,
+        path: `/${pageContext.previous.pageInfo.slug.current}`,
         text: pageContext.previous.pageInfo.pageName
       }
     }
@@ -105,7 +105,7 @@ const Page = (props) => {
               }
             }
           })}
-          <Pagination next={next} previous={previous} />
+          {hasPagination && <Pagination next={next} previous={previous} />}
         </ThemeProvider>
       </Wrapper>
 

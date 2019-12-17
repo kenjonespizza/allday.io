@@ -23,6 +23,7 @@ const PaginationWrap = styled.nav`
   li  {
     width: 50%;
     a {
+      text-decoration: none;
       grid-template-areas:  "arrow"
                             "link";
 

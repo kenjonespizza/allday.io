@@ -1,6 +1,8 @@
 import {createGlobalStyle} from 'styled-components'
 import styledNormalize from 'styled-normalize'
-import {rgba} from 'polished'
+import {rgba, getContrast} from 'polished'
+
+import {getContrastTextColor} from '../helpers'
 import {base, darkPulp, lightWatermelly, colorsList, media} from './'
 import {transition} from './transition'
 import {H1css, H2css, H3css, H4css, H5css, H6css} from '../../elements/Heading'
@@ -38,8 +40,9 @@ export const GlobalStyle = createGlobalStyle`
 
   /* a, a * { */
   a {
-    text-decoration: none;
+    text-decoration: underline;
     color: ${props => props.theme.colors.accent};
+    color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) < 2 ? props.theme.colors.accent : props.theme.colors.text};
     ${transition({})};
   }
 /* 
@@ -115,7 +118,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p, li {
-    line-height: 2;
+    line-height: ${base.lineHeights.body};
   }
 
   ul {
@@ -136,5 +139,29 @@ export const GlobalStyle = createGlobalStyle`
     fill: ${base.colors.white};
     /* width: 60px;
     height:60px; */
+  }
+
+  .blockContent {
+    ul, ol {
+      padding-left: 15px;
+    }
+
+    ol {
+      list-style: none;
+      counter-reset: item;
+
+      li {
+        counter-increment: item;
+        display: flex;
+      }
+      li:before {
+        content: counter(item)". ";
+        font-weight: ${base.fontWeights.bold};
+        text-align: left;
+        width: 30px;
+        padding-right: 10px;
+        display: block;
+      }
+    }
   }
 `

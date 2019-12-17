@@ -5,6 +5,7 @@ import Link from 'gatsby-link'
 import {rgba} from 'polished'
 import Headroom from 'react-headroom'
 
+import {links} from '../utilities/links'
 import LogoFile from '../../static/AllDayLogo.svg'
 import {transition, base, bounce, pulse, lightWatermelly, darkWatermelly, media} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
@@ -86,9 +87,10 @@ ${media.large`
     }
 
     a {
-      color: ${base.colors.text};
+      color: ${base.colors.text} !important;
       font-weight: ${base.fontWeights.medium};
-      postion: relative;
+      position: relative;
+      text-decoration: none;
       ${transition({})};
 
       &:after {
@@ -255,7 +257,7 @@ const NavBar = () => {
                 )
               })}
               <li key='blog'>
-                <Link activeClassName='active' partiallyActive to='/design-studio-blog'>Blog</Link>
+                <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
               </li>
               {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
             </ul>

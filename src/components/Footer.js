@@ -7,6 +7,7 @@ import LogoFile from '../../static/AllDayLogo.svg'
 import {Wrapper as FooterWrapper, Container, Heading, H2, H3, H4, HeadingBlock, SubHeading} from '../elements'
 import {base, darkPulp, colorsList, media, transition} from '../utilities/styles'
 import {mapEdgesToNodes} from '../utilities/helpers'
+import {links} from '../utilities/links'
 
 const Wrapper = styled(FooterWrapper)`
   background-color: ${base.colors.white};
@@ -114,7 +115,7 @@ const Footer = () => {
         <FooterContainer as='footer'>
           <div>
             <p>© 2015–2019 AllDayIO. All rights reserved.</p>
-            <p>This site was built on {data.site.buildTime} with <a href='https://gatsbyjs.org'>Gatsby</a>, hosted by <a href='https://netlify.com'>Netlify</a>, and populated by <a href='https://sanity.io'>Sanity</a>. Checkout the source code on <a href='https://github.com'>Github</a></p>
+            <p>This site was built on {data.site.buildTime} with <a href='https://gatsbyjs.org'>Gatsby</a>, hosted by <a href='https://netlify.com'>Netlify</a>, and populated by <a href='https://sanity.io'>Sanity</a>. {/* Checkout the source code on <a href='https://github.com'>Github</a> */}</p>
           </div>
           <Link to='/'>
             <Logo alt='AllDay' />
@@ -128,7 +129,7 @@ const Footer = () => {
               <SubHeading>
                 Ready to get the ball rolling?
               </SubHeading>
-              <Link to='/get-in-touch'>
+              <Link to={links.contact}>
                 <H3>
                 Let us know what you need!
                 </H3>
