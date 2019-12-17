@@ -1,9 +1,10 @@
 import React from 'react'
-import {graphql} from 'gatsby'
+import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 import {rgba, invert} from 'polished'
+import {Facebook, Instagram, Linkedin, Twitter} from 'react-feather'
 
-import {Wrapper, Container, H1, SubHeading, HeadingBlock, Button} from '../elements/'
+import {Wrapper, Container, H1, H2, H3, H4, SubHeading, HeadingBlock, Button} from '../elements/'
 import {darkBase, base, media, mqs, transition} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
@@ -117,7 +118,45 @@ const SideBar = styled.div`
   }
 `
 
+const Social = styled.div`
+  margin-top: 40px;
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    margin-top: ${base.spacings.base}px;
+    list-style:  none;
+
+    li {
+      margin: 0;
+      padding-right: 40px;
+    }
+  }
+
+  a:not([class^="Button"]) {
+    color: ${base.colors.black};
+
+    &:hover {
+      color: ${props => props.theme.colors.accent};
+    }
+  }
+`
+
 const ContactForm = (props) => {
+  const social = useStaticQuery(graphql`
+    query SocialQuery {
+      sanitySiteSettings {
+        socialMediaHandle {
+          facebook
+          instagram
+          linkedIn
+          twitter
+        }
+      }
+    }
+  `)
+
   const {data, rawData} = props
   return (
     <Wrapper hasGrid theme={base} noSpace>
@@ -153,6 +192,41 @@ const ContactForm = (props) => {
           {rawData && rawData.sidebarText && (
             <SideBar>
               <BlockContent blocks={rawData.sidebarText || []} />
+              <Social>
+                <H4>
+                  Find Us Here:
+                </H4>
+                <ul>
+                  {social.sanitySiteSettings.socialMediaHandle.facebook && (
+                    <li>
+                      <a href={`https://facebook.com/${social.sanitySiteSettings.socialMediaHandle.facebook}`}>
+                        <Facebook size={30} />
+                      </a>
+                    </li>
+                  )}
+                  {social.sanitySiteSettings.socialMediaHandle.instagram && (
+                    <li>
+                      <a href={`https://instagram.com/${social.sanitySiteSettings.socialMediaHandle.instagram}`}>
+                        <Instagram size={30} />
+                      </a>
+                    </li>
+                  )}
+                  {social.sanitySiteSettings.socialMediaHandle.linkedIn && (
+                    <li>
+                      <a href={`https://linkedIn.com/company/${social.sanitySiteSettings.socialMediaHandle.linkedIn}`}>
+                        <Linkedin size={30} />
+                      </a>
+                    </li>
+                  )}
+                  {social.sanitySiteSettings.socialMediaHandle.twitter && (
+                    <li>
+                      <a href={`https://twitter.com/${social.sanitySiteSettings.socialMediaHandle.twitter}`}>
+                        <Twitter size={30} />
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </Social>
             </SideBar>
           )}
         </FromWrapper>
@@ -164,6 +238,7 @@ const ContactForm = (props) => {
 export default ContactForm
 
 export const query = graphql`
+
   fragment FormContactFragment on SanityFormContact {
     _key
     _type

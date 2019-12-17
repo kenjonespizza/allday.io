@@ -4,6 +4,7 @@ import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 import Headroom from 'react-headroom'
+import {Facebook, Instagram, Linkedin, Twitter} from 'react-feather'
 
 import {links} from '../utilities/links'
 import LogoFile from '../../static/AllDayLogo.svg'
@@ -89,6 +90,7 @@ ${media.large`
     a {
       color: ${base.colors.text} !important;
       font-weight: ${base.fontWeights.medium};
+      font-size: 17px;
       position: relative;
       text-decoration: none;
       ${transition({})};
@@ -209,6 +211,30 @@ const StyledHeadroom = styled(Headroom)`
   }
 `
 
+const Social = styled.li`
+  /* margin-top: 40px; */
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style:  none;
+
+    li {
+      margin: 0;
+      padding-right: 30px;
+    }
+  }
+
+  a:not([class^="Button"]) {
+    color: ${base.colors.black};
+
+    &:hover {
+      color: ${props => props.theme.colors.accent};
+    }
+  }
+`
+
 const NavBar = () => {
   const [isOpen, toggleMenu] = useGlobalState('isMenuOpen')
   const [isPinned, setAsPinned] = useState(false)
@@ -230,9 +256,20 @@ const NavBar = () => {
           }
         }
       }
+
+      sanitySiteSettings {
+        socialMediaHandle {
+          facebook
+          instagram
+          linkedIn
+          twitter
+        }
+      }
     }
 
   `)
+
+  console.log('data:', data)
 
   return (
     <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
@@ -259,6 +296,40 @@ const NavBar = () => {
               <li key='blog'>
                 <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
               </li>
+
+              <Social>
+                <ul>
+                  {data.sanitySiteSettings.socialMediaHandle.facebook && (
+                    <li>
+                      <a href={`https://facebook.com/${data.sanitySiteSettings.socialMediaHandle.facebook}`} target='_blank' rel='noopener noreferrer'>
+                        <Facebook size={20} />
+                      </a>
+                    </li>
+                  )}
+                  {data.sanitySiteSettings.socialMediaHandle.instagram && (
+                    <li>
+                      <a href={`https://instagram.com/${data.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer'>
+                        <Instagram size={20} />
+                      </a>
+                    </li>
+                  )}
+                  {data.sanitySiteSettings.socialMediaHandle.linkedIn && (
+                    <li>
+                      <a href={`https://linkedIn.com/company/${data.sanitySiteSettings.socialMediaHandle.linkedIn}`} target='_blank' rel='noopener noreferrer'>
+                        <Linkedin size={20} />
+                      </a>
+                    </li>
+                  )}
+                  {data.sanitySiteSettings.socialMediaHandle.twitter && (
+                    <li>
+                      <a href={`https://twitter.com/${data.sanitySiteSettings.socialMediaHandle.twitter}`} target='_blank' rel='noopener noreferrer'>
+                        <Twitter size={20} />
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </Social>
+
               {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
             </ul>
           </Nav>

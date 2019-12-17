@@ -37,6 +37,7 @@
     "polished": "^3.4.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-feather": "^2.0.3",
     "react-flickity-component": "^3.3.1",
     "react-headroom": "^3.0.0",
     "react-helmet": "^5.2.1",
