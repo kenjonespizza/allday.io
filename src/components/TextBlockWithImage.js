@@ -14,7 +14,7 @@ const Text = styled.div`
 
 const ThinText = styled.div`
   max-width: 700px;
-  text-align: center;
+  text-align: left;
   margin: 0 auto;
 `
 

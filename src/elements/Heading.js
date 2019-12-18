@@ -4,10 +4,10 @@ import {base} from '../utilities/styles/theme'
 import {media} from '../utilities/styles/media'
 
 export const HeadingBase = css`
-  margin: ${props => props.theme.spacings.heading}px 0 ${props => props.theme.spacings.heading / 2}px};
+  margin: ${props => props.theme.spacings.base}px 0 ${props => props.theme.spacings.base / 3}px};
 
   &:first-child {
-    margin-top: 0 ;
+    margin-top: 0;
   }
 `
 

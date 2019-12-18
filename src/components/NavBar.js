@@ -4,11 +4,14 @@ import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 import Headroom from 'react-headroom'
-import {Facebook, Instagram, Linkedin, Twitter} from 'react-feather'
+import Facebook from '../img/social/Facebook.Icon'
+import Instagram from '../img/social/Instagram.Icon'
+import LinkedIn from '../img/social/LinkedIn.Icon'
+import Twitter from '../img/social/Twitter.Icon'
 
 import {links} from '../utilities/links'
 import LogoFile from '../../static/AllDayLogo.svg'
-import {transition, base, bounce, pulse, lightWatermelly, darkWatermelly, media} from '../utilities/styles'
+import {transition, base, bounce, pulse, lightWatermelly, darkWatermelly, media, colorsList} from '../utilities/styles'
 import SlideOutMenu from '../components/SlideOutMenu'
 import {useGlobalState} from './Layout'
 import {GridLines, Wrapper, Button} from '../elements'
@@ -80,8 +83,12 @@ ${media.large`
   }
 
   li {
-    margin-left: 50px;
+    margin-left: 30px;
     position: relative;
+
+    ${media.xLarge`
+      margin-left: 50px;
+    `}
 
     &:first-of-type {
       margin-left: 0;
@@ -90,12 +97,16 @@ ${media.large`
     a {
       color: ${base.colors.text} !important;
       font-weight: ${base.fontWeights.medium};
-      font-size: 17px;
+      font-size: 15px;
       position: relative;
       text-decoration: none;
       ${transition({})};
 
-      &:after {
+      ${media.xLarge`
+        font-size: 17px;
+      `}
+
+      &:not(.social-icon):after {
         content: "";
         position: absolute;
         bottom: -10px;
@@ -227,10 +238,35 @@ const Social = styled.li`
   }
 
   a:not([class^="Button"]) {
-    color: ${base.colors.black};
+    svg path {
+      fill: ${base.colors.black};
+    }
 
     &:hover {
-      color: ${props => props.theme.colors.accent};
+      svg path {
+        fill: ${props => props.theme.colors.seal};
+      }
+    }
+
+    &.facebook:hover {
+      svg path {
+        fill: ${colorsList.facebook};
+      }
+    }
+    &.twitter:hover {
+      svg path {
+        fill: ${colorsList.twitter};
+      }
+    }
+    &.linkedIn:hover {
+      svg path {
+        fill: ${colorsList.linkedIn};
+      }
+    }
+    &.instagram:hover {
+      svg path {
+        fill: ${colorsList.instagram};
+      }
     }
   }
 `
@@ -301,28 +337,28 @@ const NavBar = () => {
                 <ul>
                   {data.sanitySiteSettings.socialMediaHandle.facebook && (
                     <li>
-                      <a href={`https://facebook.com/${data.sanitySiteSettings.socialMediaHandle.facebook}`} target='_blank' rel='noopener noreferrer'>
-                        <Facebook size={20} />
+                      <a href={`https://facebook.com/${data.sanitySiteSettings.socialMediaHandle.facebook}`} target='_blank' rel='noopener noreferrer' className='social-icon facebook'>
+                        <Facebook />
                       </a>
                     </li>
                   )}
                   {data.sanitySiteSettings.socialMediaHandle.instagram && (
                     <li>
-                      <a href={`https://instagram.com/${data.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer'>
+                      <a href={`https://instagram.com/${data.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer' className='social-icon instagram'>
                         <Instagram size={20} />
                       </a>
                     </li>
                   )}
                   {data.sanitySiteSettings.socialMediaHandle.linkedIn && (
                     <li>
-                      <a href={`https://linkedIn.com/company/${data.sanitySiteSettings.socialMediaHandle.linkedIn}`} target='_blank' rel='noopener noreferrer'>
-                        <Linkedin size={20} />
+                      <a href={`https://linkedIn.com/company/${data.sanitySiteSettings.socialMediaHandle.linkedIn}`} target='_blank' rel='noopener noreferrer' className='social-icon linkedIn'>
+                        <LinkedIn size={20} />
                       </a>
                     </li>
                   )}
                   {data.sanitySiteSettings.socialMediaHandle.twitter && (
                     <li>
-                      <a href={`https://twitter.com/${data.sanitySiteSettings.socialMediaHandle.twitter}`} target='_blank' rel='noopener noreferrer'>
+                      <a href={`https://twitter.com/${data.sanitySiteSettings.socialMediaHandle.twitter}`} target='_blank' rel='noopener noreferrer' className='social-icon twitter'>
                         <Twitter size={20} />
                       </a>
                     </li>

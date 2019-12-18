@@ -10,6 +10,10 @@ const gatsby = '#663399'
 const netlify = '#00AD9F'
 const sanity = '#F04A39'
 const github = '#333333'
+const facebook = '#3b5998'
+const twitter = '#1da1f2'
+const linkedIn = '#007bb5'
+const instagram = '#c32aa3'
 
 export const colorsList = {
   seal: seal,
@@ -21,7 +25,11 @@ export const colorsList = {
   gatsby: gatsby,
   netlify: netlify,
   sanity: sanity,
-  github: github
+  github: github,
+  facebook: facebook,
+  twitter: twitter,
+  linkedIn: linkedIn,
+  instagram: instagram
 }
 
 export const base = {

@@ -89,6 +89,11 @@ export const GlobalStyle = createGlobalStyle`
     ${H6css}
   }
 
+  h4 {
+    margin-bottom: ${base.spacings.base}px;
+    margin-bottom: 200px;
+  }
+
   button {
     ${transition({})};
   }

@@ -84,7 +84,7 @@ const BoxImg = styled(Img)`
     top: 0;
     left: 0;
     ${size('100%', '100%')};
-    background-color: ${rgba(base.colors.black, 0.2)};
+    background-color: ${rgba(base.colors.black, 0.4)};
   }
 `
 

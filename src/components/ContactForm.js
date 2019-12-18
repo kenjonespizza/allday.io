@@ -2,10 +2,13 @@ import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 import {rgba, invert} from 'polished'
-import {Facebook, Instagram, Linkedin, Twitter} from 'react-feather'
+import Facebook from '../img/social/Facebook.Icon'
+import Instagram from '../img/social/Instagram.Icon'
+import LinkedIn from '../img/social/LinkedIn.Icon'
+import Twitter from '../img/social/Twitter.Icon'
 
 import {Wrapper, Container, H1, H2, H3, H4, SubHeading, HeadingBlock, Button} from '../elements/'
-import {darkBase, base, media, mqs, transition} from '../utilities/styles'
+import {darkBase, base, media, mqs, transition, colorsList} from '../utilities/styles'
 import BlockContent from './BlockContent'
 
 const FromWrapper = styled.section`
@@ -135,10 +138,35 @@ const Social = styled.div`
   }
 
   a:not([class^="Button"]) {
-    color: ${base.colors.black};
+    svg path {
+      fill: ${base.colors.black};
+    }
 
     &:hover {
-      color: ${props => props.theme.colors.accent};
+      svg path {
+        fill: ${props => props.theme.colors.seal};
+      }
+    }
+
+    &.facebook:hover {
+      svg path {
+        fill: ${colorsList.facebook};
+      }
+    }
+    &.twitter:hover {
+      svg path {
+        fill: ${colorsList.twitter};
+      }
+    }
+    &.linkedIn:hover {
+      svg path {
+        fill: ${colorsList.linkedIn};
+      }
+    }
+    &.instagram:hover {
+      svg path {
+        fill: ${colorsList.instagram};
+      }
     }
   }
 `
@@ -199,29 +227,29 @@ const ContactForm = (props) => {
                 <ul>
                   {social.sanitySiteSettings.socialMediaHandle.facebook && (
                     <li>
-                      <a href={`https://facebook.com/${social.sanitySiteSettings.socialMediaHandle.facebook}`}>
-                        <Facebook size={30} />
+                      <a href={`https://facebook.com/${social.sanitySiteSettings.socialMediaHandle.facebook}`} target='_blank' rel='noopener noreferrer' className='social-icon facebook'>
+                        <Facebook />
                       </a>
                     </li>
                   )}
                   {social.sanitySiteSettings.socialMediaHandle.instagram && (
                     <li>
-                      <a href={`https://instagram.com/${social.sanitySiteSettings.socialMediaHandle.instagram}`}>
-                        <Instagram size={30} />
+                      <a href={`https://instagram.com/${social.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer' className='social-icon instagram'>
+                        <Instagram size={20} />
                       </a>
                     </li>
                   )}
                   {social.sanitySiteSettings.socialMediaHandle.linkedIn && (
                     <li>
-                      <a href={`https://linkedIn.com/company/${social.sanitySiteSettings.socialMediaHandle.linkedIn}`}>
-                        <Linkedin size={30} />
+                      <a href={`https://linkedIn.com/company/${social.sanitySiteSettings.socialMediaHandle.linkedIn}`} target='_blank' rel='noopener noreferrer' className='social-icon linkedIn'>
+                        <LinkedIn size={20} />
                       </a>
                     </li>
                   )}
                   {social.sanitySiteSettings.socialMediaHandle.twitter && (
                     <li>
-                      <a href={`https://twitter.com/${social.sanitySiteSettings.socialMediaHandle.twitter}`}>
-                        <Twitter size={30} />
+                      <a href={`https://twitter.com/${social.sanitySiteSettings.socialMediaHandle.twitter}`} target='_blank' rel='noopener noreferrer' className='social-icon twitter'>
+                        <Twitter size={20} />
                       </a>
                     </li>
                   )}
