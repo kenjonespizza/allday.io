@@ -97,7 +97,7 @@ export const base = {
     box: `0px 10px 35px ${rgba('black', 0.1)}`
   },
   grid: {
-    opacity: 0.07,
+    opacity: 0.045,
     color: black
   }
 }
