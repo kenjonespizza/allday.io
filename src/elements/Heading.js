@@ -4,7 +4,7 @@ import {base} from '../utilities/styles/theme'
 import {media} from '../utilities/styles/media'
 
 export const HeadingBase = css`
-  margin: ${props => props.theme.spacings.base}px 0 ${props => props.theme.spacings.base / 3}px};
+  margin: ${props => props.theme.spacings.base}px 0 ${props => props.theme.spacings.base / 2}px};
 
   &:first-child {
     margin-top: 0;
@@ -14,6 +14,7 @@ export const HeadingBase = css`
 export const H1css = css`
   ${HeadingBase}
   font-size: 35px;
+  line-height: 1.1;
   
   ${media.medium`
     font-size: 45px;
@@ -37,46 +38,43 @@ export const H2css = css`
 `
 export const H3css = css`
   ${HeadingBase}
-  font-size: 30px;
+  font-size: 23px;
   
   ${media.medium`
-    font-size: 35px;
+    font-size: 25px;
   `}
 
   ${media.large`
-    font-size: 40px;
+    font-size: 30px;
   `}
 `
 export const H4css = css`
   ${HeadingBase}
-  font-size: 22px;
-  line-height: 1.5;
+  font-size: 21px;
   
   ${media.medium`
-    font-size: 22px;
+    font-size: 23px;
   `}
 
   ${media.large`
-    font-size: 22px;
+    font-size: 25px;
   `}
 `
 export const H5css = css`
   ${HeadingBase}
-  font-size: 21px;
-  line-height: 1.5;
+  font-size: 20px;
   
   ${media.medium`
     font-size: 21px;
   `}
 
   ${media.large`
-    font-size: 21px;
+    font-size: 23px;
   `}
 `
 export const H6css = css`
   ${HeadingBase}
   font-size: 19px;
-  line-height: 1.5;
   
   ${media.medium`
     font-size: 19px;

@@ -56,6 +56,9 @@ export const base = {
     monospace: 'Menlo, monospace'
   },
   fontSizes: {
+    baseSmall: '15px',
+    baseMedium: '17px',
+    baseLarge: '18px',
     base: '19px',
     small: '15px',
     button: '19px',
@@ -74,7 +77,7 @@ export const base = {
   },
   lineHeights: {
     body: 1.9,
-    heading: 1.125
+    heading: 1.5
   },
   letterSpacings: {
     body: 'normal',

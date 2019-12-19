@@ -24,12 +24,20 @@ module.exports = {
     },
     social: [
       {
-        name: 'twitter',
-        url: 'https://twitter.com/narative'
+        name: 'facebook',
+        url: 'https://facebook.com/alldayio'
       },
       {
-        name: 'github',
-        url: 'https://github.com/narative'
+        name: 'twitter',
+        url: 'https://twitter.com/alldayio'
+      },
+      {
+        name: 'instagram',
+        url: 'https://instagram.com/alldayio'
+      },
+      {
+        name: 'linkedIn',
+        url: 'https://linkedin.com/allday'
       }
     ]
   },

@@ -272,7 +272,7 @@ const TextBlockWithImage = ({data, rawData, children}) => {
       }
     } else {
       return (
-        <Wrapper hasGrid theme={isDark ? darkBase : base}>
+        <Wrapper hasGrid noSpaceTop theme={isDark ? darkBase : base}>
           <Container>
             {text &&
               <ThinText>

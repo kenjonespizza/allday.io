@@ -3,7 +3,7 @@ import styledNormalize from 'styled-normalize'
 import {rgba, getContrast} from 'polished'
 
 import {getContrastTextColor} from '../helpers'
-import {base, darkPulp, lightWatermelly, colorsList, media} from './'
+import {base, darkPulp, lightWatermelly, colorsList, media, mqs} from './'
 import {transition} from './transition'
 import {H1css, H2css, H3css, H4css, H5css, H6css} from '../../elements/Heading'
 
@@ -12,10 +12,19 @@ export const GlobalStyle = createGlobalStyle`
 
   ${styledNormalize}
 
+  html, body {
+    ${mqs({
+      property: 'font-size',
+      valueBase: `${base.fontSizes.baseSmall}`,
+      valueM: `${base.fontSizes.baseMedium}`,
+      valueL: `${base.fontSizes.baseLarge}`,
+      valueXL: `${base.fontSizes.base}`
+    })};
+  }
+
   html {
     /* background: red; */
     box-sizing: border-box;
-    font-size: 10px;
     color: ${props => props.theme.colors.text};
     font-family: ${base.fonts.body};
   }
@@ -32,7 +41,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-size: ${base.fontSizes.base};
     line-height: ${base.lineHeights.body};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
