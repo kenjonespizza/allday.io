@@ -351,7 +351,7 @@ const NavBar = () => {
               {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
                 const {pageInfo, _id} = node
                 return (
-                  <li key={_id} className={pageInfo.slug.current.includes('sample') ? 'hasNotification' : ''}>
+                  <li key={_id} className={pageInfo.slug.current.includes('work') ? 'hasNotification' : ''}>
                     <Link
                       activeClassName='active' partiallyActive
                       to={`/${pageInfo.slug.current}`}

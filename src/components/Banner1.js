@@ -21,6 +21,10 @@ const Container = styled(Banner1Container)`
     align-items: flex-start;
     text-align: normal;
   `}
+
+  h2 {
+    margin: 0;
+  }
 `
 
 const BannerButton = styled(Button)`
