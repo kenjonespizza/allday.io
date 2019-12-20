@@ -3,6 +3,7 @@ import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 import {rgba, invert} from 'polished'
 import Facebook from '../img/social/Facebook.Icon'
+import Dribbble from '../img/social/Dribbble.Icon'
 import Instagram from '../img/social/Instagram.Icon'
 import LinkedIn from '../img/social/LinkedIn.Icon'
 import Twitter from '../img/social/Twitter.Icon'
@@ -180,6 +181,7 @@ const ContactForm = (props) => {
           instagram
           linkedIn
           twitter
+          dribbble
         }
       }
     }
@@ -229,6 +231,13 @@ const ContactForm = (props) => {
                     <li>
                       <a href={`https://facebook.com/${social.sanitySiteSettings.socialMediaHandle.facebook}`} target='_blank' rel='noopener noreferrer' className='social-icon facebook'>
                         <Facebook />
+                      </a>
+                    </li>
+                  )}
+                  {social.sanitySiteSettings.socialMediaHandle.dribbble && (
+                    <li>
+                      <a href={`https://dribbble.com/${social.sanitySiteSettings.socialMediaHandle.dribbble}`} target='_blank' rel='noopener noreferrer' className='social-icon dribbble'>
+                        <Dribbble />
                       </a>
                     </li>
                   )}

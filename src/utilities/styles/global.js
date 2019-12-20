@@ -156,7 +156,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .blockContent {
     ul, ol {
-      padding-left: 15px;
+      padding-left: 40px;
     }
 
     ol {
@@ -178,3 +178,6 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 `
+
+/* 23bbbe
+E34949 */

@@ -4,9 +4,8 @@ import {useStaticQuery, graphql} from 'gatsby'
 import Link from 'gatsby-link'
 import {rgba} from 'polished'
 import Headroom from 'react-headroom'
-import Facebook from '../img/social/Facebook.Icon'
+import Dribbble from '../img/social/Dribbble.Icon'
 import Instagram from '../img/social/Instagram.Icon'
-import LinkedIn from '../img/social/LinkedIn.Icon'
 import Twitter from '../img/social/Twitter.Icon'
 
 import {links} from '../utilities/links'
@@ -240,6 +239,7 @@ const Social = styled.li`
   a:not([class^="Button"]) {
     svg path {
       fill: ${base.colors.black};
+      ${transition({})};
     }
 
     &:hover {
@@ -248,24 +248,54 @@ const Social = styled.li`
       }
     }
 
-    &.facebook:hover {
+    &.facebook {
       svg path {
         fill: ${colorsList.facebook};
       }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
     }
-    &.twitter:hover {
+    &.twitter {
       svg path {
         fill: ${colorsList.twitter};
       }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
     }
-    &.linkedIn:hover {
+    &.linkedIn {
       svg path {
         fill: ${colorsList.linkedIn};
       }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
     }
-    &.instagram:hover {
+    &.instagram {
       svg path {
         fill: ${colorsList.instagram};
+      }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
+    }
+    &.dribbble {
+      svg path {
+        fill: ${colorsList.dribbble};
+      }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
       }
     }
   }
@@ -299,6 +329,7 @@ const NavBar = () => {
           instagram
           linkedIn
           twitter
+          dribbble
         }
       }
     }
@@ -335,24 +366,10 @@ const NavBar = () => {
 
               <Social>
                 <ul>
-                  {data.sanitySiteSettings.socialMediaHandle.facebook && (
+                  {data.sanitySiteSettings.socialMediaHandle.dribbble && (
                     <li>
-                      <a href={`https://facebook.com/${data.sanitySiteSettings.socialMediaHandle.facebook}`} target='_blank' rel='noopener noreferrer' className='social-icon facebook'>
-                        <Facebook />
-                      </a>
-                    </li>
-                  )}
-                  {data.sanitySiteSettings.socialMediaHandle.instagram && (
-                    <li>
-                      <a href={`https://instagram.com/${data.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer' className='social-icon instagram'>
-                        <Instagram size={20} />
-                      </a>
-                    </li>
-                  )}
-                  {data.sanitySiteSettings.socialMediaHandle.linkedIn && (
-                    <li>
-                      <a href={`https://linkedIn.com/company/${data.sanitySiteSettings.socialMediaHandle.linkedIn}`} target='_blank' rel='noopener noreferrer' className='social-icon linkedIn'>
-                        <LinkedIn size={20} />
+                      <a href={`https://dribbble.com/${data.sanitySiteSettings.socialMediaHandle.dribbble}`} target='_blank' rel='noopener noreferrer' className='social-icon dribbble'>
+                        <Dribbble size={20} />
                       </a>
                     </li>
                   )}
@@ -360,6 +377,13 @@ const NavBar = () => {
                     <li>
                       <a href={`https://twitter.com/${data.sanitySiteSettings.socialMediaHandle.twitter}`} target='_blank' rel='noopener noreferrer' className='social-icon twitter'>
                         <Twitter size={20} />
+                      </a>
+                    </li>
+                  )}
+                  {data.sanitySiteSettings.socialMediaHandle.instagram && (
+                    <li>
+                      <a href={`https://instagram.com/${data.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer' className='social-icon instagram'>
+                        <Instagram size={20} />
                       </a>
                     </li>
                   )}

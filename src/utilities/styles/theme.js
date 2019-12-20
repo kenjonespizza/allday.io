@@ -14,6 +14,7 @@ const facebook = '#3b5998'
 const twitter = '#1da1f2'
 const linkedIn = '#007bb5'
 const instagram = '#c32aa3'
+const dribbble = '#ea4c89'
 
 export const colorsList = {
   seal: seal,
@@ -29,7 +30,8 @@ export const colorsList = {
   facebook: facebook,
   twitter: twitter,
   linkedIn: linkedIn,
-  instagram: instagram
+  instagram: instagram,
+  dribbble: dribbble
 }
 
 export const base = {
