@@ -141,6 +141,7 @@ const Social = styled.div`
   a:not([class^="Button"]) {
     svg path {
       fill: ${base.colors.black};
+      ${transition({})};
     }
 
     &:hover {
@@ -149,24 +150,54 @@ const Social = styled.div`
       }
     }
 
-    &.facebook:hover {
+    &.facebook {
       svg path {
         fill: ${colorsList.facebook};
       }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
     }
-    &.twitter:hover {
+    &.twitter {
       svg path {
         fill: ${colorsList.twitter};
       }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
     }
-    &.linkedIn:hover {
+    &.linkedIn {
       svg path {
         fill: ${colorsList.linkedIn};
       }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
     }
-    &.instagram:hover {
+    &.instagram {
       svg path {
         fill: ${colorsList.instagram};
+      }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
+      }
+    }
+    &.dribbble {
+      svg path {
+        fill: ${colorsList.dribbble};
+      }
+      &:hover {
+        svg path {
+          fill: ${base.colors.black};
+        }
       }
     }
   }
