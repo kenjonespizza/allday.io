@@ -25,7 +25,7 @@ const Container = styled(TextBlockWithImageContainer)`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
 
-  a {
+  a:not([class^="Button"]) {
     color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) > 2 ? props.theme.colors.accent : props.theme.colors.text};
   }
 
@@ -59,10 +59,10 @@ const Container = styled(TextBlockWithImageContainer)`
       /* color: ${props => props.theme.colors.accent}; */
     }
 
-    a:not([class^="Button"]) {
+    /* a:not([class^="Button"]) {
       color: ${props => props.theme.colors.accent};
       text-decoration: underline;
-    }
+    } */
   }
 `
 

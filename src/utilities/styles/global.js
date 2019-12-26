@@ -47,7 +47,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   /* a, a * { */
-  a {
+  a:not([class^="Button"]) {
     text-decoration: underline;
     color: ${props => props.theme.colors.accent};
     color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) < 2 ? props.theme.colors.accent : props.theme.colors.text};
@@ -155,6 +155,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .blockContent {
+
     ul, ol {
       padding-left: 40px;
     }
