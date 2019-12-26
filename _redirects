@@ -1,0 +1,5 @@
+# Redirects from what the browser requests to what we serve
+/about              /design-architects
+/contact            /call-design-team
+/blog               /design-studio-blog
+/get-started.php    /call-design-team
