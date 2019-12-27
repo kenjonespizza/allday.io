@@ -116,7 +116,7 @@ module.exports = {
         short_name: 'AllDay',
         start_url: '/',
         background_color: '#FEFEFE',
-        theme_color: '#00B4BF',
+        theme_color: '#02161E',
         display: 'standalone',
         icon: 'src/img/favicon.png'
       }
