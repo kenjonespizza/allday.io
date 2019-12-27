@@ -13,10 +13,11 @@ import {base as themeBase, media, transition} from '../utilities/styles'
 const Container = styled(GalleryContainer)`
   /* display: grid;
   grid-template-columns: 1fr 1fr; */
-  columns: 2 calc(${themeBase.sizes.medium}px / 2);
+  columns: 2;
+  column-width: ${themeBase.sizes.medium / 2}px;
   /* columns: 2 300px; */
   /* column-gap: 50px; */
-  column-fill: auto;
+  /* column-fill: auto; */
   
 
   & > h1, 

@@ -84,14 +84,12 @@ const FullSpanWrapper = styled(Wrapper)`
 
 const LeftRightSpanWrapper = styled(Wrapper)`
   padding: 0;
-  /* justify-content: center;
-  flex-direction: column;
-  display: flex; */
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: ${props => props.imagePosition === 'left' ? 'column-reverse' : 'column'};
 
   ${media.medium`
     /* flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'}; */
+    display: grid;
     grid-template-columns: 1fr 1fr;
   `}
 
