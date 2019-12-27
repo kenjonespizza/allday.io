@@ -58,7 +58,8 @@ const ServiceBoxInner = styled(Link)`
   display: flex;
   flex-direction: column;
   ${transition({})};
-  text-decoration: none;
+  text-decoration: none !important;
+
 
   &:hover {
     background-color: ${props => props.theme.colors.accent};

@@ -28,16 +28,38 @@ const SideImg = styled(Img)`
   height: 100%;
 `
 
-const PineappleDudeWrap = styled.div`
-  position: absolute;
+const PineappleDude = styled(Img)`
+  position: absolute !important;
   bottom: calc(100% - 60px);
   left: 50%;
   transform: translate(-50%, 0%);
   transform-origin: center center;
   ${transition({})};
-  width: 136px;
-  height: 258px; 
+  width: 68px !important;
+  height: 129px !important;
+  display: none !important;
+  /* width: 136px;
+  height: 258px; */
+
+  @media (min-height: 660px) {
+    display: block !important;
+  }
+
+  @media (min-height: 790px) {
+    width: 102px !important;
+    height: 193.5px !important;
+  }
+
+  @media (min-height: 920px) {
+    width: 136px !important;
+    height: 258px !important;
+  }
 `
+
+// const PineappleDude = styled(Img)`
+//   /* position: absolute !important;
+//   bottom: 0; */
+// `
 
 const CenteredBox = styled.div`
   ${centerIt};
@@ -68,7 +90,7 @@ const HeroHomeMobile = styled.div`
   border-top-right-radius: 100px;
   border-bottom-left-radius: 100px;
 
-  ${PineappleDudeWrap} {
+  ${PineappleDude} {
     position: static;
     bottom: calc(100% - 60px);
     left: 50%;
@@ -78,6 +100,10 @@ const HeroHomeMobile = styled.div`
     width: 136px;
     height: 258px;
     margin-bottom: ${base.spacings.base}px;
+
+    @media (max-height: 850px) {
+
+    }
   }
 `
 
@@ -87,11 +113,6 @@ const Button = styled(HeroButton)`
   &:hover + div {
     transform: translate(-50%, 0%) rotate(15deg);
   }
-`
-
-const PineappleDude = styled(Img)`
-  /* position: absolute !important;
-  bottom: 0; */
 `
 
 const HeroHome = (props) => {
@@ -132,9 +153,9 @@ const HeroHome = (props) => {
             {mainText}
 
             <Button {...button} />
-            <PineappleDudeWrap>
-              <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
-            </PineappleDudeWrap>
+
+            <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
+
           </CenteredBox>
         </HeroHomeWrapper>
       </Wrapper>
@@ -143,9 +164,9 @@ const HeroHome = (props) => {
     return (
       <Wrapper noSpace theme={lightPulp} hasGrid>
         <HeroHomeMobile>
-          <PineappleDudeWrap>
-            <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
-          </PineappleDudeWrap>
+
+          <PineappleDude fixed={PineappleDudeImg.childImageSharp.fixed} />
+
           {mainText}
 
           <Button {...button} />

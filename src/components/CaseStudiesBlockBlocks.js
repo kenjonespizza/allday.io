@@ -192,7 +192,7 @@ const ServiceBoxInner = styled(Link)`
   flex-direction: column;
   z-index: 2;
   ${transition({})};
-  text-decoration: none;
+  text-decoration: none !important;
 
   ${Number}{
     /* border-color: ${props => props.color ? props.color : props.black}; */
