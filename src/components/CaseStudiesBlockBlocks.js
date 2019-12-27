@@ -1,7 +1,6 @@
 import React from 'react'
 import {graphql, Link} from 'gatsby'
 import styled from 'styled-components'
-
 import Image from 'gatsby-image'
 import {rgba} from 'polished'
 
@@ -123,7 +122,7 @@ const StyledServiceBox = styled.li`
   &:before {
     content: "";
     display: block;
-    padding-bottom: 75%;
+    padding-bottom: 100%;
 
     ${media.xLarge`
       padding-bottom: 100%;
@@ -202,7 +201,7 @@ const ServiceBoxInner = styled(Link)`
   
   ${Name}{
     color: ${props => props.hasimage === 'true' ? props.theme.colors.text : props.black};
-    /* text-shadow: ${props => props.hasimage === 'true' ? `0 0 20px ${rgba(base.colors.black, 0.2)}, 0 2px 2px ${rgba(base.colors.black, 0.3)}` : ''}; */
+    
   }
 
   &:hover {
@@ -217,7 +216,11 @@ const ServiceBoxInner = styled(Link)`
       background-color: transparent;
       background-color: ${rgba(base.colors.black, 0.9)};
       color: ${props => props.theme.colors.white};
-    }}
+    }
+    
+    ${Name} {
+      text-shadow: ${props => props.hasimage === 'true' ? `0 0 20px ${rgba(base.colors.black, 0.2)}, 0 2px 2px ${rgba(base.colors.black, 0.3)}` : ''};
+    }
   }
   /* F7941C */
 

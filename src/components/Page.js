@@ -68,8 +68,8 @@ const Page = (props) => {
                   //   return <HeadingBlock key={block._key} data={block} />
                 case 'ServicesBlock':
                   return <ServicesBlock key={block._key} data={block} />
-                case 'ReviewsBlock':
-                  return <ReviewsBlock key={block._key} data={block} />
+                // case 'ReviewsBlock':
+                //   return <ReviewsBlock key={block._key} data={block} />
                 case 'CaseStudiesBlock':
                   if (block.layout === 'row') {
                     return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />

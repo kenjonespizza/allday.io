@@ -17,7 +17,11 @@ const ButtonsWrap = styled.div`
   display: grid;
   align-content: center;
   grid-gap: ${props => props.theme.spacings.base}px;
-  grid-template-columns: repeat(${props => props.count}, 1fr); 
+  grid-template-columns: 1fr;
+
+  ${media.medium`
+    grid-template-columns: repeat(${props => props.count}, 1fr); 
+  `}
 `
 
 const ButtonsBlock = ({data}) => {
