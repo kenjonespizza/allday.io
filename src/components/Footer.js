@@ -39,6 +39,7 @@ const FooterContainer = styled(Container)`
 
   ${media.medium`
     flex-direction: row;
+    text-align: left;
   `}
   
   a {

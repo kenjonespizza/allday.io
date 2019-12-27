@@ -66,22 +66,31 @@ const FromWrapper = styled.section`
 
   .formText {
     /* border-bottom: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)}; */
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    /* padding-bottom: 20px;
+    margin-bottom: 20px; */
     font-weight: ${base.fontWeights.bold};
-    font-size: 35px;
+    font-size: 19px;
     line-height: 1.5;
+
+    ${media.medium`
+      font-size: 25px;
+    `}
 
     ${media.large`
       grid-column: span 2;
       width: 75%;
+      font-size: 35px;
     `}
   }
 `
 
 const Form = styled.form`
   button {
-    width: 50%; 
+    width: 100%;
+
+    ${media.medium`
+      width: 50%;
+    `}
   }
 `
 
@@ -131,6 +140,7 @@ const Social = styled.div`
     padding: 0;
     margin-top: ${base.spacings.base}px;
     list-style:  none;
+    flex-wrap: wrap;
 
     li {
       margin: 0;
