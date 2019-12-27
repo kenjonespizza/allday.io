@@ -97,13 +97,14 @@ const StyledSlideOutMenu = styled.div`
         border-top: ${props => props.theme.colors.white && rgba(props.theme.colors.white, 0.1)} dotted 1px;
       }
 
-      a {
+      a:not([class^="Button"]) {
         color: ${props => props.theme.colors.white};
         font-size: 25px;
         /* padding: 10px 0; */
         display: block;
         font-weight: ${base.fontWeights.bold};
         text-transform: uppercase;
+        text-decoration: none;
         ${transition({})};
 
         ${media.medium`

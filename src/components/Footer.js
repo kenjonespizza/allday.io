@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {useStaticQuery, graphql, Link} from 'gatsby'
 import {rgba} from 'polished'
+import {format} from 'date-fns'
 
 import LogoFile from '../../static/AllDayLogo.svg'
 import {Wrapper as FooterWrapper, Container, Heading, H2, H3, H4, HeadingBlock, SubHeading} from '../elements'
@@ -15,9 +16,13 @@ const Wrapper = styled(FooterWrapper)`
 `
 
 const Logo = styled(LogoFile)`
-  left: 48px;
-  top: 38px;
-  margin-left: 30px;
+  margin-top: 20px;
+
+  ${media.medium`
+    margin-top: 0;
+    margin-left: 30px;
+    flex-direction: row;
+  `}
 `
 
 const FooterContainer = styled(Container)`
@@ -25,10 +30,16 @@ const FooterContainer = styled(Container)`
   align-items: center;
   justify-content: space-between;
   font-size: ${base.fontSizes.small};
+  flex-direction: column;
+  text-align: center;
 
   ${Object.keys(colorsList).map(function (color) {
     return 'a[href*="' + color + '"] {color:' + colorsList[color] + ';}'
   }).join('')}
+
+  ${media.medium`
+    flex-direction: row;
+  `}
   
   a {
     font-weight: bold;
@@ -108,13 +119,14 @@ const FooterCta = styled.div`
 `
 
 const Footer = () => {
+  const date = format(new Date(), 'yyyy')
   const data = useStaticQuery(query)
   return (
     <>
       <Wrapper hasGrid addSpace theme={base} backgroundColor={base.colors.white}>
         <FooterContainer as='footer'>
           <div>
-            <p>© 2015–2019 AllDayIO. All rights reserved.</p>
+            <p>© 2015–{date} AllDayIO. All rights reserved.</p>
             <p>This site was built on {data.site.buildTime} with <a href='https://gatsbyjs.org'>Gatsby</a>, hosted by <a href='https://netlify.com'>Netlify</a>, and populated by <a href='https://sanity.io'>Sanity</a>. {/* Checkout the source code on <a href='https://github.com'>Github</a> */}</p>
           </div>
           <Link to='/'>

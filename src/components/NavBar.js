@@ -169,7 +169,7 @@ const Logo = styled(LogoFile)`
 
 const MenuButton = styled.button`
   right: ${base.spacings.base}px;
-  top: calc((124px / 2) - 24px);
+  top: 22px;
   z-index: 20;
   position: fixed;
   background: none;
