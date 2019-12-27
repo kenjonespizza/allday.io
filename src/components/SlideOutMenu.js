@@ -160,7 +160,7 @@ const SlideOutMenu = ({menu}) => {
               }
             })}
             <li key='blog'>
-              <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
+              <Link activeClassName='active' onClick={() => toggleMenu(!isOpen)} partiallyActive to={links.blog}>Blog</Link>
             </li>
           </ul>
           {/* <ul>
