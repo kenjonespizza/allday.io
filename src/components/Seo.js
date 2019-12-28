@@ -27,8 +27,10 @@ const Seo = (props) => {
           tempIndex = 'index'
         } else if (index === true) {
           tempIndex = 'index'
+        } else if (index === false) {
+          tempIndex = 'inondex'
         } else {
-          tempIndex = 'noindex'
+          tempIndex = 'index'
         }
 
         // Index/Follow configuration
@@ -37,8 +39,10 @@ const Seo = (props) => {
           tempFollow = 'follow'
         } else if (follow === true) {
           tempFollow = 'follow'
-        } else {
+        } else if (follow === false) {
           tempFollow = 'nofollow'
+        } else {
+          tempFollow = 'follow'
         }
 
         const metaDescription = description || data.site.globalSeo.description || ''
