@@ -28,7 +28,7 @@ const Seo = (props) => {
         } else if (index === true) {
           tempIndex = 'index'
         } else if (index === false) {
-          tempIndex = 'inondex'
+          tempIndex = 'noindex'
         } else {
           tempIndex = 'index'
         }
