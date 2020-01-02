@@ -48,6 +48,9 @@ export const query = graphql`
       ... on SanityLogoGrid {
         ...LogoGridFragment
       }
+      ... on SanitySteps {
+        ...StepsFragment
+      }
     }
   }
 `

@@ -152,8 +152,8 @@ const CenterWrapper = styled(Wrapper)`
 `
 
 const HeroBasic = ({data, rawData, children}) => {
-  const themeContext = React.useContext(ThemeContext)
-  console.log('themeContext:', themeContext)
+  // const themeContext = React.useContext(ThemeContext)
+
   if (typeof data !== 'undefined') {
     const {headingBlock, isDark, heroImage, imagePosition} = data
     const {heading, subHeading} = headingBlock

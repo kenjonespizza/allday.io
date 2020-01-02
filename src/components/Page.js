@@ -23,6 +23,7 @@ import Seo from '../components/Seo'
 import ButtonsBlock from '../components/ButtonsBlock'
 import LogoGrid from '../components/LogoGrid'
 import Pagination from '../components/Pagination'
+import Steps from '../components/Steps'
 
 const Page = (props) => {
   const {pageProps, hasPagination} = props
@@ -100,11 +101,15 @@ const Page = (props) => {
                   return <ButtonsBlock key={block._key} data={block} />
                 case 'LogoGrid':
                   return <LogoGrid key={block._key} data={block} rawData={rawData} />
+                case 'Steps':
+                  console.log('blocky:', block)
+                  return <Steps key={block._key} data={block} rawData={rawData} />
                 default:
                   return null
               }
             }
           })}
+
           {hasPagination && <Pagination next={next} previous={previous} />}
         </ThemeProvider>
       </Wrapper>

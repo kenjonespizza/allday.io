@@ -336,8 +336,6 @@ const NavBar = () => {
 
   `)
 
-  console.log('data:', data)
-
   return (
     <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
       <Wrapper noSpace theme={lightWatermelly} zIndex='11'>

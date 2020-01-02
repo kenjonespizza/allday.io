@@ -89,7 +89,6 @@ export const ButtonStyled = styled.button`
 `
 
 export const Button = ({slug, icon, text, url, children, className, slugPrefix, color, isGhost, isOnDark, openNew}) => {
-  console.log('openNew:', openNew)
   if (slug && slug !== '' && !openNew) {
     const slugPre = slugPrefix || ''
 

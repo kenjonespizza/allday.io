@@ -107,7 +107,8 @@ export const base = {
     // heading: 40
   },
   shadows: {
-    box: `0px 10px 35px ${rgba('black', 0.1)}`
+    box: `0px 10px 35px ${rgba('black', 0.1)}`,
+    boxHover: `0px 10px 35px ${rgba('black', 0.25)}`
   },
   grid: {
     opacity: 0.045,
