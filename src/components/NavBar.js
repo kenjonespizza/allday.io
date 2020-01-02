@@ -48,6 +48,10 @@ function colorSwap (props) {
   `
 }
 
+const StyledWrapper = styled(Wrapper)`
+  overflow: visible !important;
+`
+
 const StyledNavBar = styled.header`
   /* background-color: ${props => props.theme.colors.white}; */
   /* position: fixed; */
@@ -60,6 +64,7 @@ const StyledNavBar = styled.header`
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
+  overflow: auto;
   padding: 0 ${base.spacings.base}px;
   /* box-shadow: 0 0px 20px rgba(0,0,0,.2); */
   border-bottom: ${props => props.theme.grid.color && rgba(props.theme.grid.color, props.theme.grid.opacity)} solid 1px;
@@ -174,6 +179,7 @@ const MenuButton = styled.button`
   position: fixed;
   background: none;
   border: 1px solid ${rgba(base.colors.black, 0.5)};
+  border-color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.black};
   color: ${props => props.isOpen ? props.theme.colors.white : props.theme.colors.black};
   padding: 15px;
   font-weight: ${base.fontWeights.medium};
@@ -202,6 +208,10 @@ const StyledHeadroom = styled(Headroom)`
   .headroom--unfixed {
     position: relative;
     transform: translateY(0);
+
+    ${MenuButton} {
+      top: 38px;
+    }
   }
   .headroom--scrolled {
     transition: transform 200ms ease-in-out;
@@ -338,7 +348,7 @@ const NavBar = () => {
 
   return (
     <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
-      <Wrapper noSpace theme={lightWatermelly} zIndex='11'>
+      <StyledWrapper noSpace theme={lightWatermelly} zIndex='11'>
         <Link to='/'>
           <Logo isopen={isOpen ? 'true' : 'false'} />
         </Link>
@@ -396,7 +406,7 @@ const NavBar = () => {
 
         <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
 
-      </Wrapper>
+      </StyledWrapper>
     </StyledHeadroom>
   )
 }

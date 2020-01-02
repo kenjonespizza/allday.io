@@ -108,7 +108,7 @@ export const base = {
   },
   shadows: {
     box: `0px 10px 35px ${rgba('black', 0.1)}`,
-    boxHover: `0px 10px 35px ${rgba('black', 0.25)}`
+    boxHover: `0px 15px 35px ${rgba('black', 0.2)}`
   },
   grid: {
     opacity: 0.045,
@@ -216,6 +216,10 @@ const darkBaseTheme = {
     watermelly: watermelly,
     pulp: pulp,
     aloe: aloe
+  },
+  shadows: {
+    box: `0px 10px 35px ${rgba('white', 0.1)}`,
+    boxHover: `0px 15px 35px ${rgba('white', 0.2)}`
   },
   grid: {
     opacity: 0.1,

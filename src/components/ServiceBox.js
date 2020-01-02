@@ -44,8 +44,14 @@ const StyledServiceBox = styled.li`
   &:after {
     content: "";
     display: block;
+    padding-bottom: 50%;
+    
+    ${media.medium`
     padding-bottom: 100%;
+  `}
   }
+
+  
 `
 
 const ServiceBoxInner = styled(Link)`

@@ -24,7 +24,7 @@ const StepsWrap = styled.ol`
   margin: 0;
   padding: 0;
 
-  ${media.medium`
+  ${media.large`
     grid-template-columns: 1fr 1fr; 
   `}
 `
@@ -36,20 +36,25 @@ const Step = styled.li`
   /* border: 1px solid ${base.colors.black}; */
   padding: ${base.spacings.base}px;
   background-color: ${base.colors.white};
-  box-shadow: ${base.shadows.box};
+  color: ${base.colors.text};
+  box-shadow: ${props => props.theme.shadows.box};
   /* border-bottom: 3px dashed ${base.colors.black}; */
-  ${transition({})};
+  ${transition({duration: '.7s'})};
+
+  p {color: ${base.colors.text};}
 
   &:hover {
-    box-shadow: ${base.shadows.boxHover};
+    box-shadow: ${props => props.theme.shadows.boxHover};
+    transform: translateY(-10px);
 
     &:before {
-      color: ${base.colors.accent};
+      color: ${props => props.theme.colors.accent};
     }
   }
 
   &:before {
     content: counter(item)"";
+    color: ${base.colors.text};
     font-size: 80px;
     font-weight: ${base.fontWeights.bold};
     padding-right: ${base.spacings.base}px;
@@ -65,35 +70,37 @@ const Text = styled.div`
 `
 
 const Steps = ({data, rawData}) => {
-  const {isDark, headingBlock, steps} = data
+  const {isDark, headingBlock, steps, isActive} = data
   const {heading, subHeading} = headingBlock || ''
 
   return (
-    <StepBlockWrap hasGrid theme={isDark ? darkBase : base}>
-      <Container>
+    (isActive !== false) && (
+      <StepBlockWrap hasGrid theme={isDark ? darkBase : base}>
+        <Container>
 
-        {headingBlock && (heading || subHeading) && (
-          <HeadingBlock {...headingBlock} />
-        )}
+          {headingBlock && (heading || subHeading) && (
+            <HeadingBlock {...headingBlock} />
+          )}
 
-        {steps && (
-          <StepsWrap count={steps.length}>
-            {steps.map((step, i) => {
-              console.log('step:', step)
+          {steps && (
+            <StepsWrap count={steps.length}>
+              {steps.map((step, i) => {
+                console.log('step:', step)
 
-              return (
-                <Step key={step._key}>
-                  <Text>
-                    <BlockContent blocks={rawData.steps[i].text || []} />
-                  </Text>
-                </Step>
-              )
-            })}
-          </StepsWrap>
-        )}
+                return (
+                  <Step key={step._key}>
+                    <Text>
+                      <BlockContent blocks={rawData.steps[i].text || []} />
+                    </Text>
+                  </Step>
+                )
+              })}
+            </StepsWrap>
+          )}
 
-      </Container>
-    </StepBlockWrap>
+        </Container>
+      </StepBlockWrap>
+    )
   )
 }
 

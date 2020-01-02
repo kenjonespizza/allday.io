@@ -50,7 +50,7 @@ const PineappleDude = styled(Img)`
     height: 193.5px !important;
   }
 
-  @media (min-height: 920px) {
+  @media (min-height: 950px) {
     width: 136px !important;
     height: 258px !important;
   }
