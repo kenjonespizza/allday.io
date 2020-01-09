@@ -62,10 +62,6 @@ const Step = styled.li`
   }
 `
 
-const Number = styled.div`
-
-`
-
 const Text = styled.div`
 `
 
