@@ -119,6 +119,11 @@ const FooterCta = styled.div`
   }
 `
 
+const PrivacyLink = styled(Link)`
+  color: ${base.colors.text} !important;
+  font-weight: normal !important;
+`
+
 const Footer = () => {
   const date = format(new Date(), 'yyyy')
   const data = useStaticQuery(query)
@@ -127,7 +132,7 @@ const Footer = () => {
       <Wrapper hasGrid addSpace theme={base} backgroundColor={base.colors.white}>
         <FooterContainer as='footer'>
           <div>
-            <p>© 2015–{date} AllDayIO. All rights reserved.</p>
+            <p>© 2015–{date} AllDayIO. All rights reserved.  <PrivacyLink to='/privacy-policy'>Privacy Policy</PrivacyLink></p>
             <p>This site was built on {data.site.buildTime} with <a href='https://gatsbyjs.org'>Gatsby</a>, hosted by <a href='https://netlify.com'>Netlify</a>, and populated by <a href='https://sanity.io'>Sanity</a>. {/* Checkout the source code on <a href='https://github.com'>Github</a> */}</p>
           </div>
           <Link to='/'>
