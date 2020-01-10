@@ -6,10 +6,6 @@ import Img from 'gatsby-image'
 import {Wrapper as Banner1Wrapper, Container as Banner1Container, SubHeading, H1, Button} from '../elements'
 import {darkWatermelly, transition, darkBase, media} from '../utilities/styles'
 
-const Wrapper = styled(Banner1Wrapper)`
-  /* margin-bottom: 18px; */
-`
-
 const Container = styled(Banner1Container)`
   /* margin-bottom: 18px; */
   display: flex;
@@ -35,7 +31,7 @@ const PineappleDudeWrap = styled.div`
   display: none;
   position: absolute;
   top: -60px;
-  left: calc(100% - 172px);
+  left: calc(100% - 200px);
   height: calc(100% + 78px);
   width: 100vw;
   ${transition({})};
@@ -48,6 +44,16 @@ const PineappleDudeWrap = styled.div`
 const PineappleDude = styled(Img)`
   position: absolute !important;
   bottom: 0;
+`
+
+const Wrapper = styled(Banner1Wrapper)`
+  /* margin-bottom: 18px; */
+
+  &:hover {
+    ${PineappleDudeWrap} {
+      left: calc(100% - 400px);
+    }
+  }
 `
 
 const Banner1 = (props) => {
