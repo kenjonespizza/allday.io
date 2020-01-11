@@ -5,7 +5,7 @@ import {base, darkBase, darkPulp, darkWatermelly} from '../utilities/styles'
 
 const colors = {
   ...novelaTheme,
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
   colors: {
     ...novelaTheme.colors,
     primary: base.colors.black,
