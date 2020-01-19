@@ -118,12 +118,10 @@ display: grid;
 `
 
 const HeroHomeV2 = (props) => {
-  console.log('props:', props)
-  const typingDelay = 1000
   const typingArray = []
   props.data.rotatingText.map((item, i) => {
     typingArray.push(item)
-    typingArray.push(typingDelay)
+    typingArray.push(props.data.timeOnSlide)
   })
 
   return (
@@ -159,6 +157,7 @@ export const query = graphql`
     bigText
     rotatingText
     smallText
+    timeOnSlide
     button {
       ...ButtonFragment
     }
