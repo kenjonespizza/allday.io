@@ -58,7 +58,7 @@ const StyledNavBar = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  height: 124px;
+  height: 94px;
   z-index: 10;
   display: flex;
   justify-content: flex-end;

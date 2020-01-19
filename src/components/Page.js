@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import {Wrapper, HeadingBlock} from '../elements'
 import {base} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
+import HeroHomeV2 from '../components/HeroHomeV2'
 import ServicesBlock from '../components/ServicesBlock'
 import CaseStudiesBlockRows from '../components/CaseStudiesBlockRows'
 import CaseStudiesBlockBlocks from '../components/CaseStudiesBlockBlocks'
@@ -54,6 +55,7 @@ const Page = (props) => {
       <Wrapper hasGrid theme={base} noSpace>
         <ThemeProvider theme={base}>
           {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
+            console.log('process.env.NODE_ENV', process.env.NODE_ENV)
             if (typeof block._type !== 'undefined') {
               const name = block._type
 
@@ -64,7 +66,11 @@ const Page = (props) => {
 
               switch (Component) {
                 case 'HeroHome':
+                  if (process.env.NODE_ENV === 'development') {
+                    return <HeroHomeV2 key={block._key} data={block} />
+                  }
                   return <HeroHome key={block._key} data={block} />
+                  // return <HeroHomeV2 key={block._key} data={block} />
                   // case 'HeadingBlock':
                   //   return <HeadingBlock key={block._key} data={block} />
                 case 'ServicesBlock':
