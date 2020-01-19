@@ -6,18 +6,23 @@ import {readableColor} from 'polished'
 import Typical from 'react-typical'
 
 import {useGlobalState} from './Layout'
-import {centerIt, lightPulp, base, transition} from '../utilities/styles/'
+import {centerIt, lightPulp, base, transition, media} from '../utilities/styles/'
 import {Button, Wrapper, GridLines} from '../elements/'
 
 const HeroWrapper = styled(Wrapper)`
-  style
+  
 `
 
 const Split = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* grid-gap: ${base.spacings.base}px; */
+  grid-template-columns: 1fr;
   height: calc(100vh - 94px);
+  /* grid-gap: ${base.spacings.base}px; */
+
+  ${media.medium`
+    height: calc(100vh - 94px);
+    grid-template-columns: 1fr 1fr;
+  `}
 
   img {
     width: 100%;
@@ -27,6 +32,11 @@ const Split = styled.section`
 `
 
 const HeroImage = styled(Img)`
+  display: none;
+
+  ${media.medium`
+    display: block;
+  `}
 `
 
 const HeroText = styled.main`
@@ -37,8 +47,13 @@ const HeroText = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   align-content: center;
-  grid-gap: 60px;
-  justify-items: start;
+  grid-gap: 20px;
+  justify-items: center;
+
+  ${media.medium`
+    grid-gap: 60px;
+    justify-items: start;
+  `}
 `
 
 const HeroTextInner = styled.div`
@@ -47,66 +62,88 @@ display: grid;
   grid-gap: 20px;
   width: 100%;
   max-width: ${600 - (base.spacings.base * 2)}px;
+  justify-items: center;
+  text-align: center;
+
+  ${media.medium`
+    justify-items: start;
+    text-align: left;
+  `}
 
   .big {
-    font-size: 80px;
+    font-size: 40px;
     font-weight: ${base.fontWeights.bold};
     line-height: 100%;
+
+    ${media.medium`
+      font-size: 60px;
+    `}
+    
+    ${media.xLarge`
+      font-size: 80px;
+    `}
   }
   .medium {
-    font-size: 50px;
+    font-size: 20px;
     font-weight: ${base.fontWeights.semibold};
     line-height: 100%;
-    margin-bottom: 20px;
-    font-family: unset;
-          /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important; */
+
+    ${media.medium`
+      font-size: 30px;
+      margin-bottom: 20px;
+    `}
+    
+    ${media.xLarge`
+      font-size: 50px;
+    `}
 
     span.emoji {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
   }
   .small, .signature {
-    font-size: 26px;
+    font-size: 17px;
     font-weight: ${base.fontWeights.light};
     line-height: 1.5em;
-    /* margin-top: 30px; */
+
+
+    ${media.medium`
+      font-size: 19px;
+    `}
+    
+    ${media.xLarge`
+      font-size: 26px;
+    `}
   }
 `
 
 const HeroHomeV2 = (props) => {
+  console.log('props:', props)
   const typingDelay = 1000
+  const typingArray = []
+  props.data.rotatingText.map((item, i) => {
+    typingArray.push(item)
+    typingArray.push(typingDelay)
+  })
 
   return (
     <Wrapper hasGrid noSpace>
       <Split>
-        {/* <HeroImage fluid={props.data.imageLeft.asset.fluid} /> */}
-        {/* <img src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80' alt='' /> */}
-        <img src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80' alt='' />
+        <HeroImage fluid={props.data.imageLeft.asset.fluid} />
         <HeroText>
           <HeroTextInner>
-            <div className='big'>Dear,</div>
+            <div className='big'>{props.data.bigText}</div>
             <div className='medium'>
               <Typical
-                steps={[
-                  'Small Business 🔥', typingDelay,
-                  'Coffeeshop ☕️', typingDelay,
-                  'Agency 👨‍💻', typingDelay,
-                  'Restaurant 🍕', typingDelay,
-                  'Real Estate Agent 🏡', typingDelay,
-                  'Brewery 🍺', typingDelay,
-                  'Cannabis / CBD 🍀', typingDelay,
-                  'Athlete 🤾‍♀️', typingDelay,
-                  'Farmer 🚜', typingDelay,
-                  'Canada 🇨🇦', typingDelay
-                ]}
+                steps={typingArray}
                 loop={Infinity}
                 wrapper='div'
               />
             </div>
-            <div className='small'>You need a great website, and we can help</div>
+            <div className='small'>{props.data.smallText}</div>
             <div className='signature'>-AllDay</div>
           </HeroTextInner>
-          <Button color='black'>See How</Button>
+          <Button {...props.data.button} />
         </HeroText>
       </Split>
     </Wrapper>
@@ -116,25 +153,19 @@ const HeroHomeV2 = (props) => {
 export default HeroHomeV2
 
 export const query = graphql`
-  fragment HeroHomeFragment on SanityHeroHome {
+  fragment HeroHomeV2Fragment on SanityHeroHomeV2 {
     _key
     _type
-    mainText
+    bigText
+    rotatingText
+    smallText
     button {
       ...ButtonFragment
     }
     imageLeft {
       alt
       asset {
-        fluid(maxWidth: 1600) {
-          ...GatsbySanityImageFluid
-        }
-      }
-    }
-    imageRight {
-      alt
-      asset {
-        fluid(maxWidth: 1600) {
+        fluid(maxWidth: 1000) {
           ...GatsbySanityImageFluid
         }
       }

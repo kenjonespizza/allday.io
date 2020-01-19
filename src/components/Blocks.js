@@ -12,6 +12,9 @@ export const query = graphql`
       ... on SanityHeroHome {
         ...HeroHomeFragment
       }
+      ... on SanityHeroHomeV2 {
+        ...HeroHomeV2Fragment
+      }
       ... on SanityServicesBlock {
         ...ServicesBlockFragment
       }

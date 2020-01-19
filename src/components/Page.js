@@ -66,13 +66,9 @@ const Page = (props) => {
 
               switch (Component) {
                 case 'HeroHome':
-                  if (process.env.NODE_ENV === 'development') {
-                    return <HeroHomeV2 key={block._key} data={block} />
-                  }
                   return <HeroHome key={block._key} data={block} />
-                  // return <HeroHomeV2 key={block._key} data={block} />
-                  // case 'HeadingBlock':
-                  //   return <HeadingBlock key={block._key} data={block} />
+                case 'HeroHomeV2':
+                  return <HeroHomeV2 key={block._key} data={block} />
                 case 'ServicesBlock':
                   return <ServicesBlock key={block._key} data={block} />
                 // case 'ReviewsBlock':
