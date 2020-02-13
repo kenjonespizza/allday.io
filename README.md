@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="allday.netlify.io">
-    <img alt="Gatsby" src="http://allday.io/assets/images/allday-logo-dark.png" width="150" />
+  <a href="allday.io">
+    <img alt="AllDayIO" src="https://allday.io/AllDayLogo.svg" width="150" />
   </a>
 </p>
 <h1 align="center">
