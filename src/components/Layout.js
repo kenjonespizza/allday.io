@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import styled, {ThemeProvider} from 'styled-components'
 import {createGlobalState} from 'react-hooks-global-state'
 
+import BannerHelpLocal from '../components/BannerHelpLocal'
 import {GlobalStyle, base} from '../utilities/styles'
 import NavBar from './NavBar'
 import Footer from './Footer'
@@ -52,13 +53,14 @@ const InnerLayout = ({children}) => {
   )
 }
 
-const Layout = ({children}) => {
+const Layout = ({children, noHelpLocalBanner}) => {
   return (
     <ThemeProvider theme={base}>
       <GlobalStateProvider>
         <InnerLayout>
           {children}
         </InnerLayout>
+        {noHelpLocalBanner !== true && (<BannerHelpLocal />)}
       </GlobalStateProvider>
     </ThemeProvider>
   )

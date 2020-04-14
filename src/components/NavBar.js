@@ -347,67 +347,69 @@ const NavBar = () => {
   `)
 
   return (
-    <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
-      <StyledWrapper noSpace theme={lightWatermelly} zIndex='11'>
-        <Link to='/'>
-          <Logo isopen={isOpen ? 'true' : 'false'} />
-        </Link>
-        <StyledNavBar id='nav-bar'>
-          <GridLines />
-          <Nav>
-            <ul>
-              {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
-                const {pageInfo, _id} = node
-                return (
-                  <li key={_id} className={pageInfo.slug.current.includes('work') ? 'hasNotification' : ''}>
-                    <Link
-                      activeClassName='active' partiallyActive
-                      to={`/${pageInfo.slug.current}`}
-                    >{pageInfo.pageName}
-                    </Link>
-                  </li>
-                )
-              })}
-              <li key='blog'>
-                <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
-              </li>
-
-              <Social>
-                <ul>
-                  {data.sanitySiteSettings.socialMediaHandle.dribbble && (
-                    <li>
-                      <a href={`https://dribbble.com/${data.sanitySiteSettings.socialMediaHandle.dribbble}`} target='_blank' rel='noopener noreferrer' className='social-icon dribbble'>
-                        <Dribbble size={20} />
-                      </a>
+    <>
+      <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
+        <StyledWrapper noSpace theme={lightWatermelly} zIndex='11'>
+          <Link to='/'>
+            <Logo isopen={isOpen ? 'true' : 'false'} />
+          </Link>
+          <StyledNavBar id='nav-bar'>
+            <GridLines />
+            <Nav>
+              <ul>
+                {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
+                  const {pageInfo, _id} = node
+                  return (
+                    <li key={_id} className={pageInfo.slug.current.includes('work') ? 'hasNotification' : ''}>
+                      <Link
+                        activeClassName='active' partiallyActive
+                        to={`/${pageInfo.slug.current}`}
+                      >{pageInfo.pageName}
+                      </Link>
                     </li>
-                  )}
-                  {data.sanitySiteSettings.socialMediaHandle.twitter && (
-                    <li>
-                      <a href={`https://twitter.com/${data.sanitySiteSettings.socialMediaHandle.twitter}`} target='_blank' rel='noopener noreferrer' className='social-icon twitter'>
-                        <Twitter size={20} />
-                      </a>
-                    </li>
-                  )}
-                  {data.sanitySiteSettings.socialMediaHandle.instagram && (
-                    <li>
-                      <a href={`https://instagram.com/${data.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer' className='social-icon instagram'>
-                        <Instagram size={20} />
-                      </a>
-                    </li>
-                  )}
-                </ul>
-              </Social>
+                  )
+                })}
+                <li key='blog'>
+                  <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
+                </li>
 
-              {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
-            </ul>
-          </Nav>
-        </StyledNavBar>
-        <SlideOutMenu menu={data.navigation.edges[0].node.navLinks} />
+                <Social>
+                  <ul>
+                    {data.sanitySiteSettings.socialMediaHandle.dribbble && (
+                      <li>
+                        <a href={`https://dribbble.com/${data.sanitySiteSettings.socialMediaHandle.dribbble}`} target='_blank' rel='noopener noreferrer' className='social-icon dribbble'>
+                          <Dribbble size={20} />
+                        </a>
+                      </li>
+                    )}
+                    {data.sanitySiteSettings.socialMediaHandle.twitter && (
+                      <li>
+                        <a href={`https://twitter.com/${data.sanitySiteSettings.socialMediaHandle.twitter}`} target='_blank' rel='noopener noreferrer' className='social-icon twitter'>
+                          <Twitter size={20} />
+                        </a>
+                      </li>
+                    )}
+                    {data.sanitySiteSettings.socialMediaHandle.instagram && (
+                      <li>
+                        <a href={`https://instagram.com/${data.sanitySiteSettings.socialMediaHandle.instagram}`} target='_blank' rel='noopener noreferrer' className='social-icon instagram'>
+                          <Instagram size={20} />
+                        </a>
+                      </li>
+                    )}
+                  </ul>
+                </Social>
 
-        <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
+                {/* Todo: Add Search https://kyleshevlin.com/how-to-add-algolia-search-to-a-gatsby-site */}
+              </ul>
+            </Nav>
+          </StyledNavBar>
+          <SlideOutMenu menu={data.navigation.edges[0].node.navLinks} />
 
-      </StyledWrapper>
-    </StyledHeadroom>
+          <MenuButton onClick={() => toggleMenu(!isOpen)} aria-expanded={isOpen} isOpen={isOpen}>{isOpen ? 'Close' : 'Menu'}</MenuButton>
+
+        </StyledWrapper>
+      </StyledHeadroom>
+    </>
   )
 }
 

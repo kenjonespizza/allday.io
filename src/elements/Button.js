@@ -11,8 +11,10 @@ export const ButtonStyles = css`
   /* Apply background color and border color if the color prop is passed */
   background-color: ${props => (props.color) ? props.theme.colors[props.color] : ''};
   border-color: ${props => (props.color) ? props.theme.colors[props.color] : ''};
+  border-color: ${props => props.customBackgroundColor ? props.customBackgroundColor : ''};
   /* Set background color as 'transparent' if 'isghost' is true */
   background-color: ${props => props.isghost === 'true' ? 'transparent' : ''};
+  background-color: ${props => props.customBackgroundColor ? props.customBackgroundColor : ''};
   font-size: ${base.fontSizes.base};
   font-weight: ${base.fontWeights.semibold};
   border-radius: 1px;
@@ -88,7 +90,7 @@ export const ButtonStyled = styled.button`
   ${ButtonStyles};
 `
 
-export const Button = ({slug, icon, text, url, children, className, slugPrefix, color, isGhost, isOnDark, openNew}) => {
+export const Button = ({slug, icon, text, url, children, className, slugPrefix, color, isGhost, isOnDark, openNew, customBackgroundColor}) => {
   if (slug && slug !== '' && !openNew) {
     const slugPre = slugPrefix || ''
 
@@ -113,7 +115,7 @@ export const Button = ({slug, icon, text, url, children, className, slugPrefix, 
     )
   } else {
     return (
-      <ButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} as='button' className={className}>
+      <ButtonStyled isghost={isGhost ? 'true' : 'false'} color={color} isdark={isOnDark ? 'true' : 'false'} as='button' className={className} customBackgroundColor={customBackgroundColor}>
         {children || text}  {icon && <i className={icon} />}
       </ButtonStyled>
     )
