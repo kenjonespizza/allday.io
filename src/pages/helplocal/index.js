@@ -99,7 +99,7 @@ const Helplocal = (props) => {
         <Wrapper hasGrid>
           <Container>
             <ThinText>
-              <p>Hi there!  If, you've made it to this page, then you're unfortunately feeling the affects COVID-19 is having on our economy.  We'd love to help out by providing your business with a <strong>free donations web page</strong> to network and collect donations for your business.  <a href='https://helplocal.us/chucktown-styles' target='_blank' rel='noopener noreferrer'>Checkout the donation page demo!</a></p>
+              <p>Hi there!  If, you've made it to this page, then you're unfortunately feeling the affects COVID-19 is having on our economy.  We'd love to help out by providing your business with a <strong>free donations web page</strong> to network and collect donations for your business.  <a href='https://helplocal.us/sample' target='_blank' rel='noopener noreferrer'>Checkout the donation page demo!</a></p>
               <p>To get started, we'll just need to collect a little information about you and your business.  After you complete the form below, we'll send you a link where you can provide the remainder of your information.  One other thing you will need is a PayPal account.  The way that we tie the donation form to your PayPal account is by programming in the email address that is associated to your PayPal account.</p>
               <p>Once someone fills out your donation form they will be redirected to PayPal to complete the transaction.  No fund ever goes through our hand.  Checkout our <a href='https://helplocal.us#faq' target='_blank' rel='noopener noreferrer'>Frequently Asked Questions</a> for more information.</p>
               <p>Just so you, we are AllDay!  We are small (two person) team that focuses on making great & affordable websites for small businesses.  <Link to='/design-architects'>Learn more about us.</Link></p>
@@ -109,7 +109,7 @@ const Helplocal = (props) => {
           <Container main>
             <FromWrapper>
               <ThinText>
-                <Form name='help-local-contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field' action='/helplocal'>
+                <Form name='help-local-contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field' action='/helplocal/step-1-complete'>
 
                   <input type='hidden' name='bot-field' />
                   <input type='hidden' name='form-name' value='help-local-contact' />

@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import {rgba, invert, getContrast, getColorContrast} from 'polished'
+import {rgba, invert, getContrast, getColorContrast, darken} from 'polished'
 import InputColor from 'react-input-color'
 import sanityClient from '@sanity/client'
 import slugify from 'slugify'
+import {navigateTo} from 'gatsby-link'
 
 import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
@@ -28,6 +29,8 @@ const Helplocal = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    const modal = document.querySelector('.modal-pending')
+    modal.classList.add('on')
     // console.log(event)
 
     const doc = {
@@ -143,9 +146,17 @@ const Helplocal = (props) => {
             console.error('Image Upload failed:', error.message)
           })
       }
-    }).catch(err => {
-      console.error('Transaction failed: ', err.message)
     })
+      .then(() => {
+        navigateTo(
+          '/helplocal/signup-complete/'
+        )
+      })
+      .catch(err => {
+        const errorModal = document.querySelector('.modal-error')
+        errorModal.classList.add('on')
+        console.error('Transaction failed: ', err.message)
+      })
   }
 
   const returnBetterContrast = (color) => {
@@ -249,7 +260,7 @@ const Helplocal = (props) => {
                 <Field className='field'>
                   <label htmlFor='businessWebsite'>URL to your website</label>
                   <Descriptor>Optional.  We will link your logo to your website.</Descriptor>
-                  <Input color={color.hex} type='url' name='businessWebsite' id='businessWebsite' placeholder='https://www.yourbusines.com' onChange={updateField} />
+                  <Input color={color.hex} type='text' name='businessWebsite' id='businessWebsite' placeholder='https://www.yourbusines.com' onChange={updateField} />
                 </Field>
 
                 <Field className='field'>
@@ -306,7 +317,7 @@ const Helplocal = (props) => {
 
                 <Field>
                   <label htmlFor='approved'>
-                    <input type='checkbox' required name='approved' id='approved' /> <span className='checkBoxDescription'>I approve AllDay to store & use this information to create my donation page.  If 'No', this is kinda a deal breaker 😜</span>
+                    <input type='checkbox' required name='approved' id='approved' /> <span className='checkBoxDescription'>I approve AllDay to store & use this information to create my donation page.*  <em>If you don't check this... it's kind of a deal breaker</em> <span aria-label='winky-face' role='img'>😜</span></span>
                   </label>
                   <label htmlFor='newsletter'>
                     <input onChange={updateField} type='checkbox' name='newsletter' id='newsletter' /> <span className='checkBoxDescription'>I would like to be added to the AllDay newsletter.</span>
@@ -323,6 +334,20 @@ const Helplocal = (props) => {
           </ContainerStyled>
         </Wrapper>
       </Layout>
+      <Modal className='modal-pending'>
+        <div className='inner'>
+          One Moment.  You will be redirected once your information has been saved.
+        </div>
+      </Modal>
+      <Modal className='modal-error'>
+        <div className='inner'>
+          Oh no, something went wrong.  This shouldn't happen. please email us at <a href={`mailto:gang@allday.io?subject=ERROR%20on%20HelpLocal%20sign%20up%20form&body=Here%20are%20the%20details%20${JSON.stringify(formFields)}`}>gang@allday.io</a> and let us know you got an error.  Copy & Paste us the data below so that you won't have to fill out that long form again <span aria-label='smilie' role='img'>😅</span>
+
+          <code>
+            {JSON.stringify(formFields, null, '\t')}
+          </code>
+        </div>
+      </Modal>
     </>
   )
 }
@@ -572,12 +597,44 @@ const Grid = styled.div`
   }
 `
 
-const ButtonStyled = styled(Button)`
-  color: ${props => props.theme.colors.background};
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${rgba(base.colors.black, 0.5)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  pointer-events: none;
+
+  &.modal-error {
+    .inner {
+      background: ${base.colors.watermelly};
+      color: ${base.colors.white};
+    }
+  }
+
+  &.on {
+    z-index: 100;
+    pointer-events: auto;
+  }
+
+  .inner {
+    background: rgb(254, 254, 254);
+    padding: 60px;
+    margin: 0 30px;
+    max-width: 700px;
+
+    code {
+      display: block;
+      background: ${darken(0.2, base.colors.watermelly)};
+      margin-top: 30px;
+      padding: 30px;
+    }
+  }
 `
 
 export default Helplocal
-
-const HelplocalWrap = styled.section`
-
-`
