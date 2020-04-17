@@ -1,5 +1,6 @@
 export * from './Heading'
 export * from './Button'
+export * from './ColorWrap'
 export * from './Wrappers'
 export * from './GridLines'
 export * from './HeadingBlock'

@@ -4,7 +4,7 @@ import styled, {ThemeProvider} from 'styled-components'
 
 import {getContrastTextColor} from '../utilities/helpers'
 import Layout from '../components/Layout'
-import {Wrapper, HeadingBlock, SubHeading, H1} from '../elements'
+import {Wrapper, HeadingBlock, SubHeading, H1, ColorWrap} from '../elements'
 import {base, darkBase} from '../utilities/styles'
 import HeroHome from '../components/HeroHome'
 import ServicesBlock from '../components/ServicesBlock'
@@ -62,19 +62,6 @@ export const query = graphql`
       }
     }
   }
-`
-
-const ColorWrap = styled.div`
-/* display: none; */
-
-*::selection {
-  background: ${props => props.color} !important; /* WebKit/Blink Browsers */
-  color: ${props => props.textColor} !important; /* WebKit/Blink Browsers */
-}
-*::-moz-selection {
-  background: ${props => props.color} !important; /* Gecko Browsers */
-  color: ${props => props.textColor} !important; /* Gecko Browsers */
-}
 `
 
 const Sample = (props) => {

@@ -81,8 +81,6 @@ const Steps = ({data, rawData}) => {
           {steps && (
             <StepsWrap count={steps.length}>
               {steps.map((step, i) => {
-                console.log('step:', step)
-
                 return (
                   <Step key={step._key}>
                     <Text>
