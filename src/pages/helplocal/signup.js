@@ -17,9 +17,9 @@ const Helplocal = (props) => {
   console.log('formFields:', formFields)
 
   const client = sanityClient({
-    projectId: 'rgyn2yg6',
-    dataset: 'production',
-    token: process.env.HELPLOCAL_SANITY_READ_TOKEN, // or leave blank to be anonymous user
+    projectId: process.env.GATSBY_HELPLOCAL_SANITY_PROJECT_ID,
+    dataset: process.env.GATSBY_HELPLOCAL_SANITY_DATASET,
+    token: process.env.GATSBY_HELPLOCAL_SANITY_READ_TOKEN, // or leave blank to be anonymous user
     useCdn: false // `false` if you want to ensure fresh data
   })
 
