@@ -36,7 +36,7 @@ const Helplocal = (props) => {
     const doc = {
       _type: 'sites',
       isActive: false,
-      heading: 'Please Donate to help us stay in business.',
+      heading: 'Please donate to help us stay in business.',
       content: [{
         style: 'normal',
         _type: 'block',
@@ -258,19 +258,19 @@ const Helplocal = (props) => {
                 </Field>
 
                 <Field className='field'>
-                  <label htmlFor='businessWebsite'>URL to your website</label>
-                  <Descriptor>Optional.  We will link your logo to your website.</Descriptor>
-                  <Input color={color.hex} type='text' name='businessWebsite' id='businessWebsite' placeholder='https://www.yourbusines.com' onChange={updateField} />
+                  <label htmlFor='businessWebsite'>URL to your business website*</label>
+                  <Descriptor>If your dont't have a business website, your business' Facebook or Instagram URL is fine.</Descriptor>
+                  <Input color={color.hex} type='text' name='businessWebsite' id='businessWebsite' required placeholder='https://www.yourbusines.com' onChange={updateField} />
                 </Field>
 
                 <Field className='field'>
-                  <label htmlFor='twitterHandel'>Business Twitter handel</label>
+                  <label htmlFor='twitterHandle'>Business Twitter handle</label>
                   <Descriptor>Optional.  This will be used to help generate a preview if someone shares your donation page on Twitter.</Descriptor>
-                  <Input color={color.hex} type='text' name='twitterHandel' id='twitterHandel' onChange={updateField} />
+                  <Input color={color.hex} type='text' name='twitterHandle' id='twitterHandle' onChange={updateField} />
                 </Field>
 
                 <Field className='field'>
-                  <label htmlFor='logo'>Upload your business's logo</label>
+                  <label htmlFor='logo'>Upload your business logo</label>
                   <Descriptor>Optional.  This will show on the donation form.  For best results, please upload <strong>.png</strong>, <strong>.webp</strong>, or a <strong>.jpg</strong> on a transparent or white background.</Descriptor>
                   <Input color={color.hex} type='file' accept='.png, .jpg, .jpeg, .webp' name='logo' id='logo' onChange={updateField} />
                 </Field>
@@ -300,7 +300,7 @@ const Helplocal = (props) => {
                 </Field>
 
                 <Field className='field'>
-                  <label htmlFor='city'>What city & state is your business based out of?</label>
+                  <label htmlFor='city'>Where is your business located?</label>
                   <Descriptor>Optional.  This is just for our internal records in case we have the opportunity to group local businesses together for more exposure.</Descriptor>
                   <Grid>
                     <div>
