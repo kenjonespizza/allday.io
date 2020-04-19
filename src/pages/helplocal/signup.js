@@ -216,28 +216,28 @@ const Helplocal = (props) => {
               Sign up using the form below.
             </H1>
 
-            <p>We need just a bit of information from you.  If you have any questions while filling out the form, drop us an email and let us know! <a href='mailto:team@helplocal.us'>team@helplocal.us</a>.</p>
+            <p>We need just a bit of information from you.  If you have any questions while filling out the form, drop us an email and let us know! <a href='mailto:gang@allday.io'>gang@allday.io</a>.</p>
             <FromWrapper>
 
               <Form name='help-local-signup' onSubmit={handleSubmit}>
 
                 <Field className='field'>
-                  <label htmlFor='contactName'>Your name*</label>
-                  <Descriptor>This won't be displayed your donation page.  This is just in case we need to get in touch with you.</Descriptor>
+                  <label htmlFor='contactName'>Your full name*</label>
+                  <Descriptor>This won't be displayed on your donation page.  This is just in case we need to get in touch with you.</Descriptor>
                   <Input color={color.hex} type='text' name='contactName' id='contactName' notrequired onChange={updateField} />
                 </Field>
 
                 <Field className='field'>
                   <label htmlFor='contactEmail'>Your email address*</label>
-                  <Descriptor>This won't be displayed your donation page.  This is just in case we need to get in touch with you.</Descriptor>
+                  <Descriptor>This won't be displayed on your donation page.  This is just in case we need to get in touch with you.</Descriptor>
                   <Input color={color.hex} type='email' name='contactEmail' id='contactEmail' notrequired onChange={updateField} />
                 </Field>
 
-                <Field className='field'>
+                {/* <Field className='field'>
                   <label htmlFor='need'>Tell us why you need this page</label>
                   <Descriptor>Just a short description of hardship your business is facing.  We won't judge 😊, we just use this so we can add a short summary to your donation page</Descriptor>
                   <Input color={color.hex} as='textarea' name='need' id='need' rows='6' placeholder='COVID-19 has forced us to close our doors.  We are having trouble paying our employees and staying in business.' onChange={updateField} />
-                </Field>
+                </Field> */}
 
                 <Field className='field'>
                   <label htmlFor='businessName'>Your brand's <ColorSpan color={color.hex}>primary color</ColorSpan></label>
@@ -253,7 +253,7 @@ const Helplocal = (props) => {
 
                 <Field className='field'>
                   <label htmlFor='businessName'>Business name*</label>
-                  <Descriptor>This will be displayed on your donation form.</Descriptor>
+                  {/* <Descriptor>This will be displayed on your donation form.</Descriptor> */}
                   <Input color={color.hex} type='text' name='businessName' id='businessName' notrequired onChange={updateField} />
                 </Field>
 
@@ -265,13 +265,13 @@ const Helplocal = (props) => {
 
                 <Field className='field'>
                   <label htmlFor='twitterHandel'>Business Twitter handel</label>
-                  <Descriptor>Optional.  This will be used to help generate a preview if someone shares your donation page's URL on Twitter.</Descriptor>
+                  <Descriptor>Optional.  This will be used to help generate a preview if someone shares your donation page on Twitter.</Descriptor>
                   <Input color={color.hex} type='text' name='twitterHandel' id='twitterHandel' onChange={updateField} />
                 </Field>
 
                 <Field className='field'>
                   <label htmlFor='logo'>Upload your business's logo</label>
-                  <Descriptor>Optional.  This will show on the donation form.  For best results, please upload a transparent <strong>.png</strong>,<strong>.webp</strong>, or a <strong>.jpg</strong> on a white background.</Descriptor>
+                  <Descriptor>Optional.  This will show on the donation form.  For best results, please upload <strong>.png</strong>, <strong>.webp</strong>, or a <strong>.jpg</strong> on a transparent or white background.</Descriptor>
                   <Input color={color.hex} type='file' accept='.png, .jpg, .jpeg, .webp' name='logo' id='logo' onChange={updateField} />
                 </Field>
 
@@ -287,21 +287,21 @@ const Helplocal = (props) => {
               </Field> */}
 
                 <Field className='field'>
-                  <label htmlFor='image'>Upload an image to use.*</label>
-                  <Descriptor>If you don't have a nice large image, you can find a nice, royalty free image on <a href='https://unsplash.com' target='_blank' rel='noopener noreferrer'>unsplash.com</a>. Put the link in the field below.</Descriptor>
+                  <label htmlFor='image'>Upload an image to use.</label>
+                  <Descriptor>Optional.  If you don't have a nice large image, You can find and download one from <a href='https://unsplash.com' target='_blank' rel='noopener noreferrer'>unsplash.com</a>, or we will find one for you.</Descriptor>
                   <Input color={color.hex} type='file' accept='.png, .jpg, .jpeg, .webp, .svg' name='image' id='image' onChange={updateField} />
-                  <Input color={color.hex} type='text' name='imageLink' id='imageLink' placeholder='https://unsplash.com/photos/N04FIfHhv_k' onChange={updateField} />
+                  {/* <Input color={color.hex} type='text' name='imageLink' id='imageLink' placeholder='https://unsplash.com/photos/N04FIfHhv_k' onChange={updateField} /> */}
                 </Field>
 
                 <Field className='field'>
                   <label htmlFor='paypalEmail'>PayPal email address*</label>
-                  <Descriptor>The email address you use to log into PayPal.  This is used to tie the form to your business's PayPal account.  <a href='#'>Create a PayPal Account</a></Descriptor>
+                  <Descriptor>The email address tied to your PayPal account.  Don't have a PayPal account? <a href='https://www.paypal.com/us/webapps/mpp/referral/paypal-business-account' target='_blank' rel='noopener noreferrer'>Create a PayPal account here</a>.</Descriptor>
                   <Input color={color.hex} type='email' name='paypalEmail' id='paypalEmail' notrequired onChange={updateField} />
                 </Field>
 
                 <Field className='field'>
-                  <label htmlFor='city'>What city & state are you based out of?</label>
-                  <Descriptor>Optional.  This is just for our internal records incase we have the opportunity to group local businesses.</Descriptor>
+                  <label htmlFor='city'>What city & state is your business based out of?</label>
+                  <Descriptor>Optional.  This is just for our internal records in case we have the opportunity to group local businesses together for more exposure.</Descriptor>
                   <Grid>
                     <div>
                       <Input color={color.hex} type='text' name='city' id='city' placeholder='City' notrequired onChange={updateField} />
@@ -317,10 +317,10 @@ const Helplocal = (props) => {
 
                 <Field>
                   <label htmlFor='approved'>
-                    <input type='checkbox' required name='approved' id='approved' /> <span className='checkBoxDescription'>I approve AllDay to store & use this information to create my donation page.*  <em>If you don't check this... it's kind of a deal breaker</em> <span aria-label='winky-face' role='img'>😜</span></span>
+                    <input type='checkbox' required name='approved' id='approved' /> <span className='checkBoxDescription'>I approve AllDay to store & use this information.*  <em>If you don't agree to this... it's kind of a deal breaker</em> <span aria-label='winky-face' role='img'>😜</span></span>
                   </label>
                   <label htmlFor='newsletter'>
-                    <input onChange={updateField} type='checkbox' name='newsletter' id='newsletter' /> <span className='checkBoxDescription'>I would like to be added to the AllDay newsletter.</span>
+                    <input onChange={updateField} type='checkbox' name='newsletter' id='newsletter' /> <span className='checkBoxDescription'>I would like to be added to AllDay's newsletter.</span>
                   </label>
                 </Field>
                 <br />

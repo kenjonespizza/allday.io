@@ -99,9 +99,9 @@ const Helplocal = (props) => {
         <Wrapper hasGrid>
           <Container>
             <ThinText>
-              <p>Hi there!  If, you've made it to this page, then you're unfortunately feeling the affects COVID-19 is having on our economy.  We'd love to help out by providing your business with a <strong>free donations web page</strong> to network and collect donations for your business.  <a href='https://helplocal.us/sample' target='_blank' rel='noopener noreferrer'>Checkout the donation page demo!</a></p>
-              <p>To get started, we'll just need to collect a little information about you and your business.  After you complete the form below, we'll send you a link where you can provide the remainder of your information.  One other thing you will need is a PayPal account.  The way that we tie the donation form to your PayPal account is by programming in the email address that is associated to your PayPal account.</p>
-              <p>Once someone fills out your donation form they will be redirected to PayPal to complete the transaction.  No fund ever goes through our hand.  Checkout our <a href='https://helplocal.us#faq' target='_blank' rel='noopener noreferrer'>Frequently Asked Questions</a> for more information.</p>
+              <p>Hi there!  If, you've made it to this page, then you're unfortunately feeling the affects COVID-19 is having on our economy.  We'd love to help out by providing your business with a <strong>free web page</strong> to network and collect donations for your business.  <a href='https://helplocal.us/sample' target='_blank' rel='noopener noreferrer'>Checkout the donation page demo!</a>  All donation pages will live on our <strong>helplocal.us</strong> domain, but if you have an existing website, you are welcome to redirect users from your site.  It's pretty seamless.</p>
+              <p>To get started, we'll just need to collect some brief information about you and your business.  After you complete the form below, we'll send you a link where you can provide the remainder of your information.  One other thing you will need is a business PayPal account.  <a href='https://www.paypal.com/us/webapps/mpp/referral/paypal-business-account' target='_blank' rel='noopener noreferrer'>Sign up for that here</a>.</p>
+              {/* <p>Once someone fills out your donation form they will be redirected to PayPal to complete the transaction.  No fund ever goes through our hand.  Checkout our <a href='https://helplocal.us#faq' target='_blank' rel='noopener noreferrer'>Frequently Asked Questions</a> for more information.</p> */}
               <p>Just so you, we are AllDay!  We are small (two person) team that focuses on making great & affordable websites for small businesses.  <Link to='/design-architects'>Learn more about us.</Link></p>
             </ThinText>
           </Container>
@@ -123,14 +123,14 @@ const Helplocal = (props) => {
                     <Input type='text' name='email' id='email' required />
                   </Field>
 
-                  {/* <Field className='field'>
-                <label htmlFor='message'>Message</label>
-                <Input as='textarea' name='message' id='message' rows='6' />
-              </Field> */}
+                  <Field className='field'>
+                    <label htmlFor='message'>Tell us just a little about how COVID-19 is affecting your business.  Knowing this information will help us prioritize and write a text summary for the donation page.</label>
+                    <Input as='textarea' name='message' id='message' rows='6' />
+                  </Field>
 
                   <Field>
                     <label htmlFor='paypal'>
-                      <input type='checkbox' required name='paypal' id='paypal' /> <span className='checkBoxDescription'>I understand that I will need a business PayPal account prior to signing up.</span>
+                      <input type='checkbox' required name='paypal' id='paypal' /> <span className='checkBoxDescription'>I understand that I will need a business PayPal account prior to signing up.  <a href='https://www.paypal.com/us/webapps/mpp/referral/paypal-business-account' target='_blank' rel='noopener noreferrer'>Sign up for that here</a>.</span>
                     </label>
                   </Field>
                   <br />
@@ -160,7 +160,10 @@ const FromWrapper = styled.section`
       /* box-shadow: 0 10px 100px rgba(0,0,0,.25);
       z-index: 10; */
     
-
+        button {
+          background-color: ${colorsList.helpLocal} !important;
+          border-color: ${colorsList.helpLocal} !important;
+        }
     
         ${mqs({
           property: 'padding-left',

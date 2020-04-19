@@ -55,7 +55,6 @@ const Page = (props) => {
       <Wrapper hasGrid theme={base} noSpace>
         <ThemeProvider theme={base}>
           {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
-            console.log('process.env.NODE_ENV', process.env.NODE_ENV)
             if (typeof block._type !== 'undefined') {
               const name = block._type
 
