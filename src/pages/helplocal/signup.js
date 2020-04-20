@@ -364,7 +364,7 @@ a {
 `
 
 const FromWrapper = styled.section`
-      background-color: ${props => props.theme.colors.background};
+      /* background-color: ${props => props.theme.colors.background}; */
       /* border: solid 1px ${props => rgba(props.theme.grid.color, props.theme.grid.opacity)}; */
       border-bottom: none;
       /* padding: ${base.spacings.base}px; */
@@ -379,22 +379,6 @@ const FromWrapper = styled.section`
           valueM: `${base.spacings.sectionS / 2}px`,
           valueL: `${base.spacings.sectionM / 2}px`,
           valueXL: `${base.spacings.sectionL / 2}px`
-        })};
-    
-        ${mqs({
-          property: 'padding-left',
-          valueBase: `${base.spacings.sectionS / 2}px`,
-          valueM: `${base.spacings.sectionS / 2}px`,
-          valueL: '0px',
-          valueXL: '0px'
-        })};
-    
-        ${mqs({
-          property: 'padding-right',
-          valueBase: `${base.spacings.sectionS / 2}px`,
-          valueM: `${base.spacings.sectionS / 2}px`,
-          valueL: '0px',
-          valueXL: '0px'
         })};
     
         ${mqs({
@@ -474,6 +458,7 @@ const Input = styled.input`
       ${transition({})};
       background-color: ${props => props.theme.colors.background};
       color: ${props => props.theme.colors.text};
+      width: 100%;
     
       &:focus, &:hover {
         border-color: ${props => props.color ? props.theme.colors.text : base.colors.seal};

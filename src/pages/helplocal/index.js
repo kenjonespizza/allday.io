@@ -164,22 +164,7 @@ const FromWrapper = styled.section`
           background-color: ${colorsList.helpLocal} !important;
           border-color: ${colorsList.helpLocal} !important;
         }
-    
-        ${mqs({
-          property: 'padding-left',
-          valueBase: `${base.spacings.sectionS / 2}px`,
-          valueM: `${base.spacings.sectionS / 2}px`,
-          valueL: '0px',
-          valueXL: '0px'
-        })};
-    
-        ${mqs({
-          property: 'padding-right',
-          valueBase: `${base.spacings.sectionS / 2}px`,
-          valueM: `${base.spacings.sectionS / 2}px`,
-          valueL: '0px',
-          valueXL: '0px'
-        })};
+
     
         ${mqs({
           property: 'grid-gap',
@@ -259,6 +244,7 @@ const Input = styled.input`
       margin: 15px 0 30px 1px;
       font-weight: ${base.fontWeights.bold};
       ${transition({})};
+      width: 100%;
     
       &:focus, &:hover {
         border-color: ${base.colors.seal};
