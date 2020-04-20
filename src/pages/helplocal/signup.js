@@ -195,14 +195,14 @@ const Helplocal = (props) => {
     url: 'https://allday.io/helplocal',
     type: '',
     keywords: ['HelpLocal', 'Donation Page', 'COVIDE-19', 'Coronavirus'],
-    index: false,
-    follow: false,
+    index: '',
+    follow: '',
     image: {
       asset: {
         url: 'https://allday.io/images/og-image.jpg'
       }
     },
-    description: 'If, you\'ve made it to this page, then you\'re unfortunately feeling the affects COVID-19 is having on our economy.  We\'d love to help out by providing your business with a free donations web page to network and collect donations for your business.',
+    description: "Hi there!  If, you've made it to this page, then you're unfortunately feeling the effects COVID-19 is having on our economy.  We'd love to help out by providing your business with a free web page to network and collect donations for your business.",
     author: 'AllDay'
   }
 
