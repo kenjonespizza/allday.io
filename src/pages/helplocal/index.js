@@ -98,7 +98,7 @@ const Helplocal = (props) => {
         </ColorWrap>
         <Wrapper hasGrid>
           <Container>
-            <ThinText> <p>Hi there!  If, you've made it to this page, then you're unfortunately feeling the effects COVID-19 is having on our economy.  We'd love to help out by providing your business with a <strong>free web page</strong> to network and collect donations for your business.  <a href='https://helplocal.us/demo' target='_blank' rel='noopener noreferrer'>Checkout the donation page demo!</a>  All donation pages will live on our <strong>helplocal.us</strong> domain, but if you have an existing website, you are welcome to redirect users from your site.  It's fairly seamless.</p>
+            <ThinText> <p>If, you've made it to this page, then you're unfortunately feeling the effects COVID-19 is having on our economy OR you are actively fighting the necessary fight to to end the systemic racism in this country.  We'd love to help out by providing you or your business with a <strong>free web page</strong> to network and collect donations for your business.  Checkout the <a href='https://helplocal.us/business-demo' target='_blank' rel='noopener noreferrer'>Business</a> or <a href='https://helplocal.us/activist-demo' target='_blank' rel='noopener noreferrer'>Activist</a> donation page demo!  All donation pages will live on our <strong>helplocal.us</strong> domain, but if you have an existing website, you are welcome to redirect users from your site.  It's fairly seamless.</p>
               <p>To get started, we'll just need to collect some brief information about you and your business.  After you complete the form below, we'll send you a link where you can provide the remainder of your information.  One other thing you'll need is a business PayPal account.  <a href='https://www.paypal.com/us/webapps/mpp/referral/paypal-business-account' target='_blank' rel='noopener noreferrer'>Sign up for that here</a>.</p>
               {/* <p>Once someone fills out your donation form they will be redirected to PayPal to complete the transaction.  No fund ever goes through our hand.  Checkout our <a href='https://helplocal.us#faq' target='_blank' rel='noopener noreferrer'>Frequently Asked Questions</a> for more information.</p> */}
               <p>Just so you know, we are AllDay!  We are small (two person) team that focuses on making great & affordable websites for small businesses.  <Link to='/design-architects'>Learn more about us.</Link>
@@ -124,7 +124,7 @@ const Helplocal = (props) => {
                   </Field>
 
                   <Field className='field'>
-                    <label htmlFor='message'>Tell us just a little about how COVID-19 is affecting your business.  Knowing this information will help us prioritize and write a text summary for the donation page.</label>
+                    <label htmlFor='message'>Tell us just a little about you or your business.  If you are an activist please link us to your website or social media page.</label>
                     <Input as='textarea' name='message' id='message' rows='6' />
                   </Field>
 
@@ -247,7 +247,7 @@ const Input = styled.input`
       width: 100%;
     
       &:focus, &:hover {
-        border-color: ${base.colors.seal};
+        border-color: ${colorsList.helpLocal};
       }
     `
 
