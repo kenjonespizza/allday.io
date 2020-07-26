@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
-import {useStaticQuery, graphql} from 'gatsby'
+import {useStaticQuery, graphql, Link} from 'gatsby'
 import styled, {ThemeProvider, keyframes, css} from 'styled-components'
-import Link from 'gatsby-link'
 import {rgba} from 'polished'
 
 import {links} from '../utilities/links'
@@ -159,9 +158,9 @@ const SlideOutMenu = ({menu}) => {
                 )
               }
             })}
-            <li key='blog'>
+            {/* <li key='blog'>
               <Link activeClassName='active' onClick={() => toggleMenu(!isOpen)} partiallyActive to={links.blog}>Blog</Link>
-            </li>
+            </li> */}
           </ul>
           {/* <ul>
             {data.navigation.edges && data.navigation.edges[0].node.hiddenNavLinks.map(node => {

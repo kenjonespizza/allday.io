@@ -4,19 +4,14 @@
   avatar: ./avatars/Henry-Hollingsworth-AllDay.jpg
   featured: true
   social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/henryhollingsworth/
-    - name: instagram
-      url: https://www.instagram.com/brofessorhank/
+    - url: https://www.linkedin.com/in/henryhollingsworth/
+    - url: https://www.instagram.com/brofessorhank/
 
 - name: Ken Jazzy Jones
   bio: |
     Ken is COO and Lead of Colors & Code @AllDay.  He is a digital design and developer, and is interested in most anything that combines creativity and technology.
   avatar: ./avatars/Ken-Jazzy-Jones-AllDay.jpg
   social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/kenjazzyjones/
-    - name: dribbble
-      url: https://dribbble.com/kenjazzy
-    - name: instagram
-      url: https://www.instagram.com/kenjazzy/
+    - url: https://www.linkedin.com/in/kenjazzyjones/
+    - url: https://dribbble.com/kenjazzy
+    - url: https://www.instagram.com/kenjazzy/

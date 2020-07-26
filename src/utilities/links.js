@@ -3,5 +3,5 @@ export const links = {
   work: 'work',
   approach: 'web-app-design-approach',
   whoWeAre: 'design-architects',
-  blog: 'design-studio-blog'
+  // blog: 'design-studio-blog'
 }

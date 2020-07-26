@@ -4,7 +4,7 @@ import {rgba, invert, getContrast, getColorContrast, darken} from 'polished'
 import InputColor from 'react-input-color'
 import sanityClient from '@sanity/client'
 import slugify from 'slugify'
-import {navigateTo} from 'gatsby-link'
+import {navigate} from 'gatsby'
 
 import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
@@ -148,7 +148,7 @@ const Helplocal = (props) => {
       }
     })
       .then(() => {
-        navigateTo(
+        navigate(
           '/helplocal/signup-complete/'
         )
       })

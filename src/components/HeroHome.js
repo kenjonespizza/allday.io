@@ -5,7 +5,6 @@ import styled, {ThemeProvider} from 'styled-components'
 import {readableColor} from 'polished'
 
 import PineappleDudeFile from '../../static/pineapple-man.svg'
-import {useGlobalState} from './Layout'
 import {centerIt, lightPulp, lightWatermelly, base, transition, media} from '../utilities/styles/'
 import {Button as HeroButton, Wrapper, GridLines} from '../elements/'
 

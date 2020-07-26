@@ -1,10 +1,22 @@
 import React, {Component} from 'react'
-import Modal from 'react-responsive-modal'
+import {Modal} from 'react-responsive-modal'
 
 import {base} from '../utilities/styles'
 
 import {YouTubePlayer} from './'
 class PopUpPlayer extends Component {
+  state = {
+    open: false,
+  };
+ 
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+ 
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+  
   render () {
     const opts = {
       height: '100%',
@@ -15,11 +27,11 @@ class PopUpPlayer extends Component {
       }
     }
 
-    const {open, toggleModal, video} = this.props
+    const {open, video} = this.props
     return (
       <Modal
         open={open}
-        onClose={toggleModal}
+        onClose={this.onCloseModal}
         styles={{
           modal: {
             maxWidth: 'unset',

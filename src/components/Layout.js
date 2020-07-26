@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import styled, {ThemeProvider} from 'styled-components'
 import {createGlobalState} from 'react-hooks-global-state'
 
-import BannerHelpLocal from '../components/BannerHelpLocal'
 import {GlobalStyle, base} from '../utilities/styles'
 import NavBar from './NavBar'
 import Footer from './Footer'
@@ -12,7 +11,7 @@ import {reColorPunctuation} from '../utilities/helpers'
 const initialState = {
   isMenuOpen: false
 }
-export const {GlobalStateProvider, useGlobalState} = createGlobalState(initialState)
+export const {useGlobalState} = createGlobalState(initialState)
 
 const LayoutStyled = styled.div`
   /* padding-top: 124px; */
@@ -23,13 +22,13 @@ const BodyWrap = styled.div`
   min-height: calc(100vh - (124px + 400px));
 `
 
-const loadScript = src => {
-  const tag = document.createElement('script')
-  tag.src = src
-  tag.defer = true
+// const loadScript = src => {
+//   const tag = document.createElement('script')
+//   tag.src = src
+//   tag.defer = true
 
-  document.getElementsByTagName('body')[0].appendChild(tag)
-}
+//   document.getElementsByTagName('body')[0].appendChild(tag)
+// }
 
 const InnerLayout = ({children}) => {
   useEffect(() => {
@@ -53,15 +52,12 @@ const InnerLayout = ({children}) => {
   )
 }
 
-const Layout = ({children, noHelpLocalBanner}) => {
+const Layout = ({children}) => {
   return (
     <ThemeProvider theme={base}>
-      <GlobalStateProvider>
         <InnerLayout>
           {children}
         </InnerLayout>
-        {noHelpLocalBanner !== true && (<BannerHelpLocal />)}
-      </GlobalStateProvider>
     </ThemeProvider>
   )
 }

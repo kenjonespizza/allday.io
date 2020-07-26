@@ -94,20 +94,20 @@ module.exports = {
         ]
       }
     },
-    {
-      resolve: '@narative/gatsby-theme-novela',
-      options: {
-        sources: {
-          local: true
-        },
-        basePath: '/design-studio-blog',
-        rootPath: '/',
-        contentPosts: 'content/posts',
-        contentAuthors: 'content/authors',
-        authorsPage: true,
-        authorsPath: 'team'
-      }
-    },
+    // {
+    //   resolve: '@narative/gatsby-theme-novela',
+    //   options: {
+    //     sources: {
+    //       local: true
+    //     },
+    //     basePath: '/design-studio-blog',
+    //     rootPath: '/',
+    //     contentPosts: 'content/posts',
+    //     contentAuthors: 'content/authors',
+    //     authorsPage: false,
+    //     authorsPath: 'team'
+    //   }
+    // },
 
     {
       resolve: 'gatsby-plugin-manifest',

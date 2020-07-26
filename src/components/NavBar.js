@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import styled, {keyframes, css} from 'styled-components'
-import {useStaticQuery, graphql} from 'gatsby'
-import Link from 'gatsby-link'
+import {useStaticQuery, graphql, Link} from 'gatsby'
 import {rgba} from 'polished'
 import Headroom from 'react-headroom'
 import Dribbble from '../img/social/Dribbble.Icon'
@@ -369,9 +368,9 @@ const NavBar = () => {
                     </li>
                   )
                 })}
-                <li key='blog'>
+                {/* <li key='blog'>
                   <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
-                </li>
+                </li> */}
 
                 <Social>
                   <ul>

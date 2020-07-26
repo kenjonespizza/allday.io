@@ -5,7 +5,6 @@ import styled, {ThemeProvider} from 'styled-components'
 import {readableColor} from 'polished'
 import Typical from 'react-typical'
 
-import {useGlobalState} from './Layout'
 import {centerIt, lightPulp, base, transition, media} from '../utilities/styles/'
 import {Button, Wrapper, GridLines} from '../elements/'
 
