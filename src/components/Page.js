@@ -48,74 +48,75 @@ const Page = (props) => {
   }
 
   return (
-    <Layout>
-
+    <>
       {seo && <Seo context={pageProps.pageContext} {...seo} />}
+      <Layout>
 
-      <Wrapper hasGrid theme={base} noSpace>
-        <ThemeProvider theme={base}>
-          {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
-            if (typeof block._type !== 'undefined') {
-              const name = block._type
+        <Wrapper hasGrid theme={base} noSpace>
+          <ThemeProvider theme={base}>
+            {blocks && blocks.blocks && blocks.blocks.map((block, i) => {
+              if (typeof block._type !== 'undefined') {
+                const name = block._type
 
-              const Component = name.charAt(0).toUpperCase() + name.slice(1)
+                const Component = name.charAt(0).toUpperCase() + name.slice(1)
 
-              var rawData = _rawBlocks.blocks || ''
-              rawData = rawData[Object.keys(rawData)[i]]
+                var rawData = _rawBlocks.blocks || ''
+                rawData = rawData[Object.keys(rawData)[i]]
 
-              switch (Component) {
-                case 'HeroHome':
-                  return <HeroHome key={block._key} data={block} />
-                case 'HeroHomeV2':
-                  return <HeroHomeV2 key={block._key} data={block} />
-                case 'ServicesBlock':
-                  return <ServicesBlock key={block._key} data={block} />
-                // case 'ReviewsBlock':
-                //   return <ReviewsBlock key={block._key} data={block} />
-                case 'CaseStudiesBlock':
-                  if (block.layout === 'row') {
-                    return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />
-                  } else {
-                    return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} />
-                  }
-                case 'Banner1':
-                  return <Banner1 key={block._key} data={block} />
-                case 'Banner2':
-                  return <Banner2 key={block._key} data={block} />
-                case 'HeroBasic':
-                  return <HeroBasic key={block._key} data={block} rawData={rawData} />
-                case 'Gallery':
-                  return <Gallery key={block._key} data={block} rawData={rawData} />
-                case 'TwoPanelText':
-                  return <TwoPanelText key={block._key} data={block} rawData={rawData} />
-                case 'TextBlockQuarters':
-                  return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
-                case 'TextBlockWithImage':
-                  return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
-                case 'TextBlock':
-                  return <TextBlock key={block._key} data={block} rawData={rawData} />
+                switch (Component) {
+                  case 'HeroHome':
+                    return <HeroHome key={block._key} data={block} />
+                  case 'HeroHomeV2':
+                    return <HeroHomeV2 key={block._key} data={block} />
+                  case 'ServicesBlock':
+                    return <ServicesBlock key={block._key} data={block} />
+                    // case 'ReviewsBlock':
+                    //   return <ReviewsBlock key={block._key} data={block} />
+                  case 'CaseStudiesBlock':
+                    if (block.layout === 'row') {
+                      return <CaseStudiesBlockRows key={block._key} data={block} rawData={rawData} />
+                    } else {
+                      return <CaseStudiesBlockBlocks key={block._key} data={block} rawData={rawData} />
+                    }
+                  case 'Banner1':
+                    return <Banner1 key={block._key} data={block} />
+                  case 'Banner2':
+                    return <Banner2 key={block._key} data={block} />
+                  case 'HeroBasic':
+                    return <HeroBasic key={block._key} data={block} rawData={rawData} />
+                  case 'Gallery':
+                    return <Gallery key={block._key} data={block} rawData={rawData} />
+                  case 'TwoPanelText':
+                    return <TwoPanelText key={block._key} data={block} rawData={rawData} />
+                  case 'TextBlockQuarters':
+                    return <TextBlockQuarters key={block._key} data={block} rawData={rawData} />
+                  case 'TextBlockWithImage':
+                    return <TextBlockWithImage key={block._key} data={block} rawData={rawData} />
+                  case 'TextBlock':
+                    return <TextBlock key={block._key} data={block} rawData={rawData} />
                   // case 'CaseStudiesRow':
                   //   return <CaseStudiesRow key={block._key} data={block} rawData={rawData} />
-                case 'FormContact':
-                  return <ContactForm key={block._key} data={block} rawData={rawData} />
-                case 'ButtonsBlock':
-                  return <ButtonsBlock key={block._key} data={block} />
-                case 'LogoGrid':
-                  return <LogoGrid key={block._key} data={block} rawData={rawData} />
-                case 'Steps':
-                  console.log('blocky:', block)
-                  return <Steps key={block._key} data={block} rawData={rawData} />
-                default:
-                  return null
+                  case 'FormContact':
+                    return <ContactForm key={block._key} data={block} rawData={rawData} />
+                  case 'ButtonsBlock':
+                    return <ButtonsBlock key={block._key} data={block} />
+                  case 'LogoGrid':
+                    return <LogoGrid key={block._key} data={block} rawData={rawData} />
+                  case 'Steps':
+                    console.log('blocky:', block)
+                    return <Steps key={block._key} data={block} rawData={rawData} />
+                  default:
+                    return null
+                }
               }
-            }
-          })}
+            })}
 
-          {hasPagination && <Pagination next={next} previous={previous} />}
-        </ThemeProvider>
-      </Wrapper>
+            {hasPagination && <Pagination next={next} previous={previous} />}
+          </ThemeProvider>
+        </Wrapper>
 
-    </Layout>
+      </Layout>
+    </>
   )
 }
 
