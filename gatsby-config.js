@@ -109,7 +109,7 @@ module.exports = {
     //   }
     // },
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-preact',
+    // 'gatsby-plugin-preact',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
