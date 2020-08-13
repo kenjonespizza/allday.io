@@ -65,6 +65,7 @@ const Seo = (props) => {
             title={metaTitle}
             // titleTemplate={metaTitle === data.site.globalSeo.titleBase ? '%s' : `%s | ${data.site.globalSeo.titleBase}`}
             defaultTitle={metaDefaultTitle}
+            defer={false}
             meta={[
               {
                 name: 'description',
@@ -127,7 +128,7 @@ const Seo = (props) => {
                     content: keywords.join(', ')
                   }
                   : []
-              )}
+            )}
           >
             {/* <meta property='og:url' content='http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' />
             <meta property='og:type' content='article' />
