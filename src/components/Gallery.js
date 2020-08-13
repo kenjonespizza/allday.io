@@ -162,6 +162,13 @@ const Gallery = ({data}) => {
                       backgroundColor: rgba(themeBase.colors.black, 0.2)
                     }
                   }
+                }),
+                view: base => ({
+                  ...base,
+                  maxHeight: '100vh',
+                  '& img': {
+                    maxHeight: '100vh'
+                  }
                 })
               }}
             />

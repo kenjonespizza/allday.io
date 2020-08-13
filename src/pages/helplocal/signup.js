@@ -14,7 +14,6 @@ import {darkBase, base, media, mqs, transition, colorsList} from '../../utilitie
 const Helplocal = (props) => {
   const [color, setColor] = React.useState({})
   const [formFields, setFormFields] = React.useState({})
-  console.log('formFields:', formFields)
 
   const client = sanityClient({
     projectId: process.env.GATSBY_HELPLOCAL_SANITY_PROJECT_ID,
@@ -23,15 +22,10 @@ const Helplocal = (props) => {
     useCdn: false // `false` if you want to ensure fresh data
   })
 
-  // console.log('HELPLOCAL_SANITY_PROJECT_ID:', process.env.HELPLOCAL_SANITY_PROJECT_ID)
-  // console.log('HELPLOCAL_SANITY_PROJECT_ID:', process.env.HELPLOCAL_SANITY_DATASET)
-  // console.log('HELPLOCAL_SANITY_PROJECT_ID:', process.env.HELPLOCAL_SANITY_READ_TOKEN)
-
   const handleSubmit = event => {
     event.preventDefault()
     const modal = document.querySelector('.modal-pending')
     modal.classList.add('on')
-    // console.log(event)
 
     const doc = {
       _type: 'sites',
@@ -83,15 +77,11 @@ const Helplocal = (props) => {
     const logoFile = document.querySelector('input[name=logo]').files[0]
     const imageFile = document.querySelector('input[name=image]').files[0]
 
-    console.log('doc:', doc)
     client.create(doc).then(res => {
-      console.log(`Site was created, document ID is ${res._id}`)
-
       if (logoFile) {
         client.assets
           .upload('image', logoFile)
           .then(document => {
-            console.log('The file was uploaded!', document)
             // document._type = 'image'
             client.patch(res._id)
               .set({
@@ -105,8 +95,6 @@ const Helplocal = (props) => {
               })
               .commit()
               .then(addedLogo => {
-                console.log('Logo Added')
-                console.log(addedLogo)
               })
               .catch(error => {
                 console.error('Logo Upload failed:', error.message)
@@ -121,7 +109,6 @@ const Helplocal = (props) => {
         client.assets
           .upload('image', imageFile)
           .then(document => {
-            console.log('The file was uploaded!', document)
             // document._type = 'image'
             client.patch(res._id)
               .set({
@@ -135,8 +122,6 @@ const Helplocal = (props) => {
               })
               .commit()
               .then(addedImage => {
-                console.log('Image Added')
-                console.log(addedImage)
               })
               .catch(error => {
                 console.error('Image Upload failed:', error.message)

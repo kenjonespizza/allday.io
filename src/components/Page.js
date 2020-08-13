@@ -103,7 +103,6 @@ const Page = (props) => {
                   case 'LogoGrid':
                     return <LogoGrid key={block._key} data={block} rawData={rawData} />
                   case 'Steps':
-                    console.log('blocky:', block)
                     return <Steps key={block._key} data={block} rawData={rawData} />
                   default:
                     return null
