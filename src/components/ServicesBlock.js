@@ -18,7 +18,7 @@ const Services = styled.ul`
   `}
  
   ${media.xLarge`
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   `}
 `
 

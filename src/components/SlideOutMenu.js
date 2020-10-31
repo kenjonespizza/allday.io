@@ -148,16 +148,19 @@ const SlideOutMenu = ({menu}) => {
         <nav>
           <ul>
             {menu && menu.map(node => {
-              const {pageInfo, _id} = node
+              if (node) {
+                const {pageInfo, _id} = node
 
-              if (pageInfo) {
-                return (
-                  <li key={_id}>
-                    <Link activeClassName='active' onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current}`}>{pageInfo.pageName}</Link>
-                  </li>
-                )
+                if (pageInfo) {
+                  return (
+                    <li key={_id}>
+                      <Link activeClassName='active' onClick={() => toggleMenu(!isOpen)} to={`/${pageInfo.slug.current}`}>{pageInfo.pageName}</Link>
+                    </li>
+                  )
+                }
               }
-            })}
+            }
+            )}
             {/* <li key='blog'>
               <Link activeClassName='active' onClick={() => toggleMenu(!isOpen)} partiallyActive to={links.blog}>Blog</Link>
             </li> */}

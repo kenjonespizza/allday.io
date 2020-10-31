@@ -135,6 +135,7 @@ const CaseStudiesBlockRows = ({data, rawData}) => {
       )}
       <Wrap theme={isDark ? darkBase : base} hasGrid noSpace>
         {caseStudies && caseStudies.map((caseStudy, i) => {
+          console.log('caseStudy:', caseStudy)
           const hex = caseStudy.color && caseStudy.color.hex ? caseStudy.color.hex : base.colors.black
           const textColor = getContrast(hex, base.colors.white) > 2 ? base.colors.white : base.colors.black
           return (
@@ -147,9 +148,11 @@ const CaseStudiesBlockRows = ({data, rawData}) => {
                   <SubHeading>{caseStudy.title}</SubHeading>
                   <p>{caseStudy.excerpt}</p>
 
-                  <Button slug={caseStudy.pageInfo.slug} slugPrefix='/work-samples' color={hex} textColor={textColor}>
-                    View Project Details
-                  </Button>
+                  {caseStudy?.pageInfo?.slug?.current && (
+                    <Button slug={caseStudy} slugPrefix='/work-samples' color={hex} textColor={textColor}>
+                      View Project Details
+                    </Button>
+                  )}
 
                 </Container>
 

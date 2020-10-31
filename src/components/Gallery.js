@@ -204,7 +204,7 @@ export const query = graphql`
       caption
       alt
       asset {
-        fluid(maxWidth: 800) {
+        fluid(maxWidth: 1150) {
           ...GatsbySanityImageFluid
         }
         _id

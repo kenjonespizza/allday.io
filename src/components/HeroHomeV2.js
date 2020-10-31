@@ -7,6 +7,7 @@ import Typical from 'react-typical'
 
 import {centerIt, lightPulp, base, transition, media} from '../utilities/styles/'
 import {Button, Wrapper, GridLines} from '../elements/'
+import BlockContent from './BlockContent'
 
 const HeroWrapper = styled(Wrapper)`
   
@@ -100,18 +101,18 @@ display: grid;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
   }
-  .small, .signature {
+  .small, .signature, p {
     font-size: 17px;
     font-weight: ${base.fontWeights.light};
     line-height: 1.5em;
 
 
     ${media.medium`
-      font-size: 19px;
+      font-size: 17px;
     `}
     
     ${media.xLarge`
-      font-size: 26px;
+      font-size: 23px;
     `}
   }
 `
@@ -137,10 +138,12 @@ const HeroHomeV2 = (props) => {
                 wrapper='div'
               />
             </div>
-            <div className='small'>{props.data.smallText}</div>
+            <div className='small'>
+              <BlockContent blocks={props.data._rawText} />
+            </div>
             <div className='signature'>-AllDay</div>
           </HeroTextInner>
-          <Button {...props.data.button} />
+          <Button color={base.colors.seal} {...props.data.button} />
         </HeroText>
       </Split>
     </Wrapper>
@@ -153,9 +156,9 @@ export const query = graphql`
   fragment HeroHomeV2Fragment on SanityHeroHomeV2 {
     _key
     _type
+    _rawText(resolveReferences: {maxDepth: 10})
     bigText
     rotatingText
-    smallText
     timeOnSlide
     button {
       ...ButtonFragment

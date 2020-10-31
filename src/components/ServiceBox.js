@@ -111,7 +111,7 @@ const ServiceBox = ({pageInfo, sampleImage, iteration}) => {
     var {pageName, slug} = pageInfo
   }
   const isEven = iteration % 2 === 0
-  const hasImg = !!((sampleImage !== null && sampleImage.asset !== null && !isEven))
+  const hasImg = !!((sampleImage !== null && sampleImage.asset !== null))
 
   return (
     <>

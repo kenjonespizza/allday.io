@@ -49,6 +49,8 @@ function colorSwap (props) {
 
 const StyledWrapper = styled(Wrapper)`
   overflow: visible !important;
+  /* display: flex;
+  align-items: center; */
 `
 
 const StyledNavBar = styled.header`
@@ -83,6 +85,7 @@ ${media.large`
   ul {
     display: flex;
     margin: 0;
+    align-items: baseline;
   }
 
   li {
@@ -109,7 +112,7 @@ ${media.large`
         font-size: 17px;
       `}
 
-      &:not(.social-icon):after {
+      /* &:not(.social-icon):after {
         content: "";
         position: absolute;
         bottom: -10px;
@@ -122,16 +125,15 @@ ${media.large`
           duration: '.4s',
           ease: 'ease-in-out'
         })};
-      }
+      } */
       
-      &:hover, &.active {
-        /* color: ${props => props.theme.colors.accent} */
+      /* &:hover, &.active {
 
         &:after {
           width: 100%;
           left: 0;
         }
-      }
+      } */
     }
 
     &.hasNotification:after {
@@ -173,7 +175,7 @@ const Logo = styled(LogoFile)`
 
 const MenuButton = styled.button`
   right: ${base.spacings.base}px;
-  top: 22px;
+  top: 20px;
   z-index: 20;
   position: fixed;
   background: none;
@@ -209,7 +211,7 @@ const StyledHeadroom = styled(Headroom)`
     transform: translateY(0);
 
     ${MenuButton} {
-      top: 38px;
+      top: 20px;
     }
   }
   .headroom--scrolled {
@@ -310,6 +312,14 @@ const Social = styled.li`
   }
 `
 
+const ButtonLink = styled(Button)`
+  margin-bottom: 0;
+  font-size: inherit;
+  padding: 17px 25px 15px 25px;
+  background-color: ${props => props.theme.colors.black};
+  border-color: ${props => props.theme.colors.black};
+`
+
 const NavBar = () => {
   const [isOpen, toggleMenu] = useGlobalState('isMenuOpen')
   const [isPinned, setAsPinned] = useState(false)
@@ -345,6 +355,8 @@ const NavBar = () => {
 
   `)
 
+  console.log('data:', data)
+
   return (
     <>
       <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
@@ -356,18 +368,33 @@ const NavBar = () => {
             <GridLines />
             <Nav>
               <ul>
-                {data.navigation.edges && data.navigation.edges[0].node.navLinks.map(node => {
-                  const {pageInfo, _id} = node
-                  return (
-                    <li key={_id} className={pageInfo.slug.current.includes('work') ? 'hasNotification' : ''}>
-                      <Link
-                        activeClassName='active' partiallyActive
-                        to={`/${pageInfo.slug.current}`}
-                      >{pageInfo.pageName}
-                      </Link>
-                    </li>
-                  )
-                })}
+                {data?.navigation?.edges[0]?.node?.navLinks && data.navigation.edges[0].node.navLinks.map(node => {
+                  if (node) {
+                    const {pageInfo, _id} = node
+
+                    if (pageInfo.slug.current === 'call-design-team') {
+                      return (
+                        <li key={_id} className={pageInfo.slug.current.includes('work') ? 'hasNotification' : ''}>
+                          <ButtonLink
+                            activeClassName='active' partiallyActive
+                            to={`/${pageInfo.slug.current}`}
+                          >{pageInfo.pageName}
+                          </ButtonLink>
+                        </li>
+                      )
+                    }
+                    return (
+                      <li key={_id} className={pageInfo.slug.current.includes('work') ? 'hasNotification' : ''}>
+                        <Link
+                          activeClassName='active' partiallyActive
+                          to={`/${pageInfo.slug.current}`}
+                        >{pageInfo.pageName}
+                        </Link>
+                      </li>
+                    )
+                  }
+                }
+                )}
                 {/* <li key='blog'>
                   <Link activeClassName='active' partiallyActive to={links.blog}>Blog</Link>
                 </li> */}
