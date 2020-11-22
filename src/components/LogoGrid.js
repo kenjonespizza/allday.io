@@ -19,11 +19,34 @@ const Logo = styled(Image)`
 `
 
 const LogosWrap = styled.ul`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: repeat(${props => props.rows ? props.rows : '1'}, auto);
   justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
+  ${mqs({
+      property: 'grid-gap',
+      valueBase: `${base.spacings.sectionS / 2}px`,
+      valueM: `${base.spacings.sectionS / 2}px`,
+      valueL: `${base.spacings.sectionM / 2}px`,
+      valueXL: `${base.spacings.sectionL / 2}px`
+    })};
+  ${mqs({
+    property: 'margin-bottom',
+    valueBase: `${base.spacings.sectionS}px`,
+    valueM: `${base.spacings.sectionS}px`,
+    valueL: `${base.spacings.sectionM}px`,
+    valueXL: `${base.spacings.sectionL}px`
+  })};
+
+${media.medium`
+  grid-template-columns: 1fr 1fr;
+`}
+${media.large`
+  grid-template-columns: repeat(${props => props.count / props.rows}, 1fr);
+`}
 
   /* ${mqs({
     property: 'padding',
@@ -34,26 +57,26 @@ const LogosWrap = styled.ul`
   })}; */
 
   li {
-    width: 50%;
+    width: 100%;
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    ${mqs({
+    /* ${mqs({
       property: 'margin-bottom',
       valueBase: `${base.spacings.sectionS}px`,
       valueM: `${base.spacings.sectionS}px`,
       valueL: `${base.spacings.sectionM}px`,
       valueXL: `${base.spacings.sectionL}px`
-    })};
+    })}; */
 
-    ${media.medium`
-      width: calc(100% / ${props => props.columns > 3 ? 3 : props.columns});
+    /* ${media.medium`
+      width: calc(100% / ${props => props.columns > 3 ? 3 : props.columns * props.rows});
     `}
 
     ${media.large`
       width: calc(100% / ${props => props.columns});
-    `}
+    `} */
 
     a {
       width: 60%;
@@ -137,7 +160,7 @@ const ButtonBlock = styled(LogoGridButtonBlock)`
 `
 
 const LogoGrid = ({data}) => {
-  const {headingBlock, isDark, logos, button, columns, convertToBW} = data
+  const {headingBlock, isDark, logos, button, columns, rows, convertToBW} = data
   const {heading, subHeading} = headingBlock
 
   return (
@@ -149,7 +172,7 @@ const LogoGrid = ({data}) => {
         )}
 
         {logos && (
-          <LogosWrap count={logos.length} columns={columns} convertToBW={convertToBW} isDark={isDark}>
+          <LogosWrap count={logos.length} columns={columns} rows={rows} convertToBW={convertToBW} isDark={isDark}>
             {logos.map((logo, i) => {
               return (
                 <li key={logo._key}>
@@ -183,6 +206,7 @@ export const query = graphql`
     _key
     _type
     columns
+    rows
     headingBlock {
       heading
       subHeading

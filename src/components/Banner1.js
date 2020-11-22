@@ -15,11 +15,15 @@ const Container = styled(Banner1Container)`
 
   ${media.medium`
     align-items: flex-start;
-    text-align: normal;
+    text-align: left;
   `}
 
   h2 {
     margin: 0;
+
+    ${media.medium`
+      width: calc(100% - (78px * 2));
+    `}
   }
 `
 

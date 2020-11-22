@@ -38,7 +38,7 @@ export const ButtonStyles = css`
 
   &:hover {
     /* Base colors... */
-    color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.accentHoverText};
     background-color: ${props => props.theme.colors.accentHover};
     border-color: ${props => props.theme.colors.accentHover};
     

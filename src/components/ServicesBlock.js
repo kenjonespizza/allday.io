@@ -10,7 +10,8 @@ const Services = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  padding: 0;
+  padding-left: ${base.spacings.base}px;
+  padding-right: ${base.spacings.base}px;
 
   ${media.medium`
     grid-gap: ${base.spacings.base}px;
@@ -18,7 +19,7 @@ const Services = styled.ul`
   `}
  
   ${media.xLarge`
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   `}
 `
 
@@ -31,15 +32,15 @@ const ServicesBlock = ({data}) => {
       {headingBlock && (heading || subHeading) && (
         <HeadingBlock {...headingBlock} />
       )}
-      <Container>
-        <Services>
-          {services.map((service, i) => {
-            return (
-              <ServiceBox key={service._id} iteration={i + 1} {...service} />
-            )
-          })}
-        </Services>
-      </Container>
+      {/* <Container> */}
+      <Services>
+        {services.map((service, i) => {
+          return (
+            <ServiceBox key={service._id} iteration={i + 1} {...service} />
+          )
+        })}
+      </Services>
+      {/* </Container> */}
       {button && button.text && (button.text !== ' ')(
         <ButtonBlock>
           <Button {...button} />

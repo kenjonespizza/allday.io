@@ -25,6 +25,6 @@ export const query = graphql`
   }
 `
 
-const ServiceTemplate = (props) => <Page hasPagination pageProps={props} />
+const ServiceTemplate = (props) => <Page pageProps={props} />
 
 export default ServiceTemplate

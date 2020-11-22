@@ -100,7 +100,7 @@ ${media.large`
       margin-left: 0;
     }
 
-    a {
+    a:not([class^="Button"]) {
       color: ${base.colors.text} !important;
       font-weight: ${base.fontWeights.medium};
       font-size: 15px;
@@ -355,8 +355,6 @@ const NavBar = () => {
 
   `)
 
-  console.log('data:', data)
-
   return (
     <>
       <StyledHeadroom calcHeightOnResize disableInlineStyles onPin={() => setAsPinned(true)} onUnfix={() => setAsPinned(false)} downTolerance={25}>
@@ -377,7 +375,9 @@ const NavBar = () => {
                         <li key={_id} className={pageInfo.slug.current.includes('work') ? 'hasNotification' : ''}>
                           <ButtonLink
                             activeClassName='active' partiallyActive
-                            to={`/${pageInfo.slug.current}`}
+                            slug={node}
+                            color='black'
+                            isGhost={false}
                           >{pageInfo.pageName}
                           </ButtonLink>
                         </li>

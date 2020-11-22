@@ -135,7 +135,6 @@ const CaseStudiesBlockRows = ({data, rawData}) => {
       )}
       <Wrap theme={isDark ? darkBase : base} hasGrid noSpace>
         {caseStudies && caseStudies.map((caseStudy, i) => {
-          console.log('caseStudy:', caseStudy)
           const hex = caseStudy.color && caseStudy.color.hex ? caseStudy.color.hex : base.colors.black
           const textColor = getContrast(hex, base.colors.white) > 2 ? base.colors.white : base.colors.black
           return (
