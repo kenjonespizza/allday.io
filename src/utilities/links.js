@@ -1,5 +1,5 @@
 export const links = {
-  contact: 'c/all-design-team',
+  contact: '/call-design-team',
   work: '/work',
   approach: '/web-app-design-approach',
   whoWeAre: '/design-architects'
