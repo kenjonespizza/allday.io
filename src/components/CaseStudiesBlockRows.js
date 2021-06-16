@@ -139,7 +139,7 @@ const CaseStudiesBlockRows = ({data, rawData}) => {
           const textColor = getContrast(hex, base.colors.white) > 2 ? base.colors.white : base.colors.black
           return (
             <Wrapper key={caseStudy._id + i} theme={isDark ? darkBase : base} bg={hex} textColor={textColor}>
-              <OverlayLink to={`/work-samples/${caseStudy.pageInfo.slug.current}`} />
+              <OverlayLink to={`/work/${caseStudy.pageInfo.slug.current}`} />
               <Block>
 
                 <Container>
@@ -148,7 +148,7 @@ const CaseStudiesBlockRows = ({data, rawData}) => {
                   <p>{caseStudy.excerpt}</p>
 
                   {caseStudy?.pageInfo?.slug?.current && (
-                    <Button slug={caseStudy} slugPrefix='/work-samples' color={hex} textColor={textColor}>
+                    <Button slug={caseStudy} slugPrefix='/work' color={hex} textColor={textColor}>
                       View Project Details
                     </Button>
                   )}
