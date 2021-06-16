@@ -148,7 +148,7 @@ const CaseStudiesBlockRows = ({data, rawData}) => {
                   <p>{caseStudy.excerpt}</p>
 
                   {caseStudy?.pageInfo?.slug?.current && (
-                    <Button slug={caseStudy} slugPrefix='/work' color={hex} textColor={textColor}>
+                    <Button slug={caseStudy} slugPrefix='/' color={hex} textColor={textColor}>
                       View Project Details
                     </Button>
                   )}
