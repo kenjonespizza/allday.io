@@ -1,12 +1,17 @@
-import React from 'react'
-import {graphql} from 'gatsby'
-import styled, {ThemeContext} from 'styled-components'
-import {rgba, getContrast, readableColor} from 'polished'
-import Image from 'gatsby-image'
+import React from "react"
+import { graphql } from "gatsby"
+import styled, { ThemeContext } from "styled-components"
+import { rgba, getContrast, readableColor } from "polished"
+import Image from "gatsby-image"
 
-import BlockContent from './BlockContent'
-import {Wrapper, H1, SubHeading, Container as HeroBasicContainer} from '../elements'
-import {base, darkBase, media, mqs} from '../utilities/styles'
+import BlockContent from "./BlockContent"
+import {
+  Wrapper,
+  H1,
+  SubHeading,
+  Container as HeroBasicContainer,
+} from "../elements"
+import { base, darkBase, media, mqs } from "../utilities/styles"
 
 const Text = styled.div`
   margin-top: ${base.spacings.base}px;
@@ -18,15 +23,19 @@ const Container = styled(HeroBasicContainer)`
   grid-template-rows: auto auto auto;
 
   a {
-    color: ${props => getContrast(props.theme.colors.accent, props.theme.colors.background) > 2 ? props.theme.colors.accent : props.theme.colors.text};
+    color: ${(props) =>
+      getContrast(props.theme.colors.accent, props.theme.colors.background) > 2
+        ? props.theme.colors.accent
+        : props.theme.colors.text};
   }
 
   ${SubHeading} {
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
-    /* color: ${props => props.theme.colors.text && rgba(props.theme.colors.text, 0.7)}; */
+    /* color: ${(props) =>
+      props.theme.colors.text && rgba(props.theme.colors.text, 0.7)}; */
   }
-  
+
   ${H1} {
     grid-column: 1 / span 3;
     grid-row: 2 / span 1;
@@ -34,14 +43,14 @@ const Container = styled(HeroBasicContainer)`
     margin-top: 0;
 
     ${mqs({
-      property: 'font-size',
-      valueBase: '45px',
-      valueM: '50px',
-      valueL: '60px',
-      valueXL: '70px'
+      property: "font-size",
+      valueBase: "45px",
+      valueM: "50px",
+      valueL: "60px",
+      valueXL: "70px",
     })};
   }
-  
+
   /* ${Text} { */
   div[class*="Text"] {
     grid-column: 1 / span 3;
@@ -49,12 +58,16 @@ const Container = styled(HeroBasicContainer)`
     /* margin-top: ${base.spacings.base}px; */
 
     strong {
-      /* color: ${props => props.theme.colors.accent}; */
+      /* color: ${(props) => props.theme.colors.accent}; */
     }
 
     a {
-      /* color: ${props => props.theme.colors.accent}; */
+      /* color: ${(props) => props.theme.colors.accent}; */
       text-decoration: underline;
+    }
+
+    a[class^="Button"] {
+      text-decoration: none;
     }
   }
 `
@@ -68,9 +81,9 @@ const FullSpanWrapper = styled(Wrapper)`
     height: 80vh;
     /* margin-top: 100px; */
     ${mqs({
-      property: 'margin-top',
+      property: "margin-top",
       valueBase: `${base.spacings.base}px`,
-      valueM: `${base.spacings.sectionS}px`
+      valueM: `${base.spacings.sectionS}px`,
     })};
   }
 `
@@ -82,7 +95,8 @@ const LeftRightSpanWrapper = styled(Wrapper)`
   display: flex;
 
   ${media.medium`
-    flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'};
+    flex-direction: ${(props) =>
+      props.imagePosition === "left" ? "row-reverse" : "row"};
   `}
 
   ${Container} {
@@ -93,37 +107,39 @@ const LeftRightSpanWrapper = styled(Wrapper)`
 
     ${media.medium`
       width: 50vw;
-      /* flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'}; */
-      justify-content: ${props => props.imagePosition === 'left' ? 'flex-start' : 'flex-end'};
+      /* flex-direction: ${(props) =>
+        props.imagePosition === "left" ? "row-reverse" : "row"}; */
+      justify-content: ${(props) =>
+        props.imagePosition === "left" ? "flex-start" : "flex-end"};
     `}
 
     ${mqs({
-      property: 'padding',
+      property: "padding",
       valueBase: `${base.spacings.base}px`,
-      valueM: `${base.spacings.sectionS}px`
+      valueM: `${base.spacings.sectionS}px`,
     })};
 
     > div {
-      max-width: ${600 - (base.spacings.base * 2)}px;
+      max-width: ${600 - base.spacings.base * 2}px;
       display: flex;
       flex-direction: column;
     }
   }
-  
 
   ${HeroImage} {
     /* height: 70vh; */
     min-height: 100%;
     /* margin-top: 100px; */
     /* ${mqs({
-      property: 'margin-top',
+      property: "margin-top",
       valueBase: `${base.spacings.base}px`,
-      valueM: `${base.spacings.sectionS}px`
+      valueM: `${base.spacings.sectionS}px`,
     })}; */
 
     ${media.medium`
       width: 50vw;
-      flex-direction: ${props => props.imagePosition === 'left' ? 'row-reverse' : 'row'};
+      flex-direction: ${(props) =>
+        props.imagePosition === "left" ? "row-reverse" : "row"};
     `}
   }
 `
@@ -133,116 +149,107 @@ const CenterWrapper = styled(Wrapper)`
 
   ${Container} {
     grid-template-columns: 1fr;
-    
+
     > div.text {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
-  
+
   ${HeroImage} {
     /* margin-top: 100px; */
     width: 100%;
     ${mqs({
-      property: 'margin-top',
+      property: "margin-top",
       valueBase: `${base.spacings.base}px`,
-      valueM: `${base.spacings.sectionS}px`
+      valueM: `${base.spacings.sectionS}px`,
     })};
   }
 `
 
-const HeroBasic = ({data, rawData, children}) => {
+const HeroBasic = ({ data, rawData, children }) => {
   // const themeContext = React.useContext(ThemeContext)
 
-  if (typeof data !== 'undefined') {
-    const {headingBlock, isDark, heroImage, imagePosition} = data
-    const {heading, subHeading} = headingBlock
-    const {text} = rawData
+  if (typeof data !== "undefined") {
+    const { headingBlock, isDark, heroImage, imagePosition } = data
+    const { heading, subHeading } = headingBlock
+    const { text } = rawData
 
-    const hasImage = !!((heroImage && heroImage.asset && heroImage.asset.fluid))
+    const hasImage = !!(heroImage && heroImage.asset && heroImage.asset.fluid)
 
     // If hero has image
     if (hasImage) {
       // if layout is 'fullSpan'
-      if (imagePosition === 'fullSpan') {
+      if (imagePosition === "fullSpan") {
         return (
           <>
             <FullSpanWrapper hasGrid theme={isDark ? darkBase : base}>
               <Container>
-                {subHeading && (
-                  <SubHeading>
-                    {subHeading}
-                  </SubHeading>
-                )}
-                {heading && (
-                  <H1>
-                    {heading}
-                  </H1>
-                )}
-                {text &&
+                {subHeading && <SubHeading>{subHeading}</SubHeading>}
+                {heading && <H1>{heading}</H1>}
+                {text && (
                   <Text>
                     <BlockContent blocks={text || []} />
-                  </Text>}
+                  </Text>
+                )}
               </Container>
               {heroImage && (
-                <HeroImage fluid={{...heroImage.asset.fluid}} alt={heroImage.alt} />
+                <HeroImage
+                  fluid={{ ...heroImage.asset.fluid }}
+                  alt={heroImage.alt}
+                />
               )}
             </FullSpanWrapper>
           </>
         )
-      } else if (imagePosition === 'left' || imagePosition === 'right') {
+      } else if (imagePosition === "left" || imagePosition === "right") {
         return (
           <>
-            <LeftRightSpanWrapper imagePosition={imagePosition} hasGrid theme={isDark ? darkBase : base}>
+            <LeftRightSpanWrapper
+              imagePosition={imagePosition}
+              hasGrid
+              theme={isDark ? darkBase : base}
+            >
               <Container>
                 <div>
-                  {subHeading && (
-                    <SubHeading>
-                      {subHeading}
-                    </SubHeading>
-                  )}
-                  {heading && (
-                    <H1>
-                      {heading}
-                    </H1>
-                  )}
-                  {text &&
+                  {subHeading && <SubHeading>{subHeading}</SubHeading>}
+                  {heading && <H1>{heading}</H1>}
+                  {text && (
                     <Text>
                       <BlockContent blocks={text || []} />
-                    </Text>}
+                    </Text>
+                  )}
                 </div>
               </Container>
               {heroImage && (
-                <HeroImage fluid={{...heroImage.asset.fluid}} alt={heroImage.alt} />
+                <HeroImage
+                  fluid={{ ...heroImage.asset.fluid }}
+                  alt={heroImage.alt}
+                />
               )}
             </LeftRightSpanWrapper>
           </>
         )
-      } else if (imagePosition === 'center') {
+      } else if (imagePosition === "center") {
         return (
           <CenterWrapper hasGrid theme={isDark ? darkBase : base}>
             <Container>
-              <div className='text'>
-                {subHeading && (
-                  <SubHeading>
-                    {subHeading}
-                  </SubHeading>
-                )}
-                {heading && (
-                  <H1>
-                    {heading}
-                  </H1>
-                )}
-                {text &&
+              <div className="text">
+                {subHeading && <SubHeading>{subHeading}</SubHeading>}
+                {heading && <H1>{heading}</H1>}
+                {text && (
                   <Text>
                     <BlockContent blocks={text || []} />
-                  </Text>}
+                  </Text>
+                )}
               </div>
               {heroImage && (
-                <HeroImage fluid={{...heroImage.asset.fluid, aspectRatio: 16 / 9}} alt={heroImage.alt} />
+                <HeroImage
+                  fluid={{ ...heroImage.asset.fluid, aspectRatio: 16 / 9 }}
+                  alt={heroImage.alt}
+                />
               )}
             </Container>
-
           </CenterWrapper>
         )
       } else {
@@ -250,20 +257,17 @@ const HeroBasic = ({data, rawData, children}) => {
           <Wrapper hasGrid theme={isDark ? darkBase : base}>
             <Container>
               {subHeading && (
-                <SubHeading>hiiiii
+                <SubHeading>
+                  hiiiii
                   {subHeading}
                 </SubHeading>
               )}
-              {heading && (
-                <H1>
-                  {heading}
-                </H1>
-              )}
-              {text &&
+              {heading && <H1>{heading}</H1>}
+              {text && (
                 <Text>
                   <BlockContent blocks={text || []} />
-                </Text>}
-
+                </Text>
+              )}
             </Container>
             {heroImage && (
               <HeroImage fluid={heroImage.asset.fluid} alt={heroImage.alt} />
@@ -275,21 +279,13 @@ const HeroBasic = ({data, rawData, children}) => {
       return (
         <Wrapper hasGrid theme={isDark ? darkBase : base}>
           <Container>
-            {subHeading && (
-              <SubHeading>
-                {subHeading}
-              </SubHeading>
-            )}
-            {heading && (
-              <H1>
-                {heading}
-              </H1>
-            )}
-            {text &&
+            {subHeading && <SubHeading>{subHeading}</SubHeading>}
+            {heading && <H1>{heading}</H1>}
+            {text && (
               <Text>
                 <BlockContent blocks={text || []} />
-              </Text>}
-
+              </Text>
+            )}
           </Container>
         </Wrapper>
       )
@@ -297,11 +293,8 @@ const HeroBasic = ({data, rawData, children}) => {
   } else {
     return (
       <Wrapper hasGrid>
-        <Container>
-          {children}
-        </Container>
+        <Container>{children}</Container>
       </Wrapper>
-
     )
   }
 }

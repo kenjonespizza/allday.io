@@ -1,21 +1,21 @@
-import {darken, lighten, rgba} from 'polished'
+import { darken, lighten, rgba } from "polished"
 
-const black = '#02161E'
-const white = '#FEFEFE'
-const seal = '#00B4BF'
-const watermelly = '#E84A5F'
-const pulp = '#FFDE67'
-const aloe = '#00D98B'
-const gatsby = '#663399'
-const netlify = '#00AD9F'
-const sanity = '#F04A39'
-const github = '#333333'
-const facebook = '#3b5998'
-const twitter = '#1da1f2'
-const linkedIn = '#007bb5'
-const instagram = '#c32aa3'
-const dribbble = '#ea4c89'
-const helpLocal = '#B63563'
+const black = "#02161E"
+const white = "#FEFEFE"
+const seal = "#00B4BF"
+const watermelly = "#E84A5F"
+const pulp = "#FFDE67"
+const aloe = "#00D98B"
+const gatsby = "#663399"
+const netlify = "#00AD9F"
+const sanity = "#F04A39"
+const github = "#333333"
+const facebook = "#3b5998"
+const twitter = "#1da1f2"
+const linkedIn = "#007bb5"
+const instagram = "#c32aa3"
+const dribbble = "#ea4c89"
+const helpLocal = "#B63563"
 
 export const colorsList = {
   seal: seal,
@@ -33,11 +33,11 @@ export const colorsList = {
   linkedIn: linkedIn,
   instagram: instagram,
   dribbble: dribbble,
-  helpLocal: helpLocal
+  helpLocal: helpLocal,
 }
 
 export const base = {
-  themeName: 'base',
+  themeName: "base",
   colors: {
     isDark: false,
     text: black,
@@ -52,56 +52,54 @@ export const base = {
     watermelly: watermelly,
     pulp: pulp,
     aloe: aloe,
-    useSpecial: false
+    useSpecial: false,
   },
   fonts: {
-    body: 'Poppins, sans-serif',
-    heading: 'Poppins, sans-serif',
-    monospace: 'Menlo, monospace'
+    body: "Poppins, sans-serif",
+    heading: "Poppins, sans-serif",
+    monospace: "Menlo, monospace",
   },
   fontSizes: {
-    baseSmall: '15px',
-    baseMedium: '17px',
-    baseLarge: '18px',
-    base: '19px',
-    small: '15px',
-    button: '19px',
-    buttonIcon: '16px',
-    h1: '55px',
-    subH1: '19px',
-    h2: '32px'
+    baseSmall: "15px",
+    baseMedium: "17px",
+    baseLarge: "18px",
+    base: "19px",
+    small: "15px",
+    button: "19px",
+    buttonIcon: "16px",
+    h1: "55px",
+    subH1: "19px",
+    h2: "32px",
   },
   fontWeights: {
-    light: 100,
+    light: 300,
     regular: 400,
     medium: 500,
     semibold: 600,
     bold: 700,
-    black: 900
+    black: 900,
   },
   lineHeights: {
     body: 1.9,
-    heading: 1.5
+    heading: 1.5,
   },
   letterSpacings: {
-    body: 'normal',
-    caps: '0.5em'
+    body: "normal",
+    caps: "0.5em",
   },
-  breakpoints: [
-    '40em', '56em', '64em'
-  ],
+  breakpoints: ["40em", "56em", "64em"],
   sizes: {
     xxLarge: 1500,
     xLarge: 1200,
     large: 992,
     medium: 768,
-    small: 480
+    small: 480,
   },
   spacings: {
     base: 40,
     sectionS: 50,
     sectionM: 60,
-    sectionL: 100
+    sectionL: 100,
     // heading: 40
     // sectionS: 80,
     // sectionM: 100,
@@ -109,17 +107,17 @@ export const base = {
     // heading: 40
   },
   shadows: {
-    box: `0px 10px 35px ${rgba('black', 0.1)}`,
-    boxHover: `0px 15px 35px ${rgba('black', 0.2)}`
+    box: `0px 10px 35px ${rgba("black", 0.1)}`,
+    boxHover: `0px 15px 35px ${rgba("black", 0.2)}`,
   },
   grid: {
     opacity: 0.045,
-    color: black
-  }
+    color: black,
+  },
 }
 
 const lightPulpTheme = {
-  themeName: 'lightPulpTheme',
+  themeName: "lightPulpTheme",
   colors: {
     isDark: false,
     text: black,
@@ -133,12 +131,12 @@ const lightPulpTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe
-  }
+    aloe: aloe,
+  },
 }
 
 const darkPulpTheme = {
-  themeName: 'darkPulpTheme',
+  themeName: "darkPulpTheme",
   colors: {
     isDark: true,
     text: white,
@@ -152,16 +150,16 @@ const darkPulpTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe
+    aloe: aloe,
   },
   grid: {
     opacity: 0.1,
-    color: white
-  }
+    color: white,
+  },
 }
 
 const lightWatermellyTheme = {
-  themeName: 'lightWatermellyTheme',
+  themeName: "lightWatermellyTheme",
   colors: {
     isDark: false,
     text: black,
@@ -175,12 +173,12 @@ const lightWatermellyTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe
-  }
+    aloe: aloe,
+  },
 }
 
 const darkWatermellyTheme = {
-  themeName: 'darkWatermellyTheme',
+  themeName: "darkWatermellyTheme",
   colors: {
     isDark: true,
     text: white,
@@ -194,16 +192,16 @@ const darkWatermellyTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe
+    aloe: aloe,
   },
   grid: {
     opacity: 0.1,
-    color: white
-  }
+    color: white,
+  },
 }
 
 const darkBaseTheme = {
-  themeName: 'darkBaseTheme',
+  themeName: "darkBaseTheme",
   colors: {
     isDark: true,
     text: white,
@@ -217,20 +215,20 @@ const darkBaseTheme = {
     seal: seal,
     watermelly: watermelly,
     pulp: pulp,
-    aloe: aloe
+    aloe: aloe,
   },
   shadows: {
-    box: `0px 10px 35px ${rgba('white', 0.1)}`,
-    boxHover: `0px 15px 35px ${rgba('white', 0.2)}`
+    box: `0px 10px 35px ${rgba("white", 0.1)}`,
+    boxHover: `0px 15px 35px ${rgba("white", 0.2)}`,
   },
   grid: {
     opacity: 0.1,
-    color: white
-  }
+    color: white,
+  },
 }
 
-export const lightPulp = {...base, ...lightPulpTheme}
-export const darkPulp = {...base, ...darkPulpTheme}
-export const lightWatermelly = {...base, ...lightWatermellyTheme}
-export const darkWatermelly = {...base, ...darkWatermellyTheme}
-export const darkBase = {...base, ...darkBaseTheme}
+export const lightPulp = { ...base, ...lightPulpTheme }
+export const darkPulp = { ...base, ...darkPulpTheme }
+export const lightWatermelly = { ...base, ...lightWatermellyTheme }
+export const darkWatermelly = { ...base, ...darkWatermellyTheme }
+export const darkBase = { ...base, ...darkBaseTheme }
